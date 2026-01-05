@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar - Policlínico Autovías Seguras</title>
+</head>
+<body>
+    <!-- navbar -->
+    <nav class="navbar" th:fragment="navbar">
+        <div class="logo">
+            <img src="https://images-ext-1.discordapp.net/external/8TpoPoZjjp71EZM2Xcqi6qWmikJkO2haemiaGPgsIrs/https/res.cloudinary.com/dtozni6ik/image/upload/v1767591606/Gemini_Generated_Image_f1ydyzf1ydyzf1yd_2_si4mvj.png?format=webp&quality=lossless" 
+                 alt="Policlínico Autovías Seguras">
+        </div>
+        
+        <ul class="nav-menu">
+            <li><a th:href="@{/}">Inicio</a></li>
+            <li><a th:href="@{/nosotros}">Sobre Nosotros</a></li>
+            <li><a th:href="@{/servicios}">Nuestros Servicios</a></li>
+            <li><a th:href="@{/preguntas-frecuentes}">Preguntas Frecuentes</a></li>
+            <li><a th:href="@{/blog}">Nuestro Blog</a></li>
+        </ul>
+
+        <div class="nav-buttons">
+            <a th:href="@{/consulta/cotizar}" class="btn btn-cotiza">COTIZA</a>
+            <a th:href="@{/consulta/resultados}" class="btn btn-resultados">RESULTADOS</a>
+        </div>
+
+        <!-- Botón hamburguesa para móvil -->
+        <button class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+</body>
+</html>

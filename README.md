@@ -12,3 +12,7 @@ Lenguajes
 - Apache Maven 3.9.9 
 
 
+Comandos
+- inicializar - mvn spring-boot:run
+- reload mvn -  mvn clean compile  
+

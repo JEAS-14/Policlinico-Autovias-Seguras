@@ -1,0 +1,265 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 15px 40px;
+    box-shadow:  0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    height: 85px;
+}
+
+/* Logo */
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 55px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* Menu de navegación */
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+    align-items: center;
+    margin:  0;
+}
+
+.nav-menu li {
+    display: inline-block;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: #333333;
+    font-size: 0.95rem;
+    font-weight:  500;
+    transition: color 0.3s ease;
+    white-space: nowrap;
+}
+
+.nav-menu a:hover {
+    color: #3bbca8;
+}
+
+/* Contenedor de botones */
+.nav-buttons {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+/* Estilos base de botones */
+.btn {
+    display: inline-block;
+    padding: 10px 25px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* Botón COTIZA (azul oscuro) */
+.btn-cotiza {
+    background-color:  #2c3e7a;
+    color: #ffffff;
+    border: 2px solid #2c3e7a;
+}
+
+.btn-cotiza:hover {
+    background-color: #1f2d5a;
+    border-color: #1f2d5a;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(44, 62, 122, 0.3);
+}
+
+/* Botón RESULTADOS (verde turquesa) */
+.btn-resultados {
+    background-color: #3bbca8;
+    color: #ffffff;
+    border: 2px solid #3bbca8;
+}
+
+.btn-resultados:hover {
+    background-color: #2da893;
+    border-color:  #2da893;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 188, 168, 0.3);
+}
+
+/* Botón hamburguesa (móvil) */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    margin: 3px 0;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+/* ===========================================
+   RESPONSIVE
+   =========================================== */
+
+/* Tablets y pantallas medianas */
+@media (max-width: 1024px) {
+    .navbar {
+        padding: 15px 25px;
+    }
+
+    .nav-menu {
+        gap: 15px;
+    }
+
+    .nav-menu a {
+        font-size: 0.85rem;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        font-size: 0.85rem;
+    }
+}
+
+/* Móviles */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 15px 20px;
+        height: 70px;
+    }
+
+    .logo img {
+        height: 45px;
+    }
+
+    /* Mostrar hamburguesa */
+    .hamburger {
+        display: flex;
+    }
+
+    /* Ocultar menú por defecto */
+    .nav-menu {
+        position: fixed;
+        top: 70px;
+        right: -100%;
+        width:  280px;
+        height: calc(100vh - 70px);
+        background-color: #ffffff;
+        flex-direction: column;
+        padding:  30px 20px;
+        box-shadow:  -2px 0 10px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s ease;
+        gap: 0;
+    }
+
+    .nav-menu.active {
+        right: 0;
+    }
+
+    .nav-menu li {
+        width: 100%;
+        padding: 15px 0;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    .nav-menu a {
+        display: block;
+        font-size: 1rem;
+    }
+
+    /* Botones dentro del menú móvil */
+    .nav-buttons {
+        position: fixed;
+        top: 70px;
+        right: -100%;
+        width: 280px;
+        flex-direction: column;
+        background-color: #f8f8f8;
+        padding: 20px;
+        box-shadow:  -2px 0 10px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s ease;
+        gap: 10px;
+        z-index: 999;
+    }
+
+    .nav-buttons.active {
+        right: 0;
+        top: auto;
+        bottom: 0;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 12px 20px;
+        font-size:  0.95rem;
+    }
+
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(6px, 6px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -6px);
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        padding: 12px 15px;
+    }
+
+    .logo img {
+        height: 40px;
+    }
+
+    .nav-menu {
+        width: 100%;
+        right: -100%;
+    }
+
+    .nav-menu.active {
+        right: 0;
+    }
+
+    .nav-buttons {
+        width: 100%;
+    }
+}

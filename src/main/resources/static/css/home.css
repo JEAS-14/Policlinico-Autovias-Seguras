@@ -1,0 +1,578 @@
+/* ===========================================
+   HOME PAGE - Policlínico Autovías Seguras
+   =========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    padding-top: 85px; /* Altura del navbar fijo */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding:  0 20px;
+}
+
+/* ===========================================
+   HERO SECTION
+   =========================================== */
+
+.hero-section {
+    position:  relative;
+    width: 100%;
+    min-height: calc(100vh - 85px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 60px 20px;
+}
+
+/* Fondo hero */
+.hero-bg-fix {
+    position:  absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom:  0;
+    z-index: 0;
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity:  0.3;
+}
+
+.bg-autovias-double-filter {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    pointer-events: none;
+    background: linear-gradient(
+        135deg,
+        rgba(59, 188, 168, 0.55) 0%,
+        rgba(255, 255, 255, 0.95) 50%,
+        rgba(59, 188, 168, 0.55) 100%
+    );
+}
+
+/* Contenido hero */
+.hero-content {
+    position: relative;
+    z-index: 20;
+    text-align: center;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.hero-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #2c3e7a;
+    margin-bottom:  40px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Cards de servicios */
+.services-cards {
+    display: grid;
+    grid-template-columns:  repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.service-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 25px 20px;
+    box-shadow:  0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 30px rgba(59, 188, 168, 0.3);
+}
+
+.card-icon {
+    width: 80px;
+    height: 80px;
+    margin:  0 auto 15px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #f0f9f7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-icon img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+.service-card h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #2c3e7a;
+    line-height: 1.4;
+}
+
+/* Botones hero */
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 14px 35px;
+    border-radius:  8px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-cotiza-hero {
+    background-color: #2c3e7a;
+    color: #ffffff;
+}
+
+.btn-cotiza-hero:hover {
+    background-color: #1f2d5a;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(44, 62, 122, 0.4);
+}
+
+.btn-whatsapp {
+    background-color: #25d366;
+    color: #ffffff;
+}
+
+.btn-whatsapp:hover {
+    background-color: #20ba5a;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+}
+
+/* Estadísticas */
+.stats-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px 50px;
+    border-radius:  20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #3bbca8;
+    margin-bottom:  5px;
+}
+
+.stat-label {
+    font-size:  0.9rem;
+    color: #555;
+    font-weight: 600;
+}
+
+.stat-divider {
+    width: 2px;
+    height: 60px;
+    background:  linear-gradient(180deg, transparent, #3bbca8, transparent);
+}
+
+/* ===========================================
+   ¿POR QUÉ ELEGIRNOS? 
+   =========================================== */
+
+.why-choose-us {
+    padding: 80px 20px;
+    background-color: #ffffff;
+}
+
+.why-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.why-image {
+    position: relative;
+}
+
+.why-image img {
+    width:  100%;
+    max-width: 450px;
+    border-radius: 50%;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.check-badge {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    width: 80px;
+    height: 80px;
+    background-color: #3bbca8;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 20px rgba(59, 188, 168, 0.4);
+}
+
+.check-badge i {
+    font-size: 2. 5rem;
+    color: #ffffff;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #2c3e7a;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.why-description {
+    font-size: 1.05rem;
+    line-height:  1.8;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.benefits-list {
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+.benefits-list li {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    font-size: 1.05rem;
+    color: #333;
+}
+
+.benefits-list i {
+    color: #3bbca8;
+    font-size: 1.3rem;
+}
+
+.btn-conoce-mas {
+    background-color: #2c3e7a;
+    color: #ffffff;
+}
+
+.btn-conoce-mas:hover {
+    background-color: #1f2d5a;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(44, 62, 122, 0.4);
+}
+
+/* ===========================================
+   UBICACIÓN
+   =========================================== */
+
+.location-section {
+    padding: 80px 20px;
+    background:  linear-gradient(180deg, #e8f5f3 0%, #d4ebe8 100%);
+}
+
+.location-section .section-title {
+    text-align: center;
+    color: #2c3e7a;
+    margin-bottom: 40px;
+}
+
+.map-container {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.map-marker {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    background: #ffffff;
+    padding: 15px 20px;
+    border-radius:  15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    z-index: 10;
+}
+
+.map-marker i {
+    font-size: 2rem;
+    color: #3bbca8;
+}
+
+.marker-info strong {
+    display: block;
+    color: #2c3e7a;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.marker-info p {
+    color: #666;
+    font-size: 0.9rem;
+    margin:  0;
+}
+
+/* ===========================================
+   TESTIMONIOS
+   =========================================== */
+
+.testimonials-section {
+    padding: 80px 20px;
+    background-color: #ffffff;
+}
+
+.testimonials-section .section-title {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.testimonial-card {
+    background: #f8f8f8;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.testimonial-card:hover {
+    transform:  translateY(-5px);
+    border-color: #3bbca8;
+    box-shadow: 0 10px 25px rgba(59, 188, 168, 0.2);
+}
+
+.stars {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 15px;
+}
+
+.stars i {
+    color: #ffd700;
+    font-size: 1.2rem;
+}
+
+.testimonial-text {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #555;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.testimonial-author {
+    font-weight: 700;
+    color: #2c3e7a;
+    font-size: 1.05rem;
+}
+
+/* ===========================================
+   NORMATIVAS
+   =========================================== */
+
+.normativas-section {
+    padding: 60px 20px;
+    background-color: #f5f5f5;
+}
+
+.section-title-dark {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.normativas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    align-items: center;
+}
+
+.normativa-item {
+    text-align: center;
+    padding: 20px;
+}
+
+.normativa-item img {
+    max-width: 150px;
+    height: auto;
+    margin-bottom: 15px;
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+}
+
+.normativa-item:hover img {
+    filter: grayscale(0%);
+}
+
+.normativa-item p {
+    font-size: 0.85rem;
+    color: #666;
+    font-weight: 600;
+}
+
+/* ===========================================
+   BOTÓN FLOTANTE WHATSAPP
+   =========================================== */
+
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 30px;
+    right: 30px;
+    background-color: #25d366;
+    color: #ffffff;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 2rem;
+    box-shadow:  0 5px 20px rgba(37, 211, 102, 0.4);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6);
+}
+
+/* ===========================================
+   RESPONSIVE
+   =========================================== */
+
+@media (max-width: 1024px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .why-content {
+        grid-template-columns: 1fr;
+    }
+
+    .why-image {
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding-top: 70px;
+    }
+
+    .hero-title {
+        font-size: 1.75rem;
+    }
+
+    .services-cards {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .stats-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .stat-divider {
+        width: 60px;
+        height: 2px;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .map-marker {
+        position: static;
+        margin-top: 20px;
+    }
+
+    .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+        bottom: 20px;
+        right: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 1.5rem;
+    }
+
+    .services-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-number {
+        font-size: 2rem;
+    }
+
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .normativas-grid {
+        grid-template-columns: 1fr;
+    }
+}
