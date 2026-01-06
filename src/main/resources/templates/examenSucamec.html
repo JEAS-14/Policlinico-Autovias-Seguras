@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Policlínico Autovías Seguras - Exámenes médicos ocupacionales, licencias de conducir y SUCAMEC">
+    <title>Policlínico Autovías Seguras | Examen SUCAMEC</title>
+    <!-- CSS -->
+    <link rel="stylesheet" th:href="@{/css/fragments/navbar.css}">
+    <link rel="stylesheet" th:href="@{/css/fragments/footer.css}">
+    <link rel="stylesheet" th:href="@{/css/examenSucamec.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+        <!-- NAVBAR -->
+    <div th:replace="~{fragments/navbar ::  navbar}"></div>
+
+    
+
+
+        <!-- BOTÓN FLOTANTE WHATSAPP -->
+        <a href="https://wa.me/51913889497" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+
+        <!-- FOOTER -->
+        <div th:replace="~{fragments/footer :: footer}"></div>
+
+        <!-- JavaScript -->
+        <script th:src="@{/js/navbar.js}"></script>
+        <script th:src="@{/js/home.js}"></script>
+        
+</body>
+</html>

@@ -17,7 +17,7 @@ public class ServiciosController {
      */
     @GetMapping("/examen-ocupacional")
     public String examenOcupacional() {
-        return "fragments/examenMedicoOcupacional";
+        return "/examenMedicoOcupacional";
     }
     
     /**
@@ -26,7 +26,7 @@ public class ServiciosController {
      */
     @GetMapping("/examen-brevete")
     public String examenBrevete() {
-        return "fragments/examenMedicoBrevete";
+        return "/examenMedicoBrevete";
     }
     
     /**
@@ -35,7 +35,7 @@ public class ServiciosController {
      */
     @GetMapping("/examen-sucamec")
     public String examenSucamec() {
-        return "fragments/examenSucamec";
+        return "/examenSucamec";
     }
     
     /**
@@ -44,6 +44,6 @@ public class ServiciosController {
      */
     @GetMapping("/escuela-conductores")
     public String escuelaConductores() {
-        return "fragments/escuelaConductores";
+        return "/escuelaConductores";
     }
 }
