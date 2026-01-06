@@ -31,7 +31,7 @@ body {
 }
 
 .logo img {
-    height: 55px;
+    height: 95px;
     width: auto;
     object-fit: contain;
 }
@@ -50,10 +50,11 @@ body {
 }
 
 .nav-menu a {
+    font-family: 'Poppins', sans-serif;
     text-decoration: none;
     color: #333333;
-    font-size: 0.95rem;
-    font-weight:  500;
+    font-size: 1rem;
+    font-weight: 700;
     transition: color 0.3s ease;
     white-space: nowrap;
 }

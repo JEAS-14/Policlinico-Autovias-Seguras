@@ -10,7 +10,13 @@
         <link rel="stylesheet" th:href="@{/css/fragments/navbar.css}">
         <link rel="stylesheet" th:href="@{/css/fragments/footer.css}">
         <link rel="stylesheet" th:href="@{/css/home.css}">
-        
+
+        <!--  Cargar la fuente Poppins desde Google Fonts-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+        <link href="https://fonts.googleapis.com/css2?family=Poltawski+Nowy:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
         <!-- Font Awesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     </head>
@@ -21,7 +27,7 @@
         <!-- HERO SECTION -->
         <section class="hero-section">
             <div class="hero-bg-fix">
-                <img src="../static/images/hero-background.jpg" alt="Fondo Hero" class="hero-image">
+                <img src="https://res.cloudinary.com/dxuk9bogw/image/upload/v1767688446/73cecf6c-0c57-48a0-ba3a-74c49fb96915.png" alt="Fondo Hero" class="hero-image">
                 <div class="bg-autovias-double-filter"></div>
             </div>
 
@@ -67,6 +73,15 @@
                         </div>
                     </a>
 
+                </div>
+
+
+                <!-- Botones de acción -->
+                <div class="hero-buttons">
+                    <a href="#contacto" class="btn btn-cotiza-hero">¡COTIZA AHORA!</a>
+                    <a href="https://wa.me/51913889497" target="_blank" class="btn btn-whatsapp">
+                        <i class="fab fa-whatsapp"></i> WHATSAPP
+                    </a>
                 </div>
 
 
@@ -126,7 +141,7 @@
                             </li>
                         </ul>
 
-                        <a href="#servicios" class="btn btn-conoce-mas">CONOCE MÁS</a>
+                        <a href="#servicios" class="home-btn">CONOCE MÁS</a>
                     </div>
                 </div>
             </div>
