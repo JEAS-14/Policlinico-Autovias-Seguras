@@ -5,30 +5,103 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Policlínico Autovías Seguras - Exámenes médicos ocupacionales, licencias de conducir y SUCAMEC">
     <title>Policlínico Autovías Seguras | Nuestro Blog</title>
-    <!-- CSS -->
+    
     <link rel="stylesheet" th:href="@{/css/fragments/navbar.css}">
     <link rel="stylesheet" th:href="@{/css/fragments/footer.css}">
     <link rel="stylesheet" th:href="@{/css/NuestroBlog.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-        <!-- NAVBAR -->
     <div th:replace="~{fragments/navbar ::  navbar}"></div>
 
-    
+    <header class="blog-header">
+        <div class="container">
+            <h1>Blog y Noticias</h1>
+            <p>Consejos de salud, seguridad vial y actualizaciones del MTC</p>
+        </div>
+    </header>
 
-
-        <!-- BOTÓN FLOTANTE WHATSAPP -->
-        <a href="https://wa.me/51913889497" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-whatsapp"></i>
-        </a>
-
-        <!-- FOOTER -->
-        <div th:replace="~{fragments/footer :: footer}"></div>
-
-        <!-- JavaScript -->
-        <script th:src="@{/js/navbar.js}"></script>
-        <script th:src="@{/js/home.js}"></script>
+    <main class="container">
         
+        <section class="featured-post">
+            <div class="featured-image">
+                <img src="https://images.unsplash.com/photo-1626071373977-22d73356e9c6?q=80&w=1000&auto=format&fit=crop" alt="Brevete Electrónico">
+            </div>
+            <div class="featured-content">
+                <div class="meta">
+                    <span class="badge badge-primary">Actualidad</span>
+                    <span class="date"><i class="far fa-calendar"></i> 15 Ene, 2025</span>
+                </div>
+                <h2>Nueva normativa del MTC 2025: Todo sobre el brevete electrónico</h2>
+                <p>El Ministerio de Transportes implementará el brevete digital este año. Te explicamos los cambios más importantes.</p>
+                <a href="#" class="btn-read-more">Leer todo <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </section>
+
+        <section class="blog-grid">
+            
+            <article class="card">
+                <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=800&auto=format&fit=crop" alt="Manejo" class="card-img">
+                <div class="card-body">
+                    <div class="meta">
+                        <span class="badge badge-gray">Seguridad</span>
+                        <span class="date">12 Ene, 2025</span>
+                    </div>
+                    <h3>5 Tips para aprobar tu examen de manejo</h3>
+                    <p>Consejos prácticos para superar tu examen de conducción a la primera.</p>
+                    <a href="#" class="link-read">Leer más <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <article class="card">
+                <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800&auto=format&fit=crop" alt="Doctor" class="card-img">
+                <div class="card-body">
+                    <div class="meta">
+                        <span class="badge badge-teal">Salud</span>
+                        <span class="date">10 Ene, 2025</span>
+                    </div>
+                    <h3>Importancia del chequeo preventivo</h3>
+                    <p>Por qué los exámenes médicos son fundamentales para tu seguridad.</p>
+                    <a href="#" class="link-read">Leer más <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <article class="card">
+                <img src="https://images.unsplash.com/photo-1555447405-bd6145d279cf?q=80&w=800&auto=format&fit=crop" alt="Estudio" class="card-img">
+                <div class="card-body">
+                    <div class="meta">
+                        <span class="badge badge-blue">Trámites</span>
+                        <span class="date">5 Ene, 2025</span>
+                    </div>
+                    <h3>Cómo prepararte para tu examen médico</h3>
+                    <p>Guía de preparación para tu evaluación médica de Brevete.</p>
+                    <a href="#" class="link-read">Leer más <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <article class="card">
+                <img src="https://images.unsplash.com/photo-1589828959952-4467c69992f4?q=80&w=800&auto=format&fit=crop" alt="Vista" class="card-img">
+                <div class="card-body">
+                    <div class="meta">
+                        <span class="badge badge-teal">Salud</span>
+                        <span class="date">2 Ene, 2025</span>
+                    </div>
+                    <h3>Mitos y verdades sobre la visión al conducir</h3>
+                    <p>Desmitificamos las creencias sobre la salud visual.</p>
+                    <a href="#" class="link-read">Leer más <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+        </section>
+    </main>
+
+    <a href="https://wa.me/51913889497" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+    <script th:src="@{/js/navbar.js}"></script>
+    <script th:src="@{/js/home.js}"></script>
 </body>
 </html>

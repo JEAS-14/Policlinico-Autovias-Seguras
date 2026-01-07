@@ -1,0 +1,287 @@
+/* --- Variables y Reset Básico --- */
+:root {
+    --primary-purple: #4a148c; /* Morado oscuro del texto */
+    --btn-purple: #5836be;     /* Morado botón */
+    --btn-green: #25D366;      /* Verde WhatsApp */
+    --light-blue-bg: #e3f2fd;  /* Fondo suave */
+    --text-dark: #333;
+    --white: #ffffff;
+}
+
+body {
+    background-color: var(--light-blue-bg);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-dark);
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- SECCIÓN 1: HERO --- */
+.hero-emo {
+    /* Fondo con imagen de médicos y degradado superpuesto */
+    background: linear-gradient(rgba(180, 220, 237, 0.85), rgba(220, 230, 255, 0.9)), 
+                url('https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=1000&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    padding: 60px 0 100px; /* Padding extra abajo para la caja flotante */
+    text-align: center;
+}
+
+.hero-content h1 {
+    color: var(--primary-purple);
+    font-weight: 800;
+    font-size: 2.2rem;
+    max-width: 800px;
+    margin: 0 auto 15px;
+}
+
+.hero-buttons {
+    margin: 30px 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 12px 30px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    display: inline-block;
+}
+
+.btn-purple { background-color: var(--btn-purple); }
+.btn-green { background-color: var(--btn-green); }
+
+.subtitle {
+    color: #666;
+    margin-bottom: 40px;
+    font-style: italic;
+}
+
+/* Caja de Estadísticas (Blanca con sombra) */
+.stats-box {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-around;
+    padding: 25px;
+    margin-top: 30px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #2dc4ad; /* Verde agua */
+}
+
+.stat-desc {
+    font-size: 0.9rem;
+    color: #777;
+    margin-top: 5px;
+}
+
+.divider {
+    width: 2px;
+    height: 50px;
+    background-color: #eee;
+    display: none; /* Oculto en móvil */
+}
+
+@media(min-width: 768px) {
+    .divider { display: block; }
+}
+
+/* --- SECCIÓN 2: TIPOS DE EXAMEN --- */
+.types-section {
+    padding: 60px 0;
+    background: linear-gradient(to bottom, #e3f2fd, #d1c4e9); /* Degradado azul a lila */
+    text-align: center;
+}
+
+.section-title {
+    color: var(--primary-purple);
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.section-desc {
+    max-width: 700px;
+    margin: 0 auto 40px;
+    color: #555;
+}
+
+.types-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.type-card {
+    background: white;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    text-align: left;
+    transition: transform 0.2s;
+}
+
+.type-card:hover {
+    transform: translateX(10px);
+}
+
+.icon-box {
+    background-color: #448aff; /* Azul */
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    margin-right: 20px;
+    flex-shrink: 0;
+}
+
+.text-box h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--primary-purple);
+    font-weight: bold;
+}
+
+.text-box p {
+    margin: 5px 0 0;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* --- SECCIÓN 3: PROTOCOLO --- */
+.protocol-section {
+    padding: 60px 0 100px;
+    background: linear-gradient(to bottom, #d1c4e9, #e0f7fa);
+    text-align: center;
+}
+
+.protocol-icons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+}
+
+.p-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100px;
+}
+
+.circle-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 15px; /* Cuadrado redondeado */
+    background: white;
+    border: 2px solid var(--primary-purple);
+    color: var(--primary-purple);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    box-shadow: 0 5px 10px rgba(74, 20, 140, 0.2);
+}
+
+.p-item span {
+    font-weight: bold;
+    color: var(--primary-purple);
+    font-size: 0.9rem;
+}
+
+.mt-5 { margin-top: 50px; }
+
+/* Pasos (Timeline) */
+.steps-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+    width: 120px;
+}
+
+.step-circle {
+    width: 50px;
+    height: 50px;
+    background-color: #311b92; /* Morado muy oscuro */
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.step-line {
+    height: 2px;
+    background-color: #311b92;
+    flex: 1;
+    min-width: 50px;
+    max-width: 100px;
+    margin-bottom: 30px; /* Alinear con el círculo */
+    display: none; /* Oculto en móvil */
+}
+
+@media(min-width: 768px) {
+    .step-line { display: block; }
+}
+
+/* Botón flotante */
+.whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--btn-green);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    z-index: 1000;
+    text-decoration: none;
+}

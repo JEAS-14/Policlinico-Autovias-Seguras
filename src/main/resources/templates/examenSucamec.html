@@ -5,30 +5,145 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Policlínico Autovías Seguras - Exámenes médicos ocupacionales, licencias de conducir y SUCAMEC">
     <title>Policlínico Autovías Seguras | Examen SUCAMEC</title>
-    <!-- CSS -->
+    
     <link rel="stylesheet" th:href="@{/css/fragments/navbar.css}">
     <link rel="stylesheet" th:href="@{/css/fragments/footer.css}">
     <link rel="stylesheet" th:href="@{/css/examenSucamec.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-        <!-- NAVBAR -->
     <div th:replace="~{fragments/navbar ::  navbar}"></div>
 
-    
+    <main>
+        <section class="hero-sucamec">
+            <div class="container hero-content">
+                <h1 class="fade-in">Examen médico - SUCAMEC</h1>
+                <p class="fade-in">Realiza tu evaluación médica para obtener tu licencia de uso de armas de fuego de uso civil.</p>
+                
+                <div class="hero-buttons fade-in">
+                    <a href="#" class="btn btn-purple">¡COTIZA AHORA!</a>
+                    <a href="https://wa.me/51913889497" class="btn btn-green"><i class="fab fa-whatsapp"></i> WHATSAPP</a>
+                </div>
 
+                <div class="fade-in mt-4">
+                    <h3>POLICLÍNICO AUTOVÍAS SEGURAS</h3>
+                    <p class="subtitle">Confianza y rapidez en un solo lugar</p>
+                </div>
 
-        <!-- BOTÓN FLOTANTE WHATSAPP -->
-        <a href="https://wa.me/51913889497" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-whatsapp"></i>
-        </a>
+                <div class="stats-box slide-up">
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="10">0</span>
+                        <span class="stat-desc">Años de experiencia</span>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="1500">0</span>
+                        <span class="stat-desc">Empresas afiliadas</span>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="15">0</span>
+                        <span class="stat-desc">Mil pacientes</span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <!-- FOOTER -->
-        <div th:replace="~{fragments/footer :: footer}"></div>
+        <section class="modalities-section">
+            <div class="container">
+                <h2 class="section-title">¿Para Qué Modalidad Necesitas Tu Licencia?</h2>
+                <p class="section-desc">Evaluamos todas las modalidades requeridas por la institución.</p>
 
-        <!-- JavaScript -->
-        <script th:src="@{/js/navbar.js}"></script>
-        <script th:src="@{/js/home.js}"></script>
+                <div class="modalities-grid">
+                    <div class="modality-card slide-up">
+                        <div class="icon-circle"><i class="fas fa-shield-alt"></i></div>
+                        <h3>Defensa Personal</h3>
+                        <p>Obtén tu licencia para portar armas para seguridad personal.</p>
+                    </div>
+                    <div class="modality-card slide-up">
+                        <div class="icon-circle"><i class="fas fa-crosshairs"></i></div>
+                        <h3>Caza</h3>
+                        <p>Licencia para actividades de caza deportiva autorizada.</p>
+                    </div>
+                    <div class="modality-card slide-up">
+                        <div class="icon-circle"><i class="fas fa-bullseye"></i></div>
+                        <h3>Deporte Y Tiro Recreativo</h3>
+                        <p>Para prácticas de tiro en clubes federados y autorizados.</p>
+                    </div>
+                    <div class="modality-card slide-up">
+                        <div class="icon-circle"><i class="fas fa-user-secret"></i></div>
+                        <h3>Seguridad Privada</h3>
+                        <p>Para personal de vigilancia y seguridad privada (Vigilantes).</p>
+                    </div>
+                    <div class="modality-card slide-up">
+                        <div class="icon-circle"><i class="fas fa-id-badge"></i></div>
+                        <h3>Sispe</h3>
+                        <p>Servicios Individuales de Seguridad Personal.</p>
+                    </div>
+                    <div class="modality-card slide-up">
+                        <div class="icon-circle"><i class="fas fa-medal"></i></div>
+                        <h3>Colección</h3>
+                        <p>Para propietarios de armas históricas o de colección.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="pricing-section">
+            <div class="container">
+                <h2 class="section-title">CIRCUITO DE EVALUACIÓN INTEGRAL</h2>
+                <p class="section-desc">Realiza tu examen completo pasando por nuestra evaluación profesional y detallada.</p>
+
+                <div class="pricing-container">
+                    <div class="price-card slide-up">
+                        <div class="price-icon"><i class="fas fa-user-check"></i></div>
+                        <h3>Físico Y Mental</h3>
+                        <p>Evalúa tu aptitud física y estado mental general.</p>
+                        <div class="price-tag">S/ 90</div>
+                    </div>
+
+                    <div class="price-card slide-up">
+                        <div class="price-icon"><i class="fas fa-brain"></i></div>
+                        <h3>Psicosomática</h3>
+                        <p>Prueba psicológica en profundidad exigida por SUCAMEC.</p>
+                        <div class="price-tag">S/ 100</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="requirements-section">
+            <div class="container bg-white-rounded slide-up">
+                <h2 class="section-title">REQUISITOS PARA TU CITA</h2>
+                <p class="section-desc">Prepara estos documentos antes de acercarte.</p>
+
+                <ul class="requirements-list">
+                    <li><i class="fas fa-check-circle"></i> DNI Vigente o Carnet de Extranjería.</li>
+                    <li><i class="fas fa-check-circle"></i> No tener antecedentes penales, judiciales ni policiales.</li>
+                    <li><i class="fas fa-check-circle"></i> 3 fotos tamaño carnet (Fondo blanco, sin lentes).</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="cta-bottom">
+            <div class="container text-center">
+                <h2 class="section-title">¡Realiza Tu Examen Hoy Mismo Y Agiliza Tu Trámite!</h2>
+                <p class="section-desc">Atención rápida y segura cumpliendo con todos los protocolos de ley.</p>
+                <a href="#" class="btn btn-green-large">Reservar</a>
+            </div>
+        </section>
+
+    </main>
+
+    <a href="https://wa.me/51913889497" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+    <script th:src="@{/js/navbar.js}"></script>
+    <script th:src="@{/js/home.js}"></script>
+    <script th:src="@{/js/examenSucamec.js}"></script>
         
 </body>
 </html>

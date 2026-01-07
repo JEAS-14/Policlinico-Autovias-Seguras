@@ -1,0 +1,152 @@
+/* --- Variables --- */
+:root {
+    --primary-purple: #4a148c;
+    --btn-green: #2dc4ad;
+    --bg-light: #f0f2f5;
+    --text-dark: #333;
+}
+
+body {
+    background-color: var(--bg-light);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.results-main {
+    min-height: 80vh; /* Que ocupe casi toda la pantalla */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #e0f7fa 0%, #ede7f6 100%); /* Fondo degradado suave */
+}
+
+/* --- TARJETA PRINCIPAL --- */
+.results-card {
+    background: white;
+    width: 100%;
+    max-width: 500px; /* No muy ancha */
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.card-header { margin-bottom: 30px; }
+
+.icon-container {
+    width: 80px; height: 80px;
+    background-color: #f3e5f5; /* Morado muy claro */
+    color: var(--primary-purple);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.5rem;
+    margin: 0 auto 20px;
+}
+
+.card-header h1 {
+    color: var(--primary-purple);
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.card-header p { color: #666; font-size: 0.95rem; line-height: 1.5; }
+
+/* --- FORMULARIO --- */
+.form-group { text-align: left; margin-bottom: 20px; }
+
+.form-group label {
+    display: block; font-weight: bold; font-size: 0.9rem; margin-bottom: 8px; color: #444;
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.input-wrapper i {
+    position: absolute;
+    left: 15px; top: 50%; transform: translateY(-50%);
+    color: #aaa;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 12px 15px 12px 45px; /* Espacio para el icono a la izquierda */
+    border: 2px solid #eee;
+    border-radius: 10px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.input-wrapper input:focus {
+    border-color: var(--btn-green);
+}
+
+.btn-search {
+    width: 100%;
+    background-color: var(--primary-purple);
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    margin-top: 10px;
+}
+
+.btn-search:hover {
+    background-color: #380d6b;
+    transform: translateY(-2px);
+}
+
+/* --- TEXTO DE AYUDA --- */
+.help-text { margin-top: 25px; font-size: 0.9rem; color: #666; }
+.help-text a {
+    display: inline-block; margin-top: 5px; color: var(--btn-green);
+    text-decoration: none; font-weight: bold;
+}
+.help-text a:hover { text-decoration: underline; }
+
+/* --- RESULTADO (Inicialmente oculto) --- */
+.hidden { display: none; }
+
+.result-output { margin-top: 30px; animation: slideDown 0.5s ease; }
+
+.status-box {
+    background-color: #e8f5e9; /* Verde muy claro */
+    border: 1px solid #c8e6c9;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-align: left;
+}
+
+.status-box i { font-size: 2rem; color: var(--btn-green); }
+.status-box h3 { margin: 0 0 5px; color: #2e7d32; }
+.status-box p { margin: 0 0 10px; font-size: 0.9rem; }
+
+.btn-download {
+    display: inline-block;
+    background-color: var(--btn-green);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 15px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+/* Animaciones */
+.fade-in { opacity: 0; animation: fadeIn 0.8s forwards; }
+@keyframes fadeIn { to { opacity: 1; } }
+@keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Responsive */
+@media (max-width: 480px) {
+    .results-card { padding: 25px; }
+}

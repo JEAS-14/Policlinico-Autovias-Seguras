@@ -1,0 +1,77 @@
+/* src/main/resources/static/css/PreguntasFrecuentes.css */
+
+/* --- Animaciones de Entrada --- */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-on-scroll {
+    opacity: 0; /* Comienza invisible */
+}
+
+.is-visible {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* --- Control de Delays --- */
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+.delay-5 { animation-delay: 0.5s; }
+
+/* --- Estilos Personalizados --- */
+.shadow-hard-purple {
+    box-shadow: 0 4px 20px -2px rgba(46, 26, 95, 0.2);
+}
+
+.action-card-btn {
+    transition: all 0.3s ease;
+}
+
+.action-card-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(46, 26, 95, 0.3);
+}
+
+/* --- Utilidades Funcionales (JS) --- */
+.hidden {
+    display: none !important;
+}
+
+.rotate-180 {
+    transform: rotate(180deg);
+}
+
+/* Botón flotante WhatsApp */
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 30px;
+    right: 30px;
+    background-color: #25d366;
+    color: #ffffff;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 2rem;
+    box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6);
+}
