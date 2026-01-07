@@ -1,0 +1,204 @@
+/* --- Configuración General --- */
+.container {
+    max-width: 1800px; /* Aumentamos de 1200px a 1400px para pantallas grandes */
+    width: 90%;        /* Ocupará el 90% del ancho de la pantalla */
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Forzamos que la imagen destacada ocupe todo el ancho disponible */
+.featured-post {
+    width: 100%; 
+    display: flex;
+}
+
+
+:root {
+    --primary-color: #5836be; /* El morado del título */
+    --secondary-color: #2dc4ad; /* El verde agua de los botones */
+    --text-dark: #333;
+    --text-light: #666;
+    --bg-light: #f4f8fb;
+    --white: #ffffff;
+}
+
+
+body {
+    background-color: var(--white);
+    color: var(--text-dark);
+}
+
+
+/* --- Header / Banner Superior --- */
+.blog-header {
+    background: linear-gradient(to bottom, #dbece9, #ffffff);
+    text-align: center;
+    padding: 60px 0 40px;
+    position: relative;
+}
+
+.blog-header h1 {
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.blog-header p {
+    color: var(--text-dark);
+    font-weight: 500;
+}
+
+/* --- Botón flotante WhatsApp --- */
+.whatsapp-float {
+    position: absolute;
+    right: 5%;
+    bottom: 20px;
+    background-color: #25D366;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    cursor: pointer;
+}
+
+/* --- Artículo Destacado (Grande) --- */
+.featured-post {
+    background-color: var(--bg-light);
+    border-radius: 15px;
+    padding: 0;
+    margin: 40px 0;
+    display: flex;
+    overflow: hidden; /* Para que la imagen respete el borde */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.featured-image {
+    flex: 1;
+    min-height: 300px;
+    background-color: #e0e0e0; /* Color gris si no carga la imagen */
+}
+
+.featured-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.featured-content {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.featured-content h2 {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    margin: 15px 0;
+}
+
+/* --- Badges y Etiquetas --- */
+.badge {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: white;
+    margin-right: 10px;
+}
+
+.badge-primary { background-color: var(--secondary-color); }
+.badge-gray { background-color: #888; }
+.badge-teal { background-color: var(--secondary-color); }
+.badge-blue { background-color: #7faaf0; }
+
+.date {
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+/* --- Botones --- */
+.btn-read-more {
+    display: inline-block;
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 20px;
+    width: fit-content;
+    font-weight: bold;
+}
+
+/* --- Grid de Artículos Pequeños --- */
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsivo automático */
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.card {
+    border: 1px solid #eee;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    background: white;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.card-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-body h3 {
+    color: var(--primary-color);
+    margin: 15px 0;
+    font-size: 1.2rem;
+    line-height: 1.4;
+}
+
+.card-body p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.link-read {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.link-read:hover {
+    text-decoration: underline;
+}
+
+/* --- Responsividad para móviles --- */
+@media (max-width: 768px) {
+    .featured-post {
+        flex-direction: column;
+    }
+    .featured-image {
+        height: 200px;
+    }
+}

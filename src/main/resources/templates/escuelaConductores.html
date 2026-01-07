@@ -3,32 +3,185 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Policlínico Autovías Seguras - Exámenes médicos ocupacionales, licencias de conducir y SUCAMEC">
+    <meta name="description" content="Escuela de Conductores - Policlínico Autovías Seguras. Clases teóricas y prácticas.">
     <title>Policlínico Autovías Seguras | Escuela De Conductores</title>
-    <!-- CSS -->
+    
     <link rel="stylesheet" th:href="@{/css/fragments/navbar.css}">
     <link rel="stylesheet" th:href="@{/css/fragments/footer.css}">
     <link rel="stylesheet" th:href="@{/css/escuelaConductores.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-        <!-- NAVBAR -->
+
     <div th:replace="~{fragments/navbar ::  navbar}"></div>
 
-    
+    <main>
+        <section class="hero-escuela">
+            <div class="container hero-content">
+                <h1 class="fade-in">Escuela de Conductores</h1>
+                <p class="fade-in">Formación integral que asegura una conducción responsable y segura.</p>
+                
+                <div class="hero-buttons fade-in">
+                    <a href="#" class="btn btn-purple">¡COTIZA AHORA!</a>
+                    <a href="https://wa.me/51913889497" class="btn btn-green"><i class="fab fa-whatsapp"></i> WHATSAPP</a>
+                </div>
 
+                <div class="fade-in mt-4">
+                    <h3>POLICLÍNICO AUTOVÍAS SEGURAS</h3>
+                    <p class="subtitle">Confianza y rapidez en un solo lugar</p>
+                </div>
 
-        <!-- BOTÓN FLOTANTE WHATSAPP -->
-        <a href="https://wa.me/51913889497" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-whatsapp"></i>
-        </a>
+                <div class="stats-box slide-up">
+                    <div class="stat-item"><span class="stat-number" data-target="10">0</span><span class="stat-desc">Años exp.</span></div>
+                    <div class="divider"></div>
+                    <div class="stat-item"><span class="stat-number" data-target="1500">0</span><span class="stat-desc">Empresas</span></div>
+                    <div class="divider"></div>
+                    <div class="stat-item"><span class="stat-number" data-target="15">0</span><span class="stat-desc">Mil alumnos</span></div>
+                </div>
+            </div>
+        </section>
 
-        <!-- FOOTER -->
-        <div th:replace="~{fragments/footer :: footer}"></div>
+        <section class="lead-section">
+            <div class="container lead-container">
+                <div class="lead-text slide-up">
+                    <h2>Recategoriza tu brevete y aprueba a la primera</h2>
+                    <p>Te brindamos preparación teórica y orientación para tu evaluación.</p>
+                </div>
 
-        <!-- JavaScript -->
-        <script th:src="@{/js/navbar.js}"></script>
-        <script th:src="@{/js/home.js}"></script>
+                <div class="lead-form-card slide-up">
+                    <h3>SOLICITAR INFORMACIÓN</h3>
+                    <p>Recibe Asesoría Personalizada</p>
+                    <form action="#" method="POST"> <div class="form-group">
+                            <label>Nombre Completo</label>
+                            <input type="text" placeholder="Ejm: Juan Perez" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Teléfono / WhatsApp</label>
+                            <input type="tel" placeholder="999 999 999" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Tipo De Licencia</label>
+                            <select>
+                                <option>A1 - Automóvil</option>
+                                <option>A2 - Profesional</option>
+                                <option>B2 - Moto</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn-submit">Solicitar Información</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="packages-section">
+            <div class="container">
+                <h2 class="section-title">Elige tu paquete de preparación teórica</h2>
+                <p class="section-desc">Todos nuestros programas incluyen orientación y preparación teórica.</p>
+
+                <div class="packages-grid">
+                    <div class="package-card slide-up">
+                        <div class="pkg-header">BÁSICO</div>
+                        <div class="pkg-icon"><i class="fas fa-book"></i></div>
+                        <ul class="pkg-list">
+                            <li><i class="fas fa-check"></i> Acceso A Material Teórico</li>
+                            <li><i class="fas fa-check"></i> Preguntas Frecuentes</li>
+                            <li><i class="fas fa-check"></i> Orientación Básica</li>
+                        </ul>
+                        <button class="btn-choose">Elegir</button>
+                    </div>
+
+                    <div class="package-card popular slide-up">
+                        <div class="pkg-header">ESTÁNDAR</div>
+                        <div class="pkg-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                        <ul class="pkg-list">
+                            <li><i class="fas fa-check"></i> Clases Teóricas</li>
+                            <li><i class="fas fa-check"></i> Resolución Guiada</li>
+                            <li><i class="fas fa-check"></i> Simulacro Teórico</li>
+                            <li><i class="fas fa-check"></i> Asesoría Personalizada</li>
+                        </ul>
+                        <button class="btn-choose btn-highlight">Elegir</button>
+                    </div>
+
+                    <div class="package-card slide-up">
+                        <div class="pkg-header">PREMIUM</div>
+                        <div class="pkg-icon"><i class="fas fa-crown"></i></div>
+                        <ul class="pkg-list">
+                            <li><i class="fas fa-check"></i> Clases Personalizadas</li>
+                            <li><i class="fas fa-check"></i> Simulacros Ilimitados</li>
+                            <li><i class="fas fa-check"></i> Acompañamiento en Dudas</li>
+                            <li><i class="fas fa-check"></i> Seguimiento Total</li>
+                        </ul>
+                        <button class="btn-choose">Elegir</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="topics-section">
+            <div class="container">
+                <h2 class="section-title">Prepárate con clases teóricas claras</h2>
+                
+                <div class="topics-grid">
+                    <div class="topic-item slide-up">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3063/3063822.png" alt="Reglas">
+                        <span>Reglas Y Normas De Tránsito</span>
+                    </div>
+                    <div class="topic-item slide-up">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2302/2302685.png" alt="Señales">
+                        <span>Señales Y Dispositivos De Control</span>
+                    </div>
+                    <div class="topic-item slide-up">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2083/2083234.png" alt="Seguridad">
+                        <span>Seguridad Y Buenas Prácticas</span>
+                    </div>
+                    <div class="topic-item slide-up">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1022/1022306.png" alt="Infracciones">
+                        <span>Penalidades E Infracciones</span>
+                    </div>
+                    <div class="topic-item slide-up">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2997/2997495.png" alt="Simulacro">
+                        <span>Simulacro De Examen Teórico</span>
+                    </div>
+                    <div class="topic-item slide-up">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1550/1550595.png" alt="Guiada">
+                        <span>Resolución Guiada De Preguntas</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials-section">
+            <div class="container">
+                <h2 class="section-title">Nuestros Alumnos con Brevete en Mano</h2>
+                <p class="section-desc">Miles de conductores ya obtuvieron su licencia con nosotros.</p>
+
+                <div class="testimonials-grid">
+                    <div class="testimonial-card slide-up">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop" alt="Alumno 1">
+                        <div class="quote">"Aprobé a la primera gracias al método de enseñanza. Los instructores son muy pacientes."</div>
+                    </div>
+                    <div class="testimonial-card slide-up">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&auto=format&fit=crop" alt="Alumno 2">
+                        <div class="quote">"El circuito de práctica es idéntico al del examen. Eso me dio mucha confianza."</div>
+                    </div>
+                    <div class="testimonial-card slide-up">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop" alt="Alumno 3">
+                        <div class="quote">"El paquete premium vale cada sol. La garantía de aprobación es real."</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <a href="https://wa.me/51913889497" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+    <script th:src="@{/js/navbar.js}"></script>
+    <script th:src="@{/js/home.js}"></script>
+    <script th:src="@{/js/escuelaConductores.js}"></script>
         
 </body>
 </html>

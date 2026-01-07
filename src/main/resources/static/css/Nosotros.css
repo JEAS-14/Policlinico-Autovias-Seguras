@@ -1,0 +1,82 @@
+/* src/main/resources/static/css/Nosotros.css */
+
+/* --- Animaciones de Entrada --- */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-on-scroll {
+    opacity: 0; /* Invisible al inicio */
+}
+
+.is-visible {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* --- Control de Delays (NUEVO: Para limpiar el HTML) --- */
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+.delay-5 { animation-delay: 0.5s; }
+
+/* --- Fondos y Degradados --- */
+.bg-nosotros-gradient {
+    background: linear-gradient(111.98deg, rgba(250, 255, 254, 0) 25.94%, rgba(255, 255, 255, 0.2) 32.44%),
+                linear-gradient(280.42deg, rgba(255, 251, 251, 0.2) 13.38%, rgba(59, 188, 168, 0.176) 43.9%),
+                linear-gradient(101.84deg, rgba(59, 188, 168, 0.072) 6.29%, rgba(126, 242, 224, 0.6) 28.51%, rgba(238, 249, 247, 0.6) 43.95%);
+}
+
+.bg-proposito-gradient {
+    background: linear-gradient(111.98deg, rgba(250, 255, 254, 0) 25.94%, rgba(255, 255, 255, 0.2) 32.44%),
+                linear-gradient(280.42deg, rgba(59, 188, 168, 0.026) 5.35%, rgba(255, 251, 251, 0.056) 36.14%),
+                linear-gradient(101.84deg, rgba(59, 188, 168, 0.072) 6.29%, rgba(126, 242, 224, 0.6) 28.51%, rgba(238, 249, 247, 0.6) 43.95%);
+}
+
+/* --- Sombras --- */
+.shadow-mint {
+    box-shadow: 8px 8px 25px rgba(59, 188, 168, 0.4);
+}
+
+/* --- Efectos Hover --- */
+.action-card-btn {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.action-card-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(59, 188, 168, 0.5);
+}
+
+/* Botón flotante WhatsApp */
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 30px;
+    right: 30px;
+    background-color: #25d366;
+    color: #ffffff;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 2rem;
+    box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6);
+}

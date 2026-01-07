@@ -1,0 +1,219 @@
+/* --- Variables y Reset --- */
+:root {
+    --primary-purple: #4a148c;
+    --btn-purple: #5836be;
+    --btn-green: #25D366;
+    --bg-gradient-top: #e0f7fa;
+    --bg-gradient-bottom: #d1c4e9;
+    --text-dark: #333;
+    --white: #ffffff;
+}
+
+body {
+    background: linear-gradient(to bottom, var(--bg-gradient-top), var(--bg-gradient-bottom));
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-dark);
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- HERO SECTION --- */
+.hero-sucamec {
+    /* Imagen de fondo sugerida (médicos) */
+    background: linear-gradient(rgba(200, 230, 255, 0.85), rgba(230, 230, 255, 0.9)), 
+                url('https://images.unsplash.com/photo-1551601651-2a8555f1a136?q=80&w=1000&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    padding: 60px 0 80px;
+    text-align: center;
+}
+
+.hero-content h1 {
+    color: var(--primary-purple);
+    font-weight: 800;
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+}
+
+.subtitle { color: #666; font-style: italic; }
+.mt-4 { margin-top: 1.5rem; }
+
+/* Botones */
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.btn {
+    padding: 10px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    display: inline-block;
+}
+.btn-purple { background-color: var(--btn-purple); }
+.btn-green { background-color: var(--btn-green); }
+.btn-green-large { 
+    background-color: var(--btn-green); 
+    color: white;
+    padding: 15px 40px; 
+    border-radius: 30px; 
+    font-size: 1.2rem;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Estadísticas (Igual que en EMO) */
+.stats-box {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    margin-top: 40px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.stat-item { display: flex; flex-direction: column; align-items: center; }
+.stat-number { font-size: 2rem; font-weight: bold; color: #2dc4ad; }
+.stat-desc { font-size: 0.8rem; color: #777; }
+.divider { width: 1px; height: 40px; background-color: #ddd; }
+
+/* --- SECCIONES COMUNES --- */
+.section-title {
+    color: var(--primary-purple);
+    font-weight: 800;
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+.section-desc {
+    text-align: center;
+    color: #555;
+    max-width: 700px;
+    margin: 0 auto 40px;
+}
+
+/* --- GRID DE MODALIDADES --- */
+.modalities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding-bottom: 50px;
+}
+
+.modality-card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+.modality-card:hover { transform: translateY(-5px); }
+
+.icon-circle {
+    width: 60px; height: 60px;
+    background-color: var(--primary-purple);
+    color: white;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 15px;
+    font-size: 1.5rem;
+}
+
+.modality-card h3 { color: var(--btn-purple); font-size: 1.1rem; margin-bottom: 10px; }
+.modality-card p { font-size: 0.9rem; color: #666; }
+
+/* --- PRECIOS / CIRCUITO --- */
+.pricing-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    padding-bottom: 50px;
+}
+
+.price-card {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.price-icon {
+    font-size: 2.5rem;
+    color: #2dc4ad; /* Verde agua */
+    margin-bottom: 15px;
+}
+.price-tag {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--primary-purple);
+    margin-top: 15px;
+}
+
+/* --- REQUISITOS --- */
+.bg-white-rounded {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    margin-bottom: 50px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    max-width: 800px;
+}
+
+.requirements-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 600px;
+}
+.requirements-list li {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.requirements-list li i {
+    color: var(--btn-green);
+    font-size: 1.3rem;
+}
+
+/* --- CTA BOTTOM --- */
+.cta-bottom {
+    padding-bottom: 80px;
+}
+
+/* --- ANIMACIONES --- */
+.slide-up { opacity: 0; transform: translateY(40px); transition: all 0.6s ease-out; }
+.fade-in { opacity: 0; transition: opacity 0.8s ease-in; }
+.visible { opacity: 1; transform: translateY(0); }
+.stat-number { display: inline-block; min-width: 50px; }
+
+/* Botón flotante */
+.whatsapp-float {
+    position: fixed; bottom: 20px; right: 20px;
+    background-color: var(--btn-green); color: white;
+    width: 50px; height: 50px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    z-index: 1000; text-decoration: none;
+}

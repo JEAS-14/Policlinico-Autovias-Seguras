@@ -5,30 +5,212 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Policlínico Autovías Seguras - Exámenes médicos ocupacionales, licencias de conducir y SUCAMEC">
     <title>Policlínico Autovías Seguras | Nuestros Servicios</title>
-    <!-- CSS -->
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <link rel="stylesheet" th:href="@{/css/fragments/navbar.css}">
     <link rel="stylesheet" th:href="@{/css/fragments/footer.css}">
-    <link rel="stylesheet" th:href="@{/css/NuestrosServicios.css}">
+    <link rel="stylesheet" th:href="@{/css/nuestros-servicios.css}">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
-<body>
-        <!-- NAVBAR -->
-    <div th:replace="~{fragments/navbar ::  navbar}"></div>
+<body class="pt-[85px]">
 
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <section class="relative py-24 md:py-32 bg-gradient-to-b from-[#3BBCA8] to-[#E8F8F5]">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center animate-on-scroll">
+                <h2 class="text-4xl md:text-6xl lg:text-7xl font-bold text-[#2E1A5F] leading-tight mb-8">
+                    Soluciones Integrales de<br>Salud y Seguridad Vial
+                </h2>
+                <p class="text-lg md:text-2xl text-[#2E1A5F]/70 max-w-3xl mx-auto">
+                    Todo lo que necesitas en un solo lugar. Autorizados por MTC, MINSA y SUCAMEC.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicios" class="relative py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-8 lg:gap-10 max-w-6xl mx-auto">
+                
+                <div class="bg-white rounded-3xl shadow-card-custom overflow-hidden service-card animate-on-scroll delay-1">
+                    <div class="relative h-48 overflow-hidden">
+                        <img th:src="@{/images/EMO.png}" alt="Medicina Ocupacional" class="w-full h-full object-cover object-top">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                    </div>
+                    
+                    <div class="relative -mt-12 flex justify-center">
+                        <div class="bg-[#3BBCA8] w-24 h-24 rounded-full flex items-center justify-center shadow-icon">
+                            <i class="fas fa-user-md text-white text-4xl"></i>
+                        </div>
+                    </div>
+
+                    <div class="p-6 pt-4">
+                        <h3 class="text-2xl font-bold text-[#2E1A5F] text-center mb-3">
+                            Medicina Ocupacional
+                        </h3>
+                        <p class="text-gray-600 text-center text-sm mb-5">
+                            Evaluaciones médicas completas para garantizar la salud de tus colaboradores.
+                        </p>
+                        
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check text-[#3BBCA8] mt-1"></i>
+                                <span class="text-gray-700 text-sm">Exámenes de Ingreso/Retiro</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check text-[#3BBCA8] mt-1"></i>
+                                <span class="text-gray-700 text-sm">Campañas de Salud</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check text-[#3BBCA8] mt-1"></i>
+                                <span class="text-gray-700 text-sm">Resultados en 24h</span>
+                            </li>
+                        </ul>
+
+                        <a th:href="@{/servicios/examen-ocupacional}" class="block w-full py-3 border-2 border-[#2E1A5F] text-[#2E1A5F] rounded-lg font-semibold text-center btn-detalle">
+                            Ver Más Detalles
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-3xl shadow-card-custom overflow-hidden service-card animate-on-scroll delay-2">
+                    <div class="relative h-48 overflow-hidden">
+                        <img th:src="@{/images/Brevetes.png}" alt="Licencias de Conducir" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                    </div>
+                    
+                    <div class="relative -mt-12 flex justify-center">
+                        <div class="bg-[#3BBCA8] w-24 h-24 rounded-full flex items-center justify-center shadow-icon">
+                            <i class="fas fa-id-card text-white text-4xl"></i>
+                        </div>
+                    </div>
+
+                    <div class="p-6 pt-4">
+                        <h3 class="text-2xl font-bold text-[#2E1A5F] text-center mb-3">
+                            Licencias de Conducir (Brevetes)
+                        </h3>
+                        <p class="text-gray-600 text-center text-sm mb-5">
+                            Obtén o revalida tu licencia de conducir sin complicaciones.
+                        </p>
+                        
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check text-[#3BBCA8] mt-1"></i>
+                                <span class="text-gray-700 text-sm">Examen Médico A1, A2, A3</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check text-[#3BBCA8] mt-1"></i>
+                                <span class="text-gray-700 text-sm">Psicosomático</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check text-[#3BBCA8] mt-1"></i>
+                                <span class="text-gray-700 text-sm">Registro biométrico MTC</span>
+                            </li>
+                        </ul>
+
+                        <a th:href="@{/servicios/examen-brevete}" class="block w-full py-3 border-2 border-[#2E1A5F] text-[#2E1A5F] rounded-lg font-semibold text-center btn-detalle">
+                            Ver Más Detalles
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-3xl shadow-card-custom overflow-hidden service-card animate-on-scroll delay-3">
+                    <div class="relative h-48 overflow-hidden">
+                        <img th:src="@{/images/SUCAMEC.png}" alt="Examen Sucamec" class="w-full h-full object-top">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                    </div>
+                    
+                    <div class="relative -mt-12 flex justify-center">
+                        <div class="bg-[#3BBCA8] w-24 h-24 rounded-full flex items-center justify-center shadow-icon">
+                            <i class="fas fa-shield-alt text-white text-4xl"></i>
+                        </div>
+                    </div>
+
+                    <div class="p-6 pt-4">
+                        <h3 class="text-2xl font-bold text-[#2E1A5F] text-center mb-3">
+                            Examen de Sucamec
+                        </h3>
+                        <p class="text-gray-600 text-center text-sm mb-5">
+                            Evaluación obligatoria para portar armas y servicios de seguridad.
+                        </p>
+                        
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check text-[#3BBCA8] mt-1"></i>
+                                <span class="text-gray-700 text-sm">Salud Mental</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check text-[#3BBCA8] mt-1"></i>
+                                <span class="text-gray-700 text-sm">Psicología</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check text-[#3BBCA8] mt-1"></i>
+                                <span class="text-gray-700 text-sm">Certificado válido a nivel nacional</span>
+                            </li>
+                        </ul>
+
+                        <a th:href="@{/servicios/examen-sucamec}" class="block w-full py-3 border-2 border-[#2E1A5F] text-[#2E1A5F] rounded-lg font-semibold text-center btn-detalle">
+                            Ver Más Detalles
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-3xl shadow-card-custom overflow-hidden service-card animate-on-scroll delay-4">
+                    <div class="relative h-48 overflow-hidden">
+                        <img th:src="@{/images/Conductores.png}" alt="Escuela de Conductores" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                    </div>
+                    
+                    <div class="relative -mt-12 flex justify-center">
+                        <div class="bg-[#3BBCA8] w-24 h-24 rounded-full flex items-center justify-center shadow-icon">
+                            <i class="fas fa-car text-white text-4xl"></i>
+                        </div>
+                    </div>
+
+                    <div class="p-6 pt-4">
+                        <h3 class="text-2xl font-bold text-[#2E1A5F] text-center mb-3">
+                            Escuela de Conductores
+                        </h3>
+                        <p class="text-gray-600 text-center text-sm mb-5">
+                            Capacitación profesional para mejorar tus habilidades al volante.
+                        </p>
+                        
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check text-[#3BBCA8] mt-1"></i>
+                                <span class="text-gray-700 text-sm">Cursos de Recategorización</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check text-[#3BBCA8] mt-1"></i>
+                                <span class="text-gray-700 text-sm">Taller Cambiemos de Actitud</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check text-[#3BBCA8] mt-1"></i>
+                                <span class="text-gray-700 text-sm">Manejo defensivo</span>
+                            </li>
+                        </ul>
+
+                        <a th:href="@{/servicios/escuela-conductores}" class="block w-full py-3 border-2 border-[#2E1A5F] text-[#2E1A5F] rounded-lg font-semibold text-center btn-detalle">
+                            Ver Más Detalles
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <a href="https://wa.me/51913889497" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+    <script th:src="@{/js/fragments/navbar.js}"></script>
+    <script th:src="@{/js/nuestrosServicios.js}"></script>
     
-
-
-        <!-- BOTÓN FLOTANTE WHATSAPP -->
-        <a href="https://wa.me/51913889497" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-whatsapp"></i>
-        </a>
-
-        <!-- FOOTER -->
-        <div th:replace="~{fragments/footer :: footer}"></div>
-
-        <!-- JavaScript -->
-        <script th:src="@{/js/navbar.js}"></script>
-        <script th:src="@{/js/home.js}"></script>
-        
 </body>
 </html>

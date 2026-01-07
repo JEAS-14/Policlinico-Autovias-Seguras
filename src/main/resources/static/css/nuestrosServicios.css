@@ -1,0 +1,85 @@
+/* src/main/resources/static/css/nuestros-servicios.css */
+
+/* --- Animaciones de Entrada --- */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Estado inicial invisible */
+.animate-on-scroll {
+    opacity: 0;
+}
+
+/* Clase activa cuando el elemento es visible */
+.is-visible {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* --- Control de Delays --- */
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+
+/* --- Sombras Personalizadas --- */
+.shadow-card-custom {
+    box-shadow: 8px 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.shadow-icon {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* --- Efectos de Interacción (Hover) --- */
+.service-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(59, 188, 168, 0.25);
+}
+
+/* Efecto para el botón dentro de la card */
+.service-card:hover .btn-detalle {
+    background-color: #2E1A5F;
+    color: #ffffff;
+    border-color: #2E1A5F;
+}
+
+.btn-detalle {
+    transition: all 0.3s ease;
+}
+
+/* Botón flotante WhatsApp */
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 30px;
+    right: 30px;
+    background-color: #25d366;
+    color: #ffffff;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 2rem;
+    box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6);
+}

@@ -5,30 +5,150 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Policlínico Autovías Seguras - Exámenes médicos ocupacionales, licencias de conducir y SUCAMEC">
     <title>Policlínico Autovías Seguras | Examen Médico Ocupacional</title>
-    <!-- CSS -->
+    
     <link rel="stylesheet" th:href="@{/css/fragments/navbar.css}">
     <link rel="stylesheet" th:href="@{/css/fragments/footer.css}">
     <link rel="stylesheet" th:href="@{/css/examenMedicoOcupacional.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-        <!-- NAVBAR -->
+
     <div th:replace="~{fragments/navbar ::  navbar}"></div>
 
-    
+    <main>
+        
+        <section class="hero-emo">
+            <div class="container hero-content">
+                <h1 class="fade-in">Examen médico ocupacional (EMO) en Lima - resultados en 24 horas</h1>
+                <p class="fade-in">Agenda tu cita y recibe tus resultados en 24 horas.</p>
+                
+                <div class="hero-buttons fade-in">
+                    <a href="#" class="btn btn-purple">¡COTIZA AHORA!</a>
+                    <a href="https://wa.me/51913889497" class="btn btn-green"><i class="fab fa-whatsapp"></i> WHATSAPP</a>
+                </div>
 
+                <div class="fade-in">
+                    <h3>POLICLÍNICO AUTOVÍAS SEGURAS</h3>
+                    <p class="subtitle">Confianza y rapidez en un solo lugar</p>
+                </div>
 
-        <!-- BOTÓN FLOTANTE WHATSAPP -->
-        <a href="https://wa.me/51913889497" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-whatsapp"></i>
-        </a>
+                <div class="stats-box slide-up">
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="10">0</span>
+                        <span class="stat-desc">Años de experiencia</span>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="1500">0</span>
+                        <span class="stat-desc">Empresas afiliadas</span>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="15">0</span>
+                        <span class="stat-desc">Mil pacientes</span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <!-- FOOTER -->
-        <div th:replace="~{fragments/footer :: footer}"></div>
+        <section class="types-section">
+            <div class="container">
+                <h2 class="section-title">SALUD OCUPACIONAL</h2>
+                <p class="section-desc">Ofrecemos todos los tipos de exámenes médicos ocupacionales requeridos por la legislación peruana.</p>
 
-        <!-- JavaScript -->
-        <script th:src="@{/js/navbar.js}"></script>
-        <script th:src="@{/js/home.js}"></script>
+                <div class="types-list">
+                    <div class="type-card slide-up">
+                        <div class="icon-box"><i class="fas fa-user-md"></i></div>
+                        <div class="text-box">
+                            <h3>Pre-Ocupacional</h3>
+                            <p>Descarte patologías preexistentes que podrían agravarse por los riesgos del puesto.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="type-card slide-up">
+                        <div class="icon-box"><i class="far fa-calendar-alt"></i></div>
+                        <div class="text-box">
+                            <h3>Periódico</h3>
+                            <p>Identifica a tiempo factores de riesgo que podrían desencadenar enfermedades laborales.</p>
+                        </div>
+                    </div>
+
+                    <div class="type-card slide-up">
+                        <div class="icon-box"><i class="fas fa-briefcase"></i></div>
+                        <div class="text-box">
+                            <h3>Por Cambio De Puesto</h3>
+                            <p>Complementa evaluaciones anteriores considerando los nuevos riesgos.</p>
+                        </div>
+                    </div>
+
+                    <div class="type-card slide-up">
+                        <div class="icon-box"><i class="fas fa-door-open"></i></div>
+                        <div class="text-box">
+                            <h3>De Retiro</h3>
+                            <p>Verifica el estado de salud del trabajador al momento de desvincularse.</p>
+                        </div>
+                    </div>
+
+                    <div class="type-card slide-up">
+                        <div class="icon-box"><i class="fas fa-undo"></i></div>
+                        <div class="text-box">
+                            <h3>De Reinserción</h3>
+                            <p>Verifica el estado de salud al reincorporarse tras una baja médica.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="protocol-section">
+            <div class="container">
+                <h2 class="section-title">¿Qué Incluye Nuestro Protocolo Base?</h2>
+                <p class="section-desc">Nuestro protocolo incluye todas las evaluaciones esenciales.</p>
+
+                <div class="protocol-icons slide-up">
+                    <div class="p-item"><div class="circle-icon"><i class="fas fa-flask"></i></div><span>Laboratorio</span></div>
+                    <div class="p-item"><div class="circle-icon"><i class="fas fa-eye"></i></div><span>Oftalmología</span></div>
+                    <div class="p-item"><div class="circle-icon"><i class="fas fa-headphones"></i></div><span>Audiometría</span></div>
+                    <div class="p-item"><div class="circle-icon"><i class="fas fa-lungs"></i></div><span>Espirometría</span></div>
+                    <div class="p-item"><div class="circle-icon"><i class="fas fa-brain"></i></div><span>Psicología</span></div>
+                </div>
+
+                <h2 class="section-title mt-5">Tu Examen En 4 Pasos Simples</h2>
+                
+                <div class="steps-container slide-up">
+                    <div class="step">
+                        <div class="step-circle">1</div>
+                        <span>Agenda Tu Cita</span>
+                    </div>
+                    <div class="step-line"></div>
+                    <div class="step">
+                        <div class="step-circle">2</div>
+                        <span>Ingreso Y Triaje</span>
+                    </div>
+                    <div class="step-line"></div>
+                    <div class="step">
+                        <div class="step-circle">3</div>
+                        <span>Evaluación</span>
+                    </div>
+                    <div class="step-line"></div>
+                    <div class="step">
+                        <div class="step-circle">4</div>
+                        <span>Resultados</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <a href="https://wa.me/51913889497" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+    <script th:src="@{/js/navbar.js}"></script>
+    <script th:src="@{/js/home.js}"></script>
+    <script th:src="@{/js/examenMedicoOcupacional.js}"></script> 
         
 </body>
 </html>

@@ -5,30 +5,226 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Policlínico Autovías Seguras - Exámenes médicos ocupacionales, licencias de conducir y SUCAMEC">
     <title>Policlínico Autovías Seguras | Examen Para Licencias De Conducir</title>
-    <!-- CSS -->
+    
     <link rel="stylesheet" th:href="@{/css/fragments/navbar.css}">
     <link rel="stylesheet" th:href="@{/css/fragments/footer.css}">
     <link rel="stylesheet" th:href="@{/css/examenMedicoBrevete.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-        <!-- NAVBAR -->
     <div th:replace="~{fragments/navbar ::  navbar}"></div>
 
-    
+    <main>
+        <section class="hero-brevete">
+            <div class="container hero-content">
+                <h1 class="fade-in">Examen médico para Brevetes</h1>
+                <p class="fade-in">Realiza tu evaluación psicosomática para la obtención y revalidación de tu licencia.</p>
+                
+                <div class="hero-buttons fade-in">
+                    <a href="#" class="btn btn-purple">¡COTIZA AHORA!</a>
+                    <a href="https://wa.me/51913889497" class="btn btn-green"><i class="fab fa-whatsapp"></i> WHATSAPP</a>
+                </div>
 
+                <div class="fade-in mt-4">
+                    <h3>POLICLÍNICO AUTOVÍAS SEGURAS</h3>
+                    <p class="subtitle">Confianza y rapidez en un solo lugar</p>
+                </div>
 
-        <!-- BOTÓN FLOTANTE WHATSAPP -->
-        <a href="https://wa.me/51913889497" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-whatsapp"></i>
-        </a>
+                <div class="stats-box slide-up">
+                    <div class="stat-item"><span class="stat-number" data-target="10">0</span><span class="stat-desc">Años exp.</span></div>
+                    <div class="divider"></div>
+                    <div class="stat-item"><span class="stat-number" data-target="1500">0</span><span class="stat-desc">Empresas</span></div>
+                    <div class="divider"></div>
+                    <div class="stat-item"><span class="stat-number" data-target="15">0</span><span class="stat-desc">Mil pacientes</span></div>
+                </div>
+            </div>
+        </section>
 
-        <!-- FOOTER -->
-        <div th:replace="~{fragments/footer :: footer}"></div>
+        <section class="category-section">
+            <div class="container">
+                <div class="section-header slide-up">
+                    <i class="fas fa-car-crash header-icon"></i>
+                    <h2 class="section-title">CATEGORÍAS DE BREVETES PARA VEHÍCULOS</h2>
+                </div>
 
-        <!-- JavaScript -->
-        <script th:src="@{/js/navbar.js}"></script>
-        <script th:src="@{/js/home.js}"></script>
+                <div class="cards-grid">
+                    <div class="license-card slide-up">
+                        <div class="card-face">
+                            <i class="fas fa-car icon-card"></i>
+                            <h3>Nuevo A1</h3>
+                            <button class="btn-ver-mas">Ver más</button>
+                        </div>
+                        <div class="card-hover-info">
+                            <h4>Nuevo A1</h4>
+                            <p>Examen médico completo para primera licencia.</p>
+                            <ul>
+                                <li>Vista y Oído</li>
+                                <li>Psicología</li>
+                                <li>Medicina General</li>
+                            </ul>
+                            <a href="#" class="btn-mini">Agendar</a>
+                        </div>
+                    </div>
+
+                    <div class="license-card slide-up">
+                        <div class="card-face">
+                            <i class="fas fa-id-card icon-card"></i>
+                            <h3>Revalidación AI</h3>
+                            <button class="btn-ver-mas">Ver más</button>
+                        </div>
+                        <div class="card-hover-info">
+                            <h4>Revalidación AI</h4>
+                            <p>Renueva tu licencia particular antes de que venza.</p>
+                            <a href="#" class="btn-mini">Agendar</a>
+                        </div>
+                    </div>
+
+                    <div class="license-card slide-up">
+                        <div class="card-face">
+                            <i class="fas fa-bus icon-card"></i>
+                            <h3>Revalidación AII y AIII</h3>
+                            <button class="btn-ver-mas">Ver más</button>
+                        </div>
+                        <div class="card-hover-info">
+                            <h4>Profesional</h4>
+                            <p>Para transporte de pasajeros y carga pesada.</p>
+                            <a href="#" class="btn-mini">Agendar</a>
+                        </div>
+                    </div>
+
+                    <div class="license-card slide-up">
+                        <div class="card-face">
+                            <i class="fas fa-exchange-alt icon-card"></i>
+                            <h3>Recategorización AII y AIII</h3>
+                            <button class="btn-ver-mas">Ver más</button>
+                        </div>
+                        <div class="card-hover-info">
+                            <h4>Recategorización</h4>
+                            <p>Asciende de categoría para manejar vehículos más grandes.</p>
+                            <a href="#" class="btn-mini">Agendar</a>
+                        </div>
+                    </div>
+
+                    <div class="license-card slide-up">
+                        <div class="card-face">
+                            <i class="fas fa-ambulance icon-card"></i>
+                            <h3>Especial AIV</h3>
+                            <button class="btn-ver-mas">Ver más</button>
+                        </div>
+                        <div class="card-hover-info">
+                            <h4>Licencia Especial</h4>
+                            <p>Para transporte de materiales peligrosos.</p>
+                            <a href="#" class="btn-mini">Agendar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="category-section">
+            <div class="container">
+                <div class="section-header slide-up">
+                    <i class="fas fa-motorcycle header-icon"></i>
+                    <h2 class="section-title">CATEGORÍAS DE BREVETES PARA MOTOS</h2>
+                </div>
+
+                <div class="cards-grid">
+                    <div class="license-card slide-up">
+                        <div class="card-face">
+                            <i class="fas fa-biking icon-card"></i>
+                            <h3>Nuevo BIIB</h3>
+                            <button class="btn-ver-mas">Ver más</button>
+                        </div>
+                        <div class="card-hover-info">
+                            <h4>Motos Lineales</h4>
+                            <p>Para obtener tu licencia de moto lineal por primera vez.</p>
+                            <a href="#" class="btn-mini">Agendar</a>
+                        </div>
+                    </div>
+
+                    <div class="license-card slide-up">
+                        <div class="card-face">
+                            <i class="fas fa-box icon-card"></i>
+                            <h3>Nuevo BIIC</h3>
+                            <button class="btn-ver-mas">Ver más</button>
+                        </div>
+                        <div class="card-hover-info">
+                            <h4>Mototaxis</h4>
+                            <p>Licencia para conducir mototaxis de carga o pasajeros.</p>
+                            <a href="#" class="btn-mini">Agendar</a>
+                        </div>
+                    </div>
+
+                    <div class="license-card slide-up">
+                        <div class="card-face">
+                            <i class="fas fa-sync icon-card"></i>
+                            <h3>Revalidación BII</h3>
+                            <button class="btn-ver-mas">Ver más</button>
+                        </div>
+                        <div class="card-hover-info">
+                            <h4>Revalidación Moto</h4>
+                            <p>Renovación de licencia de moto lineal.</p>
+                            <a href="#" class="btn-mini">Agendar</a>
+                        </div>
+                    </div>
+
+                    <div class="license-card slide-up">
+                        <div class="card-face">
+                            <i class="fas fa-sync-alt icon-card"></i>
+                            <h3>Revalidación BIIC</h3>
+                            <button class="btn-ver-mas">Ver más</button>
+                        </div>
+                        <div class="card-hover-info">
+                            <h4>Revalidación Mototaxi</h4>
+                            <p>Renovación de licencia para vehículos menores de 3 ruedas.</p>
+                            <a href="#" class="btn-mini">Agendar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="info-section">
+            <div class="container">
+                <h3 class="info-title"><i class="fas fa-info-circle"></i> INFORMACIÓN ADICIONAL</h3>
+                
+                <div class="info-grid">
+                    <a href="#" class="info-btn slide-up">
+                        <i class="fas fa-file-alt"></i> ANTECEDENTES<br>PENALES Y POLICIALES
+                    </a>
+                    <a href="#" class="info-btn slide-up">
+                        <i class="fas fa-car"></i> SIMULACRO DE EXAMEN<br>MANEJO Y REGLAS
+                    </a>
+                    <a href="#" class="info-btn slide-up">
+                        <i class="fas fa-calendar-alt"></i> PROGRAMAR CITA<br>EN EL MTC
+                    </a>
+                    <a href="#" class="info-btn slide-up">
+                        <i class="fas fa-hard-hat"></i> INSPECCIÓN TÉCNICA<br>SEGURIDAD VIAL
+                    </a>
+                    <a href="#" class="info-btn slide-up">
+                        <i class="fas fa-map-marked-alt"></i> CONSULTA DE<br>LICENCIAS
+                    </a>
+                    <a href="#" class="info-btn slide-up">
+                        <i class="fas fa-user-md"></i> CONSULTA DE EXAMEN<br>MÉDICO
+                    </a>
+                    <a href="#" class="info-btn btn-touring slide-up">
+                        <i class="fas fa-road"></i> TOURING AUTO<br>CLUB DEL PERÚ
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <a href="https://wa.me/51913889497" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+    <script th:src="@{/js/navbar.js}"></script>
+    <script th:src="@{/js/home.js}"></script>
+    <script th:src="@{/js/examenMedicoBrevete.js}"></script>
         
 </body>
 </html>

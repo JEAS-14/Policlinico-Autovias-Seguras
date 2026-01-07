@@ -3,33 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Policlínico Autovías Seguras - Exámenes médicos ocupacionales, licencias de conducir y SUCAMEC">
     <title>Policlínico Autovías Seguras | Nosotros</title>
-    <!-- CSS -->
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <link rel="stylesheet" th:href="@{/css/fragments/navbar.css}">
     <link rel="stylesheet" th:href="@{/css/fragments/footer.css}">
     <link rel="stylesheet" th:href="@{/css/Nosotros.css}">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
-<body>
-        <!-- NAVBAR -->
-    <div th:replace="~{fragments/navbar ::  navbar}"></div>
+<body class="pt-[85px]">
 
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <section class="relative py-32 md:py-40 bg-gradient-to-b from-[#3BBCA8] to-[#E8F8F5] overflow-hidden">
+        <div class="absolute inset-0 opacity-20">
+            <img th:src="@{/images/Fondo 1.png}" alt="Background" class="w-full h-full object-cover object-top">
+        </div>
+        <div class="relative z-10 max-w-7xl mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-[#2E1A5F] leading-tight animate-on-scroll">
+                Más de 10 años cuidando la<br>salud de los conductores y<br>empresas del Perú
+            </h1>
+        </div>
+    </section>
+
+    <section class="py-20 bg-nosotros-gradient">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                
+                <div class="animate-on-scroll">
+                    <p class="text-[#3BBCA8] font-bold text-sm mb-2 uppercase">QUIÉNES SOMOS</p>
+                    <h2 class="text-4xl md:text-5xl font-bold text-[#2E1A5F] mb-6 border-b-4 border-[#3BBCA8] inline-block pb-2">
+                        Conócenos
+                    </h2>
+                    <div class="space-y-4 text-gray-700 leading-relaxed">
+                        <p>
+                            Brindamos soluciones empresariales integrales en salud ocupacional y bienestar, orientadas al cuidado de los colaboradores y al fortalecimiento de organizaciones responsables.
+                        </p>
+                        <p>
+                            Contamos con <strong>más de 10 años de experiencia</strong>, trabajando con empresas de diversos sectores, superando las expectativas de nuestros clientes mediante un servicio confiable, eficiente y de calidad.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="animate-on-scroll delay-2">
+                    <a href="#" class="block action-card-btn pointer-events-none">
+                        <img src="https://res.cloudinary.com/dtozni6ik/image/upload/v1767594445/Sin_t%C3%ADtulo_myru3d.png" alt="Equipo Autovías Seguras" class="rounded-3xl shadow-mint w-full">
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 relative overflow-hidden bg-proposito-gradient">
+        <div class="absolute inset-0 z-0 pointer-events-none">
+            <img th:src="@{/images/Fondo 1.png}" alt="Fondo" class="w-full h-full object-cover object-top opacity-20">
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-bold text-[#2E1A5F] text-center mb-16 animate-on-scroll">
+                NUESTRO PROPÓSITO
+            </h2>
+
+            <div class="max-w-2xl mx-auto mb-20 animate-on-scroll delay-1">
+                <div class="bg-white rounded-3xl p-8 border-4 border-[#3BBCA8] shadow-mint">
+                    <h3 class="text-3xl font-bold text-[#2E1A5F] text-center mb-6">
+                        MISIÓN
+                    </h3>
+                    <div class="flex justify-center mb-6">
+                        <div class="w-20 h-20 bg-[#3BBCA8] rounded-full flex items-center justify-center">
+                            <i class="fas fa-heartbeat text-white text-3xl"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 text-center leading-relaxed">
+                        Contribuir con el proceso de prevención y lesión de enfermedades relacionados al ámbito laboral, a través de un servicio médico confiable, rápido y calidad.
+                    </p>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-3xl md:text-4xl font-bold text-[#2E1A5F] text-center mb-4 animate-on-scroll delay-2">
+                    NUESTROS VALORES
+                </h3>
+                <div class="w-24 h-1 bg-[#3BBCA8] mx-auto mb-12"></div>
+
+                <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    
+                    <div class="animate-on-scroll delay-3">
+                        <div class="bg-white p-8 text-center border-4 border-[#2E1A5F] shadow-mint action-card-btn rounded-3xl h-full flex flex-col">
+                            <h4 class="text-xl font-bold text-[#2E1A5F] uppercase mb-4">
+                                Somos Ágiles
+                            </h4>
+                            <div class="block overflow-hidden mb-4 rounded-xl flex-grow">
+                                <img src="https://res.cloudinary.com/dtozni6ik/image/upload/v1767594901/Sin_1_f7mrzw.png" alt="Somos Ágiles" class="w-full h-48 object-cover hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <p class="text-gray-700 text-sm leading-relaxed">
+                                Optimizamos procesos para ofrecer una atención ágil y resultados eficientes.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="animate-on-scroll delay-4">
+                        <div class="bg-white p-8 text-center border-4 border-[#2E1A5F] shadow-mint action-card-btn rounded-3xl h-full flex flex-col">
+                            <h4 class="text-xl font-bold text-[#2E1A5F] uppercase mb-4">
+                                Somos Confiables
+                            </h4>
+                            <div class="block overflow-hidden mb-4 rounded-xl flex-grow">
+                                <img src="https://res.cloudinary.com/dtozni6ik/image/upload/v1767594901/3_qnknh6.png" alt="Somos Confiables" class="w-full h-48 object-cover hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <p class="text-gray-700 text-sm leading-relaxed">
+                                Brindamos servicios confiables, con puntualidad y calidad garantizada.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="animate-on-scroll delay-5">
+                        <div class="bg-white p-8 text-center border-4 border-[#2E1A5F] shadow-mint action-card-btn rounded-3xl h-full flex flex-col">
+                            <h4 class="text-xl font-bold text-[#2E1A5F] uppercase mb-4">
+                                Somos Amables
+                            </h4>
+                            <div class="block overflow-hidden mb-4 rounded-xl flex-grow">
+                                <img src="https://res.cloudinary.com/dtozni6ik/image/upload/v1767594901/2_sugjfk.png" alt="Somos Amables" class="w-full h-48 object-cover hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <p class="text-gray-700 text-sm leading-relaxed">
+                                Brindamos una atención cercana y humana, acompañando al paciente en todo el proceso.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <a href="https://wa.me/51913889497" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+    <script th:src="@{/js/navbar.js}"></script>
+    <script th:src="@{/js/nosotros.js}"></script>
     
-
-
-        <!-- BOTÓN FLOTANTE WHATSAPP -->
-        <a href="https://wa.me/51913889497" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-whatsapp"></i>
-        </a>
-
-        <!-- FOOTER -->
-        <div th:replace="~{fragments/footer :: footer}"></div>
-
-        <!-- JavaScript -->
-        <script th:src="@{/js/navbar.js}"></script>
-        <script th:src="@{/js/home.js}"></script>
-        
 </body>
 </html>
