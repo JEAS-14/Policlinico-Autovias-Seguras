@@ -1,16 +1,20 @@
 /* --- Variables --- */
 :root {
     --primary-purple: #4a148c;
-    --mint-bg: #dbece9;      /* El color de fondo del lado izquierdo */
-    --input-bg: #f5f5f5;     /* Gris claro para los inputs */
-    --btn-green: #2dc4ad;    /* Verde del botón enviar */
+    --mint-bg: #dbece9;
+    /* El color de fondo del lado izquierdo */
+    --input-bg: #f5f5f5;
+    /* Gris claro para los inputs */
+    --btn-green: #2dc4ad;
+    /* Verde del botón enviar */
     --text-dark: #333;
     --text-light: #666;
     --white: #ffffff;
 }
 
 body {
-    background-color: #f8f9fa; /* Fondo general de la página muy suave */
+    background-color: #f8f9fa;
+    /* Fondo general de la página muy suave */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: var(--text-dark);
 }
@@ -20,17 +24,23 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 33.58%, #FFFFFF 100%),
+        linear-gradient(116.93deg, rgba(59, 188, 168, 0.38) 27.63%,
+            rgba(59, 188, 168, 0.75) 87.89%);
+
+
 }
 
 .page-title {
-    color: #4a90e2; /* Azul claro del título "Formulario" */
+    color: #4a90e2;
+    /* Azul claro del título "Formulario" */
     font-size: 1.8rem;
     font-weight: bold;
     margin-bottom: 30px;
     align-self: flex-start;
     max-width: 1200px;
     width: 100%;
-    margin-left: auto; 
+    margin-left: auto;
     margin-right: auto;
     padding-left: 10px;
 }
@@ -42,14 +52,16 @@ body {
     width: 100%;
     background: white;
     border-radius: 20px;
-    overflow: hidden; /* Para que la imagen respete los bordes redondos */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    overflow: hidden;
+    /* Para que la imagen respete los bordes redondos */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     min-height: 600px;
 }
 
 /* --- COLUMNA IZQUIERDA (INFO) --- */
 .contact-info {
-    flex: 2; /* Ocupa 40% del ancho aprox */
+    flex: 2;
+    /* Ocupa 40% del ancho aprox */
     background-color: var(--mint-bg);
     display: flex;
     flex-direction: column;
@@ -103,19 +115,33 @@ body {
 .icon-circle {
     min-width: 35px;
     height: 35px;
-    background: white; /* Círculo blanco detrás del icono? O icono de color? */
+    background: white;
+    /* Círculo blanco detrás del icono? O icono de color? */
     /* En la imagen parecen iconos de marca simples. Ajustaremos: */
     background: none;
     font-size: 1.5rem;
 }
 
-.item .fa-map-marker-alt { color: #4285F4; } /* Google Maps Blue */
-.item .fa-whatsapp { color: #25D366; }       /* WhatsApp Green */
-.item .fa-envelope { color: #EA4335; }        /* Gmail Red */
+.item .fa-map-marker-alt {
+    color: #4285F4;
+}
+
+/* Google Maps Blue */
+.item .fa-whatsapp {
+    color: #25D366;
+}
+
+/* WhatsApp Green */
+.item .fa-envelope {
+    color: #EA4335;
+}
+
+/* Gmail Red */
 
 /* --- COLUMNA DERECHA (FORMULARIO) --- */
 .contact-form {
-    flex: 3; /* Ocupa 60% del ancho aprox */
+    flex: 3;
+    /* Ocupa 60% del ancho aprox */
     padding: 40px;
     background: white;
 }
@@ -144,7 +170,9 @@ label {
     color: #444;
 }
 
-input, select, textarea {
+input,
+select,
+textarea {
     background-color: var(--input-bg);
     border: none;
     border-radius: 8px;
@@ -155,7 +183,9 @@ input, select, textarea {
     transition: box-shadow 0.2s;
 }
 
-input:focus, select:focus, textarea:focus {
+input:focus,
+select:focus,
+textarea:focus {
     box-shadow: 0 0 0 2px var(--mint-bg);
 }
 
@@ -209,31 +239,61 @@ textarea {
     .contact-wrapper {
         flex-direction: column;
     }
+
     .info-image-container {
         height: 200px;
     }
+
     .form-row {
         flex-direction: column;
         gap: 0;
     }
+
     .form-group {
         margin-bottom: 20px;
     }
 }
 
 /* Animaciones */
-.fade-in { opacity: 0; animation: fadeIn 0.8s forwards; }
-.slide-up { opacity: 0; transform: translateY(30px); animation: slideUp 0.8s 0.2s forwards; }
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 0.8s forwards;
+}
 
-@keyframes fadeIn { to { opacity: 1; } }
-@keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
+.slide-up {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: slideUp 0.8s 0.2s forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
 /* Botón flotante */
 .whatsapp-float {
-    position: fixed; bottom: 20px; right: 20px;
-    background-color: #25D366; color: white;
-    width: 50px; height: 50px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 24px; box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
-    z-index: 1000; text-decoration: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25D366;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    text-decoration: none;
 }

@@ -12,13 +12,14 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     color: #333;
-    padding-top: 85px; /* Altura del navbar fijo */
+    padding-top: 85px;
+    /* Altura del navbar fijo */
 }
 
 .home-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding:  0 20px;
+    padding: 0 20px;
 }
 
 /* ===========================================
@@ -26,7 +27,7 @@
    =========================================== */
 
 .hero-section {
-    position:  relative;
+    position: relative;
     width: 100%;
     min-height: calc(10vh - 85px);
     display: flex;
@@ -38,11 +39,11 @@
 
 /* Fondo hero */
 .hero-bg-fix {
-    position:  absolute;
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    bottom:  0;
+    bottom: 0;
     z-index: 0;
 }
 
@@ -50,7 +51,7 @@
     width: 100%;
     height: 132%;
     object-fit: cover;
-    opacity:  0.3;
+    opacity: 0.3;
 }
 
 .bg-autovias-double-filter {
@@ -58,12 +59,10 @@
     inset: 0;
     z-index: 10;
     pointer-events: none;
-    background: linear-gradient(
-        135deg,
-        rgba(59, 188, 168, 0.55) 0%,
-        rgba(255, 255, 255, 0.95) 50%,
-        rgba(59, 188, 168, 0.55) 100%
-    );
+    background: linear-gradient(135deg,
+            rgba(59, 188, 168, 0.55) 0%,
+            rgba(255, 255, 255, 0.95) 50%,
+            rgba(59, 188, 168, 0.55) 100%);
 }
 
 /* Contenido hero */
@@ -78,7 +77,8 @@
 .hero-title {
     font-family: 'Poltawski Nowy', serif;
     font-size: 2.7rem;
-    font-weight: 333;   /* 700 u 800 funcionan mejor en esta fuente */
+    font-weight: 333;
+    /* 700 u 800 funcionan mejor en esta fuente */
     color: #2E1A5F;
     margin-bottom: 2px;
     text-transform: uppercase;
@@ -170,11 +170,12 @@
 
 /* Responsive - eliminar el efecto intercalado en móviles */
 @media (max-width: 768px) {
+
     .service-link:nth-child(odd) .service-card,
     .service-link:nth-child(even) .service-card {
         margin-top: 0;
     }
-    
+
     .services-cards {
         grid-template-columns: 1fr;
         gap: 20px;
@@ -192,7 +193,7 @@
 
 .home-btn {
     padding: 14px 35px;
-    border-radius:  8px;
+    border-radius: 8px;
     text-decoration: none;
     font-weight: 700;
     font-size: 1rem;
@@ -248,11 +249,11 @@
     font-size: 4rem;
     font-weight: 730;
     color: #3bbca8;
-    margin-bottom:  12px;
+    margin-bottom: 12px;
 }
 
 .stat-label {
-    font-size:  0.9rem;
+    font-size: 0.9rem;
     color: #555;
     font-weight: 600;
 }
@@ -260,7 +261,7 @@
 .stat-divider {
     width: 2px;
     height: 60px;
-    background:  linear-gradient(180deg, transparent, #3bbca8, transparent);
+    background: linear-gradient(180deg, transparent, #3bbca8, transparent);
 }
 
 /* ===========================================
@@ -269,7 +270,7 @@
 
 .why-choose-us {
     padding: 99px 20px;
-    background-color: #ffffff;
+    background: rgba(252, 252, 252, 0.64);
 }
 
 .why-content {
@@ -284,7 +285,7 @@
 }
 
 .why-image img {
-    width:  100%;
+    width: 100%;
     max-width: 450px;
     border-radius: 50%;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
@@ -319,7 +320,7 @@
 
 .why-description {
     font-size: 1.05rem;
-    line-height:  1.8;
+    line-height: 1.8;
     color: #555;
     margin-bottom: 30px;
 }
@@ -360,7 +361,7 @@
 
 .location-section {
     padding: 80px 20px;
-    background:  linear-gradient(180deg, #e8f5f3 0%, #d4ebe8 100%);
+    background: linear-gradient(180deg, #e8f5f3 0%, #d4ebe8 100%);
 }
 
 .location-section .section-title {
@@ -382,7 +383,7 @@
     left: 30px;
     background: #ffffff;
     padding: 15px 20px;
-    border-radius:  15px;
+    border-radius: 15px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
     display: flex;
     align-items: center;
@@ -405,7 +406,7 @@
 .marker-info p {
     color: #666;
     font-size: 0.9rem;
-    margin:  0;
+    margin: 0;
 }
 
 /* ===========================================
@@ -438,7 +439,7 @@
 }
 
 .testimonial-card:hover {
-    transform:  translateY(-5px);
+    transform: translateY(-5px);
     border-color: #3bbca8;
     box-shadow: 0 10px 25px rgba(59, 188, 168, 0.2);
 }
@@ -530,7 +531,7 @@
     border-radius: 50%;
     text-align: center;
     font-size: 2rem;
-    box-shadow:  0 5px 20px rgba(37, 211, 102, 0.4);
+    box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
     z-index: 999;
     display: flex;
     align-items: center;
