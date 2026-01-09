@@ -1,24 +1,28 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Footer - Policlínico Autovías Seguras</title>
 </head>
+
 <body>
     <footer class="footer" th:fragment="footer">
         <div class="footer-container">
             <div class="footer-column footer-brand">
                 <div class="footer-logo">
-                    <img src="https://images-ext-1.discordapp.net/external/8TpoPoZjjp71EZM2Xcqi6qWmikJkO2haemiaGPgsIrs/https/res.cloudinary.com/dtozni6ik/image/upload/v1767591606/Gemini_Generated_Image_f1ydyzf1ydyzf1yd_2_si4mvj.png?format=webp&quality=lossless" 
-                         alt="Autovías Seguras">
+                    <a th:href="@{/}">
+                        <img src="https://res.cloudinary.com/dtozni6ik/image/upload/v1767826814/imagen_2025-12-16_004351899-Photoroom-removebg-preview_kgmnvi.png"
+                            alt="Autovías Seguras">
+                    </a>
                 </div>
                 <p class="footer-description">
-                    Tu policlínico de confianza especializado en exámenes médicos para prevenir, salud ocupacional y conductores.  Comprometidos con tu seguridad y bienestar. 
+                    Tu policlínico de confianza especializado en exámenes médicos para prevenir, salud ocupacional y
+                    conductores. Comprometidos con tu seguridad y bienestar.
                 </p>
             </div>
 
-            <!-- Columna 2: Servicios -->
             <div class="footer-column">
                 <h3 class="footer-title">Servicios</h3>
                 <ul class="footer-links">
@@ -29,7 +33,6 @@
                 </ul>
             </div>
 
-            <!-- Columna 3: Legal -->
             <div class="footer-column">
                 <h3 class="footer-title">Legal</h3>
                 <ul class="footer-links">
@@ -38,14 +41,19 @@
                 </ul>
             </div>
 
-            <!-- Columna 4: Contactos -->
             <div class="footer-column footer-contact">
                 <h3 class="footer-title">Contactos</h3>
                 <div class="contact-info">
+                    
                     <div class="contact-item">
                         <i class="fas fa-map-marker-alt"></i>
-                        <span>Av. 9 de Octubre 467,<br>San Juan de Lurigancho</span>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Av.+9+de+Octubre+467,+San+Juan+de+Lurigancho" 
+                           target="_blank" 
+                           style="color: inherit; text-decoration: none; line-height: 1.5;">
+                            Av. 9 de Octubre 467,<br>San Juan de Lurigancho
+                        </a>
                     </div>
+
                     <div class="contact-item">
                         <i class="fab fa-whatsapp"></i>
                         <div class="phone-numbers">
@@ -54,25 +62,38 @@
                             <a href="https://wa.me/51941342860" target="_blank">941 342 860</a>
                         </div>
                     </div>
+
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:comercial@autoviasseguras.com" style="color: inherit; text-decoration: none;">
+                            comercial@autoviasseguras.com
+                        </a>
+                    </div>
+
                 </div>
             </div>
         </div>
 
-        <!-- Sección inferior:  Redes sociales y copyright -->
         <div class="footer-bottom">
             <div class="social-media">
-                <a href="https://www.facebook.com/autovias.seguras" target="_blank" rel="noopener noreferrer" class="social-icon facebook">
+                <a href="https://www.facebook.com/autovias.seguras" target="_blank" rel="noopener noreferrer"
+                    class="social-icon facebook">
                     <i class="fab fa-facebook-f"></i>
                 </a>
-                <a href="https://www.instagram.com/autovias.seguras" target="_blank" rel="noopener noreferrer" class="social-icon instagram">
+                <a href="https://www.instagram.com/policlinicoautoviasseguras_/s" target="_blank"
+                    rel="noopener noreferrer" class="social-icon instagram">
                     <i class="fab fa-instagram"></i>
                 </a>
-                <a href="mailto:contacto@autoviasseguras.com" class="social-icon gmail">
+                <a href="https://www.tiktok.com/@policlinicoautovias?_r=1&_t=ZS-92YQrm8BIHp" target="_blank"
+                    rel="noopener noreferrer" class="social-icon instagram">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+                <a href="mailto:comercial@autoviasseguras.com" class="social-icon gmail">
                     <i class="fas fa-envelope"></i>
                 </a>
             </div>
             <p class="copyright">
-                © 2025 Policlínico Autovías Seguras.  Todos los derechos reservados.
+                © 2026 Policlínico Autovías Seguras. Todos los derechos reservados.
             </p>
         </div>
     </footer>

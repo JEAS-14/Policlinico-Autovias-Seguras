@@ -306,45 +306,84 @@ body {
     box-shadow: 0 6px 20px rgba(44, 62, 122, 0.4);
 }
 
+
 /* ===========================================
-   UBICACIÓN
+   UBICACIÓN (CON VIDA Y ANIMACIÓN)
    =========================================== */
 
 .location-section {
     padding: 80px 20px;
-    background:  linear-gradient(180deg, #e8f5f3 0%, #d4ebe8 100%);
-}
-
-.location-section .section-title {
-    text-align: center;
-    color: #2c3e7a;
-    margin-bottom: 40px;
+    background: linear-gradient(180deg, #e8f5f3 0%, #d4ebe8 100%);
+    overflow: hidden;
 }
 
 .map-container {
     position: relative;
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    /* Animación de entrada (controlada por JS) */
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
+.map-container.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- TARJETA FLOTANTE (ARRIBA A LA DERECHA) --- */
 .map-marker {
     position: absolute;
-    bottom: 30px;
-    left: 30px;
-    background: #ffffff;
-    padding: 15px 20px;
-    border-radius:  15px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    
+    /* CAMBIO CLAVE: Esquina Superior Derecha */
+    top: 20px; 
+    right: 20px;
+    
+    background: rgba(255, 255, 255, 0.95); /* Un poquito transparente se ve moderno */
+    backdrop-filter: blur(5px); /* Efecto vidrio borroso detrás */
+    padding: 15px 25px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     display: flex;
     align-items: center;
     gap: 15px;
     z-index: 10;
+    
+    /* ANIMACIÓN 1: LEVITACIÓN (Para que no parezca muerta) */
+    animation: floatCard 4s ease-in-out infinite;
 }
 
-.map-marker i {
-    font-size: 2rem;
-    color: #3bbca8;
+/* El ícono verde */
+.marker-icon-box {
+    width: 45px;
+    height: 45px;
+    background-color: #e0f2f1;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.marker-icon-box i {
+    font-size: 1.5rem;
+    color: #2dc4ad;
+    z-index: 2;
+}
+
+/* ANIMACIÓN 2: ONDAS DE RADAR (Latido) */
+/* Creamos un círculo detrás del ícono que se expande */
+.marker-icon-box::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: rgba(45, 196, 173, 0.4); /* Color verde transparente */
+    z-index: 1;
+    animation: pulseRadar 2s infinite;
 }
 
 .marker-info strong {
@@ -357,114 +396,347 @@ body {
 .marker-info p {
     color: #666;
     font-size: 0.9rem;
-    margin:  0;
+    margin: 0;
 }
 
+/* iframe */
+.map-container iframe {
+    display: block;
+    width: 100%;
+    height: 450px;
+    transition: transform 0.5s ease;
+}
+
+/* Efecto extra: Si pasas el mouse por el mapa, se acerca un poquito */
+.map-container:hover iframe {
+    transform: scale(1.02);
+}
+
+/* --- DEFINICIÓN DE LAS ANIMACIONES --- */
+
+/* 1. Flotar suavemente arriba y abajo */
+@keyframes floatCard {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); } /* Sube 10px */
+    100% { transform: translateY(0px); }
+}
+
+/* 2. Onda expansiva tipo Radar */
+@keyframes pulseRadar {
+    0% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(1.8); /* Crece casi el doble */
+        opacity: 0; /* Desaparece */
+    }
+}
 /* ===========================================
-   TESTIMONIOS
+   TESTIMONIOS (CARRUSEL INFINITO)
    =========================================== */
 
 .testimonials-section {
-    padding: 80px 20px;
-    background-color: #ffffff;
+    padding: 80px 0;
+    background-color: #f9f9f9; /* Fondo suave para separar secciones */
+    overflow: hidden;
 }
 
-.testimonials-section .section-title {
+.section-subtitle {
     text-align: center;
+    color: #666;
     margin-bottom: 50px;
+    margin-top: -30px;
+    font-size: 0.95rem;
 }
 
-.testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+/* Contenedor con degradados laterales (Fade effect) */
+.reviews-container {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
 }
 
-.testimonial-card {
-    background: #f8f8f8;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease;
-    border: 2px solid transparent;
+.reviews-container::before,
+.reviews-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 150px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
 }
 
-.testimonial-card:hover {
-    transform:  translateY(-5px);
-    border-color: #3bbca8;
-    box-shadow: 0 10px 25px rgba(59, 188, 168, 0.2);
+.reviews-container::before {
+    left: 0;
+    background: linear-gradient(to right, #f9f9f9, transparent);
 }
 
-.stars {
+.reviews-container::after {
+    right: 0;
+    background: linear-gradient(to left, #f9f9f9, transparent);
+}
+
+/* Pista de deslizamiento */
+.reviews-track {
     display: flex;
-    gap: 5px;
+    gap: 25px; /* Espacio entre tarjetas */
+    width: max-content;
+    padding: 20px 0; /* Espacio para las sombras */
+    animation: scroll-reviews 60s linear infinite; /* Velocidad suave */
+}
+
+/* Pausa al pasar el mouse */
+.reviews-track:hover {
+    animation-play-state: paused;
+}
+
+
+
+/* --- TARJETA DE TESTIMONIO --- */
+.review-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 25px;
+    width: 320px; /* Ancho fijo ideal */
+    flex-shrink: 0; /* Evita deformaciones */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.review-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+    border-color: #2dc4ad; /* Borde verde al pasar mouse */
+}
+
+/* Cabecera: Foto + Nombre */
+.review-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
     margin-bottom: 15px;
 }
 
-.stars i {
-    color: #ffd700;
-    font-size: 1.2rem;
+.review-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #f0f0f0;
 }
 
-.testimonial-text {
-    font-size: 1rem;
-    line-height: 1.7;
-    color: #555;
-    margin-bottom: 20px;
-    font-style: italic;
-}
-
-.testimonial-author {
+.review-info h4 {
+    font-size: 0.95rem;
     font-weight: 700;
-    color: #2c3e7a;
-    font-size: 1.05rem;
+    color: #333;
+    margin: 0 0 3px 0;
 }
 
+/* Fuente (Google/Facebook) */
+.review-source {
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+}
+
+.source-google { color: #DB4437; }
+.source-facebook { color: #1877F2; }
+
+/* Estrellas */
+.review-stars {
+    color: #FFC107;
+    font-size: 0.85rem;
+    margin-bottom: 12px;
+}
+
+/* Texto */
+.review-text {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #555;
+    font-style: italic;
+    
+    /* Cortar texto si es muy largo (opcional) */
+    display: -webkit-box;
+    -webkit-line-clamp: 4; 
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Animación Infinita */
+@keyframes scroll-reviews {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Móvil */
+@media (max-width: 768px) {
+    .review-card {
+        width: 280px;
+        padding: 20px;
+    }
+    .reviews-container::before, .reviews-container::after {
+        width: 50px; /* Fade más pequeño en móvil */
+    }
+}
 /* ===========================================
-   NORMATIVAS
+   NORMATIVAS (CARRUSEL INFINITO - VERSIÓN COLOR & FOCUS)
    =========================================== */
 
-.normativas-section {
-    padding: 60px 20px;
-    background-color: #f5f5f5;
+.normativas-section-carousel {
+    padding: 60px 0;
+    background-color: #ffffff; /* Fondo Blanco Puro */
+    overflow: hidden; 
+    position: relative;
 }
 
 .section-title-dark {
     font-size: 2rem;
-    font-weight: 700;
-    color: #333;
+    font-weight: 800; /* Letra un poco más gruesa para autoridad */
+    color: #2E1A5F;
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.normativas-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 30px;
+/* El contenedor que delimita el área visible */
+.carousel-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Degradados laterales en blanco para suavizar la entrada/salida */
+.carousel-container::before,
+.carousel-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 100px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.carousel-container::before {
+    left: 0;
+    background: linear-gradient(to right, #ffffff, transparent);
+}
+
+.carousel-container::after {
+    right: 0;
+    background: linear-gradient(to left, #ffffff, transparent);
+}
+
+/* LA PISTA QUE SE MUEVE */
+.carousel-track {
+    display: flex;
+    width: max-content;
+    animation: scroll-infinite 35s linear infinite; /* Un poco más lento para apreciar los logos */
+}
+
+.carousel-track:hover {
+    animation-play-state: paused;
+}
+
+/* --- CADA ITEM (LA CAJA FIJA) --- */
+.normativa-slide {
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    
+    /* TAMAÑO FIJO DE LA CAJA: Aquí está el truco para alinearlos */
+    width: 250px; 
+    height: 160px; /* Altura suficiente para logo + texto */
+    
+    padding: 0 20px;
 }
 
-.normativa-item {
-    text-align: center;
-    padding: 20px;
-}
-
-.normativa-item img {
-    max-width: 150px;
-    height: auto;
+/* --- LA IMAGEN (TAMAÑO UNIFORME) --- */
+.normativa-slide img {
+    /* Define el espacio máximo que puede ocupar el logo */
+    width: 100%; 
+    height: 90px; /* Todos los logos tendrán esta altura máxima */
+    
+    /* ESTO EVITA QUE SE DEFORMEN */
+    object-fit: contain; 
+    
     margin-bottom: 15px;
-    filter: grayscale(100%);
-    transition: filter 0.3s ease;
+    
+    /* ESTADO NORMAL: A color, pero suave */
+    filter: none; /* Quitamos el gris */
+    opacity: 0.6; /* Un poco transparentes para que no saturen */
+    
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Transición suave */
+    transform: translateZ(0); /* Mejora rendimiento */
 }
 
-.normativa-item:hover img {
-    filter: grayscale(0%);
+/* --- EFECTO AL PASAR EL MOUSE (ENFOQUE MEJORADO) --- */
+.normativa-slide:hover img {
+    opacity: 1; /* Color total */
+    
+    /* EFECTO 3D: Crece + Sube + Sombra */
+    transform: scale(1.15) translateY(-8px); 
+    
+    /* Sombra que sigue la forma del PNG (mejor que box-shadow) */
+    filter: drop-shadow(0 15px 20px rgba(0, 0, 0, 0.2)); 
 }
 
-.normativa-item p {
-    font-size: 0.85rem;
-    color: #666;
+/* Texto */
+.normativa-slide p {
+    font-size: 0.9rem;
+    color: #888; /* Texto gris suave */
     font-weight: 600;
+    text-align: center;
+    margin: 0;
+    transition: color 0.3s ease;
+}
+
+.normativa-slide:hover p {
+    color: #4a148c; /* El texto se pinta del color de tu marca al enfocar */
+}
+
+/* --- LA ANIMACIÓN --- */
+@keyframes scroll-infinite {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Móviles */
+@media (max-width: 768px) {
+    .carousel-track { animation-duration: 20s; }
+    .normativa-slide { 
+        width: 180px; /* Cajas más pequeñas en móvil */
+        height: 140px;
+        padding: 0 10px;
+    }
+    .normativa-slide img { height: 70px; }
+}
+
+/* --- EXCEPCIÓN PARA LOGOS MUY ANCHOS (Como DIGESA) --- */
+.normativa-slide.wide-slide {
+    /* Le damos el doble de espacio (o lo que necesites) */
+    width: 500px; 
+    
+    /* Opcional: Ajustamos un poco el padding para que no quede pegado */
+    padding: 0 10px; 
+}
+
+/* Ajuste para móviles: que no sea TAN gigante en celular */
+@media (max-width: 768px) {
+    .normativa-slide.wide-slide {
+        width: 300px; /* En celular lo reducimos un poco */
+    }
 }
 
 /* ===========================================
