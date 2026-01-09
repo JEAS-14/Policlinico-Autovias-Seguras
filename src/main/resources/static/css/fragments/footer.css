@@ -1,282 +1,236 @@
-
+/* --- 1. CONFIGURACIÓN BÁSICA Y VARIABLES --- */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Footer Container */
+:root {
+    --primary-purple: #4a148c;
+    --secondary-green: #2dc4ad;
+    --bg-gradient-start: #e8f5f3;
+    --bg-gradient-end: #d4ebe8;
+    --text-dark: #333333;
+    --text-light: #555555;
+    --footer-bar-bg: #e5e7eb; /* Gris claro para la barra inferior */
+}
+
+/* --- 2. CONTENEDOR PRINCIPAL DEL FOOTER --- */
 .footer {
-    background:  linear-gradient(180deg, #e8f5f3 0%, #d4ebe8 100%);
-    padding: 60px 40px 20px;
-    color: #333333;
+    background: linear-gradient(180deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+    padding: 40px 0 20px; /* Reduje el padding superior de 60px a 40px para hacerlo compacto */
+    color: var(--text-dark);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .footer-container {
     max-width: 1200px;
-    margin: 0 auto;
+    width: 90%; /* Ocupa el 90% del ancho de la pantalla */
+    margin: 0 auto 30px; /* Margen inferior reducido */
     display: grid;
+    /* Ajuste de columnas para que se vea equilibrado */
     grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
-    gap: 40px;
-    margin-bottom:  40px;
+    gap: 20px; /* Reduje el gap de 40px a 20px para compactar */
 }
 
-/* Columna del Logo */
+/* --- 3. COLUMNAS Y CONTENIDO --- */
+
+/* Columna 1: Logo */
 .footer-brand {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 10px; /* Menos espacio entre logo y texto */
 }
 
 .footer-logo img {
-    width: 180px;
-    height: auto;
+    width: 238px; /* Logo un poco más pequeño para elegancia */
+    height: 110px;
     object-fit: contain;
-    margin-bottom: 10px;
 }
 
 .footer-description {
-    font-size:  0.9rem;
-    line-height: 1.6;
-    color: #555555;
-    max-width: 300px;
+    font-size: 0.85rem; /* Texto ligeramente más pequeño */
+    line-height: 1.5;
+    color: #2E1A5F;
+    max-width: 280px;
+    text-align: center; /* Centra las letras dentro del párrafo */
+    margin: 1 auto;
 }
 
-/* Títulos de columnas */
+/* Títulos */
 .footer-title {
-    font-size: 1.25rem;
-    font-weight:  700;
-    color: #2c3e7a;
-    margin-bottom:  20px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #2E1A5F; /* Azul oscuro del diseño */
+    margin-bottom: 10px; /* Menos espacio debajo del título */
+    text-transform: inter;
 }
 
-/* Links del footer */
+/* Links (Listas) */
 .footer-links {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 8px; /* Elementos más juntos (antes 12px) */
 }
 
 .footer-links li a {
     text-decoration: none;
-    color: #333333;
-    font-size: 0.95rem;
+    color: var(--text-dark);
+    font-size: 0.9rem;
     transition: color 0.3s ease, padding-left 0.3s ease;
     display: inline-block;
 }
 
 .footer-links li a:hover {
-    color: #3bbca8;
+    color: var(--secondary-green);
     padding-left: 5px;
 }
 
-/* Sección de contacto */
+/* Sección de Contacto */
 .footer-contact .contact-info {
-    display:  flex;
-    flex-direction:  column;
-    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Más compacto */
 }
 
 .contact-item {
     display: flex;
     align-items: flex-start;
-    gap: 12px;
-    font-size: 0.95rem;
-    color: #333333;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: var(--text-dark);
 }
 
 .contact-item i {
-    font-size: 1.2rem;
-    color: #3bbca8;
+    font-size: 1.1rem;
+    color: var(--secondary-green);
     margin-top: 2px;
-    min-width: 20px;
 }
 
 .phone-numbers {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 5px;
     flex-wrap: wrap;
 }
 
 .phone-numbers a {
     text-decoration: none;
-    color: #333333;
+    color: var(--text-dark);
     transition: color 0.3s ease;
 }
 
 .phone-numbers a:hover {
-    color:  #25d366;
-    text-decoration: underline;
+    color: #25d366;
 }
 
-.phone-numbers .separator {
-    color: #999999;
-}
-
-/* Footer Bottom */
+/* --- 4. BARRA INFERIOR GRIS (EXTENSA Y SÓLIDA) --- */
 .footer-bottom {
+    background-color: var(--footer-bar-bg);
+    
+    /* Dimensiones exactas para alinear con el contenido de arriba */
+    width: 90%; 
     max-width: 1200px;
-    margin: 0 auto;
-    padding-top: 30px;
-    border-top:  2px solid rgba(59, 188, 168, 0.3);
-    display: flex;
-    justify-content: space-between;
+    
+    padding: 15px 30px; /* Altura delgada */
+    margin: 0 auto; /* Centrado */
+    border-radius: 0%; /* Bordes redondeados */
+    
+    /* CAMBIO 2: ESTRUCTURA PARA CENTRAR EL TEXTO */
+    display: grid;
+    /* Creamos 3 columnas: [Espacio Iconos] - [Texto Centro] - [Espacio Vacío] */
+    grid-template-columns: 1fr auto 1fr; 
     align-items: center;
-    flex-wrap: wrap;
-    gap: 20px;
+    box-sizing: border-box;
 }
 
-/* Redes sociales */
+/* Redes Sociales dentro de la barra */
 .social-media {
-    display:  flex;
-    gap: 15px;
+    display: flex;
+    gap: 10px;
     align-items: center;
 }
 
 .social-icon {
-    width: 45px;
-    height: 45px;
+    width: 35px; /* Iconos tamaño estándar */
+    height: 35px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
     text-decoration: none;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    color: white; /* Iconos blancos */
+    transition: transform 0.3s ease;
 }
 
 .social-icon:hover {
     transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Facebook */
-.social-icon.facebook {
-    background-color: #1877f2;
-    color: #ffffff;
-}
-
-.social-icon.facebook:hover {
-    background-color: #145dbf;
-}
-
-/* Instagram */
-.social-icon.instagram {
-    background:  linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-    color: #ffffff;
-}
-
-.social-icon.instagram:hover {
-    background: linear-gradient(45deg, #d67d2e 0%, #c85a33 25%, #b9213a 50%, #a91d57 75%, #991476 100%);
-}
-
-/* Gmail */
-.social-icon.gmail {
-    background-color: #ea4335;
-    color: #ffffff;
-}
-
-.social-icon.gmail:hover {
-    background-color: #c53929;
-}
+/* Colores Específicos */
+.social-icon.facebook { background-color: #1877f2; }
+.social-icon.instagram { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+.social-icon.gmail { background-color: #ea4335; }
+.social-icon.tiktok { background-color: #000000; } /* Agregado por si acaso */
 
 /* Copyright */
 .copyright {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: #666666;
-    text-align:  center;
+    font-weight: 500;
 }
 
-
-
+/* --- 5. RESPONSIVIDAD (MÓVILES Y TABLETS) --- */
 @media (max-width: 1024px) {
     .footer-container {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr; /* 2 columnas */
         gap: 30px;
     }
-
     .footer-brand {
-        grid-column: 1 / -1;
+        grid-column: 1 / -1; /* Logo ocupa todo el ancho arriba */
+        align-items: center;
+        text-align: center;
+    }
+    .footer-description {
+        max-width: 100%;
     }
 }
 
 @media (max-width: 768px) {
-    .footer {
-        padding: 40px 20px 20px;
-    }
-
     .footer-container {
-        grid-template-columns: 1fr;
-        gap: 35px;
-    }
-
-    .footer-brand {
+        grid-template-columns: 1fr; /* 1 columna */
         text-align: center;
-        align-items: center;
-    }
-
-    .footer-logo img {
-        width: 160px;
-    }
-
-    .footer-description {
-        text-align: center;
-        max-width: 100%;
+        gap: 30px;
     }
 
     .footer-column {
+        align-items: center;
+    }
+
+    .footer-links, .contact-info, .contact-item {
+        align-items: center;
         text-align: center;
     }
-
-    .footer-links {
-        align-items: center;
-    }
-
-    .contact-info {
-        align-items: center;
-    }
-
+    
     .contact-item {
         flex-direction: column;
-        text-align: center;
-        align-items: center;
+        gap: 5px;
     }
 
+    /* Barra inferior en móvil */
     .footer-bottom {
         flex-direction: column;
-        text-align: center;
+        gap: 15px;
+        padding: 20px;
+        width: 95%; /* Más ancho en móvil */
     }
-
+    
     .social-media {
-        order: -1;
-    }
-}
-
-@media (max-width: 480px) {
-    .footer {
-        padding: 30px 15px 15px;
-    }
-
-    .footer-title {
-        font-size: 1.1rem;
-    }
-
-    .footer-links li a,
-    .contact-item,
-    .footer-description {
-        font-size: 0.85rem;
-    }
-
-    .social-icon {
-        width: 40px;
-        height: 40px;
-        font-size: 1rem;
-    }
-
-    .copyright {
-        font-size: 0.8rem;
+        order: -1; /* Iconos arriba del copyright */
     }
 }
