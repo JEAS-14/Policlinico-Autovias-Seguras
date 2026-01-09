@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Policlínico Autovías Seguras - Exámenes médicos ocupacionales, licencias de conducir y SUCAMEC">
+    <meta name="description"
+        content="Policlínico Autovías Seguras - Exámenes médicos ocupacionales, licencias de conducir y SUCAMEC">
     <title>Policlínico Autovías Seguras | Examen SUCAMEC</title>
-    
+
     <link rel="stylesheet" th:href="@{/css/fragments/navbar.css}">
     <link rel="stylesheet" th:href="@{/css/fragments/footer.css}">
     <link rel="stylesheet" th:href="@{/css/examenSucamec.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
+
 <body>
     <div th:replace="~{fragments/navbar ::  navbar}"></div>
 
@@ -18,11 +21,13 @@
         <section class="hero-sucamec">
             <div class="container hero-content">
                 <h1 class="fade-in">Examen médico - SUCAMEC</h1>
-                <p class="fade-in">Realiza tu evaluación médica para obtener tu licencia de uso de armas de fuego de uso civil.</p>
-                
+                <p class="fade-in">Realiza tu evaluación médica para obtener tu licencia de uso de armas de fuego de uso
+                    civil.</p>
+
                 <div class="hero-buttons fade-in">
                     <a href="#" class="btn btn-purple">¡COTIZA AHORA!</a>
-                    <a href="https://wa.me/51913889497" class="btn btn-green"><i class="fab fa-whatsapp"></i> WHATSAPP</a>
+                    <a href="https://wa.me/51913889497" class="btn btn-green"><i class="fab fa-whatsapp"></i>
+                        WHATSAPP</a>
                 </div>
 
                 <div class="fade-in mt-4">
@@ -92,7 +97,8 @@
         <section class="pricing-section">
             <div class="container">
                 <h2 class="section-title">CIRCUITO DE EVALUACIÓN INTEGRAL</h2>
-                <p class="section-desc">Realiza tu examen completo pasando por nuestra evaluación profesional y detallada.</p>
+                <p class="section-desc">Realiza tu examen completo pasando por nuestra evaluación profesional y
+                    detallada.</p>
 
                 <div class="pricing-container">
                     <div class="price-card slide-up">
@@ -119,7 +125,8 @@
 
                 <ul class="requirements-list">
                     <li><i class="fas fa-check-circle"></i> DNI Vigente o Carnet de Extranjería.</li>
-                    <li><i class="fas fa-check-circle"></i> No tener antecedentes penales, judiciales ni policiales.</li>
+                    <li><i class="fas fa-check-circle"></i> No tener antecedentes penales, judiciales ni policiales.
+                    </li>
                     <li><i class="fas fa-check-circle"></i> 3 fotos tamaño carnet (Fondo blanco, sin lentes).</li>
                 </ul>
             </div>
@@ -141,9 +148,10 @@
 
     <div th:replace="~{fragments/footer :: footer}"></div>
 
-    <script th:src="@{/js/navbar.js}"></script>
+    <script th:src="@{/js/fragments/navbar.js}"></script>
     <script th:src="@{/js/home.js}"></script>
     <script th:src="@{/js/examenSucamec.js}"></script>
-        
+
 </body>
+
 </html>

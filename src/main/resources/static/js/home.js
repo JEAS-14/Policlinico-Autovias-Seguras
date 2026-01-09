@@ -1,4 +1,68 @@
 document.addEventListener("DOMContentLoaded", () => {
+    
+    // --- ANIMACIÓN DE CONTADORES DE ESTADÍSTICAS (+10, +1500) ---
+    const statsSection = document.querySelector('.stats-container');
+    const counters = document.querySelectorAll('.stat-number');
+    let started = false; // Para que solo se ejecute una vez
+
+    if (statsSection && counters.length > 0) {
+        const statsObserver = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting && !started) {
+                started = true;
+                
+                counters.forEach(counter => {
+                    const target = +counter.getAttribute('data-target'); // El número final
+                    const addPlus = counter.getAttribute('data-plus') === 'true'; // Si lleva el "+"
+                    const duration = 2000; // Duración en ms (2 segundos)
+                    const increment = target / (duration / 16); // Cuánto sumar por frame
+
+                    let current = 0;
+
+                    const updateCounter = () => {
+                        current += increment;
+                        
+                        if (current < target) {
+                            // Formato visual: Si es +10 o +1500
+                            counter.innerText = (addPlus ? '+' : '') + Math.ceil(current);
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            counter.innerText = (addPlus ? '+' : '') + target;
+                        }
+                    };
+
+                    updateCounter();
+                });
+            }
+        });
+
+        statsObserver.observe(statsSection);
+    }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    
+    // --- ANIMACIÓN SECCIÓN "¿POR QUÉ ELEGIRNOS?" ---
+    const chooseSection = document.getElementById('choose-us-section');
+
+    if (chooseSection) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Agrega la clase que activa el CSS
+                    entry.target.classList.add('active-section');
+                    // Deja de observar (para que no se repita al subir y bajar)
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.3 // Se activa cuando ves el 30% de la sección
+        });
+
+        observer.observe(chooseSection);
+    }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
   // --- ANIMACIÓN DE LA SECCIÓN DE UBICACIÓN ---
 
   // Seleccionamos el contenedor del mapa

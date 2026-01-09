@@ -1,145 +1,142 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Policlínico Autovías Seguras - Exámenes médicos ocupacionales, licencias de conducir y SUCAMEC">
     <title>Policlínico Autovías Seguras | Inicio</title>
-
-    <!-- CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Poltawski+Nowy:wght@600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
     <link rel="stylesheet" th:href="@{/css/fragments/navbar.css}">
     <link rel="stylesheet" th:href="@{/css/fragments/footer.css}">
     <link rel="stylesheet" th:href="@{/css/home.css}">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body>
-    <!-- NAVBAR -->
     <div th:replace="~{fragments/navbar :: navbar}"></div>
 
-    <!-- HERO SECTION -->
     <section class="hero-section">
         <div class="hero-bg-fix">
-            <img src="../static/images/hero-background.jpg" alt="Fondo Hero" class="hero-image">
-            <div class="bg-autovias-double-filter"></div>
+            <img src="https://res.cloudinary.com/dtozni6ik/image/upload/v1767942183/816ba6d3-6913-43f1-98ef-a4f11cad7ac6.png" alt="Fondo Médico" class="hero-image">
+            <div class="bg-overlay"></div>
         </div>
 
         <div class="hero-content">
-            <h1 class="hero-title">CONFIANZA Y RAPIDEZ EN UN SOLO LUGAR</h1>
+            <h1 class="hero-title animate-down">CONFIANZA Y RAPIDEZ EN UN SOLO LUGAR</h1>
 
-            <!-- Cards de servicios -->
             <div class="services-cards">
-
-                <a href="/servicios/examen-ocupacional" class="service-link">
+                <a href="/servicios/examen-ocupacional" class="service-link fade-in-up" style="transition-delay: 0.1s;">
                     <div class="service-card">
-                        <div class="card-icon">
-                            <img src="https://res.cloudinary.com/dtozni6ik/image/upload/v1767590080/a656839e-4c63-4fa8-8040-8f94551e1a9c.png"
-                                alt="Examen Médico Ocupacional">
+                        <div class="card-image-box">
+                            <img src="https://res.cloudinary.com/dtozni6ik/image/upload/v1767590080/a656839e-4c63-4fa8-8040-8f94551e1a9c.png" alt="EMO">
                         </div>
-                        <h3>Examen Médico Ocupacional - EMO</h3>
+                        <h3>Examen Médico<br>Ocupacional - Emo</h3>
                     </div>
                 </a>
 
-                <a href="/servicios/examen-brevete" class="service-link">
+                <a href="/servicios/examen-brevete" class="service-link fade-in-up" style="transition-delay: 0.2s;">
                     <div class="service-card">
-                        <div class="card-icon">
-                            <img src="https://res.cloudinary.com/dtozni6ik/image/upload/v1767590163/a71d6550-5864-48f4-8867-fad058e362b8.png"
-                                alt="Licencia de Conducir">
+                        <div class="card-image-box">
+                            <img src="https://res.cloudinary.com/dtozni6ik/image/upload/v1767590163/a71d6550-5864-48f4-8867-fad058e362b8.png" alt="Brevete">
                         </div>
-                        <h3>Examen Para Licencias De Conducir - Brevetes</h3>
+                        <h3>Examen Para Licencias<br>De Conducir - Brevetes</h3>
                     </div>
                 </a>
 
-                <a href="/servicios/examen-sucamec" class="service-link">
+                <a href="/servicios/examen-sucamec" class="service-link fade-in-up" style="transition-delay: 0.3s;">
                     <div class="service-card">
-                        <div class="card-icon">
-                            <img src="https://res.cloudinary.com/dtozni6ik/image/upload/v1767590173/8b6e3fdb-7ea7-48c5-9003-4067c7ff4083.png"
-                                alt="SUCAMEC">
+                        <div class="card-image-box">
+                            <img src="https://res.cloudinary.com/dtozni6ik/image/upload/v1767590173/8b6e3fdb-7ea7-48c5-9003-4067c7ff4083.png" alt="SUCAMEC">
                         </div>
-                        <h3>Examen Médico - SUCAMEC</h3>
+                        <h3>Examen Médico<br>-SUCAMEC</h3>
                     </div>
                 </a>
 
-                <a href="/servicios/escuela-conductores" class="service-link">
+                <a href="/servicios/escuela-conductores" class="service-link fade-in-up" style="transition-delay: 0.4s;">
                     <div class="service-card">
-                        <div class="card-icon">
-                            <img src="https://res.cloudinary.com/dtozni6ik/image/upload/v1767590149/82645900-9f7f-4ba5-b4f2-dcb7cd583bef.png"
-                                alt="Escuela de Conductores">
+                        <div class="card-image-box">
+                            <img src="https://res.cloudinary.com/dtozni6ik/image/upload/v1767590149/82645900-9f7f-4ba5-b4f2-dcb7cd583bef.png" alt="Escuela">
                         </div>
-                        <h3>Escuela De Conductores</h3>
+                        <h3>Escuela De<br>Conductores</h3>
                     </div>
                 </a>
-
             </div>
 
+            <div class="hero-buttons fade-in-up" style="transition-delay: 0.5s;">
+                <a href="/consulta/cotizar" class="btn-hero btn-purple">¡COTIZA AHORA!</a>
+                <a href="https://wa.me/51913889497" target="_blank" class="btn-hero btn-green">
+                    <i class="fab fa-whatsapp"></i> WHATSAPP
+                </a>
+            </div>
 
-            <!-- Estadísticas -->
-            <div class="stats-container">
+            <div class="stats-container fade-in-up" style="transition-delay: 0.6s;">
+                
                 <div class="stat-item">
-                    <h2 class="stat-number">+10</h2>
-                    <p class="stat-label">Años de experiencia en el sector</p>
+                    <div class="stat-number" data-target="10" data-plus="true">0</div>
+                    <div class="stat-label">Años de experiencia en el sector</div>
                 </div>
+
                 <div class="stat-divider"></div>
+
                 <div class="stat-item">
-                    <h2 class="stat-number">+1500</h2>
-                    <p class="stat-label">Empresas afiliadas</p>
+                    <div class="stat-number" data-target="1500" data-plus="true">0</div>
+                    <div class="stat-label">Empresas afiliadas</div>
                 </div>
+
                 <div class="stat-divider"></div>
+
                 <div class="stat-item">
-                    <h2 class="stat-number">+15</h2>
-                    <p class="stat-label">Mil pacientes satisfechos</p>
+                    <div class="stat-number" data-target="15" data-plus="true">0</div>
+                    <div class="stat-label">Mil pacientes satisfechos</div>
                 </div>
+
             </div>
         </div>
     </section>
 
     <!-- ¿POR QUÉ ELEGIRNOS? -->
-    <section class="why-choose-us">
-        <div class="container">
-            <div class="why-content">
-                <div class="why-image">
-                    <img src="../static/images/doctor-consultation.jpg" alt="Consulta médica">
-                    <div class="check-badge">
-                        <i class="fas fa-check"></i>
-                    </div>
-                </div>
-
-                <div class="why-text">
-                    <h2 class="section-title">¿POR QUÉ ELEGIRNOS?</h2>
-                    <p class="why-description">
-                        Somos un policlínico comprometido con la excelencia y la calidad en cada evaluación. Contamos
-                        con equipos de última generación y un equipo de profesionales altamente capacitados para
-                        brindarte resultados precisos y confiables en el menor tiempo posible.
-                    </p>
-
-                    <ul class="benefits-list">
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span>Entrega de resultados en 24h</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span>Homologados por el MTC</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span>Protocolos COVID-19</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-check-circle"></i>
-                            <span>Mejor precio corporativo</span>
-                        </li>
-                    </ul>
-
-                    <a href="#servicios" class="btn btn-conoce-mas">CONOCE MÁS</a>
+<section class="why-choose-us" id="choose-us-section">
+    <div class="container">
+        <div class="why-content">
+            
+            <div class="why-image reveal-left">
+                <img src="https://res.cloudinary.com/dtozni6ik/image/upload/v1767941193/male-doctor-handing-a-prescription-to-the-patient-photo_jfe0rp.jpg" alt="Consulta médica">
+                <div class="check-badge">
+                    <i class="fas fa-check"></i>
                 </div>
             </div>
+
+            <div class="why-text reveal-right">
+                <h2 class="section-title">¿POR QUÉ ELEGIRNOS?</h2>
+                <p class="why-description">
+                    Somos un policlínico comprometido con la excelencia y la calidad en cada evaluación. Contamos
+                    con equipos de última generación y un equipo de profesionales altamente capacitados.
+                </p>
+
+                <ul class="benefits-list">
+                    <li class="stagger-item">
+                        <i class="fas fa-check"></i>
+                        <span>Entrega de resultados en 24h</span>
+                    </li>
+                    <li class="stagger-item">
+                        <i class="fas fa-check"></i>
+                        <span>Homologados por el MTC</span>
+                    </li>
+                    <li class="stagger-item">
+                        <i class="fas fa-check"></i>
+                        <span>Protocolos COVID-19</span>
+                    </li>
+                    <li class="stagger-item">
+                        <i class="fas fa-check"></i>
+                        <span>Mejor precio corporativo</span>
+                    </li>
+                </ul>
+
+                <a href="/nosotros" class="btn btn-conoce-mas stagger-item">CONOCE MÁS</a>
+            </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- VISÍTANOS EN NUESTRA SEDE -->
 
