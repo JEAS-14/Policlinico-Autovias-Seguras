@@ -8,17 +8,18 @@
     box-sizing: border-box;
 }
 
-body {
+.home-body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     color: #333;
-    padding-top: 85px; /* Altura del navbar fijo */
+    padding-top: 85px;
+    /* Altura del navbar fijo */
 }
 
-.container {
+.home-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding:  0 20px;
+    padding: 0 20px;
 }
 
 /* ===========================================
@@ -26,9 +27,9 @@ body {
    =========================================== */
 
 .hero-section {
-    position:  relative;
+    position: relative;
     width: 100%;
-    min-height: calc(100vh - 85px);
+    min-height: calc(10vh - 85px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -38,19 +39,19 @@ body {
 
 /* Fondo hero */
 .hero-bg-fix {
-    position:  absolute;
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    bottom:  0;
+    bottom: 0;
     z-index: 0;
 }
 
 .hero-image {
     width: 100%;
-    height: 100%;
+    height: 132%;
     object-fit: cover;
-    opacity:  0.3;
+    opacity: 0.3;
 }
 
 .bg-autovias-double-filter {
@@ -58,12 +59,10 @@ body {
     inset: 0;
     z-index: 10;
     pointer-events: none;
-    background: linear-gradient(
-        135deg,
-        rgba(59, 188, 168, 0.55) 0%,
-        rgba(255, 255, 255, 0.95) 50%,
-        rgba(59, 188, 168, 0.55) 100%
-    );
+    background: linear-gradient(135deg,
+            rgba(59, 188, 168, 0.55) 0%,
+            rgba(255, 255, 255, 0.95) 50%,
+            rgba(59, 188, 168, 0.55) 100%);
 }
 
 /* Contenido hero */
@@ -76,62 +75,111 @@ body {
 }
 
 .hero-title {
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: #2c3e7a;
-    margin-bottom:  40px;
+    font-family: 'Poltawski Nowy', serif;
+    font-size: 2.7rem;
+    font-weight: 333;
+    /* 700 u 800 funcionan mejor en esta fuente */
+    color: #2E1A5F;
+    margin-bottom: 2px;
     text-transform: uppercase;
     letter-spacing: 1px;
+    line-height: 6.2;
 }
 
 /* Cards de servicios */
 .services-cards {
     display: grid;
-    grid-template-columns:  repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 30px;
     margin-bottom: 40px;
-    max-width: 1000px;
+    max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
+    padding: 0 20px;
 }
 
 .service-card {
+    font-family: 'Poppins', sans-serif;
     background: #ffffff;
-    border-radius: 20px;
-    padding: 25px 20px;
-    box-shadow:  0 8px 20px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 41px;
+    padding: 32px 6px 23px;
+    box-shadow: 0 10px 21px rgba(44, 62, 122, 0.15);
+    transition: all 0.3s ease;
     cursor: pointer;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    min-height: 200px;
+    justify-content: center;
+    position: relative;
+}
+
+/* Efecto intercalado - las tarjetas impares bajan */
+.service-link:nth-child(odd) .service-card {
+    margin-top: 26px;
+}
+
+
+
+/* Las tarjetas pares suben */
+.service-link:nth-child(even) .service-card {
+    margin-top: -40px;
 }
 
 .service-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 12px 30px rgba(59, 188, 168, 0.3);
+    transform: translateY(-8px);
+    box-shadow: 0 18px 40px rgba(44, 62, 122, 0.25);
 }
 
 .card-icon {
-    width: 80px;
-    height: 80px;
-    margin:  0 auto 15px;
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
-    overflow: hidden;
-    background: #f0f9f7;
+    background: #f2f7ff;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
+    margin-bottom: 20px;
 }
 
 .card-icon img {
-    width: 60px;
-    height: 60px;
+    width: 90px;
+    height: 53px;
     object-fit: contain;
+    border-radius: 7px;
 }
 
 .service-card h3 {
-    font-size: 0.95rem;
-    font-weight: 700;
+    font-size: 1.2rem;
+    font-weight: 930;
     color: #2c3e7a;
-    line-height: 1.4;
+    line-height: 1.35;
+    margin: 0;
+}
+
+.service-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+/* Responsive - eliminar el efecto intercalado en móviles */
+@media (max-width: 768px) {
+
+    .service-link:nth-child(odd) .service-card,
+    .service-link:nth-child(even) .service-card {
+        margin-top: 0;
+    }
+
+    .services-cards {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
 }
 
 /* Botones hero */
@@ -143,9 +191,9 @@ body {
     flex-wrap: wrap;
 }
 
-.btn {
+.home-btn {
     padding: 14px 35px;
-    border-radius:  8px;
+    border-radius: 8px;
     text-decoration: none;
     font-weight: 700;
     font-size: 1rem;
@@ -182,10 +230,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 40px;
+    gap: 41px;
     background: rgba(255, 255, 255, 0.95);
-    padding: 30px 50px;
-    border-radius:  20px;
+    padding: 20px 50px;
+    border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     max-width: 900px;
     margin: 0 auto;
@@ -197,14 +245,15 @@ body {
 }
 
 .stat-number {
-    font-size: 3rem;
-    font-weight: 800;
+    font-family: 'Poppins', sans-serif;
+    font-size: 4rem;
+    font-weight: 730;
     color: #3bbca8;
-    margin-bottom:  5px;
+    margin-bottom: 12px;
 }
 
 .stat-label {
-    font-size:  0.9rem;
+    font-size: 0.9rem;
     color: #555;
     font-weight: 600;
 }
@@ -212,7 +261,7 @@ body {
 .stat-divider {
     width: 2px;
     height: 60px;
-    background:  linear-gradient(180deg, transparent, #3bbca8, transparent);
+    background: linear-gradient(180deg, transparent, #3bbca8, transparent);
 }
 
 /* ===========================================
@@ -220,8 +269,8 @@ body {
    =========================================== */
 
 .why-choose-us {
-    padding: 80px 20px;
-    background-color: #ffffff;
+    padding: 99px 20px;
+    background: rgba(252, 252, 252, 0.64);
 }
 
 .why-content {
@@ -236,7 +285,7 @@ body {
 }
 
 .why-image img {
-    width:  100%;
+    width: 100%;
     max-width: 450px;
     border-radius: 50%;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
@@ -271,7 +320,7 @@ body {
 
 .why-description {
     font-size: 1.05rem;
-    line-height:  1.8;
+    line-height: 1.8;
     color: #555;
     margin-bottom: 30px;
 }
@@ -754,7 +803,7 @@ body {
     border-radius: 50%;
     text-align: center;
     font-size: 2rem;
-    box-shadow:  0 5px 20px rgba(37, 211, 102, 0.4);
+    box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
     z-index: 999;
     display: flex;
     align-items: center;

@@ -1,21 +1,25 @@
 /* --- Configuración General --- */
 .container {
-    max-width: 1800px; /* Aumentamos de 1200px a 1400px para pantallas grandes */
-    width: 90%;        /* Ocupará el 90% del ancho de la pantalla */
+    max-width: 1800px;
+    /* Aumentamos de 1200px a 1400px para pantallas grandes */
+    width: 90%;
+    /* Ocupará el 90% del ancho de la pantalla */
     margin: 0 auto;
     padding: 0 20px;
 }
 
 /* Forzamos que la imagen destacada ocupe todo el ancho disponible */
 .featured-post {
-    width: 100%; 
+    width: 100%;
     display: flex;
 }
 
 
 :root {
-    --primary-color: #5836be; /* El morado del título */
-    --secondary-color: #2dc4ad; /* El verde agua de los botones */
+    --primary-color: #5836be;
+    /* El morado del título */
+    --secondary-color: #2dc4ad;
+    /* El verde agua de los botones */
     --text-dark: #333;
     --text-light: #666;
     --bg-light: #f4f8fb;
@@ -31,10 +35,21 @@ body {
 
 /* --- Header / Banner Superior --- */
 .blog-header {
-    background: linear-gradient(to bottom, #dbece9, #ffffff);
+    background: linear-gradient(123.79deg, rgba(250, 255, 254, 0) 50.71%, rgba(255, 255, 255, 0.2) 52.17%),
+        linear-gradient(280.42deg, rgba(59, 188, 168, 0.176) 13.12%, rgba(255, 251, 251, 0.2) 45.24%),
+        linear-gradient(101.84deg, rgba(59, 188, 168, 0.582) 18.18%, rgba(238, 249, 247, 0.6) 46.15%),
+        rgba(57, 181, 162, 0.1);
     text-align: center;
-    padding: 60px 0 40px;
+    height: 350px;
+    padding: 100px 20px 60px;
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.blog-header .container {
+    width: 100%;
 }
 
 .blog-header h1 {
@@ -63,7 +78,7 @@ body {
     align-items: center;
     justify-content: center;
     font-size: 24px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     cursor: pointer;
 }
 
@@ -74,14 +89,16 @@ body {
     padding: 0;
     margin: 40px 0;
     display: flex;
-    overflow: hidden; /* Para que la imagen respete el borde */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    overflow: hidden;
+    /* Para que la imagen respete el borde */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
 }
 
 .featured-image {
     flex: 1;
     min-height: 300px;
-    background-color: #e0e0e0; /* Color gris si no carga la imagen */
+    background-color: #e0e0e0;
+    /* Color gris si no carga la imagen */
 }
 
 .featured-image img {
@@ -114,10 +131,21 @@ body {
     margin-right: 10px;
 }
 
-.badge-primary { background-color: var(--secondary-color); }
-.badge-gray { background-color: #888; }
-.badge-teal { background-color: var(--secondary-color); }
-.badge-blue { background-color: #7faaf0; }
+.badge-primary {
+    background-color: var(--secondary-color);
+}
+
+.badge-gray {
+    background-color: #888;
+}
+
+.badge-teal {
+    background-color: var(--secondary-color);
+}
+
+.badge-blue {
+    background-color: #7faaf0;
+}
 
 .date {
     color: var(--text-light);
@@ -140,7 +168,8 @@ body {
 /* --- Grid de Artículos Pequeños --- */
 .blog-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsivo automático */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    /* Responsivo automático */
     gap: 30px;
     margin-bottom: 60px;
 }
@@ -155,7 +184,7 @@ body {
 
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 .card-img {
@@ -198,6 +227,7 @@ body {
     .featured-post {
         flex-direction: column;
     }
+
     .featured-image {
         height: 200px;
     }

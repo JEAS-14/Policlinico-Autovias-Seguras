@@ -6,6 +6,7 @@
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -22,11 +23,97 @@
     animation: fadeInUp 0.8s ease-out forwards;
 }
 
+/* --- Fondos y Degradados --- */
+.bg-hero-servicios {
+    height: 600px;
+    background: linear-gradient(123.79deg, rgba(250, 255, 254, 0) 50.71%, rgba(255, 255, 255, 0.2) 52.17%),
+        linear-gradient(280.42deg, rgba(59, 188, 168, 0.176) 13.12%, rgba(255, 251, 251, 0.2) 45.24%),
+        linear-gradient(101.84deg, rgba(59, 188, 168, 0.582) 18.18%, rgba(238, 249, 247, 0.6) 46.15%),
+        rgba(59, 188, 168, 0.2);
+}
+
+/* --- Círculos Decorativos con Blur --- */
+.blur-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(52, 168, 83, 0.15);
+    pointer-events: none;
+}
+
+.blur-circle-1 {
+    width: 350px;
+    height: 233px;
+    left: 162px;
+    top: 9px;
+    filter: blur(17.5px);
+}
+
+.blur-circle-2 {
+    width: 350px;
+    height: 233px;
+    left: -120px;
+    top: 540px;
+    filter: blur(22.5px);
+}
+
+.blur-circle-3 {
+    width: 350px;
+    height: 233px;
+    left: 371px;
+    top: 397px;
+    filter: blur(17.5px);
+}
+
+.blur-circle-4 {
+    width: 240px;
+    height: 184px;
+    left: 852px;
+    top: 607px;
+    filter: blur(12.5px);
+}
+
+.blur-circle-5 {
+    width: 240px;
+    height: 184px;
+    left: 1081px;
+    top: 255px;
+    filter: blur(22.5px);
+}
+
+.blur-circle-6 {
+    width: 350px;
+    height: 233px;
+    left: 1408px;
+    top: 582px;
+    filter: blur(15px);
+}
+
+.blur-circle-7 {
+    width: 350px;
+    height: 233px;
+    left: 1618px;
+    top: 230px;
+    filter: blur(17.5px);
+}
+
+
+
 /* --- Control de Delays --- */
-.delay-1 { animation-delay: 0.1s; }
-.delay-2 { animation-delay: 0.2s; }
-.delay-3 { animation-delay: 0.3s; }
-.delay-4 { animation-delay: 0.4s; }
+.delay-1 {
+    animation-delay: 0.1s;
+}
+
+.delay-2 {
+    animation-delay: 0.2s;
+}
+
+.delay-3 {
+    animation-delay: 0.3s;
+}
+
+.delay-4 {
+    animation-delay: 0.4s;
+}
 
 /* --- Sombras Personalizadas --- */
 .shadow-card-custom {
