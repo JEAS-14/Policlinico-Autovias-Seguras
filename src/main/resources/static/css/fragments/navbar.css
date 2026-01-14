@@ -44,11 +44,12 @@ html {
     display: flex;
     align-items: center;
     text-decoration: none;
-    margin-right: 40px; /* Separar logo del menú */
+    margin-right: auto; /* CAMBIO: Empuja todo a la derecha */
+    padding-right: 0px;
 }
 
 .logo img {
-    height: 75px; /* AUMENTADO (Antes 55px) */
+    height: 85px; /* AUMENTADO (Antes 55px) */
     width: auto;
     object-fit: contain;
     transition: transform 0.3s ease;
@@ -65,6 +66,8 @@ html {
     gap: 40px; /* Más espacio entre las palabras del menú */
     margin: 0;
     padding: 0;
+    flex: 1; /* Ocupa el espacio disponible */
+    justify-content: center;
 }
 
 .nav-menu a {
@@ -105,7 +108,8 @@ html {
     display: flex;
     gap: 20px;
     align-items: center;
-    margin-left: 40px; /* Separar botones del menú */
+    margin-left: auto; /* CAMBIO: Los botones a la derecha */
+    padding-left: 40px;
 }
 
 .btn {

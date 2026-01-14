@@ -61,38 +61,25 @@ document.addEventListener("DOMContentLoaded", () => {
         observer.observe(chooseSection);
     }
 });
+document.addEventListener('DOMContentLoaded', () => {
+    
+    // --- ANIMACIÓN DE UBICACIÓN ---
+    const locationGrid = document.querySelector('.location-grid'); // Clase nueva
 
-document.addEventListener("DOMContentLoaded", () => {
-  // --- ANIMACIÓN DE LA SECCIÓN DE UBICACIÓN ---
+    if(locationGrid) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
 
-  // Seleccionamos el contenedor del mapa
-  const mapContainer = document.querySelector(".map-container");
-
-  // Verificamos si el elemento existe antes de observarlo
-  if (mapContainer) {
-    // Creamos el observador
-    const observer = new IntersectionObserver(
-      (entries, observer) => {
-        entries.forEach((entry) => {
-          // Si el contenedor del mapa entra en la pantalla
-          if (entry.isIntersecting) {
-            // Añadimos la clase 'visible' que dispara la animación CSS
-            entry.target.classList.add("visible");
-            // Dejamos de observar una vez que se ha animado
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        root: null, // Observa respecto al viewport
-        threshold: 0.2, // Se activa cuando el 20% del elemento es visible
-      }
-    );
-
-    // Empezamos a observar el contenedor del mapa
-    observer.observe(mapContainer);
-  }
+        observer.observe(locationGrid);
+    }
 });
+
 document.addEventListener('DOMContentLoaded', () => {
     
     // --- DATOS DE LOS COMENTARIOS (Aquí pegaremos los reales) ---
@@ -131,6 +118,14 @@ document.addEventListener('DOMContentLoaded', () => {
             source: "Google",
             stars: 5,
             img: "https://ui-avatars.com/api/?name=Pedro+Castillo&background=random"
+        },
+        {
+            name: "Luis Ángel Ortiz Mejía",
+            text: "El personal es muy profesional y el proceso fue rápido. Ideal para exámenes de salud ocupacional.",
+            source: "Vortice contratista Generales SAC",
+            stars: 5,
+            img: "https://ui-avatars.com/api/?name=Luis+Ortiz&background=random"
+
         }
     ];
 

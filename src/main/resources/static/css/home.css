@@ -60,7 +60,7 @@ body {
 /* Título */
 .hero-title {
     font-family: var(--font-title);
-    color: var(--text-dark);
+    color: #421D9D;
     font-size: 2.8rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -145,7 +145,7 @@ body {
 }
 
 .btn-hero {
-    padding: 12px 35px;
+    padding: 16px 45px;
     border-radius: 8px;
     font-weight: 700;
     font-size: 1rem;
@@ -464,130 +464,211 @@ body {
 
 
 /* ===========================================
-   UBICACIÓN (CON VIDA Y ANIMACIÓN)
+   UBICACIÓN (ESTILO STORE LOCATOR)
    =========================================== */
 
 .location-section {
     padding: 80px 20px;
-    background: linear-gradient(180deg, #e8f5f3 0%, #d4ebe8 100%);
+    background: linear-gradient(180deg, #f4f9f8 0%, #ffffff 100%);
     overflow: hidden;
 }
 
-.map-container {
-    position: relative;
+.section-title-dark {
+    text-align: center;
+    color: #2c3e7a; /* Morado marca */
+    margin-bottom: 50px;
+    font-size: 2.2rem;
+    font-weight: 800;
+}
+
+/* --- GRID PRINCIPAL --- */
+.location-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1.8fr; /* La info ocupa un poco menos, el mapa más */
+    gap: 0; /* Sin espacio entre ellos para que parezca una sola pieza */
+    max-width: 1100px;
+    margin: 0 auto;
+    background: #fff;
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-    /* Animación de entrada (controlada por JS) */
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1); /* Sombra elegante */
+    
+    /* Animación de entrada */
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
-.map-container.visible {
+.location-grid.visible {
     opacity: 1;
     transform: translateY(0);
 }
 
-/* --- TARJETA FLOTANTE (ARRIBA A LA DERECHA) --- */
-.map-marker {
+/* --- COLUMNA IZQUIERDA: CARD DE INFO --- */
+.location-info-card {
+    padding: 0;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 2; /* Para que la sombra caiga sobre el mapa */
+    box-shadow: 5px 0 20px rgba(0,0,0,0.05);
+}
+
+/* Imagen de la sede */
+.sede-image {
+    width: 100%;
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+}
+
+.sede-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.location-info-card:hover .sede-image img {
+    transform: scale(1.05); /* Zoom suave al pasar mouse */
+}
+
+.badge-sede {
     position: absolute;
-    
-    /* CAMBIO CLAVE: Esquina Superior Derecha */
-    top: 20px; 
-    right: 20px;
-    
-    background: rgba(255, 255, 255, 0.95); /* Un poquito transparente se ve moderno */
-    backdrop-filter: blur(5px); /* Efecto vidrio borroso detrás */
-    padding: 15px 25px;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    top: 15px;
+    left: 15px;
+    background: #3bbca8; /* Verde Turquesa */
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Contenido de texto */
+.info-content {
+    padding: 30px;
+}
+
+.info-content h3 {
+    color: #421D9D;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.address {
+    color: #555;
+    font-size: 1rem;
+    display: flex;
+    gap: 10px;
+    align-items: start;
+    margin-bottom: 20px;
+}
+
+.address i { color: #db4437; margin-top: 4px; } /* Pin rojo de mapa */
+
+.separator {
+    height: 1px;
+    background: #eee;
+    margin: 20px 0;
+}
+
+/* LISTA DE REFERENCIAS */
+.ref-title {
+    font-size: 0.9rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.referencias-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 30px 0;
+}
+
+.referencias-list li {
     display: flex;
     align-items: center;
     gap: 15px;
-    z-index: 10;
-    
-    /* ANIMACIÓN 1: LEVITACIÓN (Para que no parezca muerta) */
-    animation: floatCard 4s ease-in-out infinite;
+    margin-bottom: 15px;
+    color: #444;
+    font-size: 0.95rem;
 }
 
-/* El ícono verde */
-.marker-icon-box {
-    width: 45px;
-    height: 45px;
-    background-color: #e0f2f1;
+.referencias-list i {
+    width: 35px;
+    height: 35px;
+    background: #f0f7f6; /* Fondo verde muy claro */
+    color: #3bbca8; /* Icono verde */
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-}
-
-.marker-icon-box i {
-    font-size: 1.5rem;
-    color: #2dc4ad;
-    z-index: 2;
-}
-
-/* ANIMACIÓN 2: ONDAS DE RADAR (Latido) */
-/* Creamos un círculo detrás del ícono que se expande */
-.marker-icon-box::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background-color: rgba(45, 196, 173, 0.4); /* Color verde transparente */
-    z-index: 1;
-    animation: pulseRadar 2s infinite;
-}
-
-.marker-info strong {
-    display: block;
-    color: #2c3e7a;
-    font-size: 1.1rem;
-    margin-bottom: 5px;
-}
-
-.marker-info p {
-    color: #666;
     font-size: 0.9rem;
-    margin: 0;
+    flex-shrink: 0;
 }
 
-/* iframe */
-.map-container iframe {
-    display: block;
+/* Botón Cómo Llegar */
+.btn-directions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #421D9D;
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(44, 62, 122, 0.2);
+}
+
+.btn-directions:hover {
+    background: #1f2d5a;
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px rgba(44, 62, 122, 0.3);
+}
+
+/* --- COLUMNA DERECHA: MAPA --- */
+.location-map {
+    height: 100%;
+    min-height: 500px; /* Altura mínima para que se vea bien */
     width: 100%;
-    height: 450px;
-    transition: transform 0.5s ease;
+    background: #eee;
 }
 
-/* Efecto extra: Si pasas el mouse por el mapa, se acerca un poquito */
-.map-container:hover iframe {
-    transform: scale(1.02);
+.location-map iframe {
+    filter: saturate(1.1); /* Hacer el mapa un poco más vivo */
 }
 
-/* --- DEFINICIÓN DE LAS ANIMACIONES --- */
-
-/* 1. Flotar suavemente arriba y abajo */
-@keyframes floatCard {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); } /* Sube 10px */
-    100% { transform: translateY(0px); }
-}
-
-/* 2. Onda expansiva tipo Radar */
-@keyframes pulseRadar {
-    0% {
-        transform: scale(1);
-        opacity: 0.7;
+/* --- RESPONSIVE (MÓVIL) --- */
+@media (max-width: 900px) {
+    .location-grid {
+        grid-template-columns: 1fr; /* Una sola columna */
+        max-width: 500px; /* Ancho máximo en móvil */
     }
-    100% {
-        transform: scale(1.8); /* Crece casi el doble */
-        opacity: 0; /* Desaparece */
+    
+    .location-map {
+        height: 350px; /* Mapa más pequeño en celular */
+        order: -1; /* OPCIONAL: Si quieres que el mapa salga PRIMERO arriba, descomenta esto */
+    }
+
+    .info-content {
+        padding: 25px;
     }
 }
+
+
+
+
+
 /* ===========================================
    TESTIMONIOS (CARRUSEL INFINITO)
    =========================================== */
@@ -757,7 +838,7 @@ body {
 .section-title-dark {
     font-size: 2rem;
     font-weight: 800; /* Letra un poco más gruesa para autoridad */
-    color: #2E1A5F;
+    color: #421D9D;
     text-align: center;
     margin-bottom: 50px;
     text-transform: uppercase;
