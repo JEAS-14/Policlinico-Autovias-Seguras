@@ -1,4 +1,3 @@
-
 /* =========================
    ANIMACIONES
    ========================= */
@@ -8,6 +7,7 @@
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -23,26 +23,41 @@
 }
 
 /* delays */
-.delay-1 { animation-delay: 0.1s; }
-.delay-2 { animation-delay: 0.2s; }
-.delay-3 { animation-delay: 0.3s; }
-.delay-4 { animation-delay: 0.4s; }
-.delay-5 { animation-delay: 0.5s; }
+.delay-1 {
+    animation-delay: 0.1s;
+}
+
+.delay-2 {
+    animation-delay: 0.2s;
+}
+
+.delay-3 {
+    animation-delay: 0.3s;
+}
+
+.delay-4 {
+    animation-delay: 0.4s;
+}
+
+.delay-5 {
+    animation-delay: 0.5s;
+}
 
 /* =========================
    FONDOS
    ========================= */
 
 .bg-hero-gradient {
-    background: linear-gradient(123.79deg, rgba(250,255,254,0) 50.71%, rgba(255,255,255,.2) 52.17%),
-                linear-gradient(280.42deg, rgba(59,188,168,.18) 13.12%, rgba(255,251,251,.2) 45.24%),
-                linear-gradient(101.84deg, rgba(59,188,168,.58) 18.18%, rgba(238,249,247,.6) 46.15%);
+    background: linear-gradient(123.79deg, rgba(250, 255, 254, 0) 50.71%, rgba(255, 255, 255, .2) 52.17%),
+        linear-gradient(280.42deg, rgba(59, 188, 168, .18) 13.12%, rgba(255, 251, 251, .2) 45.24%),
+        linear-gradient(101.84deg, rgba(59, 188, 168, .58) 18.18%, rgba(238, 249, 247, .6) 46.15%);
 }
 
 .bg-nosotros-gradient {
-    background: linear-gradient(111.98deg, rgba(250,255,254,0) 25.94%, rgba(255,255,255,.2) 32.44%),
-                linear-gradient(280.42deg, rgba(255,251,251,.2) 13.38%, rgba(59,188,168,.18) 43.9%),
-                linear-gradient(101.84deg, rgba(59,188,168,.07) 6.29%, rgba(126,242,224,.6) 28.51%, rgba(238,249,247,.6) 43.95%);
+    background: linear-gradient(111.98deg, rgba(250, 255, 254, 0) 25.94%, rgba(255, 255, 255, 0.2) 32.44%),
+        linear-gradient(280.42deg, rgba(59, 188, 168, 0.026) 5.35%, rgba(255, 251, 251, 0.056) 36.14%),
+        linear-gradient(101.84deg, rgba(59, 188, 168, 0.072) 6.29%, rgba(126, 242, 224, 0.6) 28.51%,
+            rgba(238, 249, 247, 0.6) 43.95%);
 }
 
 /* =========================
@@ -50,7 +65,7 @@
    ========================= */
 
 .shadow-mint {
-    box-shadow: 8px 8px 25px rgba(59,188,168,.4);
+    box-shadow: 8px 8px 25px rgba(59, 188, 168, .4);
 }
 
 .action-card-btn {
@@ -59,7 +74,7 @@
 
 .action-card-btn:hover {
     transform: translateY(-8px);
-    box-shadow: 0 16px 35px rgba(59,188,168,.45);
+    box-shadow: 0 16px 35px rgba(59, 188, 168, .45);
 }
 
 /* =========================
@@ -80,7 +95,7 @@
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    box-shadow: 0 6px 22px rgba(37,211,102,.45);
+    box-shadow: 0 6px 22px rgba(37, 211, 102, .45);
     z-index: 999;
     transition: .3s;
 }
@@ -93,7 +108,12 @@
 
 /* Graduación de fondo más suave y limpia */
 .bg-web-modern-gradient {
-    background: linear-gradient(135deg, #e0f7f4 0%, #ffffff 50%, #f4fcfb 100%);
+    background: linear-gradient(111.98deg, rgba(250, 255, 254, 0) 25.94%,
+            rgba(255, 255, 255, 0.2) 32.44%), linear-gradient(280.42deg,
+            rgba(255, 251, 251, 0.2) 13.38%, rgba(59, 188, 168, 0.176) 43.9%),
+        linear-gradient(101.84deg, rgba(59, 188, 168, 0.072) 6.29%,
+            rgba(126, 242, 224, 0.6) 28.51%,
+            rgba(238, 249, 247, 0.6) 43.95%);
 }
 
 /* Tratamiento de la imagen para que se vea moderna */
@@ -105,7 +125,7 @@
 .main-web-image {
     width: 100%;
     /* Un radio de borde muy grande para ese look moderno */
-    border-radius: 50px; 
+    border-radius: 50px;
     /* Sombra muy suave y natural, no de color sólido */
     box-shadow: 0 25px 50px -12px rgba(46, 26, 95, 0.15);
     transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -167,7 +187,7 @@ span.tracking-\[0\.2em\] {
     margin: 0 auto 18px;
     border-radius: 14px;
     overflow: hidden;
-    box-shadow: 0 10px 22px rgba(0,0,0,.12);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, .12);
 }
 
 .value-photo img {
@@ -215,7 +235,7 @@ span.tracking-\[0\.2em\] {
     transform: translateX(-50%);
     width: 160px;
     height: 22px;
-    background: radial-gradient(ellipse, rgba(0,0,0,.25), transparent);
+    background: radial-gradient(ellipse, rgba(0, 0, 0, .25), transparent);
     border-radius: 50%;
 }
 
@@ -226,6 +246,7 @@ span.tracking-\[0\.2em\] {
         min-height: 340px;
         padding: 30px 18px 56px;
     }
+
     .value-photo {
         width: 160px;
         height: 100px;
@@ -238,8 +259,10 @@ span.tracking-\[0\.2em\] {
 
 .stacked-circle-card {
     position: relative;
-    width: 320px;  /* Ancho total de la tarjeta */
-    height: 340px; /* Un poco más alto para compensar el desplazamiento */
+    width: 320px;
+    /* Ancho total de la tarjeta */
+    height: 340px;
+    /* Un poco más alto para compensar el desplazamiento */
     display: flex;
     justify-content: center;
     transition: transform 0.3s ease;
@@ -253,15 +276,18 @@ span.tracking-\[0\.2em\] {
 /* 1. FONDO MORADO (La base desplazada) */
 .circle-purple-bg {
     position: absolute;
-    top: 15px; /* BAJAMOS el morado para que sobresalga abajo */
+    top: 15px;
+    /* BAJAMOS el morado para que sobresalga abajo */
     left: 0;
     right: 0;
     margin: auto;
-    width: 300px; /* Un pelín más pequeño de ancho para estética */
-    height: 300px;
+    width: 300px;
+    /* Un pelín más pequeño de ancho para estética */
+    height: 400px;
     background-color: #2E1A5F;
     border-radius: 50%;
-    z-index: 1; /* Detrás */
+    z-index: 1;
+    /* Detrás */
     box-shadow: 0 15px 30px rgba(46, 26, 95, 0.2);
     transition: all 0.3s ease;
 }
@@ -276,30 +302,31 @@ span.tracking-\[0\.2em\] {
 .circle-white-content {
     position: relative;
     width: 300px;
-    height: 300px;
+    height: 400px;
     background-color: #ffffff;
     border-radius: 50%;
-    z-index: 2; /* Delante */
-    
+    z-index: 2;
+    /* Delante */
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 20px;
     text-align: center;
-    
+
     /* Borde fino sutil para separar del fondo */
-    border: 1px solid rgba(0,0,0,0.05); 
+    border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 /* --- ELEMENTOS INTERNOS --- */
 
 /* Imagen más pequeña para que quepa todo */
 .inner-img-container {
-    width: 90px;
-    height: 90px;
+    width: 200px;
+    height: 150px;
     margin-bottom: 10px;
-    border-radius: 50%;
+    border-radius: 20%;
     overflow: hidden;
     border: 2px solid #f0f0f0;
 }
@@ -330,5 +357,6 @@ span.tracking-\[0\.2em\] {
     font-size: 0.85rem;
     color: #666;
     line-height: 1.3;
-    max-width: 220px; /* Evita que el texto toque los bordes */
+    max-width: 220px;
+    /* Evita que el texto toque los bordes */
 }
