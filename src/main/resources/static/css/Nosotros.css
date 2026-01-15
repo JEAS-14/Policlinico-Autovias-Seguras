@@ -1,362 +1,116 @@
-/* =========================
-   ANIMACIONES
-   ========================= */
+/* =======================================
+   FONDOS Y SECCIONES
+   ======================================= */
 
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.animate-on-scroll {
-    opacity: 0;
-}
-
-.is-visible {
-    animation: fadeInUp 0.8s ease-out forwards;
-}
-
-/* delays */
-.delay-1 {
-    animation-delay: 0.1s;
-}
-
-.delay-2 {
-    animation-delay: 0.2s;
-}
-
-.delay-3 {
-    animation-delay: 0.3s;
-}
-
-.delay-4 {
-    animation-delay: 0.4s;
-}
-
-.delay-5 {
-    animation-delay: 0.5s;
-}
-
-/* =========================
-   FONDOS
-   ========================= */
-
+/* 1. HERO (Sin cambios) */
 .bg-hero-gradient {
     background: linear-gradient(123.79deg, rgba(250, 255, 254, 0) 50.71%, rgba(255, 255, 255, .2) 52.17%),
         linear-gradient(280.42deg, rgba(59, 188, 168, .18) 13.12%, rgba(255, 251, 251, .2) 45.24%),
         linear-gradient(101.84deg, rgba(59, 188, 168, .58) 18.18%, rgba(238, 249, 247, .6) 46.15%);
 }
+/* =======================================
+   FONDO ANIMADO (ELEMENTOS FLOTANTES)
+   ======================================= */
 
-.bg-nosotros-gradient {
-    background: linear-gradient(111.98deg, rgba(250, 255, 254, 0) 25.94%, rgba(255, 255, 255, 0.2) 32.44%),
-        linear-gradient(280.42deg, rgba(59, 188, 168, 0.026) 5.35%, rgba(255, 251, 251, 0.056) 36.14%),
-        linear-gradient(101.84deg, rgba(59, 188, 168, 0.072) 6.29%, rgba(126, 242, 224, 0.6) 28.51%,
-            rgba(238, 249, 247, 0.6) 43.95%);
-}
-
-/* =========================
-   SOMBRAS Y HOVER
-   ========================= */
-
-.shadow-mint {
-    box-shadow: 8px 8px 25px rgba(59, 188, 168, .4);
-}
-
-.action-card-btn {
-    transition: transform .35s ease, box-shadow .35s ease;
-}
-
-.action-card-btn:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 16px 35px rgba(59, 188, 168, .45);
-}
-
-/* =========================
-   BOTÓN WHATSAPP
-   ========================= */
-
-.whatsapp-float {
-    position: fixed;
-    width: 60px;
-    height: 60px;
-    bottom: 30px;
-    right: 30px;
-    background: #25d366;
-    color: #fff;
-    border-radius: 50%;
-    font-size: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    box-shadow: 0 6px 22px rgba(37, 211, 102, .45);
-    z-index: 999;
-    transition: .3s;
-}
-
-.whatsapp-float:hover {
-    transform: scale(1.1);
-}
-
-/* --- ESTILO WEB MODERNO PARA "CONÓCENOS" --- */
-
-/* Graduación de fondo más suave y limpia */
-.bg-web-modern-gradient {
+/* 1. Fondo Base (Degradado Verde Unificado) */
+.unified-section {
     background: linear-gradient(111.98deg, rgba(250, 255, 254, 0) 25.94%,
             rgba(255, 255, 255, 0.2) 32.44%), linear-gradient(280.42deg,
             rgba(255, 251, 251, 0.2) 13.38%, rgba(59, 188, 168, 0.176) 43.9%),
         linear-gradient(101.84deg, rgba(59, 188, 168, 0.072) 6.29%,
             rgba(126, 242, 224, 0.6) 28.51%,
             rgba(238, 249, 247, 0.6) 43.95%);
+    background-size: cover;
+    background-attachment: fixed;
 }
 
-/* Tratamiento de la imagen para que se vea moderna */
-.image-wrapper {
-    position: relative;
-    z-index: 10;
-}
-
-.main-web-image {
-    width: 100%;
-    /* Un radio de borde muy grande para ese look moderno */
-    border-radius: 50px;
-    /* Sombra muy suave y natural, no de color sólido */
-    box-shadow: 0 25px 50px -12px rgba(46, 26, 95, 0.15);
-    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.main-web-image:hover {
-    transform: scale(1.02) translateY(-5px);
-}
-
-/* Tipografía refinada */
-h2 {
-    letter-spacing: -0.02em;
-}
-
-/* Espaciado de letras para el subtitulo superior */
-span.tracking-\[0\.2em\] {
-    letter-spacing: 0.2em;
-}
-
-/* Ajustes para que en móvil la imagen no sea tan gigante */
-@media (max-width: 768px) {
-    .main-web-image {
-        border-radius: 30px;
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* =========================
-   TARJETAS "NUESTROS VALORES"
-   ========================= */
-
-.value-card {
-    max-width: 300px;
-    min-height: 380px;
-    margin: auto;
-    background: #fff;
-    border-radius: 200px 200px 160px 160px;
-    padding: 36px 22px 64px;
-    position: relative;
-    text-align: center;
-    overflow: hidden;
-}
-
-/* imagen */
-.value-photo {
-    width: 190px;
-    height: 115px;
-    margin: 0 auto 18px;
-    border-radius: 14px;
-    overflow: hidden;
-    box-shadow: 0 10px 22px rgba(0, 0, 0, .12);
-}
-
-.value-photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* título */
-.value-card h4 {
-    font-size: 1.05rem;
-    font-weight: 800;
-    color: #2E1A5F;
-    margin-bottom: 12px;
-}
-
-/* texto */
-.value-card p {
-    font-size: .9rem;
-    color: #5a5a5a;
-    line-height: 1.45;
-    padding: 0 6px;
-}
-
-/* media luna inferior */
-.value-card::before {
-    content: "";
+/* 2. Estilos Generales de los Iconos */
+.medical-icon {
     position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 210px;
-    height: 68px;
-    background: linear-gradient(180deg, #5a3cf3, #2E1A5F);
-    border-top-left-radius: 200px;
-    border-top-right-radius: 200px;
+    color: #ffffff;    /* Color Blanco */
+    opacity: 0;        /* Empiezan invisibles */
+    z-index: 0;
+    filter: drop-shadow(0 0 5px rgba(255,255,255,0.5)); /* Brillo suave */
+    
+    /* Animación: Nombre | Duración | Infinito | Suave */
+    animation: floatFade 8s infinite ease-in-out;
 }
 
-/* sombra inferior */
-.value-card::after {
-    content: "";
-    position: absolute;
-    bottom: -18px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 160px;
-    height: 22px;
-    background: radial-gradient(ellipse, rgba(0, 0, 0, .25), transparent);
-    border-radius: 50%;
-}
-
-/* responsive */
-@media (max-width: 768px) {
-    .value-card {
-        max-width: 260px;
-        min-height: 340px;
-        padding: 30px 18px 56px;
+/* 3. Definición de la Animación "Aparecer - Flotar - Desaparecer" */
+@keyframes floatFade {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.8) rotate(0deg);
     }
-
-    .value-photo {
-        width: 160px;
-        height: 100px;
+    50% {
+        opacity: 0.25; /* Máxima visibilidad (suave) */
+        transform: translateY(0px) scale(1) rotate(10deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.8) rotate(0deg);
     }
 }
 
+/* 4. Posiciones y Retardos (Para que no aparezcan todos juntos) */
+
+/* Arriba Izquierda - Grande */
+.icon-1 { top: 10%; left: 5%; font-size: 5rem; animation-delay: 0s; }
+
+/* Arriba Derecha - Medio */
+.icon-2 { top: 15%; right: 10%; font-size: 4rem; animation-delay: 4s; }
+
+/* Centro Izquierda - Pequeño */
+.icon-3 { top: 40%; left: 15%; font-size: 3rem; animation-delay: 2s; }
+
+/* Centro Derecha - Grande */
+.icon-4 { top: 50%; right: 20%; font-size: 6rem; animation-delay: 6s; }
+
+/* Abajo Izquierda - Medio */
+.icon-5 { bottom: 20%; left: 8%; font-size: 4.5rem; animation-delay: 1s; }
+
+/* Abajo Centro - Pequeño */
+.icon-6 { bottom: 10%; left: 50%; font-size: 3rem; animation-delay: 5s; }
+
+/* Muy arriba centro - Decorativo */
+.icon-7 { top: 5%; left: 45%; font-size: 2.5rem; animation-delay: 3s; }
+
+/* Abajo Derecha */
+.icon-8 { bottom: 15%; right: 5%; font-size: 5rem; animation-delay: 7s; }
 
 
-/* --- TARJETA CIRCULAR COMPLETA (STACKED) --- */
-
-.stacked-circle-card {
-    position: relative;
-    width: 320px;
-    /* Ancho total de la tarjeta */
-    height: 340px;
-    /* Un poco más alto para compensar el desplazamiento */
-    display: flex;
-    justify-content: center;
+/* =======================================
+   TARJETAS GLASS (Para proteger el texto)
+   ======================================= */
+.glass-card {
+    background: rgba(255, 255, 255, 0.85); /* Un poco más transparente */
+    backdrop-filter: blur(10px);
+    border-radius: 40px;
+    padding: 3rem;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 15px 40px rgba(46, 26, 95, 0.1);
     transition: transform 0.3s ease;
 }
+.glass-card:hover { transform: translateY(-5px); }
 
-/* Efecto Hover: Todo flota hacia arriba */
-.stacked-circle-card:hover {
-    transform: translateY(-10px);
-}
-
-/* 1. FONDO MORADO (La base desplazada) */
-.circle-purple-bg {
-    position: absolute;
-    top: 15px;
-    /* BAJAMOS el morado para que sobresalga abajo */
-    left: 0;
-    right: 0;
-    margin: auto;
-    width: 300px;
-    /* Un pelín más pequeño de ancho para estética */
-    height: 400px;
-    background-color: #2E1A5F;
-    border-radius: 50%;
-    z-index: 1;
-    /* Detrás */
-    box-shadow: 0 15px 30px rgba(46, 26, 95, 0.2);
-    transition: all 0.3s ease;
-}
-
-/* Hover: El morado cambia a turquesa */
-.stacked-circle-card:hover .circle-purple-bg {
-    background-color: #3BBCA8;
-    box-shadow: 0 20px 40px rgba(59, 188, 168, 0.4);
-}
-
-/* 2. CONTENIDO BLANCO (La tarjeta real) */
-.circle-white-content {
-    position: relative;
-    width: 300px;
-    height: 400px;
-    background-color: #ffffff;
-    border-radius: 50%;
-    z-index: 2;
-    /* Delante */
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    text-align: center;
-
-    /* Borde fino sutil para separar del fondo */
-    border: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-/* --- ELEMENTOS INTERNOS --- */
-
-/* Imagen más pequeña para que quepa todo */
-.inner-img-container {
-    width: 200px;
-    height: 150px;
-    margin-bottom: 10px;
-    border-radius: 20%;
-    overflow: hidden;
-    border: 2px solid #f0f0f0;
-}
-
-.inner-img-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.card-title {
-    color: #2E1A5F;
-    font-weight: 800;
-    font-size: 1.1rem;
-    margin-bottom: 5px;
-    text-transform: uppercase;
-}
-
-.card-divider {
-    width: 30px;
-    height: 3px;
-    background-color: #3BBCA8;
-    margin-bottom: 10px;
-    border-radius: 10px;
-}
-
-.card-text {
-    font-size: 0.85rem;
-    color: #666;
-    line-height: 1.3;
-    max-width: 220px;
-    /* Evita que el texto toque los bordes */
-}
+/* --- RESTO DE ESTILOS (Sin cambios) --- */
+/* (Mantén aquí los estilos de Stacked Cards, Navbar, etc. que ya tenías) */
+.stacked-circle-card { position: relative; width: 320px; height: 340px; display: flex; justify-content: center; transition: transform 0.3s ease; }
+.stacked-circle-card:hover { transform: translateY(-10px); }
+.circle-purple-bg { position: absolute; top: 15px; left: 0; right: 0; margin: auto; width: 300px; height: 400px; background-color: #2E1A5F; border-radius: 50%; z-index: 1; box-shadow: 0 15px 30px rgba(46, 26, 95, 0.2); transition: all 0.3s ease; }
+.stacked-circle-card:hover .circle-purple-bg { background-color: #3BBCA8; box-shadow: 0 20px 40px rgba(59, 188, 168, 0.4); }
+.circle-white-content { position: relative; width: 300px; height: 400px; background-color: #ffffff; border-radius: 50%; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center; border: 1px solid rgba(0, 0, 0, 0.05); }
+.inner-img-container { width: 200px; height: 150px; margin-bottom: 10px; border-radius: 20%; overflow: hidden; border: 2px solid #f0f0f0; }
+.inner-img-container img { width: 100%; height: 100%; object-fit: cover; }
+.card-title { color: #2E1A5F; font-weight: 800; font-size: 1.1rem; margin-bottom: 5px; text-transform: uppercase; }
+.card-divider { width: 30px; height: 3px; background-color: #3BBCA8; margin-bottom: 10px; border-radius: 10px; }
+.card-text { font-size: 0.85rem; color: #666; line-height: 1.3; max-width: 220px; }
+.image-wrapper { position: relative; z-index: 10; }
+.main-web-image { width: 100%; border-radius: 50px; box-shadow: 0 25px 50px -12px rgba(46, 26, 95, 0.15); transition: transform 0.5s ease; }
+.main-web-image:hover { transform: scale(1.02) translateY(-5px); }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+.animate-on-scroll { opacity: 0; }
+.is-visible { animation: fadeInUp 0.8s ease-out forwards; }
+.delay-1 { animation-delay: 0.1s; } .delay-2 { animation-delay: 0.2s; } .delay-3 { animation-delay: 0.3s; } .delay-4 { animation-delay: 0.4s; } .delay-5 { animation-delay: 0.5s; }
+.whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 30px; right: 30px; background: #25d366; color: #fff; border-radius: 50%; font-size: 2rem; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 6px 22px rgba(37, 211, 102, .45); z-index: 999; transition: .3s; }
+.whatsapp-float:hover { transform: scale(1.1); }

@@ -28,134 +28,118 @@
         </div>
     </section>
 
- <section class="py-24 bg-web-modern-gradient overflow-hidden">
-    <div class="max-w-7xl mx-auto px-6 lg:px-12">
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
+    <section class="unified-section relative py-24 overflow-hidden">
+        
+        <div class="animated-background absolute inset-0 w-full h-full pointer-events-none z-0">
+            <i class="fas fa-plus medical-icon icon-1"></i>
+            <i class="fas fa-heartbeat medical-icon icon-2"></i>
+            <i class="fas fa-stethoscope medical-icon icon-3"></i>
+            <i class="fas fa-plus medical-icon icon-4"></i>
+            <i class="fas fa-briefcase-medical medical-icon icon-5"></i>
+            <i class="fas fa-pills medical-icon icon-6"></i>
+            <i class="fas fa-dna medical-icon icon-7"></i>
+            <i class="fas fa-user-md medical-icon icon-8"></i>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
             
-            <div class="animate-on-scroll space-y-8">
-                <div>
+            <div class="grid lg:grid-cols-2 gap-16 items-center mb-32">
+                <div class="glass-card animate-on-scroll">
                     <span class="text-[#3BBCA8] font-bold text-sm tracking-[0.2em] uppercase block mb-3">
                         Quiénes Somos
                     </span>
-                    <h2 class="text-5xl md:text-6xl font-extrabold text-[#2E1A5F] leading-tight">
+                    <h2 class="text-4xl md:text-5xl font-extrabold text-[#2E1A5F] leading-tight mb-6">
                         Conócenos
                     </h2>
+                    <div class="space-y-6 text-gray-700 text-lg leading-relaxed">
+                        <p>
+                            Brindamos soluciones empresariales integrales en salud ocupacional y bienestar, 
+                            orientadas al cuidado de los colaboradores y al fortalecimiento de organizaciones responsables.
+                        </p>
+                        <p>
+                            Contamos con <span class="text-[#2E1A5F] font-bold">más de 10 años de experiencia</span>, 
+                            trabajando con empresas de diversos sectores, superando las expectativas de nuestros clientes 
+                            mediante un servicio confiable.
+                        </p>
+                    </div>
                 </div>
                 
-                <div class="space-y-6 text-gray-600 text-lg leading-relaxed max-w-xl">
-                    <p>
-                        Brindamos soluciones empresariales integrales en salud ocupacional y bienestar, 
-                        orientadas al cuidado de los colaboradores y al fortalecimiento de organizaciones responsables.
-                    </p>
-                    <p>
-                        Contamos con <span class="text-[#2E1A5F] font-bold">más de 10 años de experiencia</span>, 
-                        trabajando con empresas de diversos sectores, superando las expectativas de nuestros clientes 
-                        mediante un servicio confiable, eficiente y de calidad.
-                    </p>
-                </div>
-            </div>
-            
-            <div class="animate-on-scroll delay-2 relative">
-                <div class="absolute -top-6 -right-6 w-64 h-64 bg-[#3BBCA8]/10 rounded-full blur-3xl -z-10"></div>
-                
-                <div class="image-wrapper">
-                    <img src="https://res.cloudinary.com/dtozni6ik/image/upload/v1767594445/Sin_t%C3%ADtulo_myru3d.png" 
-                         alt="Equipo Autovías Seguras" 
-                         class="main-web-image">
+                <div class="animate-on-scroll delay-2 relative">
+                    <div class="image-wrapper">
+                        <img src="https://res.cloudinary.com/dtozni6ik/image/upload/v1767594445/Sin_t%C3%ADtulo_myru3d.png" 
+                             alt="Equipo Autovías Seguras" 
+                             class="main-web-image">
+                    </div>
                 </div>
             </div>
 
-        </div>
-    </div>
-</section>
-
-
-<!--Informacion-->
-
-
-
-    <section class="py-32 relative overflow-hidden bg-nosotros-gradient">
-        <div class="absolute inset-0 z-0 pointer-events-none">
-            <img th:src="@{/images/Fondo 1.png}" alt="Fondo" class="w-full h-full object-cover object-top opacity-20">
-        </div>
-
-        <div class="relative z-10 max-w-7xl mx-auto px-2">
-            <h2 class="text-4xl md:text-5xl font-bold text-[#2E1A5F] text-center mb-16 animate-on-scroll">
-                NUESTRO PROPÓSITO
-            </h2>
-
-            <div class="max-w-2xl mx-auto mb-20 animate-on-scroll delay-1">
-                <div class="bg-white rounded-3xl p-8 border-4 border-[#3BBCA8] shadow-mint">
-                    <h3 class="text-3xl font-bold text-[#2E1A5F] text-center mb-6">
-                        MISIÓN
-                    </h3>
+            <div class="max-w-3xl mx-auto mb-32 animate-on-scroll delay-1">
+                <div class="glass-card text-center border-t-4 border-[#3BBCA8]">
+                    <h2 class="text-3xl md:text-4xl font-bold text-[#2E1A5F] mb-8">NUESTRO PROPÓSITO</h2>
+                    <h3 class="text-2xl font-bold text-[#2E1A5F] mb-6">MISIÓN</h3>
                     <div class="flex justify-center mb-6">
-                        <div class="w-20 h-20 bg-[#3BBCA8] rounded-full flex items-center justify-center">
+                        <div class="w-20 h-20 bg-[#3BBCA8] rounded-full flex items-center justify-center shadow-lg">
                             <i class="fas fa-heartbeat text-white text-3xl"></i>
                         </div>
                     </div>
-                    <p class="text-gray-700 text-center leading-relaxed">
-                        Contribuir con el proceso de prevención y lesión de enfermedades relacionados al ámbito laboral, a través de un servicio médico confiable, rápido y calidad.
+                    <p class="text-gray-700 text-lg leading-relaxed">
+                        Contribuir con el proceso de prevención y lesión de enfermedades relacionados al ámbito laboral, 
+                        a través de un servicio médico confiable, rápido y calidad.
                     </p>
                 </div>
             </div>
-<div class="grid md:grid-cols-3 gap-12 max-w-7xl mx-2 mt-16">
 
-    <div class="animate-on-scroll delay-3 flex justify-center group">
-        <div class="stacked-circle-card">
-            
-            <div class="circle-purple-bg"></div>
-            
-            <div class="circle-white-content">
-                
-                <div class="inner-img-container">
-                    <img src="https://res.cloudinary.com/dtozni6ik/image/upload/v1767594901/Sin_1_f7mrzw.png" alt="Somos Ágiles">
+            <div>
+                <h3 class="text-3xl md:text-4xl font-bold text-[#2E1A5F] text-center mb-4 animate-on-scroll delay-2">
+                    NUESTROS VALORES
+                </h3>
+                <div class="w-24 h-1 bg-[#3BBCA8] mx-auto mb-16"></div>
+
+                <div class="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto px-4 mt-16 pb-12">
+                    <div class="animate-on-scroll delay-3 flex justify-center group">
+                        <div class="stacked-circle-card">
+                            <div class="circle-purple-bg"></div>
+                            <div class="circle-white-content">
+                                <div class="inner-img-container">
+                                    <img src="https://res.cloudinary.com/dtozni6ik/image/upload/v1767594901/Sin_1_f7mrzw.png" alt="Somos Ágiles">
+                                </div>
+                                <h4 class="card-title">SOMOS ÁGILES</h4>
+                                <div class="card-divider"></div>
+                                <p class="card-text">Optimizamos procesos para ofrecer una atención ágil y resultados eficientes.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="animate-on-scroll delay-4 flex justify-center group">
+                        <div class="stacked-circle-card">
+                            <div class="circle-purple-bg"></div>
+                            <div class="circle-white-content">
+                                <div class="inner-img-container">
+                                    <img src="https://res.cloudinary.com/dtozni6ik/image/upload/v1767594901/3_qnknh6.png" alt="Somos Confiables">
+                                </div>
+                                <h4 class="card-title">SOMOS CONFIABLES</h4>
+                                <div class="card-divider"></div>
+                                <p class="card-text">Brindamos servicios confiables, con puntualidad y calidad garantizada.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="animate-on-scroll delay-5 flex justify-center group">
+                        <div class="stacked-circle-card">
+                            <div class="circle-purple-bg"></div>
+                            <div class="circle-white-content">
+                                <div class="inner-img-container">
+                                    <img src="https://res.cloudinary.com/dtozni6ik/image/upload/v1767594901/2_sugjfk.png" alt="Somos Amables">
+                                </div>
+                                <h4 class="card-title">SOMOS AMABLES</h4>
+                                <div class="card-divider"></div>
+                                <p class="card-text">Brindamos una atención cercana y humana, acompañando al paciente en todo el proceso.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <h4 class="card-title">SOMOS ÁGILES</h4>
-                <div class="card-divider"></div>
-                
-                <p class="card-text">
-                    Atención rápida, sin filas y con resultados eficientes.
-                </p>
             </div>
-            
-        </div>
-    </div>
 
-    <div class="animate-on-scroll delay-4 flex justify-center group">
-        <div class="stacked-circle-card">
-            <div class="circle-purple-bg"></div>
-            <div class="circle-white-content">
-                <div class="inner-img-container">
-                    <img src="https://res.cloudinary.com/dtozni6ik/image/upload/v1767594901/3_qnknh6.png" alt="Somos Confiables">
-                </div>
-                <h4 class="card-title">SOMOS CONFIABLES</h4>
-                <div class="card-divider"></div>
-                <p class="card-text">
-                    Seguridad garantizada con tecnología de punta.
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <div class="animate-on-scroll delay-5 flex justify-center group">
-        <div class="stacked-circle-card">
-            <div class="circle-purple-bg"></div>
-            <div class="circle-white-content">
-                <div class="inner-img-container">
-                    <img src="https://res.cloudinary.com/dtozni6ik/image/upload/v1767594901/2_sugjfk.png" alt="Somos Amables">
-                </div>
-                <h4 class="card-title">SOMOS AMABLES</h4>
-                <div class="card-divider"></div>
-                <p class="card-text">
-                    Calidez y empatía en todo tu proceso médico.
-                </p>
-            </div>
-        </div>
-    </div>
-
-</div>
         </div>
     </section>
 
@@ -167,6 +151,5 @@
 
     <script th:src="@{/js/fragments/navbar.js}"></script>
     <script th:src="@{/js/nosotros.js}"></script>
-    
 </body>
 </html>
