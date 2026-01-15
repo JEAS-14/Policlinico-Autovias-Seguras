@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Policlínico Autovías Seguras - Exámenes médicos ocupacionales, licencias de conducir y SUCAMEC">
     <title>Policlínico Autovías Seguras | Nuestro Blog</title>
     
     <link rel="stylesheet" th:href="@{/css/fragments/navbar.css}">
@@ -23,77 +22,173 @@
 
     <main class="container">
         
-        <section class="featured-post">
+        <a href="#" class="featured-post article-trigger">
             <div class="featured-image">
-                <img src="https://images.unsplash.com/photo-1626071373977-22d73356e9c6?q=80&w=1000&auto=format&fit=crop" alt="Brevete Electrónico">
+                <img src="https://images.unsplash.com/photo-1626071373977-22d73356e9c6?q=80&w=1000&auto=format&fit=crop" alt="Brevete Electrónico" class="source-img">
             </div>
             <div class="featured-content">
                 <div class="meta">
-                    <span class="badge badge-primary">Actualidad</span>
-                    <span class="date"><i class="far fa-calendar"></i> 15 Ene, 2025</span>
+                    <span class="badge badge-primary source-badge">Actualidad</span>
+                    <span class="date source-date"><i class="far fa-calendar"></i> 15 Ene, 2025</span>
                 </div>
-                <h2>Nueva normativa del MTC 2025: Todo sobre el brevete electrónico</h2>
-                <p>El Ministerio de Transportes implementará el brevete digital este año. Te explicamos los cambios más importantes.</p>
-                <a href="#" class="btn-read-more">Leer todo <i class="fas fa-arrow-right"></i></a>
+                <h2 class="source-title">Nueva normativa del MTC 2025: Todo sobre el brevete electrónico</h2>
+                <p class="source-summary">El Ministerio de Transportes implementará el brevete digital este año. Te explicamos los cambios más importantes.</p>
+                
+                <div class="article-full-content hidden">
+                    <p>El Ministerio de Transportes y Comunicaciones (MTC) ha anunciado cambios significativos para la emisión de licencias de conducir en 2025. El objetivo principal es la digitalización total del proceso.</p>
+                    <br>
+                    <h4>Principales cambios:</h4>
+                    <ul>
+                        <li>Validez legal idéntica al brevete físico.</li>
+                        <li>Código QR para fiscalización inmediata.</li>
+                        <li>Costo reducido en un 40% respecto a la emisión física.</li>
+                    </ul>
+                    <br>
+                    <p>Para obtenerlo, los conductores deben pasar sus exámenes médicos en centros autorizados como Autovías Seguras y no tener multas electorales pendientes.</p>
+                </div>
+
+                <div class="featured-btn-icon">
+                    <span>Leer Artículo</span>
+                    <div class="icon-circle"><i class="fas fa-arrow-right"></i></div>
+                </div>
             </div>
-        </section>
+        </a>
 
         <section class="blog-grid">
             
-            <article class="card">
-                <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=800&auto=format&fit=crop" alt="Manejo" class="card-img">
+            <a href="#" class="card article-trigger">
+                <div class="card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=800&auto=format&fit=crop" alt="Manejo" class="card-img source-img">
+                </div>
                 <div class="card-body">
                     <div class="meta">
-                        <span class="badge badge-gray">Seguridad</span>
-                        <span class="date">12 Ene, 2025</span>
+                        <object><span class="badge badge-gray source-badge">Seguridad</span></object>
+                        <span class="date source-date">12 Ene, 2025</span>
                     </div>
-                    <h3>5 Tips para aprobar tu examen de manejo</h3>
-                    <p>Consejos prácticos para superar tu examen de conducción a la primera.</p>
-                    <a href="#" class="link-read">Leer más <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </article>
+                    <h3 class="source-title">5 Tips para aprobar tu examen de manejo</h3>
+                    <p class="source-summary">Consejos prácticos para superar tu examen de conducción a la primera.</p>
+                    
+                    <div class="article-full-content hidden">
+                        <p>Aprobar el examen de manejo puede ser estresante, pero con estos consejos aumentarás tus posibilidades:</p>
+                        <ol>
+                            <li><strong>Ajusta tus espejos:</strong> Antes de arrancar, demuestra al evaluador que verificas tu entorno.</li>
+                            <li><strong>Usa el cinturón:</strong> Parece obvio, pero muchos jalan por olvidarlo al inicio.</li>
+                            <li><strong>Mantén la distancia:</strong> Respeta la regla de los 3 segundos con el auto de enfrente.</li>
+                            <li><strong>Direccionales siempre:</strong> Úsalas incluso si no hay nadie en la vía.</li>
+                            <li><strong>Tranquilidad:</strong> Los nervios son tu peor enemigo. Respira hondo.</li>
+                        </ol>
+                    </div>
 
-            <article class="card">
-                <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800&auto=format&fit=crop" alt="Doctor" class="card-img">
-                <div class="card-body">
-                    <div class="meta">
-                        <span class="badge badge-teal">Salud</span>
-                        <span class="date">10 Ene, 2025</span>
+                    <div class="card-footer">
+                        <div class="card-icon"><i class="fas fa-arrow-right"></i></div>
                     </div>
-                    <h3>Importancia del chequeo preventivo</h3>
-                    <p>Por qué los exámenes médicos son fundamentales para tu seguridad.</p>
-                    <a href="#" class="link-read">Leer más <i class="fas fa-arrow-right"></i></a>
                 </div>
-            </article>
+            </a>
 
-            <article class="card">
-                <img src="https://images.unsplash.com/photo-1555447405-bd6145d279cf?q=80&w=800&auto=format&fit=crop" alt="Estudio" class="card-img">
+            <a href="#" class="card article-trigger">
+                <div class="card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800&auto=format&fit=crop" alt="Doctor" class="card-img source-img">
+                </div>
                 <div class="card-body">
                     <div class="meta">
-                        <span class="badge badge-blue">Trámites</span>
-                        <span class="date">5 Ene, 2025</span>
+                        <object><span class="badge badge-teal source-badge">Salud</span></object>
+                        <span class="date source-date">10 Ene, 2025</span>
                     </div>
-                    <h3>Cómo prepararte para tu examen médico</h3>
-                    <p>Guía de preparación para tu evaluación médica de Brevete.</p>
-                    <a href="#" class="link-read">Leer más <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </article>
+                    <h3 class="source-title">Importancia del chequeo preventivo</h3>
+                    <p class="source-summary">Por qué los exámenes médicos son fundamentales para tu seguridad.</p>
+                    
+                    <div class="article-full-content hidden">
+                        <p>La prevención es la clave para una vida larga y saludable. Realizarse un chequeo médico anual permite detectar enfermedades silenciosas como la hipertensión o la diabetes en etapas tempranas.</p>
+                        <p>En el ámbito laboral y de conducción, asegurar que tus sentidos (vista y oído) estén al 100% no solo es un requisito legal, sino un acto de responsabilidad con tu vida y la de los demás.</p>
+                    </div>
 
-            <article class="card">
-                <img src="https://images.unsplash.com/photo-1589828959952-4467c69992f4?q=80&w=800&auto=format&fit=crop" alt="Vista" class="card-img">
+                    <div class="card-footer">
+                        <div class="card-icon"><i class="fas fa-arrow-right"></i></div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="card article-trigger">
+                <div class="card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1555447405-bd6145d279cf?q=80&w=800&auto=format&fit=crop" alt="Estudio" class="card-img source-img">
+                </div>
                 <div class="card-body">
                     <div class="meta">
-                        <span class="badge badge-teal">Salud</span>
-                        <span class="date">2 Ene, 2025</span>
+                        <object><span class="badge badge-blue source-badge">Trámites</span></object>
+                        <span class="date source-date">5 Ene, 2025</span>
                     </div>
-                    <h3>Mitos y verdades sobre la visión al conducir</h3>
-                    <p>Desmitificamos las creencias sobre la salud visual.</p>
-                    <a href="#" class="link-read">Leer más <i class="fas fa-arrow-right"></i></a>
+                    <h3 class="source-title">Cómo prepararte para tu examen médico</h3>
+                    <p class="source-summary">Guía de preparación para tu evaluación médica de Brevete.</p>
+                    
+                    <div class="article-full-content hidden">
+                        <p>Para asegurar que tu evaluación médica para el brevete sea exitosa y rápida, sigue estas recomendaciones:</p>
+                        <ul>
+                            <li>Descansa bien la noche anterior (mínimo 7 horas).</li>
+                            <li>Evita consumir alcohol 24 horas antes.</li>
+                            <li>Si usas lentes, tráelos obligatoriamente.</li>
+                            <li>Desayuna ligero, no es necesario venir en ayunas para este examen específico.</li>
+                            <li>Trae tu DNI físico y vigente.</li>
+                        </ul>
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="card-icon"><i class="fas fa-arrow-right"></i></div>
+                    </div>
                 </div>
-            </article>
+            </a>
+
+            <a href="#" class="card article-trigger">
+                <div class="card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1589828959952-4467c69992f4?q=80&w=800&auto=format&fit=crop" alt="Vista" class="card-img source-img">
+                </div>
+                <div class="card-body">
+                    <div class="meta">
+                        <object><span class="badge badge-teal source-badge">Salud</span></object>
+                        <span class="date source-date">2 Ene, 2025</span>
+                    </div>
+                    <h3 class="source-title">Mitos y verdades sobre la visión al conducir</h3>
+                    <p class="source-summary">Desmitificamos las creencias sobre la salud visual.</p>
+                    
+                    <div class="article-full-content hidden">
+                        <p>Existen muchos mitos sobre la vista y la conducción. Aquí aclaramos los más comunes:</p>
+                        <p><strong>Mito:</strong> "Si veo bien de día, no necesito lentes para conducir de noche."<br>
+                        <strong>Verdad:</strong> La visión nocturna se reduce drásticamente. Si tienes una medida mínima, de noche es vital usar tus lentes correctivos.</p>
+                        <p><strong>Mito:</strong> "El daltonismo me impide sacar licencia."<br>
+                        <strong>Verdad:</strong> No necesariamente. Si puedes distinguir las posiciones de las luces del semáforo y tienes la agudeza visual correcta, puedes aprobar.</p>
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="card-icon"><i class="fas fa-arrow-right"></i></div>
+                    </div>
+                </div>
+            </a>
 
         </section>
     </main>
+
+    <div id="news-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            
+            <div class="modal-header-img">
+                <img id="modal-img" src="" alt="Noticia Detalle">
+                <span id="modal-badge" class="badge badge-overlay">Categoría</span>
+            </div>
+            
+            <div class="modal-body-content">
+                <div class="modal-meta">
+                    <span id="modal-date"><i class="far fa-calendar"></i> Fecha</span>
+                </div>
+                <h2 id="modal-title">Título de la Noticia</h2>
+                
+                <div id="modal-text" class="prose"></div>
+                
+                <div class="modal-footer-btn">
+                    <button class="close-modal-btn">Cerrar Noticia</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <a href="https://wa.me/51913889497" class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
@@ -102,6 +197,6 @@
     <div th:replace="~{fragments/footer :: footer}"></div>
 
     <script th:src="@{/js/fragments/navbar.js}"></script>
-    <script th:src="@{/js/home.js}"></script>
+    <script th:src="@{/js/nuestroBlog.js}"></script>
 </body>
 </html>

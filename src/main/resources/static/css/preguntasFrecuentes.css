@@ -1,81 +1,62 @@
-/* src/main/resources/static/css/PreguntasFrecuentes.css */
-
-/* --- Animaciones de Entrada --- */
+/* --- 1. ANIMACIONES GLOBALES --- */
 @keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-.animate-on-scroll {
-    opacity: 0;
-    /* Comienza invisible */
+@keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.98); }
+    to { opacity: 1; transform: scale(1); }
 }
 
-.is-visible {
-    animation: fadeInUp 0.8s ease-out forwards;
-}
+.animate-on-scroll { opacity: 0; }
+.is-visible { animation: fadeInUp 0.8s ease-out forwards; }
+.animate-fade-in { animation: fadeInScale 0.4s ease-out forwards; }
 
-/* --- Control de Delays --- */
-.delay-1 {
-    animation-delay: 0.1s;
-}
+/* Delays para efectos escalonados */
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+.delay-5 { animation-delay: 0.5s; }
 
-.delay-2 {
-    animation-delay: 0.2s;
-}
-
-.delay-3 {
-    animation-delay: 0.3s;
-}
-
-.delay-4 {
-    animation-delay: 0.4s;
-}
-
-.delay-5 {
-    animation-delay: 0.5s;
-}
-
-/* --- Fondos y Degradados --- */
+/* --- 2. DISEÑO GENERAL Y HERO --- */
 .bg-hero-preguntas {
     background: linear-gradient(123.79deg, rgba(250, 255, 254, 0) 50.71%, rgba(255, 255, 255, 0.2) 52.17%),
-        linear-gradient(280.42deg, rgba(59, 188, 168, 0.176) 13.12%, rgba(255, 251, 251, 0.2) 45.24%),
-        linear-gradient(101.84deg, rgba(59, 188, 168, 0.582) 18.18%, rgba(238, 249, 247, 0.6) 46.15%),
-        rgba(59, 188, 168, 0.2);
-
+                linear-gradient(280.42deg, rgba(59, 188, 168, 0.176) 13.12%, rgba(255, 251, 251, 0.2) 45.24%),
+                linear-gradient(101.84deg, rgba(59, 188, 168, 0.582) 18.18%, rgba(238, 249, 247, 0.6) 46.15%),
+                rgba(59, 188, 168, 0.2);
 }
 
-/* --- Estilos Personalizados --- */
 .shadow-hard-purple {
     box-shadow: 0 4px 20px -2px rgba(46, 26, 95, 0.2);
 }
 
-.action-card-btn {
-    transition: all 0.3s ease;
+/* --- 3. COMPONENTES (FAQ / ACORDEÓN) --- */
+.faq-answer {
+    overflow: hidden;
+    transition: opacity 0.3s ease;
 }
 
-.action-card-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px -5px rgba(46, 26, 95, 0.3);
+.faq-answer.hidden {
+    display: none;
+    opacity: 0;
 }
 
-/* --- Utilidades Funcionales (JS) --- */
-.hidden {
-    display: none !important;
+.faq-answer:not(.hidden) {
+    display: block;
+    opacity: 1;
 }
 
 .rotate-180 {
     transform: rotate(180deg);
 }
 
-/* Botón flotante WhatsApp */
+.hidden {
+    display: none !important;
+}
+
+/* --- 4. BOTÓN FLOTANTE WHATSAPP --- */
 .whatsapp-float {
     position: fixed;
     width: 60px;
@@ -85,13 +66,12 @@
     background-color: #25d366;
     color: #ffffff;
     border-radius: 50%;
-    text-align: center;
-    font-size: 2rem;
-    box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
-    z-index: 999;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 2rem;
+    box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+    z-index: 999;
     transition: all 0.3s ease;
     text-decoration: none;
 }
@@ -99,4 +79,154 @@
 .whatsapp-float:hover {
     transform: scale(1.1);
     box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6);
+}
+
+/* --- 5. TARJETA DE CONTACTO FINAL --- */
+.contact-cta-container { 
+    margin-top: 3rem; 
+    padding: 20px 0;
+}
+
+.contact-card {
+    background-color: #EEF9F7;
+    border-radius: 40px;
+    padding: 2.5rem;
+    text-align: center;
+    max-width: 48rem;
+    margin: 0 auto;
+    border: 1px solid rgba(59, 188, 168, 0.2);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.search-error-text {
+    color: #ef4444;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.contact-icon-box {
+    margin-bottom: 1rem;
+    font-size: 3rem;
+    color: #3BBCA8;
+}
+
+.contact-card-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #2E1A5F;
+    margin-bottom: 0.5rem;
+}
+
+.contact-card-description {
+    color: rgba(46, 26, 95, 0.6);
+    margin-bottom: 2rem;
+}
+
+.contact-actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+}
+
+@media (min-width: 640px) {
+    .contact-actions { flex-direction: row; }
+}
+
+.btn-whatsapp-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: #4ADE80;
+    color: white;
+    padding: 0.75rem 2rem;
+    border-radius: 9999px;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.btn-whatsapp-cta:hover {
+    background-color: #3dbd6d;
+    transform: scale(1.05);
+}
+
+
+/* --- PUNTOS FLOTANTES DE FONDO --- */
+
+/* 1. Definimos la animación */
+@keyframes floatBreathing {
+    0%, 100% {
+        opacity: 0; /* Empieza y termina invisible */
+        transform: translateY(0) scale(0.5); /* Pequeño y en su sitio */
+    }
+    50% {
+        opacity: 0.4; /* A mitad de camino es semitransparente */
+        transform: translateY(-20px) scale(1); /* Se mueve arriba y crece */
+    }
+}
+
+/* 2. Estilo base del punto */
+.floating-dot {
+    position: absolute;
+    background-color: #ffffff; /* Puntos blancos para contraste sutil */
+    border-radius: 50%; /* Círculo perfecto */
+    opacity: 0; /* Comienzan invisibles */
+    /* Aplicamos la animación: nombre | duración | suavizado | repetición */
+    animation: floatBreathing ease-in-out infinite;
+    z-index: 0; /* Asegura que queden detrás del contenido */
+}
+
+/* 3. Personalización de cada punto (Posición, tamaño y retraso) */
+/* Variamos los tiempos y delays para que no se vean sincronizados */
+
+.dot-1 {
+    top: 15%; left: 10%;
+    width: 20px; height: 20px;
+    animation-duration: 8s; animation-delay: 0s;
+}
+
+.dot-2 {
+    top: 70%; left: 85%;
+    width: 30px; height: 30px;
+    animation-duration: 12s; animation-delay: 1s;
+    background-color: #3BBCA8; /* Un punto turquesa para variar */
+    opacity: 0.2;
+}
+
+.dot-3 {
+    top: 40%; left: 30%;
+    width: 15px; height: 15px;
+    animation-duration: 10s; animation-delay: 3s;
+}
+
+.dot-4 {
+    top: 20%; left: 80%;
+    width: 25px; height: 25px;
+    animation-duration: 14s; animation-delay: 2s;
+}
+
+.dot-5 {
+    top: 85%; left: 20%;
+    width: 18px; height: 18px;
+    animation-duration: 9s; animation-delay: 5s;
+    background-color: #3BBCA8; /* Otro punto turquesa */
+}
+
+.dot-6 {
+    top: 50%; left: 60%;
+    width: 12px; height: 12px;
+    animation-duration: 11s; animation-delay: 4s;
+}
+
+/* Un toque extra para las tarjetas del acordeón */
+.faq-item {
+    border: 1px solid rgba(59, 188, 168, 0.15); /* Un borde casi invisible que conecta con el logo */
+    transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+    border-color: #3BBCA8; /* Se ilumina el color del logo al pasar el mouse */
 }

@@ -1,39 +1,25 @@
-/* --- Configuración General --- */
-.container {
-    max-width: 1800px;
-    /* Aumentamos de 1200px a 1400px para pantallas grandes */
-    width: 90%;
-    /* Ocupará el 90% del ancho de la pantalla */
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* Forzamos que la imagen destacada ocupe todo el ancho disponible */
-.featured-post {
-    width: 100%;
-    display: flex;
-}
-
-
 :root {
     --primary-color: #5836be;
-    /* El morado del título */
     --secondary-color: #2dc4ad;
-    /* El verde agua de los botones */
     --text-dark: #333;
     --text-light: #666;
     --bg-light: #f4f8fb;
     --white: #ffffff;
 }
 
-
 body {
     background-color: var(--white);
     color: var(--text-dark);
 }
 
+.container {
+    max-width: 1400px; /* Ajustado para mejor lectura */
+    width: 90%;
+    margin: 0 auto;
+    padding: 0 20px;
+}
 
-/* --- Header / Banner Superior --- */
+/* --- Header --- */
 .blog-header {
     background: linear-gradient(123.79deg, rgba(250, 255, 254, 0) 50.71%, rgba(255, 255, 255, 0.2) 52.17%),
         linear-gradient(280.42deg, rgba(59, 188, 168, 0.176) 13.12%, rgba(255, 251, 251, 0.2) 45.24%),
@@ -42,14 +28,9 @@ body {
     text-align: center;
     height: 350px;
     padding: 100px 20px 60px;
-    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.blog-header .container {
-    width: 100%;
 }
 
 .blog-header h1 {
@@ -64,52 +45,44 @@ body {
     font-weight: 500;
 }
 
-/* --- Botón flotante WhatsApp --- */
-.whatsapp-float {
-    position: absolute;
-    right: 5%;
-    bottom: 20px;
-    background-color: #25D366;
-    color: white;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-}
-
-/* --- Artículo Destacado (Grande) --- */
+/* --- DESTACADO (Featured) --- */
 .featured-post {
     background-color: var(--bg-light);
-    border-radius: 15px;
-    padding: 0;
+    border-radius: 20px;
     margin: 40px 0;
     display: flex;
     overflow: hidden;
-    /* Para que la imagen respete el borde */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    text-decoration: none; /* Quitamos subrayado del link */
+    transition: transform 0.3s ease;
+}
+
+.featured-post:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(46, 26, 95, 0.1);
 }
 
 .featured-image {
-    flex: 1;
-    min-height: 300px;
-    background-color: #e0e0e0;
-    /* Color gris si no carga la imagen */
+    flex: 1.2;
+    min-height: 350px;
+    overflow: hidden; /* Importante para el zoom */
 }
 
 .featured-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+/* Efecto Zoom en Destacado */
+.featured-post:hover .featured-image img {
+    transform: scale(1.05);
 }
 
 .featured-content {
     flex: 1;
-    padding: 40px;
+    padding: 50px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -117,118 +90,354 @@ body {
 
 .featured-content h2 {
     color: var(--primary-color);
-    font-size: 1.8rem;
+    font-size: 2rem;
     margin: 15px 0;
+    line-height: 1.2;
 }
 
-/* --- Badges y Etiquetas --- */
-.badge {
-    padding: 5px 10px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: bold;
-    color: white;
-    margin-right: 10px;
-}
-
-.badge-primary {
-    background-color: var(--secondary-color);
-}
-
-.badge-gray {
-    background-color: #888;
-}
-
-.badge-teal {
-    background-color: var(--secondary-color);
-}
-
-.badge-blue {
-    background-color: #7faaf0;
-}
-
-.date {
+.featured-content p {
     color: var(--text-light);
-    font-size: 0.9rem;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
 }
 
-/* --- Botones --- */
-.btn-read-more {
-    display: inline-block;
-    background-color: var(--secondary-color);
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    margin-top: 20px;
-    width: fit-content;
+/* Botón especial del destacado */
+.featured-btn-icon {
+    display: flex;
+    align-items: center;
+    gap: 15px;
     font-weight: bold;
+    color: var(--secondary-color);
 }
 
-/* --- Grid de Artículos Pequeños --- */
+.featured-btn-icon .icon-circle {
+    width: 45px;
+    height: 45px;
+    background: var(--secondary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.featured-post:hover .icon-circle {
+    transform: translateX(10px); /* La flecha se mueve a la derecha */
+}
+
+/* --- GRID Y TARJETAS --- */
 .blog-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    /* Responsivo automático */
     gap: 30px;
     margin-bottom: 60px;
 }
 
 .card {
-    border: 1px solid #eee;
-    border-radius: 10px;
+    border: 1px solid #f0f0f0;
+    border-radius: 20px;
     overflow: hidden;
-    transition: transform 0.3s ease;
     background: white;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    height: 100%; /* Igualar alturas */
 }
 
+/* ANIMACIÓN HOVER TARJETA */
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+    border-color: transparent;
+}
+
+.card-img-wrapper {
+    height: 220px;
+    overflow: hidden; /* Mantiene la imagen dentro al hacer zoom */
 }
 
 .card-img {
     width: 100%;
-    height: 200px;
+    height: 100%;
     object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+/* Zoom en imagen al pasar mouse */
+.card:hover .card-img {
+    transform: scale(1.1);
 }
 
 .card-body {
-    padding: 20px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
 .card-body h3 {
     color: var(--primary-color);
-    margin: 15px 0;
-    font-size: 1.2rem;
+    margin: 15px 0 10px;
+    font-size: 1.25rem;
+    font-weight: 700;
     line-height: 1.4;
 }
 
 .card-body p {
     color: var(--text-light);
     font-size: 0.95rem;
-    margin-bottom: 20px;
     line-height: 1.6;
+    margin-bottom: 20px;
+    flex-grow: 1; /* Empuja el footer hacia abajo */
 }
 
-.link-read {
-    color: var(--secondary-color);
-    text-decoration: none;
-    font-weight: bold;
+/* --- BADGES (Etiquetas) --- */
+.badge {
+    padding: 6px 12px;
+    border-radius: 30px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: white;
+    margin-right: 10px;
+    position: relative; 
+    z-index: 2; /* Para que esté por encima del link */
+}
+
+.badge-primary { background-color: var(--secondary-color); }
+.badge-gray { background-color: #94a3b8; }
+.badge-teal { background-color: var(--secondary-color); }
+.badge-blue { background-color: #60a5fa; }
+
+.date {
+    color: #999;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+/* --- EL NUEVO BOTÓN ÍCONO --- */
+.card-footer {
+    display: flex;
+    justify-content: flex-end; /* Alineado a la derecha */
+    margin-top: auto;
+}
+
+.card-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #f3f4f6; /* Gris muy suave inicial */
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+/* Animación del botón al hacer hover en LA TARJETA */
+.card:hover .card-icon {
+    background-color: var(--secondary-color); /* Se vuelve Turquesa */
+    color: white; /* Flecha blanca */
+    transform: rotate(-45deg); /* Efecto moderno de inclinación */
+}
+
+/* WhatsApp */
+.whatsapp-float {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    background-color: #25D366;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+    cursor: pointer;
+    z-index: 100;
+    transition: transform 0.3s;
+}
+.whatsapp-float:hover { transform: scale(1.1); }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .featured-post { flex-direction: column; }
+    .featured-image { height: 250px; }
+    .featured-content { padding: 30px; }
+}
+
+/* ... (Tus estilos anteriores se mantienen igual) ... */
+
+/* Utilidad para ocultar el texto completo en la tarjeta pequeña */
+.hidden { display: none; }
+
+/* ==========================================
+   ESTILOS DEL MODAL (TARJETA FLOTANTE)
+   ========================================== */
+
+/* Fondo oscuro (Overlay) */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Fondo negro semitransparente */
+    backdrop-filter: blur(5px); /* Efecto borroso elegante */
+    z-index: 2000; /* Encima de todo */
+    display: none; /* Oculto por defecto */
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Cuando está activo */
+.modal-overlay.active {
+    display: flex;
+    opacity: 1;
+}
+
+/* La Tarjeta Blanca */
+.modal-content {
+    background: white;
+    width: 90%;
+    max-width: 800px; /* Ancho máximo de lectura */
+    max-height: 90vh; /* No más alto que la pantalla */
+    border-radius: 20px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    overflow-y: auto; /* Scroll interno si es muy largo */
+    position: relative;
+    transform: scale(0.9);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modal-overlay.active .modal-content {
+    transform: scale(1); /* Efecto Zoom In */
+}
+
+/* Botón X de cerrar */
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: white;
+    border: none;
+    font-size: 2rem;
+    color: #333;
+    cursor: pointer;
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: all 0.2s;
+}
+
+.close-modal:hover {
+    background: #ff4d4d;
+    color: white;
+}
+
+/* Imagen del Modal */
+.modal-header-img {
+    position: relative;
+    height: 300px;
+    width: 100%;
+}
+
+.modal-header-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Badge flotante en el modal */
+.badge-overlay {
+    position: absolute;
+    bottom: 20px;
+    left: 30px;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Contenido del Texto */
+.modal-body-content {
+    padding: 40px;
+}
+
+.modal-meta {
+    color: #888;
+    margin-bottom: 10px;
     font-size: 0.9rem;
 }
 
-.link-read:hover {
-    text-decoration: underline;
+.modal-content h2 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 25px;
+    line-height: 1.2;
 }
 
-/* --- Responsividad para móviles --- */
-@media (max-width: 768px) {
-    .featured-post {
-        flex-direction: column;
-    }
+/* Estilos para el texto del artículo */
+.prose {
+    color: #4a5568;
+    line-height: 1.8;
+    font-size: 1.05rem;
+}
 
-    .featured-image {
-        height: 200px;
-    }
+.prose h4 {
+    color: var(--primary-color);
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.prose ul, .prose ol {
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.prose li {
+    margin-bottom: 8px;
+}
+
+/* Botón inferior cerrar */
+.modal-footer-btn {
+    margin-top: 40px;
+    text-align: center;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+.close-modal-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.close-modal-btn:hover {
+    background-color: #4a2da0;
+}
+
+/* Responsive del modal */
+@media (max-width: 768px) {
+    .modal-header-img { height: 200px; }
+    .modal-content h2 { font-size: 1.5rem; }
+    .modal-body-content { padding: 25px; }
 }
