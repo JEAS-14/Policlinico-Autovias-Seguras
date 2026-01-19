@@ -13,11 +13,14 @@ body {
 }
 
 .container {
-    max-width: 1400px; /* Ajustado para mejor lectura */
+    max-width: 1400px;
+    /* Ajustado para mejor lectura */
     width: 90%;
     margin: 0 auto;
     padding: 0 20px;
 }
+
+
 
 /* --- Header --- */
 .blog-header {
@@ -26,7 +29,7 @@ body {
         linear-gradient(101.84deg, rgba(59, 188, 168, 0.582) 18.18%, rgba(238, 249, 247, 0.6) 46.15%),
         rgba(57, 181, 162, 0.1);
     text-align: center;
-    height: 350px;
+    height: 500px;
     padding: 100px 20px 60px;
     display: flex;
     align-items: center;
@@ -34,14 +37,15 @@ body {
 }
 
 .blog-header h1 {
-    color: var(--primary-color);
-    font-size: 2.5rem;
+    color: #421D9D;
+    font-size: 6.5rem;
     font-weight: 800;
     margin-bottom: 10px;
 }
 
 .blog-header p {
     color: var(--text-dark);
+    font-size: 1.4rem;
     font-weight: 500;
 }
 
@@ -53,7 +57,8 @@ body {
     display: flex;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    text-decoration: none; /* Quitamos subrayado del link */
+    text-decoration: none;
+    /* Quitamos subrayado del link */
     transition: transform 0.3s ease;
 }
 
@@ -65,7 +70,8 @@ body {
 .featured-image {
     flex: 1.2;
     min-height: 350px;
-    overflow: hidden; /* Importante para el zoom */
+    overflow: hidden;
+    /* Importante para el zoom */
 }
 
 .featured-image img {
@@ -123,7 +129,8 @@ body {
 }
 
 .featured-post:hover .icon-circle {
-    transform: translateX(10px); /* La flecha se mueve a la derecha */
+    transform: translateX(10px);
+    /* La flecha se mueve a la derecha */
 }
 
 /* --- GRID Y TARJETAS --- */
@@ -144,7 +151,8 @@ body {
     flex-direction: column;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     position: relative;
-    height: 100%; /* Igualar alturas */
+    height: 100%;
+    /* Igualar alturas */
 }
 
 /* ANIMACIÓN HOVER TARJETA */
@@ -156,7 +164,8 @@ body {
 
 .card-img-wrapper {
     height: 220px;
-    overflow: hidden; /* Mantiene la imagen dentro al hacer zoom */
+    overflow: hidden;
+    /* Mantiene la imagen dentro al hacer zoom */
 }
 
 .card-img {
@@ -191,7 +200,8 @@ body {
     font-size: 0.95rem;
     line-height: 1.6;
     margin-bottom: 20px;
-    flex-grow: 1; /* Empuja el footer hacia abajo */
+    flex-grow: 1;
+    /* Empuja el footer hacia abajo */
 }
 
 /* --- BADGES (Etiquetas) --- */
@@ -204,14 +214,26 @@ body {
     letter-spacing: 0.5px;
     color: white;
     margin-right: 10px;
-    position: relative; 
-    z-index: 2; /* Para que esté por encima del link */
+    position: relative;
+    z-index: 2;
+    /* Para que esté por encima del link */
 }
 
-.badge-primary { background-color: var(--secondary-color); }
-.badge-gray { background-color: #94a3b8; }
-.badge-teal { background-color: var(--secondary-color); }
-.badge-blue { background-color: #60a5fa; }
+.badge-primary {
+    background-color: var(--secondary-color);
+}
+
+.badge-gray {
+    background-color: #94a3b8;
+}
+
+.badge-teal {
+    background-color: var(--secondary-color);
+}
+
+.badge-blue {
+    background-color: #60a5fa;
+}
 
 .date {
     color: #999;
@@ -222,7 +244,8 @@ body {
 /* --- EL NUEVO BOTÓN ÍCONO --- */
 .card-footer {
     display: flex;
-    justify-content: flex-end; /* Alineado a la derecha */
+    justify-content: flex-end;
+    /* Alineado a la derecha */
     margin-top: auto;
 }
 
@@ -230,7 +253,8 @@ body {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: #f3f4f6; /* Gris muy suave inicial */
+    background-color: #f3f4f6;
+    /* Gris muy suave inicial */
     color: var(--primary-color);
     display: flex;
     align-items: center;
@@ -240,9 +264,12 @@ body {
 
 /* Animación del botón al hacer hover en LA TARJETA */
 .card:hover .card-icon {
-    background-color: var(--secondary-color); /* Se vuelve Turquesa */
-    color: white; /* Flecha blanca */
-    transform: rotate(-45deg); /* Efecto moderno de inclinación */
+    background-color: var(--secondary-color);
+    /* Se vuelve Turquesa */
+    color: white;
+    /* Flecha blanca */
+    transform: rotate(-45deg);
+    /* Efecto moderno de inclinación */
 }
 
 /* WhatsApp */
@@ -264,19 +291,32 @@ body {
     z-index: 100;
     transition: transform 0.3s;
 }
-.whatsapp-float:hover { transform: scale(1.1); }
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+}
 
 /* Responsive */
 @media (max-width: 768px) {
-    .featured-post { flex-direction: column; }
-    .featured-image { height: 250px; }
-    .featured-content { padding: 30px; }
+    .featured-post {
+        flex-direction: column;
+    }
+
+    .featured-image {
+        height: 250px;
+    }
+
+    .featured-content {
+        padding: 30px;
+    }
 }
 
 /* ... (Tus estilos anteriores se mantienen igual) ... */
 
 /* Utilidad para ocultar el texto completo en la tarjeta pequeña */
-.hidden { display: none; }
+.hidden {
+    display: none;
+}
 
 /* ==========================================
    ESTILOS DEL MODAL (TARJETA FLOTANTE)
@@ -289,10 +329,14 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6); /* Fondo negro semitransparente */
-    backdrop-filter: blur(5px); /* Efecto borroso elegante */
-    z-index: 2000; /* Encima de todo */
-    display: none; /* Oculto por defecto */
+    background-color: rgba(0, 0, 0, 0.6);
+    /* Fondo negro semitransparente */
+    backdrop-filter: blur(5px);
+    /* Efecto borroso elegante */
+    z-index: 2000;
+    /* Encima de todo */
+    display: none;
+    /* Oculto por defecto */
     justify-content: center;
     align-items: center;
     opacity: 0;
@@ -309,18 +353,22 @@ body {
 .modal-content {
     background: white;
     width: 90%;
-    max-width: 800px; /* Ancho máximo de lectura */
-    max-height: 90vh; /* No más alto que la pantalla */
+    max-width: 800px;
+    /* Ancho máximo de lectura */
+    max-height: 90vh;
+    /* No más alto que la pantalla */
     border-radius: 20px;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-    overflow-y: auto; /* Scroll interno si es muy largo */
+    overflow-y: auto;
+    /* Scroll interno si es muy largo */
     position: relative;
     transform: scale(0.9);
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .modal-overlay.active .modal-content {
-    transform: scale(1); /* Efecto Zoom In */
+    transform: scale(1);
+    /* Efecto Zoom In */
 }
 
 /* Botón X de cerrar */
@@ -340,7 +388,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: all 0.2s;
 }
 
@@ -368,7 +416,7 @@ body {
     bottom: 20px;
     left: 30px;
     font-size: 0.9rem;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Contenido del Texto */
@@ -403,7 +451,8 @@ body {
     font-size: 1.2rem;
 }
 
-.prose ul, .prose ol {
+.prose ul,
+.prose ol {
     margin-left: 20px;
     margin-bottom: 20px;
 }
@@ -437,7 +486,15 @@ body {
 
 /* Responsive del modal */
 @media (max-width: 768px) {
-    .modal-header-img { height: 200px; }
-    .modal-content h2 { font-size: 1.5rem; }
-    .modal-body-content { padding: 25px; }
+    .modal-header-img {
+        height: 200px;
+    }
+
+    .modal-content h2 {
+        font-size: 1.5rem;
+    }
+
+    .modal-body-content {
+        padding: 25px;
+    }
 }

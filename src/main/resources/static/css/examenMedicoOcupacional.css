@@ -10,6 +10,9 @@
     /* Fondo suave */
     --text-dark: #333;
     --white: #ffffff;
+        --purple-brand: #421D9D; /* Morado exacto */
+    --green-brand: #3bbca8;  /* Verde menta */
+    --green-whatsapp: #25d366;
 }
 
 body {
@@ -72,13 +75,20 @@ body {
 
 .btn-purple {
     background-color: var(--btn-purple);
+    padding: 18px 30px;
+    border-radius: 15px;
 }
 
 .btn-green {
+    
     background-color: var(--btn-green);
+    padding: 18px 30px;
+    border-radius: 15px;
+    
 }
 
 .subtitle {
+    
     padding: 15px 0;
     color: #2E1A5F;
     margin-bottom: 40px;
@@ -98,24 +108,50 @@ body {
     flex-wrap: wrap;
 }
 
-.stat-item {
+
+
+
+/* --- ESTADÍSTICAS --- */
+.stats-container {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 25px 50px;
     display: flex;
-    flex-direction: column;
+    justify-content: space-around;
     align-items: center;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative; /* Para z-index */
+}
+
+.stat-item {
+    text-align: center;
+    padding: 0 20px;
 }
 
 .stat-number {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: #2dc4ad;
-    /* Verde agua */
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--green-brand);
+    line-height: 1;
+    margin-bottom: 5px;
 }
 
-.stat-desc {
+.stat-label {
     font-size: 0.9rem;
-    color: #777;
-    margin-top: 5px;
+    color: #666;
+    font-weight: 500;
+    max-width: 150px;
+    margin: 0 auto;
 }
+
+.stat-divider {
+    width: 2px;
+    height: 60px;
+    background: #eee;
+}
+
 
 .divider {
     width: 2px;
@@ -130,6 +166,47 @@ body {
         display: block;
     }
 }
+/* --- ANIMACIONES DE ENTRADA CSS --- */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s forwards;
+}
+
+.animate-down {
+    opacity: 0;
+    transform: translateY(-30px);
+    animation: fadeInDown 0.8s forwards;
+}
+
+@keyframes fadeInUp {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .services-cards {
+        grid-template-columns: 1fr 1fr; /* 2 columnas en tablet */
+        gap: 20px;
+    }
+    .service-link:nth-child(odd) .service-card,
+    .service-link:nth-child(even) .service-card {
+        transform: none; /* Quitar zig-zag en tablet para que no se vea desordenado */
+    }
+}
+
+@media (max-width: 600px) {
+    .services-cards { grid-template-columns: 1fr; }
+    .hero-title { font-size: 1.8rem; }
+    .stats-container { flex-direction: column; gap: 30px; }
+    .stat-divider { display: none; }
+    .hero-buttons { flex-direction: column; width: 100%; }
+    .btn-hero { width: 100%; text-align: center; justify-content: center; }
+}
 
 /* --- SECCIÓN 2: TIPOS DE EXAMEN --- */
 .types-section {
@@ -143,6 +220,7 @@ body {
 }
 
 .section-title {
+    font-size: 30px;
     color: var(--primary-purple);
     font-weight: 800;
     text-transform: uppercase;

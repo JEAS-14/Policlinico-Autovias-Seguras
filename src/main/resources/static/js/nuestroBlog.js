@@ -1,6 +1,8 @@
+/* src/main/resources/static/js/nuestroBlog.js */
+
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- ANIMACIÓN SCROLL ---
+    // --- 1. ANIMACIÓN SCROLL ---
     const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
@@ -17,59 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(el);
     });
 
-    // --- FILTRADO (Corrección para links) ---
-    const badges = document.querySelectorAll('.badge');
-    const cards = document.querySelectorAll('.card');
-
-    badges.forEach(badge => {
-        badge.style.cursor = 'pointer';
-        
-        badge.addEventListener('click', (e) => {
-            e.preventDefault(); // Evita navegar al link del <a>
-            e.stopPropagation(); // Evita que el clic suba a la tarjeta padre
-            
-            const category = e.target.textContent.trim();
-
-            // Reset visual
-            badges.forEach(b => b.style.opacity = '0.5');
-            e.target.style.opacity = '1';
-
-            cards.forEach(card => {
-                // Buscamos el badge dentro del object para que funcione
-                const cardBadge = card.querySelector('.badge').textContent.trim();
-                
-                if (cardBadge === category) {
-                    card.style.display = 'flex'; // Flex para mantener diseño
-                    card.classList.remove('visible');
-                    setTimeout(() => card.classList.add('visible'), 100);
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        });
-    });
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-    
-    // --- 1. ANIMACIÓN SCROLL (Existente) ---
-    const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    const animatedElements = document.querySelectorAll('.card, .featured-post');
-    animatedElements.forEach(el => {
-        el.classList.add('hidden-scroll');
-        observer.observe(el);
-    });
-
-    // --- 2. FILTRADO (Existente, con corrección de link) ---
+    // --- 2. FILTRADO ---
     const badges = document.querySelectorAll('.badge');
     const cards = document.querySelectorAll('.card');
 
@@ -79,7 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault(); 
             e.stopPropagation();
             
-            // Si es un badge dentro del modal, no filtramos, solo cerramos modal? No, mejor ignorar
             if(badge.classList.contains('badge-overlay')) return;
 
             const category = e.target.textContent.trim();
@@ -99,21 +48,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    const headerTitle = document.querySelector('.blog-header h1');
-    headerTitle.style.cursor = 'pointer';
-    headerTitle.addEventListener('click', () => {
-        cards.forEach(card => card.style.display = 'flex');
-        badges.forEach(b => b.style.opacity = '1');
-    });
-
-
     // ===============================================
-    // 3. LÓGICA DEL MODAL (NUEVO)
+    // 3. LÓGICA DEL MODAL (TARJETA FLOTANTE)
     // ===============================================
     const modal = document.getElementById('news-modal');
     const closeModalX = document.querySelector('.close-modal');
     const closeModalBtn = document.querySelector('.close-modal-btn');
-    const articleTriggers = document.querySelectorAll('.article-trigger'); // Tarjetas
+    const articleTriggers = document.querySelectorAll('.article-trigger'); // Todas las tarjetas clicables
 
     // Elementos dentro del modal para rellenar
     const modalImg = document.getElementById('modal-img');
@@ -128,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const imgSrc = card.querySelector('.source-img').src;
         const badgeText = card.querySelector('.source-badge').textContent;
         const badgeClass = card.querySelector('.source-badge').classList[1]; // ej: badge-teal
-        const dateText = card.querySelector('.source-date').innerHTML; // innerHTML para el icono
+        const dateText = card.querySelector('.source-date').innerHTML; 
         const titleText = card.querySelector('.source-title').textContent;
         
         // El contenido completo oculto
@@ -180,5 +121,76 @@ document.addEventListener('DOMContentLoaded', () => {
             closeModal();
         }
     });
+    if (typeof particlesJS !== 'undefined') {
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 70, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#5836be" }, /* Tu color primario */
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.3, "random": false },
+                "size": { "value": 3, "random": true },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#2dc4ad", /* Tu color secundario */
+                    "opacity": 0.25,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 1.5,
+                    "direction": "none",
+                    "out_mode": "out"
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": { "enable": true, "mode": "grab" }, /* Los puntos se unen al mouse */
+                    "onclick": { "enable": true, "mode": "push" }
+                },
+                "modes": {
+                    "grab": { "distance": 200, "line_linked": { "opacity": 0.5 } }
+                }
+            },
+            "retina_detect": true
+        });
+    }
+
+    if (typeof particlesJS !== 'undefined') {
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 70, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#5836be" }, /* Tu color primario */
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.3, "random": false },
+                "size": { "value": 3, "random": true },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#2dc4ad", /* Tu color secundario */
+                    "opacity": 0.25,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 1.5,
+                    "direction": "none",
+                    "out_mode": "out"
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": { "enable": true, "mode": "grab" }, /* Los puntos se unen al mouse */
+                    "onclick": { "enable": true, "mode": "push" }
+                },
+                "modes": {
+                    "grab": { "distance": 200, "line_linked": { "opacity": 0.5 } }
+                }
+            },
+            "retina_detect": true
+        });
+    }
 
 });
