@@ -5,6 +5,7 @@
     --btn-green: #25D366;
     --bg-gradient-top: #e0f7fa;
     --bg-gradient-bottom: #d1c4e9;
+    --bg-green-brand: #3bbca8;
     --text-dark: #333;
     --white: #ffffff;
 }
@@ -26,17 +27,15 @@ body {
 
 /* --- HERO SECTION --- */
 .hero-brevete {
-    width: 100%;
-    min-height: 500px;
-    margin-top: 100px;
+    height: 680px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     background: linear-gradient(123.79deg, rgba(250, 255, 254, 0) 50.71%, rgba(255, 255, 255, 0.2) 52.17%),
         linear-gradient(280.42deg, rgba(59, 188, 168, 0.176) 13.12%, rgba(255, 251, 251, 0.2) 45.24%),
         linear-gradient(101.84deg, rgba(59, 188, 168, 0.384) 18.18%, rgba(238, 249, 247, 0.6) 46.15%),
         url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=1000&auto=format&fit=crop');
     background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    padding: 60px 20px 100px;
+    background-position: 50% 10%;
+    padding: 130px 100px;
     text-align: center;
 }
 
@@ -62,8 +61,8 @@ body {
 }
 
 .btn {
-    padding: 10px 25px;
-    border-radius: 5px;
+    padding: 18px 30px;
+    border-radius: 15px;
     text-decoration: none;
     color: white;
     font-weight: bold;
@@ -71,41 +70,52 @@ body {
 
 .btn-purple {
     background-color: var(--btn-purple);
+
 }
 
 .btn-green {
     background-color: var(--btn-green);
 }
 
+.subtitle {
+    padding: 15px 0;
+    color: #2E1A5F;
+    margin-bottom: 40px;
+    font-style: italic;
+}
+
 /* Estadísticas (Igual que EMO) */
 .stats-box {
     background: white;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
     display: flex;
     justify-content: space-around;
-    padding: 20px;
-    margin-top: 40px;
+    padding: 20px 50px;
     align-items: center;
     flex-wrap: wrap;
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
 }
 
 .stat-item {
-    display: flex;
-    flex-direction: column;
+    padding: 0 20px;
     align-items: center;
 }
 
 .stat-number {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #2dc4ad;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--bg-green-brand);
+    line-height: 1;
+    margin-bottom: 5px;
 }
 
 .divider {
-    width: 1px;
-    height: 40px;
-    background-color: #ddd;
+    width: 2px;
+    height: 60px;
+    background-color: #eee;
 }
 
 /* --- SECCIONES DE CATEGORÍAS --- */
@@ -116,6 +126,13 @@ body {
 .section-header {
     text-align: center;
     margin-bottom: 30px;
+}
+
+.header-expandido {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 5px;
 }
 
 .header-icon {
@@ -146,10 +163,15 @@ body {
     border-radius: 15px;
     padding: 25px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    transition: all 0.4s ease;
     position: relative;
     overflow: hidden;
     cursor: pointer;
+    min-height: 160px;
+    /* Mantiene un área de detección mínima */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    transition: all 0.4s ease;
 }
 
 .license-card.card-expandable {
@@ -161,10 +183,10 @@ body {
 }
 
 .license-card:hover {
-    transform: scale(1.08);
+    transform: scale(1.05);
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-    z-index: 10;
-    position: relative;
+    z-index: 100;
+    background: linear-gradient(135deg, #3bbca8 0%, #5dd5c3 100%);
 }
 
 .card-expandable:hover {
@@ -176,17 +198,22 @@ body {
     display: flex;
     gap: 20px;
     align-items: center;
+    opacity: 1;
+    visibility: visible;
     transition: opacity 0.3s ease;
-    padding: 15px 0;
 }
 
 .card-expandable .card-simple {
     opacity: 1;
+    transition: opacity 0.3s ease, max-height 0.3s ease;
+    max-height: 200px;
 }
 
 .card-expandable:hover .card-simple {
     opacity: 0;
+    visibility: hidden;
     position: absolute;
+    /* Clave: deja de ocupar espacio para que no haya saltos */
     pointer-events: none;
 }
 
@@ -194,23 +221,26 @@ body {
 .card-expanded {
     opacity: 0;
     max-height: 0;
+    visibility: hidden;
     overflow: hidden;
-    transition: opacity 0.3s ease, max-height 0.4s ease;
+    transition: opacity 0.3s ease, max-height 0.5s ease, visibility 0.3s;
 }
 
 .card-expandable:hover .card-expanded {
     opacity: 1;
-    max-height: 600px;
+    max-height: 1000px;
+    /* Valor alto para permitir todo el texto */
+    visibility: visible;
 }
 
 .row-flex {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    height: 100%;
+    width: 100%;
 }
 
-.row-flex > div:first-child {
+.row-flex>div:first-child {
     display: flex;
     align-items: center;
     gap: 15px;
@@ -327,18 +357,17 @@ body {
     border-radius: 8px;
     font-weight: bold;
     cursor: pointer;
-    font-size: 0.95rem;
     text-transform: uppercase;
     width: 100%;
-    transition: all 0.3s ease;
-    margin-top: auto;
+    margin-top: 10px;
+    margin-bottom: 5px;
     box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+    transition: all 0.3s ease;
 }
 
 .btn-ver-mas:hover {
     background-color: #1fa855;
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
 }
 
 /* --- INFORMACIÓN ADICIONAL (LINKS ABAJO) --- */
@@ -401,11 +430,6 @@ body {
 }
 
 /* Animaciones JS */
-.slide-up {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.6s ease;
-}
 
 .fade-in {
     opacity: 0;
@@ -414,13 +438,17 @@ body {
 
 .visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0px);
 }
 
-.stat-number {
-    display: inline-block;
-    min-width: 50px;
+.stat-desc {
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: 500;
+    max-width: 150px;
+    margin: 0 auto;
 }
+
 
 /* Botón flotante */
 .whatsapp-float {

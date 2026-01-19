@@ -257,13 +257,10 @@ body {
 }
 
 .package-card:hover {
-    transform: translateY(-10px);
+    transform: scale(1.05);
+    border: 2px solid var(--btn-purple);
 }
 
-.package-card.popular {
-    border: 2px solid var(--btn-purple);
-    transform: scale(1.05);
-}
 
 /* Destacado */
 
