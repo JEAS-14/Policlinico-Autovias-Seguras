@@ -1,222 +1,167 @@
 /* ===========================================
-   NAVBAR MEJORADO (Logo Grande + Espaciado)
+   NAVBAR AISLADO (Estilos únicos)
    =========================================== */
-
 :root {
-    --purple-brand: #2E1A5F;
-    --teal-brand: #3BBCA8;
-    --dark-text: #333333;
-    --nav-height: 100px; /* Aumentamos la altura de la barra */
+    --nav-purple: #2E1A5F;
+    --nav-teal: #3BBCA8;
+    --nav-height: 100px;
 }
 
-/* ARREGLO DEL SCROLL: Esto evita que el menú tape el título al navegar */
+/* Fix para el scroll */
 html {
-    scroll-behavior: smooth;
-    scroll-padding-top: var(--nav-height); /* Magia: El scroll frena antes del menú */
+    scroll-padding-top: var(--nav-height);
 }
 
 .navbar {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+    top: 0; left: 0; right: 0;
     background-color: #ffffff;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-    height: var(--nav-height); /* Barra más alta para el logo grande */
+    height: var(--nav-height);
     z-index: 1000;
     display: flex;
     justify-content: center;
 }
 
-/* CONTENEDOR: Aquí damos el aire a los costados */
 .nav-container {
     width: 100%;
-    max-width: 1400px; /* Hacemos el contenedor más ancho */
-    padding: 0 50px;   /* MÁS ESPACIO a los lados (antes era 20px) */
+    max-width: 1400px;
+    padding: 0 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 100%;
 }
 
-/* --- LOGO GRANDE --- */
+/* --- LOGO --- */
 .logo {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    margin-right: auto; /* CAMBIO: Empuja todo a la derecha */
-    padding-right: 0px;
+    display: flex; align-items: center;
+    text-decoration: none; margin-right: auto;
 }
-
 .logo img {
-    height: 85px; /* AUMENTADO (Antes 55px) */
-    width: auto;
+    height: 85px; width: auto;
     object-fit: contain;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s;
 }
-
-.logo:hover img {
-    transform: scale(1.05); /* Pequeño efecto zoom al pasar mouse */
-}
+.logo:hover img { transform: scale(1.05); }
 
 /* --- MENÚ --- */
 .nav-menu {
-    display: flex;
-    list-style: none;
-    gap: 40px; /* Más espacio entre las palabras del menú */
-    margin: 0;
-    padding: 0;
-    flex: 1; /* Ocupa el espacio disponible */
-    justify-content: center;
+    display: flex; list-style: none; gap: 40px;
+    margin: 0; padding: 0; flex: 1; justify-content: center;
 }
 
 .nav-menu a {
     font-family: 'Poppins', sans-serif;
-    text-decoration: none;
-    color: var(--dark-text);
-    font-size: 1rem; /* Letra un poquito más grande */
-    font-weight: 500;
-    transition: color 0.3s ease;
-    position: relative;
+    text-decoration: none; color: #333;
+    font-size: 1rem; font-weight: 500;
+    position: relative; transition: color 0.3s;
 }
 
-/* Línea animada debajo del link al pasar el mouse */
+/* Línea animada (No afecta a otros links) */
 .nav-menu a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 3px;
-    bottom: -5px;
-    left: 0;
-    background-color: var(--teal-brand);
-    transition: width 0.3s ease;
-    border-radius: 2px;
+    content: ''; position: absolute;
+    width: 0; height: 3px; bottom: -5px; left: 0;
+    background-color: var(--nav-teal);
+    transition: width 0.3s;
 }
+.nav-menu a:hover::after, .nav-menu a.active-link::after { width: 100%; }
+.nav-menu a.active-link { color: var(--nav-purple); font-weight: 700; }
 
-.nav-menu a:hover::after,
-.nav-menu a.active-link::after {
-    width: 100%;
-}
-
-.nav-menu a.active-link {
-    color: var(--purple-brand);
-    font-weight: 700;
-}
-
-/* --- BOTONES --- */
+/* --- BOTONES DEL NAVBAR (AQUÍ ESTÁ LA SOLUCIÓN) --- */
+/* Usamos clases ÚNICAS. No uses ".btn" aquí. */
 .nav-buttons {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    margin-left: auto; /* CAMBIO: Los botones a la derecha */
-    padding-left: 40px;
+    display: flex; gap: 15px; align-items: center;
+    margin-left: auto; padding-left: 40px;
 }
 
-.btn {
+/* Botón 1: Cotiza (Estilo único para navbar) */
+.btn-nav-cotiza {
     display: inline-block;
-    padding: 12px 30px; /* Botones más grandes */
+    padding: 10px 25px;       /* Tamaño específico para navbar */
+    border-radius: 8px;       /* Borde cuadrado/redondeado, diferente al Hero */
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    background-color: var(--nav-purple);
+    color: white;
+    border: 2px solid var(--nav-purple); /* Borde sólido */
+    transition: all 0.3s ease;
+}
+
+.btn-nav-cotiza:hover {
+    background-color: transparent;
+    color: var(--nav-purple);
+    transform: translateY(-2px);
+}
+
+/* Botón 2: Resultados (Estilo único para navbar) */
+.btn-nav-resultados {
+    display: inline-block;
+    padding: 10px 25px;
     border-radius: 8px;
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 0.9rem;
-    text-transform: uppercase;
+    background-color: var(--nav-teal);
+    color: white;
+    border: 2px solid var(--nav-teal);
     transition: all 0.3s ease;
-    text-align: center;
 }
 
-.btn-cotiza {
-    background-color: var(--purple-brand);
-    color: #ffffff;
-    border: 1px solid var(--purple-brand);
-}
-
-.btn-cotiza:hover {
-    background-color: #24144d;
+.btn-nav-resultados:hover {
+    background-color: transparent;
+    color: var(--nav-teal);
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(46, 26, 95, 0.3);
-}
-
-.btn-resultados {
-    background-color: var(--teal-brand);
-    color: #ffffff;
-    border: 1px solid var(--teal-brand);
-}
-
-.btn-resultados:hover {
-    background-color: #2da893;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(59, 188, 168, 0.4);
 }
 
 /* --- HAMBURGUESA --- */
 .hamburger {
-    display: none;
-    flex-direction: column;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    gap: 6px;
+    display: none; flex-direction: column;
+    background: transparent; border: none; cursor: pointer; gap: 6px;
 }
-
 .hamburger span {
-    width: 30px;
-    height: 3px;
-    background-color: var(--purple-brand);
-    border-radius: 2px;
-    transition: all 0.3s ease;
+    width: 30px; height: 3px; background-color: var(--nav-purple);
+    transition: 0.3s;
 }
 
 /* --- RESPONSIVE --- */
 @media (max-width: 1200px) {
-    .nav-container { padding: 0 30px; }
+    .nav-container { padding: 0 20px; }
     .nav-menu { gap: 20px; }
-    .logo img { height: 60px; }
 }
 
 @media (max-width: 992px) {
     .navbar { height: 80px; }
     .hamburger { display: flex; }
+    .logo img { height: 50px; }
 
-    /* Menú Móvil Mejorado */
+    /* Menú Móvil */
     .nav-menu {
-        position: fixed;
-        top: 80px;
-        right: -100%;
-        width: 100%;
-        height: calc(100vh - 80px); /* Ocupa toda la pantalla restante */
-        background-color: #ffffff;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center; /* Centrado vertical */
-        gap: 30px;
-        transition: right 0.4s ease;
-        box-shadow: none;
+        position: fixed; top: 80px; right: -100%;
+        width: 100%; height: calc(100vh - 80px);
+        background: white; flex-direction: column;
+        align-items: center; justify-content: center;
+        transition: 0.4s;
     }
-    
     .nav-menu.active { right: 0; }
-    .nav-menu a { font-size: 1.5rem; } /* Letra grande en móvil */
+    .nav-menu a { font-size: 1.5rem; }
 
     /* Botones Móvil */
     .nav-buttons {
-        position: fixed;
-        bottom: 0;
-        right: -100%;
-        width: 100%;
-        background-color: #f9f9f9;
-        padding: 20px;
-        margin: 0;
-        flex-direction: column;
-        transition: right 0.4s ease;
-        z-index: 1001; /* Asegurar que se vean */
+        position: fixed; bottom: 0; right: -100%;
+        width: 100%; background: #f9f9f9;
+        padding: 20px; flex-direction: column;
+        transition: 0.4s; z-index: 1001;
     }
-
     .nav-buttons.active { right: 0; }
-    .btn { width: 100%; }
     
-    .logo img { height: 50px; }
-    
-    /* Animación X de hamburguesa */
+    /* Hacemos que los botones ocupen todo el ancho en móvil */
+    .btn-nav-cotiza, .btn-nav-resultados { width: 100%; text-align: center; }
+
+    /* Animación Hamburguesa */
     .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 7px); }
     .hamburger.active span:nth-child(2) { opacity: 0; }
     .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -7px); }

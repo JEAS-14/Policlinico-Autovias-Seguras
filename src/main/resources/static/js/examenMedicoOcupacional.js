@@ -57,3 +57,28 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Seleccionamos todos los items que tienen la clase animable
+    const scrollItems = document.querySelectorAll('.js-scroll-item');
+
+    const observerOptions = {
+        root: null,
+        threshold: 0.2 // Se activa cuando se ve el 20% del elemento
+    };
+
+    const scrollObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Quitamos el estado oculto y añadimos el visible
+                entry.target.classList.remove('hidden-state');
+                entry.target.classList.add('visible-state');
+                observer.unobserve(entry.target); // Dejamos de observar una vez animado
+            }
+        });
+    }, observerOptions);
+
+    scrollItems.forEach(item => {
+        scrollObserver.observe(item);
+    });
+});
