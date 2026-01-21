@@ -15,8 +15,8 @@ public class ServiciosController {
      * Examen Médico Ocupacional (EMO)
      * URL: http://localhost:8080/servicios/examen-ocupacional
      */
-    @GetMapping("/examen-ocupacional")
-    public String examenOcupacional() {
+    @GetMapping("/examenMedicoOcupacional")
+    public String examenMedicoOcupacional() {
         return "/examenMedicoOcupacional";
     }
     
@@ -24,8 +24,8 @@ public class ServiciosController {
      * Examen Médico para Brevete (Licencia de Conducir)
      * URL: http://localhost:8080/servicios/examen-brevete
      */
-    @GetMapping("/examen-brevete")
-    public String examenBrevete() {
+    @GetMapping("/examenMedicoBrevete")
+    public String examenMedicoBrevete() {
         return "/examenMedicoBrevete";
     }
     
@@ -33,7 +33,7 @@ public class ServiciosController {
      * Examen SUCAMEC
      * URL:  http://localhost:8080/servicios/examen-sucamec
      */
-    @GetMapping("/examen-sucamec")
+    @GetMapping("/examenSucamec")
     public String examenSucamec() {
         return "/examenSucamec";
     }
@@ -42,7 +42,7 @@ public class ServiciosController {
      * Escuela de Conductores
      * URL: http://localhost:8080/servicios/escuela-conductores
      */
-    @GetMapping("/escuela-conductores")
+    @GetMapping("/escuelaConductores")
     public String escuelaConductores() {
         return "/escuelaConductores";
     }
