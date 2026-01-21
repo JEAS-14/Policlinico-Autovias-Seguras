@@ -1,45 +1,15 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Navbar Fragment</title>
-</head>
 <body>
-    
-    <nav class="navbar" th:fragment="navbar">
-        <div class="nav-container">
-            
-            <a th:href="@{/}" class="logo">
-                <img src="https://res.cloudinary.com/dtozni6ik/image/upload/v1767591606/Gemini_Generated_Image_f1ydyzf1ydyzf1yd_2_si4mvj.png" 
-                     alt="Policlínico Autovías Seguras">
-            </a>
-            
-            <ul class="nav-menu">
-                <li><a th:href="@{/}">Inicio</a></li>
-                <li><a th:href="@{/nosotros}">Nosotros</a></li>
-                <li><a th:href="@{/servicios}">Nuestros Servicios</a></li>
-                <li><a th:href="@{/preguntas-frecuentes}">Preguntas Frecuentes</a></li>
-                <li><a th:href="@{/blog}">Nuestro Blog</a></li>
-            </ul>
 
-            <div class="nav-buttons">
-                <a th:href="@{/consulta/cotizar}" class="btn btn-cotiza">COTIZA</a>
-                <a th:href="@{/admin/login}" class="btn btn-resultados">ADMIN</a>
-            </div>
-
-            <button class="hamburger" id="hamburger" aria-label="Abrir menú">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
 <nav class="navbar" th:fragment="navbar">
     <div class="nav-container">
-        
+
         <a th:href="@{/}" class="logo">
-            <img src="https://res.cloudinary.com/dtozni6ik/image/upload/v1767591606/Gemini_Generated_Image_f1ydyzf1ydyzf1yd_2_si4mvj.png" 
+            <img src="https://res.cloudinary.com/dtozni6ik/image/upload/v1767591606/Gemini_Generated_Image_f1ydyzf1ydyzf1yd_2_si4mvj.png"
                  alt="Policlínico Autovías Seguras">
         </a>
-        
+
         <ul class="nav-menu">
             <li><a th:href="@{/}">Inicio</a></li>
             <li><a th:href="@{/nosotros}">Nosotros</a></li>
@@ -50,51 +20,17 @@
 
         <div class="nav-buttons">
             <a th:href="@{/consulta/cotizar}" class="btn-nav-cotiza">COTIZA</a>
-            <a th:href="@{/consulta/resultados}" class="btn-nav-resultados">RESULTADOS</a>
+            <a th:href="@{/admin/login}" class="btn-nav-resultados">ADMIN</a>
         </div>
 
-    <style>
-        /* Estilos para el botón de admin */
-        .btn-admin {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
-            color: white !important;
-            border: 2px solid transparent !important;
-            transition: all 0.3s ease !important;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .btn-admin:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-            border-color: #667eea !important;
-        }
-
-        .admin-icon {
-            font-size: 1.1em;
-            display: inline-block;
-        }
-
-        /* Responsive para el botón admin */
-        @media (max-width: 768px) {
-            .nav-buttons {
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            .btn-admin {
-                width: 100%;
-                justify-content: center;
-            }
-        }
-    </style>
-
-</body>
-</html>
         <button class="hamburger" id="hamburger" aria-label="Abrir menú">
-            <span></span><span></span><span></span>
+            <span></span>
+            <span></span>
+            <span></span>
         </button>
 
     </div>
 </nav>
+
+</body>
+</html>
