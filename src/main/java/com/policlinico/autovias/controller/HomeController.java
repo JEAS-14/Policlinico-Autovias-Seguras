@@ -33,15 +33,15 @@ public class HomeController {
      */
     @GetMapping("/nosotros")
     public String nosotros() {
-        return "Nosotros"; // templates/Nosotros. html (con mayúscula)
+        return "nosotros"; // templates/Nosotros. html (con mayúscula)
     }
     
     /**
      * Página de Servicios
      * URL:  http://localhost:8080/servicios
      */
-    @GetMapping("/servicios")
-    public String servicios() {
+    @GetMapping("/nuestrosServicios")
+    public String nuestrosServicios() {
         return "nuestrosServicios";
     }
     
@@ -49,7 +49,7 @@ public class HomeController {
      * Preguntas Frecuentes
      * URL: http://localhost:8080/preguntas-frecuentes
      */
-    @GetMapping("/preguntas-frecuentes")
+    @GetMapping("/preguntasFrecuentes")
     public String preguntasFrecuentes() {
         return "preguntasFrecuentes";
     }
@@ -58,8 +58,8 @@ public class HomeController {
      * Blog
      * URL: http://localhost:8080/blog
      */
-    @GetMapping("/blog")
-    public String blog() {
+    @GetMapping("/nuestroBlog")
+    public String nuestroBlog() {
         return "nuestroBlog";
     }
 }

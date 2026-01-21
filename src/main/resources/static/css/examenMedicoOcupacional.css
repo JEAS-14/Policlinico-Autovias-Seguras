@@ -1,17 +1,13 @@
 /* --- Variables y Reset Básico --- */
 :root {
     --primary-purple: #4a148c;
-    /* Morado oscuro del texto */
     --btn-purple: #5836be;
-    /* Morado botón */
     --btn-green: #25D366;
-    /* Verde WhatsApp */
     --light-blue-bg: #e3f2fd;
-    /* Fondo suave */
     --text-dark: #333;
     --white: #ffffff;
-        --purple-brand: #421D9D; /* Morado exacto */
-    --green-brand: #3bbca8;  /* Verde menta */
+    --purple-brand: #421D9D;
+    --green-brand: #3bbca8;
     --green-whatsapp: #25d366;
 }
 
@@ -19,6 +15,8 @@ body {
     background-color: var(--light-blue-bg);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: var(--text-dark);
+    margin: 0;
+    overflow-x: hidden; /* Evita que la página se mueva a los lados en celular */
 }
 
 .container {
@@ -27,28 +25,85 @@ body {
     padding: 0 20px;
 }
 
-/* --- SECCIÓN 1: HERO --- */
+/* --- 1. BOTONES (ESTRATEGIA SEGURA) --- */
+
+/* .btn: Clase base simple (segura para el Navbar) */
+.btn {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+}
+
+/* .btn-hero: Clase ÚNICA para los botones grandes de la portada */
+/* IMPORTANTE: Agrega la clase "btn-hero" a los botones de tu HTML en la sección Hero */
+.btn-hero {
+    padding: 15px 30px;
+    border-radius: 15px;       /* Bordes muy redondos */
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: white;
+    
+    /* El truco del borde transparente para que no "bailen" al pasar el mouse */
+    border: 2px solid transparent; 
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Colores de botones */
+.btn-purple { background-color: var(--btn-purple); color: white; }
+.btn-green { background-color: var(--btn-green); color: white; }
+
+/* Hover solo para botones Hero */
+.btn-hero:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* --- 2. SECCIÓN HERO (ARREGLADA) --- */
 .hero-emo {
-    /* Fondo con imagen de médicos y degradado superpuesto */
-    height: 720px;
-    background: linear-gradient(123.79deg, rgba(250, 255, 254, 0) 50.71%, rgba(255, 255, 255, 0.2) 52.17%),
+    position: relative;
+    width: 100%;
+    
+    /* CORRECCIÓN: Usamos min-height para que crezca si el contenido lo necesita */
+    /* Ya no usamos height fijo de 720px que rompía el celular */
+    min-height: 85vh; 
+    
+    /* TUS DEGRADADOS ORIGINALES (INTACTOS) */
+    background: 
+        linear-gradient(123.79deg, rgba(250, 255, 254, 0) 50.71%, rgba(255, 255, 255, 0.2) 52.17%),
         linear-gradient(280.42deg, rgba(59, 188, 168, 0.176) 13.12%, rgba(255, 251, 251, 0.2) 45.24%),
         linear-gradient(101.84deg, rgba(59, 188, 168, 0.582) 18.18%, rgba(238, 249, 247, 0.6) 46.15%),
         url('https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=1000&auto=format&fit=crop');
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    
     background-size: cover;
-    background-position: 50% 10%;
-    padding: 130px 100px;
-    /* Padding extra abajo para la caja flotante */
+    background-position: center top; /* Enfocamos la parte de arriba de la foto */
+    
+    /* Centrado del contenido */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    /* CORRECCIÓN: Padding responsivo */
+    /* Arriba 140px (espacio navbar), Lados 20px (para que entre en celular), Abajo 60px */
+    padding: 140px 20px 60px; 
     text-align: center;
+}
+
+.hero-content {
+    width: 100%;
+    max-width: 900px; /* Limita el ancho del texto para que se lea bien */
 }
 
 .hero-content h1 {
     color: var(--primary-purple);
     font-weight: 800;
-    font-size: 2.2rem;
-    max-width: 800px;
-    margin: 0 auto 15px;
+    font-size: 2.5rem;
+    margin: 0 auto 20px;
+    line-height: 1.2;
 }
 
 .hero-content h3 {
@@ -61,73 +116,35 @@ body {
     display: flex;
     justify-content: center;
     gap: 20px;
-    flex-wrap: wrap;
-}
-
-.btn {
-    padding: 12px 30px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-    color: white;
-    display: inline-block;
-}
-
-.btn-purple {
-    background-color: var(--btn-purple);
-    padding: 18px 30px;
-    border-radius: 15px;
-}
-
-.btn-green {
-    
-    background-color: var(--btn-green);
-    padding: 18px 30px;
-    border-radius: 15px;
-    
+    flex-wrap: wrap; /* Permite que bajen si no hay espacio */
 }
 
 .subtitle {
-    
     padding: 15px 0;
     color: #2E1A5F;
     margin-bottom: 40px;
     font-style: italic;
+    font-size: 1.2rem;
 }
 
-/* Caja de Estadísticas (Blanca con sombra) */
-.stats-box {
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+/* --- 3. ESTADÍSTICAS (ARREGLADAS) --- */
+.stats-container {
+       background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
     display: flex;
     justify-content: space-around;
-    padding: 25px;
-    margin-top: 30px;
+    padding: 20px 50px;
     align-items: center;
     flex-wrap: wrap;
-}
-
-
-
-
-/* --- ESTADÍSTICAS --- */
-.stats-container {
-    background: #ffffff;
-    border-radius: 20px;
-    padding: 25px 50px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
     max-width: 900px;
     margin: 0 auto;
-    position: relative; /* Para z-index */
+    position: relative;
 }
 
 .stat-item {
     text-align: center;
-    padding: 0 20px;
+    padding: 10px;
 }
 
 .stat-number {
@@ -147,25 +164,70 @@ body {
 }
 
 .stat-divider {
-    width: 2px;
-    height: 60px;
+    width: 1px;
+    height: 50px;
     background: #eee;
 }
 
+/* --- 4. MEDIA QUERY (RESPONSIVE PARA CELULAR) --- */
+@media (max-width: 768px) {
+    
+    /* Ajustes del Hero en celular */
+    .hero-emo {
+        padding-top: 120px; /* Menos espacio arriba */
+        background-position: center center; /* Centrar imagen */
+    }
 
-.divider {
-    width: 2px;
-    height: 50px;
-    background-color: #eee;
-    display: none;
-    /* Oculto en móvil */
-}
+    /* Texto más pequeño para que quepa */
+    .hero-content h1 {
+        font-size: 1.8rem; 
+    }
+    
+    /* Botones uno debajo del otro y ancho completo */
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .btn-hero {
+        width: 100%;
+        margin-bottom: 10px;
+    }
 
-@media(min-width: 768px) {
-    .divider {
-        display: block;
+    /* Estadísticas en columna */
+    .stats-container {
+        flex-direction: column;
+        gap: 25px;
+        padding: 25px;
+    }
+
+    /* Ocultar líneas divisorias en celular */
+    .stat-divider {
+        display: none;
     }
 }
+
+/* --- Animaciones (Mantener igual) --- */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s forwards;
+}
+
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 0.8s forwards;
+}
+
+.animate-down {
+    opacity: 0;
+    transform: translateY(-30px);
+    animation: fadeInDown 0.8s forwards;
+}
+
+@keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeInDown { to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { to { opacity: 1; } }
 /* --- ANIMACIONES DE ENTRADA CSS --- */
 .fade-in-up {
     opacity: 0;
@@ -285,6 +347,8 @@ body {
 }
 
 /* --- SECCIÓN 3: PROTOCOLO --- */
+
+
 .protocol-section {
 
     padding: 60px 0 100px;
@@ -313,17 +377,31 @@ body {
 .circle-icon {
     width: 90px;
     height: 90px;
-    border-radius: 15px;
-    /* Cuadrado redondeado */
+    border-radius: 15px; /* Cuadrado redondeado */
     background: white;
     border: 5px solid var(--primary-purple);
-    color: var(--primary-purple);
+    
+    /* Flexbox para centrar la imagen */
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 3.5rem;
+    
+    /* Agregamos padding para que la imagen no choque con el borde */
+    padding: 15px; 
+    box-sizing: border-box; /* Asegura que el padding no agrande el cuadro de 90px */
+    
     margin-bottom: 15px;
     box-shadow: 0 5px 10px rgba(74, 20, 140, 0.2);
+    
+    /* Quitamos font-size y color porque ya no son fuentes, son imágenes */
+}
+
+/* --- NUEVA REGLA PARA LAS IMÁGENES --- */
+.circle-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* IMPORTANTE: Hace que la imagen se ajuste sin estirarse ni deformarse */
+    display: block;
 }
 
 .p-item span {
@@ -336,7 +414,12 @@ body {
     margin-top: 50px;
 }
 
+
+
+
+
 /* Pasos (Timeline) */
+
 .steps-container {
     display: flex;
     justify-content: center;
