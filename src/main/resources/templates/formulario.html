@@ -10,10 +10,47 @@
     <link rel="stylesheet" th:href="@{/css/fragments/footer.css}">
     <link rel="stylesheet" th:href="@{/css/formulario.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* Estilos para mensajes de error de validación */
+        .error {
+            color: #dc3545;
+            font-size: 0.875rem;
+            display: block;
+            margin-top: 5px;
+        }
+        
+        .form-group input.error,
+        .form-group select.error,
+        .form-group textarea.error {
+            border-color: #dc3545;
+        }
+        
+        /* Mensaje de alerta general */
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .alert-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
 </head>
 <body>
 
-    <div th:replace="~{fragments/navbar ::  navbar}"></div>
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
 
     <main class="contact-main">
         
@@ -48,44 +85,119 @@
             </div>
 
             <div class="contact-form">
-                <form id="contactForm">
+                <!-- Mensaje de validación general (si existe) -->
+                <div th:if="${mensaje}" 
+                     th:class="${tipoMensaje == 'success' ? 'alert alert-success' : 'alert alert-error'}"
+                     th:text="${mensaje}">
+                </div>
+                
+                <form id="contactForm" 
+                      th:action="@{/consulta/enviar}" 
+                      th:object="${consultaDTO}" 
+                      method="post">
+                    
                     <div class="form-row">
                         <div class="form-group">
                             <label for="nombre">Nombre</label>
-                            <input type="text" id="nombre" placeholder="Ejm. Alex" required>
+                            <input type="text" 
+                                   id="nombre" 
+                                   th:field="*{nombre}" 
+                                   th:classappend="${#fields.hasErrors('nombre')} ? 'error' : ''"
+                                   placeholder="Ejm. Alex" 
+                                   required>
+                            <span class="error" 
+                                  th:if="${#fields.hasErrors('nombre')}" 
+                                  th:errors="*{nombre}">
+                            </span>
                         </div>
+                        
                         <div class="form-group">
-                            <label for="apellidos">Apellidos</label>
-                            <input type="text" id="apellidos" placeholder="Ejm. Cruz Valerio" required>
+                            <label for="apellido">Apellidos</label>
+                            <input type="text" 
+                                   id="apellido" 
+                                   th:field="*{apellido}" 
+                                   th:classappend="${#fields.hasErrors('apellido')} ? 'error' : ''"
+                                   placeholder="Ejm. Cruz Valerio" 
+                                   required>
+                            <span class="error" 
+                                  th:if="${#fields.hasErrors('apellido')}" 
+                                  th:errors="*{apellido}">
+                            </span>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
                             <label for="email">Correo Electrónico</label>
-                            <input type="email" id="email" placeholder="Ejm. Alexcruz123@gmail.com" required>
+                            <input type="email" 
+                                   id="email" 
+                                   th:field="*{email}" 
+                                   th:classappend="${#fields.hasErrors('email')} ? 'error' : ''"
+                                   placeholder="Ejm. Alexcruz123@gmail.com" 
+                                   required>
+                            <span class="error" 
+                                  th:if="${#fields.hasErrors('email')}" 
+                                  th:errors="*{email}">
+                            </span>
                         </div>
+                        
                         <div class="form-group">
-                            <label for="celular">Número De Celular</label>
-                            <input type="tel" id="celular" placeholder="Ejm. 999 888 999" required>
+                            <label for="telefono">Número De Celular</label>
+                            <input type="tel" 
+                                   id="telefono" 
+                                   th:field="*{telefono}" 
+                                   th:classappend="${#fields.hasErrors('telefono')} ? 'error' : ''"
+                                   placeholder="Ejm. 999888999" 
+                                   required
+                                   maxlength="9"
+                                   pattern="[0-9]{9}">
+                            <span class="error" 
+                                  th:if="${#fields.hasErrors('telefono')}" 
+                                  th:errors="*{telefono}">
+                            </span>
                         </div>
                     </div>
 
                     <div class="form-group full-width">
-                        <label for="servicio">Servicio De Interés</label>
-                        <select id="servicio">
-                            <option value="" disabled selected>Selecciona Un Servicio</option>
-                            <option value="emo">Examen Médico Ocupacional</option>
-                            <option value="brevete">Licencia de Conducir</option>
-                            <option value="sucamec">Examen SUCAMEC</option>
-                            <option value="escuela">Escuela de Conductores</option>
-                            <option value="otros">Otros</option>
+                        <label for="tipoConsulta">Servicio De Interés</label>
+                        <select id="tipoConsulta" 
+                                th:field="*{tipoConsulta}"
+                                th:classappend="${#fields.hasErrors('tipoConsulta')} ? 'error' : ''"
+                                required>
+                            <option value="" disabled>Selecciona Un Servicio</option>
+                            <option value="Examen Médico Ocupacional">Examen Médico Ocupacional</option>
+                            <option value="Licencia de Conducir">Licencia de Conducir</option>
+                            <option value="Examen SUCAMEC">Examen SUCAMEC</option>
+                            <option value="Escuela de Conductores">Escuela de Conductores</option>
+                            <option value="Otros">Otros</option>
                         </select>
+                        <span class="error" 
+                              th:if="${#fields.hasErrors('tipoConsulta')}" 
+                              th:errors="*{tipoConsulta}">
+                        </span>
                     </div>
 
                     <div class="form-group full-width">
                         <label for="mensaje">Mensaje</label>
-                        <textarea id="mensaje" rows="4" placeholder="Escribe tu consulta aquí..."></textarea>
+                        <textarea id="mensaje" 
+                                  th:field="*{mensaje}" 
+                                  th:classappend="${#fields.hasErrors('mensaje')} ? 'error' : ''"
+                                  rows="4" 
+                                  placeholder="Escribe tu consulta aquí..."
+                                  required>
+                        </textarea>
+                        <span class="error" 
+                              th:if="${#fields.hasErrors('mensaje')}" 
+                              th:errors="*{mensaje}">
+                        </span>
+                    </div>
+
+                    <!-- Campo opcional: Empresa (si lo quieres agregar) -->
+                    <div class="form-group full-width" style="display: none;">
+                        <input type="text" 
+                               id="empresa" 
+                               th:field="*{empresa}" 
+                               placeholder="Empresa (opcional)">
                     </div>
 
                     <div class="form-footer">
@@ -108,7 +220,7 @@
 
     <div th:replace="~{fragments/footer :: footer}"></div>
     
-     <script th:src="@{/js/fragments/navbar.js}"></script>
+    <script th:src="@{/js/fragments/navbar.js}"></script>
     <script th:src="@{/js/formulario.js}"></script>
         
 </body>

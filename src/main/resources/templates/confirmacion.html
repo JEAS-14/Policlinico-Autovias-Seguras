@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmación - Policlínico Autovías Seguras</title>
+    <link rel="stylesheet" th:href="@{/css/fragments/navbar.css}">
+    <link rel="stylesheet" th:href="@{/css/fragments/footer.css}">
+    <style>
+        .confirmacion-container {
+            max-width: 600px;
+            margin: 100px auto;
+            padding: 40px;
+            text-align: center;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .success-icon {
+            font-size: 80px;
+            color: #28a745;
+            margin-bottom: 20px;
+        }
+        .confirmacion-container h1 {
+            color: #1e3c72;
+            margin-bottom: 20px;
+        }
+        .confirmacion-container p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: #666;
+        }
+        .btn-volver {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <div class="confirmacion-container">
+        <div class="success-icon">✓</div>
+        <h1 th:text="${mensaje}"></h1>
+        <p>Revisaremos tu consulta y nos pondremos en contacto contigo pronto.</p>
+        <p>También hemos enviado un email de confirmación a tu correo electrónico.</p>
+        <a th:href="@{/}" class="btn-volver">Volver al Inicio</a>
+    </div>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

@@ -1,26 +1,37 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
     const form = document.getElementById('contactForm');
 
     if (form) {
-        form.addEventListener('submit', (e) => {
-            e.preventDefault(); // Evita que la página se recargue
-
-            // Aquí iría la lógica para enviar los datos al servidor (AJAX/Fetch)
+        form.addEventListener('submit', function(e) {
+            const btn = this.querySelector('.btn-submit');
+            const termsCheckbox = document.getElementById('terms');
             
-            // Simulación de éxito
-            const btn = form.querySelector('.btn-submit');
-            const originalText = btn.innerText;
+            // Validar términos y condiciones
+            if (!termsCheckbox.checked) {
+                e.preventDefault();
+                alert('Debes aceptar las Políticas de Privacidad para continuar.');
+                return;
+            }
             
+            // Cambiar texto del botón durante el envío
             btn.innerText = 'Enviando...';
             btn.disabled = true;
-
-            setTimeout(() => {
-                alert('¡Gracias! Hemos recibido tus datos. Nos pondremos en contacto contigo pronto.');
-                form.reset();
-                btn.innerText = originalText;
-                btn.disabled = false;
-            }, 1500);
+            
+            // El formulario se enviará normalmente al backend
         });
+
+        // Validación en tiempo real del teléfono
+        const telefonoInput = document.getElementById('telefono');
+        if (telefonoInput) {
+            telefonoInput.addEventListener('input', function(e) {
+                // Permitir solo números
+                this.value = this.value.replace(/[^0-9]/g, '');
+                
+                // Limitar a 9 dígitos
+                if (this.value.length > 9) {
+                    this.value = this.value.slice(0, 9);
+                }
+            });
+        }
     }
 });

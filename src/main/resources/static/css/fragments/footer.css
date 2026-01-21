@@ -130,7 +130,7 @@
 
 /* --- 4. BARRA INFERIOR GRIS (EXTENSA Y SÓLIDA) --- */
 .footer-bottom {
-    background-color: var(--footer-bar-bg);
+    background-color: #dcefec91;
     
     /* Dimensiones exactas para alinear con el contenido de arriba */
     width: 90%; 

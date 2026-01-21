@@ -1,0 +1,24 @@
+package com.policlinico.autovias.config;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.HandlerInterceptor;
+
+@Component
+public class AdminInterceptor implements HandlerInterceptor {
+    
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        HttpSession session = request.getSession();
+        
+        // Verificar si el usuario está autenticado
+        if (session.getAttribute("usuarioAutenticado") == null) {
+            response.sendRedirect("/admin/login");
+            return false;
+        }
+        
+        return true;
+    }
+}

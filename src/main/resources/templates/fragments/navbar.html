@@ -24,7 +24,7 @@
 
             <div class="nav-buttons">
                 <a th:href="@{/consulta/cotizar}" class="btn btn-cotiza">COTIZA</a>
-                <a th:href="@{/consulta/resultados}" class="btn btn-resultados">RESULTADOS</a>
+                <a th:href="@{/admin/login}" class="btn btn-resultados">ADMIN</a>
             </div>
 
             <button class="hamburger" id="hamburger" aria-label="Abrir menú">
@@ -35,6 +35,43 @@
 
         </div>
     </nav>
+
+    <style>
+        /* Estilos para el botón de admin */
+        .btn-admin {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+            color: white !important;
+            border: 2px solid transparent !important;
+            transition: all 0.3s ease !important;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn-admin:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            border-color: #667eea !important;
+        }
+
+        .admin-icon {
+            font-size: 1.1em;
+            display: inline-block;
+        }
+
+        /* Responsive para el botón admin */
+        @media (max-width: 768px) {
+            .nav-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .btn-admin {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
 
 </body>
 </html>

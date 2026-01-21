@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Consultas - Administración</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <style>
+        .badge-warning { background-color: #ffc107; }
+        .badge-info { background-color: #17a2b8; }
+        .badge-success { background-color: #28a745; }
+        .badge-primary { background-color: #007bff; }
+        .badge-secondary { background-color: #6c757d; }
+        .stat-card {
+            border-left: 4px solid;
+            transition: transform 0.2s;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">
+                <i class="bi bi-clipboard2-pulse"></i> Panel de Administración - Consultas
+            </span>
+            <a href="/" class="btn btn-outline-light btn-sm">
+                <i class="bi bi-house"></i> Ir al sitio
+            </a>
+        </div>
+    </nav>
+
+    <div class="container-fluid mt-4">
+        
+        <!-- Mensajes de alerta -->
+        <div th:if="${success}" class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="bi bi-check-circle"></i> <span th:text="${success}"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        
+        <div th:if="${error}" class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="bi bi-exclamation-triangle"></i> <span th:text="${error}"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+
+        <!-- Estadísticas -->
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <div class="card stat-card" style="border-left-color: #ffc107;">
+                    <div class="card-body">
+                        <h6 class="text-muted">Pendientes</h6>
+                        <h2 class="mb-0" th:text="${pendientes}">0</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card stat-card" style="border-left-color: #17a2b8;">
+                    <div class="card-body">
+                        <h6 class="text-muted">En Proceso</h6>
+                        <h2 class="mb-0" th:text="${enProceso}">0</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card stat-card" style="border-left-color: #28a745;">
+                    <div class="card-body">
+                        <h6 class="text-muted">Respondidas</h6>
+                        <h2 class="mb-0" th:text="${respondidas}">0</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card stat-card" style="border-left-color: #007bff;">
+                    <div class="card-body">
+                        <h6 class="text-muted">Citas Programadas</h6>
+                        <h2 class="mb-0" th:text="${citasProgramadas}">0</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filtros y búsqueda -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <form method="get" th:action="@{/admin/consultas}" class="row g-3">
+                    <div class="col-md-4">
+                        <label class="form-label">Buscar</label>
+                        <input type="text" name="busqueda" th:value="${busqueda}" 
+                               class="form-control" placeholder="Nombre, email, ticket...">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Filtrar por Estado</label>
+                        <select name="estado" class="form-select">
+                            <option value="">Todos los estados</option>
+                            <option th:each="e : ${estados}" 
+                                    th:value="${e}" 
+                                    th:text="${e.descripcion}"
+                                    th:selected="${e == estadoActual}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 d-flex align-items-end">
+                        <button type="submit" class="btn btn-primary me-2">
+                            <i class="bi bi-search"></i> Buscar
+                        </button>
+                        <a th:href="@{/admin/consultas}" class="btn btn-secondary">
+                            <i class="bi bi-x-circle"></i> Limpiar
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Tabla de consultas -->
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0"><i class="bi bi-list-ul"></i> Consultas Recibidas</h5>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Ticket</th>
+                                <th>Fecha</th>
+                                <th>Cliente</th>
+                                <th>Tipo de Consulta</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="consulta : ${consultas.content}">
+                                <td>
+                                    <code th:text="${consulta.numeroTicket}"></code>
+                                </td>
+                                <td th:text="${#temporals.format(consulta.fechaCreacion, 'dd/MM/yyyy HH:mm')}"></td>
+                                <td>
+                                    <strong th:text="${consulta.nombre + ' ' + consulta.apellido}"></strong><br>
+                                    <small class="text-muted" th:text="${consulta.email}"></small>
+                                </td>
+                                <td th:text="${consulta.tipoConsulta}"></td>
+                                <td>
+                                    <span class="badge" 
+                                          th:classappend="${consulta.estado.cssClass}"
+                                          th:text="${consulta.estado.descripcion}">
+                                    </span>
+                                </td>
+                                <td>
+                                    <a th:href="@{/admin/consultas/{id}(id=${consulta.id})}" 
+                                       class="btn btn-sm btn-primary">
+                                        <i class="bi bi-eye"></i> Ver
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr th:if="${consultas.empty}">
+                                <td colspan="6" class="text-center py-4 text-muted">
+                                    <i class="bi bi-inbox" style="font-size: 3rem;"></i>
+                                    <p class="mt-2">No hay consultas para mostrar</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Paginación -->
+            <div class="card-footer" th:if="${!consultas.empty}">
+                <nav>
+                    <ul class="pagination justify-content-center mb-0">
+                        <li class="page-item" th:classappend="${consultas.first} ? 'disabled'">
+                            <a class="page-link" 
+                               th:href="@{/admin/consultas(page=${consultas.number - 1}, estado=${estadoActual}, busqueda=${busqueda})}">
+                                Anterior
+                            </a>
+                        </li>
+                        
+                        <li class="page-item" th:each="i : ${#numbers.sequence(0, consultas.totalPages - 1)}"
+                            th:classappend="${i == consultas.number} ? 'active'">
+                            <a class="page-link" 
+                               th:href="@{/admin/consultas(page=${i}, estado=${estadoActual}, busqueda=${busqueda})}"
+                               th:text="${i + 1}">
+                            </a>
+                        </li>
+                        
+                        <li class="page-item" th:classappend="${consultas.last} ? 'disabled'">
+                            <a class="page-link" 
+                               th:href="@{/admin/consultas(page=${consultas.number + 1}, estado=${estadoActual}, busqueda=${busqueda})}">
+                                Siguiente
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                
+                <p class="text-center text-muted mt-2 mb-0">
+                    Mostrando página <strong th:text="${consultas.number + 1}"></strong> 
+                    de <strong th:text="${consultas.totalPages}"></strong>
+                    (Total: <strong th:text="${consultas.totalElements}"></strong> consultas)
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
