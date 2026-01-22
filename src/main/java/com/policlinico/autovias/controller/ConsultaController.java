@@ -1,9 +1,6 @@
 package com.policlinico.autovias.controller;
 
 import com.policlinico.autovias.model.dto.ConsultaDTO;
-import com.policlinico.autovias.model.entity.Consulta;
-import com.policlinico.autovias.service.ConsultaService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,55 +12,81 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.validation.Valid;
 
+/**
+ * Controlador para formularios de consulta y cotización
+ */
 @Controller
 @RequestMapping("/consulta")
-@RequiredArgsConstructor
 public class ConsultaController {
-    
-    private final ConsultaService consultaService;
-    
+
+    /**
+     * Mostrar formulario de consulta/cotización
+     * URL: http://localhost:8080/consulta/formulario
+     */
     @GetMapping("/formulario")
     public String mostrarFormulario(Model model) {
         model.addAttribute("consultaDTO", new ConsultaDTO());
         return "formulario";
     }
-    
+
+    /**
+     * Ruta alternativa: /cotizar
+     * URL: http://localhost:8080/consulta/cotizar
+     */
     @GetMapping("/cotizar")
     public String cotizar(Model model) {
         model.addAttribute("consultaDTO", new ConsultaDTO());
         return "formulario";
     }
-    
+
+    /**
+     * Procesar el formulario de consulta
+     * URL: POST http://localhost:8080/consulta/enviar
+     */
     @PostMapping("/enviar")
     public String procesarConsulta(
             @Valid @ModelAttribute("consultaDTO") ConsultaDTO consultaDTO,
             BindingResult result,
-            RedirectAttributes redirectAttributes) {
-        
+            RedirectAttributes redirectAttributes,
+            Model model) {
+
+        // Validar errores
         if (result.hasErrors()) {
             return "formulario";
         }
-        
-        try {
-            Consulta consulta = consultaService.crearConsulta(consultaDTO);
-            
-            redirectAttributes.addFlashAttribute("success", true);
-            redirectAttributes.addFlashAttribute("numeroTicket", consulta.getNumeroTicket());
-            redirectAttributes.addFlashAttribute("mensaje", 
-                "¡Gracias por contactarnos! Tu consulta ha sido registrada con el ticket " + 
-                consulta.getNumeroTicket() + ". Te responderemos a la brevedad.");
-            
-        } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("error", true);
-            redirectAttributes.addFlashAttribute("mensaje", 
-                "Hubo un error al procesar tu consulta. Por favor, intenta nuevamente o contáctanos directamente.");
-        }
-        
+
+        // TODO: Aquí iría la lógica para:
+        // - Guardar en base de datos
+        // - Enviar email de notificación
+        // - Enviar WhatsApp (opcional)
+
+        System.out.println("Consulta recibida de: " + consultaDTO.getNombre());
+        System.out.println("Email: " + consultaDTO.getEmail());
+        System.out.println("Tipo:  " + consultaDTO.getTipoConsulta());
+
+        // Mensaje de éxito
+        redirectAttributes.addFlashAttribute("mensaje",
+                "¡Gracias por contactarnos! Nos comunicaremos contigo pronto.");
+        redirectAttributes.addFlashAttribute("tipoMensaje", "success");
+
         return "redirect:/consulta/confirmacion";
     }
-    
+
+    /**
+     * Página de confirmación después de enviar formulario
+     * URL: http://localhost:8080/consulta/confirmacion
+     */
     @GetMapping("/confirmacion")
     public String confirmacion() {
-        return "confirmacion";
+        return "confirmacion"; // Necesitarás crear este archivo
+    }
+
+    /**
+     * Consultar resultados
+     * URL: http://localhost:8080/consulta/resultados
+     */
+    @GetMapping("/resultados")
+    public String resultados() {
+        return "resultados"; // Necesitarás crear este archivo
     }
 }
