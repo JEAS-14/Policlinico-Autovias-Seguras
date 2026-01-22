@@ -1,6 +1,3 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
-
 name: Build and deploy JAR app to Azure Web App - PoliclinicoAutoviasSeguras
 
 on:
@@ -25,10 +22,24 @@ jobs:
           distribution: 'microsoft'
 
       - name: Build with Maven
-        run: mvn clean install -DskipTests
+        run: mvn clean package -DskipTests
 
-      - name: Verify JAR contents
-        run: jar -tf target/*.jar | findstr /C:"static" /C:"templates"
+      - name: List JAR contents - Static files
+        run: |
+          echo "=== Static CSS files ==="
+          jar -tf target/*.jar | findstr "static/css"
+          echo "=== Static JS files ==="
+          jar -tf target/*.jar | findstr "static/js"
+
+      - name: List JAR contents - Templates
+        run: |
+          echo "=== Template files ==="
+          jar -tf target/*.jar | findstr "templates"
+
+      - name: List JAR contents - Application properties
+        run: |
+          echo "=== Application properties ==="
+          jar -tf target/*.jar | findstr "application.properties"
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
@@ -42,6 +53,9 @@ jobs:
     permissions:
       id-token: write
       contents: read
+    environment:
+      name: 'Production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
       - name: Download artifact from build job
