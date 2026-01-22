@@ -113,6 +113,17 @@
 				</configuration>
 			</plugin>
 		</plugins>
+
+		<!-- ✨ ESTO ES LO QUE FALTA - CONFIGURACIÓN DE RECURSOS ✨ -->
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>false</filtering>
+				<includes>
+					<include>**/*</include>
+				</includes>
+			</resource>
+		</resources>
 	</build>
 
 </project>

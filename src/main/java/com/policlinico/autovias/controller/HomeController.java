@@ -1,7 +1,7 @@
 package com.policlinico.autovias.controller;
 
-import org. springframework.stereotype.Controller;
-import org.springframework.web.bind. annotation.GetMapping;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  * Controlador principal para las páginas públicas
@@ -33,12 +33,12 @@ public class HomeController {
      */
     @GetMapping("/nosotros")
     public String nosotros() {
-        return "nosotros"; // templates/Nosotros. html (con mayúscula)
+        return "nosotros";
     }
     
     /**
      * Página de Servicios
-     * URL:  http://localhost:8080/servicios
+     * URL: http://localhost:8080/nuestrosServicios
      */
     @GetMapping("/nuestrosServicios")
     public String nuestrosServicios() {
@@ -47,7 +47,7 @@ public class HomeController {
     
     /**
      * Preguntas Frecuentes
-     * URL: http://localhost:8080/preguntas-frecuentes
+     * URL: http://localhost:8080/preguntasFrecuentes
      */
     @GetMapping("/preguntasFrecuentes")
     public String preguntasFrecuentes() {
@@ -56,7 +56,7 @@ public class HomeController {
     
     /**
      * Blog
-     * URL: http://localhost:8080/blog
+     * URL: http://localhost:8080/nuestroBlog
      */
     @GetMapping("/nuestroBlog")
     public String nuestroBlog() {
