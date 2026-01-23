@@ -2,9 +2,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.querySelector('.nav-menu');
     const navButtons = document.querySelector('.nav-buttons');
-    const navLinks = document.querySelectorAll('.nav-menu a');
+    const navLinks = document.querySelectorAll('.nav-menu a'); // Todos los enlaces
 
-    // Función para abrir/cerrar
+    // --- FUNCIÓN HAMBURGUESA ---
     function toggleMenu() {
         hamburger.classList.toggle('active');
         navMenu.classList.toggle('active');
@@ -12,29 +12,37 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : 'auto';
     }
 
-    // Click en hamburguesa
     if (hamburger) {
         hamburger.addEventListener('click', toggleMenu);
     }
 
-    // Cerrar menú al hacer click en un enlace
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            if (navMenu.classList.contains('active')) {
-                toggleMenu();
-            }
-        });
-    });
+    // --- LÓGICA DE ACTIVE STATE (MEJORADA) ---
+    const currentUrl = window.location.pathname;
 
-    // Marcar el enlace activo según la URL actual
-    const currentPath = window.location.pathname;
     navLinks.forEach(link => {
         const href = link.getAttribute('href');
-        // Si la URL actual comienza con el href del enlace, marcar como activo
-        if (currentPath === href || currentPath.startsWith(href + '/')) {
+        
+        // Limpiamos clases previas
+        link.classList.remove('active-link');
+
+        // 1. Coincidencia exacta (Para páginas normales)
+        if (href === currentUrl) {
             link.classList.add('active-link');
-        } else {
-            link.classList.remove('active-link');
+            
+            // TRUCO: Si el enlace activo está DENTRO de un dropdown...
+            // Hay que iluminar también al papá (Nuestros Servicios)
+            const parentDropdown = link.closest('.has-dropdown');
+            if (parentDropdown) {
+                // Buscamos el enlace principal de ese dropdown (el primer <a>)
+                const parentLink = parentDropdown.querySelector('a');
+                if (parentLink) parentLink.classList.add('active-link');
+            }
+        }
+        // 2. Coincidencia de "Familia" (Para marcar el padre si estás en una subruta)
+        // Si la URL actual empieza con el href del enlace (ej: /nuestrosServicios/...)
+        // Y no es el home '/'
+        else if (href !== '/' && currentUrl.startsWith(href)) {
+             link.classList.add('active-link');
         }
     });
 });

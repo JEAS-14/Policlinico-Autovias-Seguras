@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    </head>
 <body>
 
 <nav class="navbar" th:fragment="navbar">
@@ -13,7 +15,17 @@
         <ul class="nav-menu">
             <li><a th:href="@{/}">Inicio</a></li>
             <li><a th:href="@{/nosotros}">Nosotros</a></li>
-            <li><a th:href="@{/nuestrosServicios}">Nuestros Servicios</a></li>
+            
+            <li class="has-dropdown">
+                <a th:href="@{/nuestrosServicios}" class="menu-link">Nuestros Servicios</a>
+                <ul class="dropdown-menu">
+                    <li><a th:href="@{/servicios/examenMedicoOcupacional}">Salud Ocupacional</a></li>
+                    <li><a th:href="@{/servicios/examenMedicoBrevete}">Exámenes Médicos</a></li>
+                    <li><a th:href="@{/servicios/examenSucamec}">Psicología</a></li>
+                    <li><a th:href="@{/servicios/escuelaConductores}">Campañas de Salud</a></li>
+                </ul>
+            </li>
+
             <li><a th:href="@{/preguntasFrecuentes}">Preguntas Frecuentes</a></li>
             <li><a th:href="@{/nuestroBlog}">Nuestro Blog</a></li>
         </ul>

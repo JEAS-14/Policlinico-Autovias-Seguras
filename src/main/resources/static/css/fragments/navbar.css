@@ -1,5 +1,5 @@
 /* ===========================================
-   NAVBAR AISLADO (Estilos únicos)
+   NAVBAR COMPLETO (FINAL Y BLINDADO)
    =========================================== */
 :root {
     --nav-purple: #2E1A5F;
@@ -7,7 +7,6 @@
     --nav-height: 100px;
 }
 
-/* Fix para el scroll */
 html {
     scroll-padding-top: var(--nav-height);
 }
@@ -45,89 +44,132 @@ html {
 }
 .logo:hover img { transform: scale(1.05); }
 
-/* --- MENÚ --- */
+/* ===========================================
+   MENÚ PRINCIPAL (ESCRITORIO)
+   =========================================== */
 .nav-menu {
     display: flex; list-style: none; gap: 40px;
     margin: 0; padding: 0; flex: 1; justify-content: center;
 }
 
+/* Estilos de Enlaces */
 .nav-menu a {
     font-family: 'Poppins', sans-serif;
-    text-decoration: none; color: #333;
-    font-size: 1rem; font-weight: 500;
-    position: relative; transition: color 0.3s;
+    text-decoration: none;
+    color: #333;
+    font-size: 1rem;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s;
+    display: flex;
+    align-items: center;
+    padding-bottom: 5px;
 }
 
-/* Línea animada (No afecta a otros links) */
-.nav-menu a::after {
-    content: ''; position: absolute;
-    width: 0; height: 3px; bottom: -5px; left: 0;
+/* LÍNEA DE SUBRAYADO (PC) */
+.nav-menu a::before {
+    content: ''; position: absolute; left: 0; bottom: 0;
+    width: 0; height: 3px; border-radius: 2px;
     background-color: var(--nav-teal);
-    transition: width 0.3s;
+    transition: width 0.3s ease, background-color 0.3s ease;
 }
-.nav-menu a:hover::after, .nav-menu a.active-link::after { width: 100%; }
-.nav-menu a.active-link { color: var(--nav-purple); font-weight: 700; }
 
-/* --- BOTONES DEL NAVBAR (AQUÍ ESTÁ LA SOLUCIÓN) --- */
-/* Usamos clases ÚNICAS. No uses ".btn" aquí. */
+/* FLECHA (PC) */
+.nav-menu li.has-dropdown > a::after {
+    content: ''; display: inline-block;
+    width: 8px; height: 8px;
+    border-right: 2px solid #555; border-bottom: 2px solid #555;
+    transform: rotate(45deg);
+    margin-left: 8px; margin-bottom: 3px;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+/* HOVER (PC) */
+.nav-menu a:hover { color: var(--nav-teal); }
+.nav-menu a:hover::before { width: 100%; }
+.nav-menu li.has-dropdown:hover > a::after {
+    transform: rotate(-135deg); border-color: var(--nav-teal); margin-bottom: -2px;
+}
+
+/* ACTIVE (PC) */
+.nav-menu a.active-link { color: var(--nav-purple) !important; font-weight: 700; }
+.nav-menu a.active-link::before { width: 100%; background-color: var(--nav-purple) !important; }
+.nav-menu li.has-dropdown > a.active-link::after { border-color: var(--nav-purple) !important; }
+
+/* ===========================================
+   MENÚ DESPLEGABLE (DROPDOWN - ESCRITORIO)
+   =========================================== */
+.nav-menu li.has-dropdown {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-menu {
+    position: absolute; /* Esto es lo que molesta en móvil, lo anularemos abajo */
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background-color: #ffffff;
+    min-width: 220px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    border-radius: 8px;
+    padding: 15px 0;
+    list-style: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1100;
+    border-top: 4px solid var(--nav-purple);
+}
+
+.nav-menu li.has-dropdown:hover .dropdown-menu {
+    opacity: 1; visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.dropdown-menu li a {
+    display: block; padding: 12px 20px;
+    color: #555; font-size: 0.95rem; white-space: nowrap;
+    border-bottom: 1px solid #f0f0f0;
+}
+.dropdown-menu li a::before, .dropdown-menu li a::after { display: none !important; }
+.dropdown-menu li a:hover { background-color: #f9f9f9; color: var(--nav-purple); padding-left: 25px; }
+
+/* ===========================================
+   BOTONES
+   =========================================== */
 .nav-buttons {
     display: flex; gap: 15px; align-items: center;
     margin-left: auto; padding-left: 40px;
 }
-
-/* Botón 1: Cotiza (Estilo único para navbar) */
 .btn-nav-cotiza {
-    display: inline-block;
-    padding: 10px 25px;       /* Tamaño específico para navbar */
-    border-radius: 8px;       /* Borde cuadrado/redondeado, diferente al Hero */
-    text-decoration: none;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    font-size: 0.9rem;
-    background-color: var(--nav-purple);
-    color: white;
-    border: 2px solid var(--nav-purple); /* Borde sólido */
-    transition: all 0.3s ease;
+    display: inline-block; padding: 10px 25px;
+    border-radius: 8px; text-decoration: none;
+    font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.9rem;
+    background-color: var(--nav-purple); color: white;
+    border: 2px solid var(--nav-purple); transition: all 0.3s ease;
 }
-
-.btn-nav-cotiza:hover {
-    background-color: transparent;
-    color: var(--nav-purple);
-    transform: translateY(-2px);
-}
-
-/* Botón 2: Resultados (Estilo único para navbar) */
+.btn-nav-cotiza:hover { background-color: transparent; color: var(--nav-purple); transform: translateY(-2px); }
 .btn-nav-resultados {
-    display: inline-block;
-    padding: 10px 25px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    font-size: 0.9rem;
-    background-color: var(--nav-teal);
-    color: white;
-    border: 2px solid var(--nav-teal);
-    transition: all 0.3s ease;
+    display: inline-block; padding: 10px 25px;
+    border-radius: 8px; text-decoration: none;
+    font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.9rem;
+    background-color: var(--nav-teal); color: white;
+    border: 2px solid var(--nav-teal); transition: all 0.3s ease;
 }
+.btn-nav-resultados:hover { background-color: transparent; color: var(--nav-teal); transform: translateY(-2px); }
 
-.btn-nav-resultados:hover {
-    background-color: transparent;
-    color: var(--nav-teal);
-    transform: translateY(-2px);
-}
-
-/* --- HAMBURGUESA --- */
+/* ===========================================
+   RESPONSIVE (MÓVIL - CORRECCIÓN TOTAL)
+   =========================================== */
 .hamburger {
     display: none; flex-direction: column;
     background: transparent; border: none; cursor: pointer; gap: 6px;
 }
-.hamburger span {
-    width: 30px; height: 3px; background-color: var(--nav-purple);
-    transition: 0.3s;
-}
+.hamburger span { width: 30px; height: 3px; background-color: var(--nav-purple); transition: 0.3s; }
 
-/* --- RESPONSIVE --- */
 @media (max-width: 1200px) {
     .nav-container { padding: 0 20px; }
     .nav-menu { gap: 20px; }
@@ -138,18 +180,77 @@ html {
     .hamburger { display: flex; }
     .logo img { height: 50px; }
 
-    /* Menú Móvil */
+    /* CONTENEDOR MENÚ MÓVIL */
     .nav-menu {
         position: fixed; top: 80px; right: -100%;
         width: 100%; height: calc(100vh - 80px);
-        background: white; flex-direction: column;
-        align-items: center; justify-content: center;
+        background: white;
+        flex-direction: column;
+        align-items: stretch; /* ESTIRAR todo el ancho */
+        justify-content: flex-start;
+        padding-top: 20px;
         transition: 0.4s;
+        overflow-y: auto;
     }
     .nav-menu.active { right: 0; }
-    .nav-menu a { font-size: 1.5rem; }
+    
+    /* Centramos el texto de los enlaces principales */
+    .nav-menu > li > a { 
+        font-size: 1.5rem; 
+        justify-content: center; 
+        width: 100%;
+    }
 
-    /* Botones Móvil */
+    /* --- CORRECCIÓN DROPDOWN MÓVIL (LA PARTE CLAVE) --- */
+    .nav-menu li.has-dropdown {
+        flex-direction: column;
+        height: auto;
+        width: 100%;
+        display: flex;
+        align-items: center;
+    }
+
+    .dropdown-menu {
+        /* Usamos !important para borrar las reglas de PC a la fuerza */
+        position: static !important;
+        transform: none !important;
+        box-shadow: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        
+        display: none; /* Se oculta hasta hover/click */
+        width: 100% !important;
+        min-width: 0 !important;
+        
+        background-color: #f4f4f4;
+        border-top: none;
+        border-radius: 0;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Animación simple */
+    .nav-menu li.has-dropdown:hover .dropdown-menu {
+        display: block;
+        animation: fadeIn 0.3s ease;
+    }
+
+    /* Enlaces del Dropdown CENTRADOS */
+    .dropdown-menu li a {
+        text-align: center;
+        justify-content: center !important; /* Centrado Flex */
+        padding: 15px 0;
+        width: 100%;
+        font-size: 1.1rem;
+        padding-left: 0 !important;
+    }
+
+    .dropdown-menu li a:hover {
+        padding-left: 0 !important; /* Evita saltos */
+        background-color: #eaeaea;
+    }
+
+    /* BOTONES */
     .nav-buttons {
         position: fixed; bottom: 0; right: -100%;
         width: 100%; background: #f9f9f9;
@@ -157,12 +258,15 @@ html {
         transition: 0.4s; z-index: 1001;
     }
     .nav-buttons.active { right: 0; }
-    
-    /* Hacemos que los botones ocupen todo el ancho en móvil */
     .btn-nav-cotiza, .btn-nav-resultados { width: 100%; text-align: center; }
 
-    /* Animación Hamburguesa */
+    /* ANIMACIÓN HAMBURGUESA */
     .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 7px); }
     .hamburger.active span:nth-child(2) { opacity: 0; }
     .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -7px); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
 }
