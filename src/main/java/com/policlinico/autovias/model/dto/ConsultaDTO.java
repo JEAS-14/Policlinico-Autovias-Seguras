@@ -15,8 +15,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ConsultaDTO {
     
-
-    
     @NotBlank(message = "El nombre es obligatorio")
     private String nombre;
     
