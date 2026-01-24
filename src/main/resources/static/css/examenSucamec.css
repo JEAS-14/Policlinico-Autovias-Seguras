@@ -7,14 +7,22 @@
     --bg-gradient-bottom: #d1c4e9;
     --text-dark: #333;
     --white: #ffffff;
+
+    --shadow-light: rgba(0, 0, 0, 0.08);
+    --shadow-medium: rgba(0, 0, 0, 0.15);
+    --transition-speed: 0.4s;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
     background: linear-gradient(to bottom, var(--bg-gradient-top), var(--bg-gradient-bottom));
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: var(--text-dark);
-    margin: 0;
-    padding: 0;
 }
 
 .container {
@@ -33,8 +41,8 @@ body {
 
 /* --- HERO SECTION --- */
 .hero-sucamec {
-    /* Imagen de fondo sugerida (médicos) */
     margin-top: 100px;
+    position: relative;
     background: linear-gradient(rgba(200, 230, 255, 0.85), rgba(230, 230, 255, 0.9)),
         url('https://images.unsplash.com/photo-1551601651-2a8555f1a136?q=80&w=1000&auto=format&fit=crop');
     background-size: cover;
@@ -43,23 +51,18 @@ body {
     text-align: center;
 }
 
+.hero-sucamec h1{
+    font-size: 4.5rem;
+    color: var(--primary-purple)
+}
+
 .hero-content h1 {
     color: var(--primary-purple);
     font-weight: 800;
-    font-size: 2.2rem;
-    margin-bottom: 13px;
+    font-size: 4.5rem;
 }
 
-.subtitle {
-    color: #666;
-    font-style: italic;
-}
-
-.mt-4 {
-    margin-top: 1.5rem;
-}
-
-/* Botones */
+/* --- Botones --- */
 .hero-buttons {
     display: flex;
     justify-content: center;
@@ -75,6 +78,7 @@ body {
     color: white;
     font-weight: bold;
     display: inline-block;
+    transition: all var(--transition-speed) ease;
 }
 
 .btn-purple {
@@ -83,6 +87,11 @@ body {
 
 .btn-green {
     background-color: var(--btn-green);
+}
+
+.btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 25px var(--shadow-medium);
 }
 
 .btn-green-large {
@@ -96,16 +105,23 @@ body {
     display: inline-block;
     margin-top: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all var(--transition-speed) ease;
 }
 
-/* Estadísticas (Igual que en EMO) */
+.btn-green-large:hover {
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+/* --- Estadísticas --- */
 .stats-box {
     background: white;
     border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 25px var(--shadow-light);
     display: flex;
     justify-content: space-around;
     padding: 20px;
+    margin : 0 80px;
     margin-top: 40px;
     align-items: center;
     flex-wrap: wrap;
@@ -118,9 +134,12 @@ body {
 }
 
 .stat-number {
-    font-size: 2rem;
+    font-size: 3.5rem;
     font-weight: bold;
     color: #2dc4ad;
+    display: inline-block;
+    min-width: 50px;
+    transition: all 0.5s ease;
 }
 
 .stat-desc {
@@ -141,6 +160,17 @@ body {
     text-align: center;
     text-transform: uppercase;
     margin-bottom: 10px;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: var(--btn-green);
+    margin: 10px auto 0;
+    border-radius: 2px;
 }
 
 .section-desc {
@@ -159,16 +189,18 @@ body {
 }
 
 .modality-card {
+    position: relative;
     background: white;
     border-radius: 15px;
     padding: 25px;
     text-align: center;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease;
+    box-shadow: 0 5px 15px var(--shadow-light);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .modality-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px var(--shadow-medium);
 }
 
 .icon-circle {
@@ -195,46 +227,15 @@ body {
     color: #666;
 }
 
-/* --- PRECIOS / CIRCUITO --- */
-.pricing-container {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
-    padding-bottom: 50px;
-}
-
-.price-card {
-    background: white;
-    border-radius: 15px;
-    padding: 30px;
-    width: 300px;
-    text-align: center;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-}
-
-.price-icon {
-    font-size: 2.5rem;
-    color: #2dc4ad;
-    /* Verde agua */
-    margin-bottom: 15px;
-}
-
-.price-tag {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: var(--primary-purple);
-    margin-top: 15px;
-}
-
 /* --- REQUISITOS --- */
 .bg-white-rounded {
     background: white;
     border-radius: 20px;
     padding: 40px;
     margin-bottom: 50px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 5px 20px var(--shadow-light);
     max-width: 800px;
+    transition: all var(--transition-speed) ease;
 }
 
 .requirements-list {
@@ -250,42 +251,28 @@ body {
     display: flex;
     align-items: center;
     gap: 15px;
+    transition: all 0.3s ease;
 }
 
 .requirements-list li i {
     color: var(--btn-green);
     font-size: 1.3rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.requirements-list li:hover i {
+    transform: scale(1.3);
 }
 
 /* --- CTA BOTTOM --- */
 .cta-bottom {
     padding-bottom: 80px;
+    background: linear-gradient(135deg, #d1c4e9, #e0f7fa);
+    border-radius: 25px;
+    box-shadow: 0 10px 25px var(--shadow-light);
 }
 
-/* --- ANIMACIONES --- */
-.slide-up {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: all 0.6s ease-out;
-}
-
-.fade-in {
-    opacity: 0;
-    transition: opacity 0.8s ease-in;
-    color: var(--primary-purple);
-}
-
-.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.stat-number {
-    display: inline-block;
-    min-width: 50px;
-}
-
-/* Botón flotante */
+/* --- BOTÓN FLOTANTE --- */
 .whatsapp-float {
     position: fixed;
     bottom: 20px;
@@ -302,4 +289,24 @@ body {
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     z-index: 1000;
     text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.2);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* --- ANIMACIONES DE ENTRADA --- */
+.fade-in,
+.slide-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.fade-in.visible,
+.slide-up.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
