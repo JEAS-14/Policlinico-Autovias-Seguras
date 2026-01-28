@@ -42,6 +42,29 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
     
     // --- ANIMACIÓN SECCIÓN "¿POR QUÉ ELEGIRNOS?" ---
+    const accordionItems = document.querySelectorAll('.accordion-item');
+
+    accordionItems.forEach(item => {
+        // Seleccionamos el header para que el click sea ahí
+        const header = item.querySelector('.item-header');
+
+        header.addEventListener('click', () => {
+            // 1. Opcional: Cerrar los otros items (para que solo haya uno abierto a la vez)
+            // Si quieres que se puedan abrir varios a la vez, borra este bloque 'accordionItems.forEach...'
+            accordionItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('active');
+                }
+            });
+
+            // 2. Abrir o cerrar el item actual
+            item.classList.toggle('active');
+        });
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    
     const chooseSection = document.getElementById('choose-us-section');
 
     if (chooseSection) {
@@ -61,6 +84,9 @@ document.addEventListener("DOMContentLoaded", () => {
         observer.observe(chooseSection);
     }
 });
+
+
+
 document.addEventListener('DOMContentLoaded', () => {
     
     // --- ANIMACIÓN DE UBICACIÓN ---

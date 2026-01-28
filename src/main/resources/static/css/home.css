@@ -462,6 +462,104 @@ body {
     }
 }
 
+/* --- LISTA DE BENEFICIOS CON HOVER --- */
+.benefits-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 30px 0;
+}
+
+/* LA TARJETA PRINCIPAL */
+.hover-item {
+    position: relative; /* Necesario para que lo de adentro flote */
+    background-color: #fff;
+    border-radius: 12px; /* Bordes más redondos */
+    height: 80px; /* Altura fija para que no salte */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    cursor: pointer;
+    overflow: hidden; /* Mantiene todo dentro de la tarjeta */
+    transition: all 0.3s ease;
+}
+
+/* --- ESTADO NORMAL (TÍTULO) --- */
+.visible-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 0 20px;
+    height: 100%; /* Ocupa todo el alto */
+    width: 100%;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.icon-box {
+    background: #e0f2f1;
+    color: #3bbca8;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.visible-content span {
+    font-weight: 700;
+    color: #4a148c;
+    font-size: 1.1rem;
+}
+
+/* --- ESTADO OCULTO (DESCRIPCIÓN) --- */
+.hidden-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #421D9D; /* TU COLOR MORADO */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    text-align: center;
+    
+    /* Inicialmente invisible y desplazado abajo */
+    opacity: 0;
+    transform: translateY(100%); 
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Animación suave */
+}
+
+.hidden-content p {
+    color: #ffffff; /* Texto blanco */
+    font-size: 0.95rem;
+    line-height: 1.4;
+    margin: 0;
+    font-weight: 500;
+}
+
+/* --- ACCIÓN AL PASAR EL MOUSE (HOVER) --- */
+
+/* 1. La tarjeta sube un poquito y hace más sombra */
+.hover-item:hover {
+    box-shadow: 0 10px 25px rgba(66, 29, 157, 0.2);
+    transform: translateY(-2px);
+}
+
+/* 2. El título se desvanece un poco o se mueve arriba (opcional) */
+.hover-item:hover .visible-content {
+    opacity: 0;
+    transform: translateY(-50%); /* Se va para arriba */
+}
+
+/* 3. La descripción sube y cubre todo */
+.hover-item:hover .hidden-content {
+    opacity: 1;
+    transform: translateY(0); /* Vuelve a su sitio original */
+}
+
 
 /* ===========================================
    UBICACIÓN (ESTILO STORE LOCATOR)
