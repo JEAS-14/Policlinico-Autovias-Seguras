@@ -8,35 +8,45 @@
 @import url('https://fonts.googleapis.com/css2?family=Poltawski+Nowy:ital,wght@0,400..700;1,400..700&display=swap');
 
 /* ... (aquí va el resto de tu CSS que ya tenías) ... */
-
-/* 2. Agrega esto al final para el texto que me pasaste */
-/* TEXTO DEL HERO (Versión Extendida y Grande) */
-.hero-description {
-    font-family: 'Poltawski Nowy', serif !important;
-    
-    /* 1. TAMAÑO: Mucho más grande para que se lea bien */
-    font-size: 3.8rem; 
-    
-    /* 2. PESO: Un poco más grueso para dar fuerza */
-    font-weight: 600;  
-    
-    color: #421D9D;
-    text-align: center;
-    line-height: 1.1;  /* Líneas un poco más juntas para que se vea compacto */
-    
-    /* 3. ANCHO: Aquí está la clave para que sea "extenso" */
-    max-width: 2000px; /* Permitimos que ocupe casi toda la pantalla */
-    width: 100%;        /* Ocupa el 95% del espacio disponible */
-    
-    margin: 40px auto; /* Centrado y con aire arriba/abajo */
-    text-shadow: 0 2px 10px rgba(255, 255, 255, 0.5); /* Sombra suave para resaltar sobre la foto */
+/* ESTILO PARA LA ENTRADA (TÍTULO PRINCIPAL) */
+/* 1. Definimos la animación (Muévete de abajo hacia arriba y aparece) */
+@keyframes entradaTriunfal {
+    0% {
+        opacity: 0;
+        transform: translateY(60px); /* Empieza 60px más abajo */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);    /* Termina en su posición original */
+    }
 }
 
-/* Ajuste para celular (para que no se salga de la pantalla) */
+/* 2. Tu clase con la animación aplicada */
+.hero-description {
+    /* --- TUS ESTILOS VISUALES (Se mantienen igual) --- */
+    font-family: 'Poltawski Nowy', serif !important;
+    font-size: 3.8rem; 
+    font-weight: 600;  
+    color: #421D9D;
+    text-align: center;
+    line-height: 1.1;  
+    max-width: 2000px; 
+    width: 100%;       
+    margin: 40px auto; 
+    text-shadow: 0 2px 10px rgba(255, 255, 255, 0.5); 
+
+    /* --- AQUÍ ESTÁ LA ANIMACIÓN DE ENTRADA QUE PEDISTE --- */
+    opacity: 0; /* IMPORTANTE: Empieza invisible para no parpadear */
+    animation: entradaTriunfal 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards; 
+    /* 1.5s de duración con un efecto de "frenado" suave al final */
+}
+
+/* Ajuste para celular */
 @media (max-width: 768px) {
     .hero-description {
-        font-size: 1.4rem; /* En celular lo bajamos un poco */
+        font-size: 1.4rem; 
         line-height: 1.5;
+        animation-duration: 1s; /* Un poco más rápido en celular */
     }
 }
 .bg-hero-gradient {
