@@ -1,98 +1,78 @@
 document.addEventListener("DOMContentLoaded", () => {
-    
-    // --- ANIMACIÓN DE CONTADORES DE ESTADÍSTICAS (+10, +1500) ---
+
+    // =========================================================
+    // 1. ANIMACIÓN DE CONTADORES (+10, +1500)
+    // =========================================================
     const statsSection = document.querySelector('.stats-container');
     const counters = document.querySelectorAll('.stat-number');
-    let started = false; // Para que solo se ejecute una vez
+    let started = false;
 
     if (statsSection && counters.length > 0) {
         const statsObserver = new IntersectionObserver((entries) => {
             if (entries[0].isIntersecting && !started) {
                 started = true;
-                
                 counters.forEach(counter => {
-                    const target = +counter.getAttribute('data-target'); // El número final
-                    const addPlus = counter.getAttribute('data-plus') === 'true'; // Si lleva el "+"
-                    const duration = 2000; // Duración en ms (2 segundos)
-                    const increment = target / (duration / 16); // Cuánto sumar por frame
-
+                    const target = +counter.getAttribute('data-target');
+                    const addPlus = counter.getAttribute('data-plus') === 'true';
+                    const duration = 2000;
+                    const increment = target / (duration / 16);
                     let current = 0;
 
                     const updateCounter = () => {
                         current += increment;
-                        
                         if (current < target) {
-                            // Formato visual: Si es +10 o +1500
                             counter.innerText = (addPlus ? '+' : '') + Math.ceil(current);
                             requestAnimationFrame(updateCounter);
                         } else {
                             counter.innerText = (addPlus ? '+' : '') + target;
                         }
                     };
-
                     updateCounter();
                 });
             }
         });
-
         statsObserver.observe(statsSection);
     }
-});
 
-document.addEventListener("DOMContentLoaded", () => {
-    
-    // --- ANIMACIÓN SECCIÓN "¿POR QUÉ ELEGIRNOS?" ---
+    // =========================================================
+    // 2. ACORDEÓN "¿POR QUÉ ELEGIRNOS?"
+    // =========================================================
     const accordionItems = document.querySelectorAll('.accordion-item');
 
     accordionItems.forEach(item => {
-        // Seleccionamos el header para que el click sea ahí
         const header = item.querySelector('.item-header');
-
-        header.addEventListener('click', () => {
-            // 1. Opcional: Cerrar los otros items (para que solo haya uno abierto a la vez)
-            // Si quieres que se puedan abrir varios a la vez, borra este bloque 'accordionItems.forEach...'
-            accordionItems.forEach(otherItem => {
-                if (otherItem !== item) {
-                    otherItem.classList.remove('active');
-                }
+        if (header) {
+            header.addEventListener('click', () => {
+                // Cerrar los otros (opcional)
+                accordionItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                // Abrir/Cerrar actual
+                item.classList.toggle('active');
             });
-
-            // 2. Abrir o cerrar el item actual
-            item.classList.toggle('active');
-        });
+        }
     });
-});
 
-document.addEventListener('DOMContentLoaded', () => {
-    
+    // =========================================================
+    // 3. ANIMACIÓN SCROLL (VISUALIZACIÓN DE SECCIONES)
+    // =========================================================
     const chooseSection = document.getElementById('choose-us-section');
-
     if (chooseSection) {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    // Agrega la clase que activa el CSS
                     entry.target.classList.add('active-section');
-                    // Deja de observar (para que no se repita al subir y bajar)
                     observer.unobserve(entry.target);
                 }
             });
-        }, {
-            threshold: 0.3 // Se activa cuando ves el 30% de la sección
-        });
-
+        }, { threshold: 0.3 });
         observer.observe(chooseSection);
     }
-});
 
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    
-    // --- ANIMACIÓN DE UBICACIÓN ---
-    const locationGrid = document.querySelector('.location-grid'); // Clase nueva
-
-    if(locationGrid) {
+    const locationGrid = document.querySelector('.location-grid');
+    if (locationGrid) {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -101,14 +81,60 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }, { threshold: 0.2 });
-
         observer.observe(locationGrid);
     }
-});
 
-document.addEventListener('DOMContentLoaded', () => {
-    
-    // --- DATOS DE LOS COMENTARIOS (Aquí pegaremos los reales) ---
+    // =========================================================
+    // 4. MAPA INTERACTIVO / CROQUIS (NUEVO CÓDIGO AGREGADO)
+    // =========================================================
+    const triggers = document.querySelectorAll('.route-trigger');
+    const dynamicLink = document.getElementById('dynamic-link');
+    const dynamicImage = document.getElementById('dynamic-image');
+    const mapContainer = document.querySelector('.map-container');
+
+    // Función para mostrar
+    function showCroquis(triggerElement) {
+        const croquisUrl = triggerElement.getAttribute('data-croquis');
+        const mapsUrl = triggerElement.getAttribute('data-maps');
+
+        if (croquisUrl && mapsUrl && dynamicImage && dynamicLink) {
+            dynamicImage.src = croquisUrl;
+            dynamicLink.href = mapsUrl;
+            dynamicLink.classList.add('active');
+        }
+    }
+
+    // Función para ocultar
+    function hideCroquis() {
+        if (dynamicLink) {
+            dynamicLink.classList.remove('active');
+            setTimeout(() => {
+                if (!dynamicLink.classList.contains('active') && dynamicImage) {
+                    dynamicImage.src = ""; // Limpiar para ahorrar memoria
+                }
+            }, 400);
+        }
+    }
+
+    // Eventos Mouse Hover
+    if (triggers.length > 0) {
+        triggers.forEach(trigger => {
+            trigger.addEventListener('mouseenter', () => {
+                showCroquis(trigger);
+            });
+        });
+    }
+
+    // Ocultar al salir del mapa
+    if (mapContainer) {
+        mapContainer.addEventListener('mouseleave', () => {
+            hideCroquis();
+        });
+    }
+
+    // =========================================================
+    // 5. CARUSEL DE TESTIMONIOS (REVIEWS)
+    // =========================================================
     const reviewsData = [
         {
             name: "Carlos Mendoza",
@@ -119,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             name: "María Fernández",
-            text: "Me sorprendió la limpieza y el orden. Fui por mi carnet de sanidad y salí súper rápido. Recomendado.",
+            text: "Me sorprendió la atención personalizada que me brindaron al realizar mi examen médico para mi licencia de conducir A1, lo recomendaría a mis amigos. ",
             source: "Facebook",
             stars: 5,
             img: "https://ui-avatars.com/api/?name=Maria+Fernandez&background=random"
@@ -139,9 +165,16 @@ document.addEventListener('DOMContentLoaded', () => {
             img: "https://ui-avatars.com/api/?name=Ana+Torres&background=random"
         },
         {
-            name: "Pedro Castillo",
-            text: "Precios justos y ubicación céntrica en SJL. Volveré para mi revalidación sin duda.",
+            name: "Cesar Correa",
+            text: "Excelente atención de todo el personal. Te explican paso a paso el proceso y te hacen sentir cómodo",
             source: "Google",
+            stars: 5,
+            img: "https://ui-avatars.com/api/?name=Pedro+Castillo&background=random"
+        },
+        {
+            name: "JUAN PEREZ",
+            text: "Excelente Servicio , procesos muy claros , grata experiencia lo recomiendo 100%",
+            source: "Facebook",
             stars: 5,
             img: "https://ui-avatars.com/api/?name=Pedro+Castillo&background=random"
         },
@@ -151,22 +184,19 @@ document.addEventListener('DOMContentLoaded', () => {
             source: "Vortice contratista Generales SAC",
             stars: 5,
             img: "https://ui-avatars.com/api/?name=Luis+Ortiz&background=random"
-
         }
     ];
 
     const track = document.getElementById('reviewsTrack');
 
     if (track) {
-        // Función para construir la tarjeta HTML
         const createCard = (review) => {
             const icon = review.source === 'Google' 
                 ? '<i class="fab fa-google"></i>' 
-                : '<i class="fab fa-facebook-f"></i>';
+                : (review.source === 'Facebook' ? '<i class="fab fa-facebook-f"></i>' : '<i class="fas fa-building"></i>');
             
             const sourceClass = review.source === 'Google' ? 'source-google' : 'source-facebook';
             
-            // Generar estrellas
             let starsHtml = '';
             for(let i=0; i<review.stars; i++) starsHtml += '<i class="fas fa-star"></i>';
 
@@ -185,14 +215,11 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
         };
 
-        // Generar tarjetas
         let cardsHtml = '';
         reviewsData.forEach(review => {
             cardsHtml += createCard(review);
         });
 
-        // INYECTAR Y DUPLICAR (Truco Infinito)
-        // Ponemos el contenido dos veces para que el bucle no tenga cortes
         track.innerHTML = cardsHtml + cardsHtml;
     }
 });

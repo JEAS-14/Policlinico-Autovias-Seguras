@@ -3,7 +3,7 @@
    =========================================== */
 :root {
     --purple-brand: #421D9D; /* Morado exacto */
-    --green-brand: #3bbca8;  /* Verde menta */
+    --green-brand: #3bbca8; /* Verde menta */
     --green-whatsapp: #25d366;
     --text-dark: #2E1A5F;
     --font-title: 'Poltawski Nowy', serif;
@@ -45,10 +45,15 @@ body {
 .bg-overlay {
     position: absolute;
     inset: 0;
-    /* Degradado blanco con un toque de verde para suavizar la foto */
-    background: linear-gradient(180deg, rgba(235, 250, 248, 0.85) 0%, rgba(255, 255, 255, 0.95) 100%);
+    
+    /* RADIAL GRADIENT: Del centro hacia afuera */
+    background: radial-gradient(circle, 
+        rgba(255, 255, 255, 0.95) 10%,   /* Centro: Blanco casi sólido (para que se lea el texto) */
+        rgba(255, 255, 255, 0.7) 40%,    /* Medio: Transición suave */
+       rgba(59, 188, 168, 0.20) 0%, 
+        rgba(59, 188, 168, 0.60) 100%);  /* Bordes: Tu verde (#3BBCA8) transparente */
+        z-index: 1; /* Esto asegura que el color quede ENCIMA de la foto */
 }
-
 .hero-content {
     position: relative;
     z-index: 10;
@@ -110,9 +115,15 @@ body {
     box-shadow: 0 20px 40px rgba(66, 29, 157, 0.25);
     border-color: var(--purple-brand); /* Borde morado al pasar mouse */
 }
+
 /* Ajuste fino para el hover manteniendo el zig-zag */
-.service-link:nth-child(odd):hover .service-card { transform: translateY(15px); }
-.service-link:nth-child(even):hover .service-card { transform: translateY(-25px); }
+.service-link:nth-child(odd):hover .service-card {
+    transform: translateY(15px);
+}
+
+.service-link:nth-child(even):hover .service-card {
+    transform: translateY(-25px);
+}
 
 
 .card-image-box {
@@ -151,7 +162,7 @@ body {
     font-size: 1rem;
     text-decoration: none;
     color: white;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     transition: all 0.3s ease;
     text-transform: uppercase;
 }
@@ -169,7 +180,7 @@ body {
 
 .btn-hero:hover {
     transform: translateY(-3px);
-    box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
 }
 
 /* --- ESTADÍSTICAS --- */
@@ -180,7 +191,7 @@ body {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
     max-width: 900px;
     margin: 0 auto;
     position: relative; /* Para z-index */
@@ -227,11 +238,17 @@ body {
 }
 
 @keyframes fadeInUp {
-    to { opacity: 1; transform: translateY(0); }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes fadeInDown {
-    to { opacity: 1; transform: translateY(0); }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Responsive */
@@ -240,6 +257,7 @@ body {
         grid-template-columns: 1fr 1fr; /* 2 columnas en tablet */
         gap: 20px;
     }
+
     .service-link:nth-child(odd) .service-card,
     .service-link:nth-child(even) .service-card {
         transform: none; /* Quitar zig-zag en tablet para que no se vea desordenado */
@@ -247,13 +265,35 @@ body {
 }
 
 @media (max-width: 600px) {
-    .services-cards { grid-template-columns: 1fr; }
-    .hero-title { font-size: 1.8rem; }
-    .stats-container { flex-direction: column; gap: 30px; }
-    .stat-divider { display: none; }
-    .hero-buttons { flex-direction: column; width: 100%; }
-    .btn-hero { width: 100%; text-align: center; justify-content: center; }
+    .services-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-title {
+        font-size: 1.8rem;
+    }
+
+    .stats-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .stat-divider {
+        display: none;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .btn-hero {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+    }
 }
+
 /* ===========================================
    ¿POR QUÉ ELEGIRNOS? 
    =========================================== */
@@ -297,7 +337,7 @@ body {
 .active-section .stagger-item:nth-child(2) { transition-delay: 0.4s; }
 .active-section .stagger-item:nth-child(3) { transition-delay: 0.6s; }
 .active-section .stagger-item:nth-child(4) { transition-delay: 0.8s; }
-.active-section .btn-conoce-mas.stagger-item { transition-delay: 1.0s; } /* El botón al final */
+.active-section .btn-conoce-mas.stagger-item { transition-delay: 1.0s; }
 
 
 .why-choose-us {
@@ -316,26 +356,44 @@ body {
 }
 
 /* --- LA IMAGEN CIRCULAR --- */
-.why-image {
-    position: relative;
-    display: flex;
-    justify-content: center; /* Centrar la imagen en su columna */
+.image-circle-bg {
+    width: 450px; /* Mantenemos el tamaño grande */
+    height: 450px; /* Mantenemos el tamaño grande */
+    border-radius: 50%; /* Hacemos el círculo */
+
+    /* --- AQUÍ ESTÁ EL TRUCO DEL ZOOM --- */
+    background-position: center center; /* Centramos la imagen */
+    background-repeat: no-repeat;
+
+    /* JUEGA CON ESTE VALOR:
+       - 'cover' es el zoom automático que tenías antes.
+       - Pon un porcentaje (ej. 130%) para alejarla manualmente. 
+       Cuanto más bajo el número, más lejos se ve. Si te pasas de bajo, saldrán bordes blancos. 
+       Prueba con 130% o 140% para empezar. */
+    background-size: 140%;
+
+    /* Estilos del borde y sombra igual que antes */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border: 5px solid #ffffff;
 }
 
 .why-image img {
-    width: 450px; /* Tamaño fijo para que sea un círculo perfecto */
+    width: 450px;
     height: 450px;
-    object-fit: cover; /* Evita que la foto se estire/deforme */
-    border-radius: 50%; /* Círculo perfecto */
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    border: 5px solid #ffffff; /* Borde blanco para resaltar sobre el fondo */
+    object-fit: cover;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 40px;
+    border-radius: 50%;
+    border-width: 5px;
+    border-style: solid;
+    border-color: rgb(255, 255, 255);
+    border-image: initial;
 }
 
 /* --- EL BADGE (CHECK) --- */
 .check-badge {
     position: absolute;
     bottom: 20px; /* Ajuste para que quede en el borde */
-    right: 40px;  /* Ajuste para que quede en el borde */
+    right: 100px; /* Ajuste para que quede en el borde */
     width: 90px;
     height: 90px;
     background-color: #3bbca8; /* Verde menta de tu marca */
@@ -375,93 +433,6 @@ body {
     max-width: 90%;
 }
 
-/* --- LISTA DE BENEFICIOS --- */
-.benefits-list {
-    list-style: none;
-    margin-bottom: 40px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px; /* Espacio entre items */
-}
-
-.benefits-list li {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    font-size: 1.05rem;
-    font-weight: 600; /* Texto un poco más negrita */
-    color: #4a148c; /* Texto morado oscuro para los items (combina con el botón) */
-}
-
-/* Círculo verde claro detrás del check */
-.benefits-list i {
-    color: #3bbca8; /* Icono verde */
-    font-size: 1.4rem;
-    background: #e0f2f1; /* Fondo verde muy clarito */
-    width: 35px;
-    height: 35px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-}
-
-/* --- EL BOTÓN (TU COLOR SOLICITADO) --- */
-.btn-conoce-mas {
-    display: inline-block;
-    background-color: #421D9D; /* EL COLOR QUE PEDISTE */
-    color: #ffffff;
-    padding: 15px 40px;
-    border-radius: 30px; /* Botón redondeado */
-    font-weight: 700;
-    font-size: 0.9rem;
-    text-decoration: none;
-    letter-spacing: 1px;
-    box-shadow: 0 10px 20px rgba(66, 29, 157, 0.3); /* Sombra morada */
-    transition: all 0.3s ease;
-}
-
-.btn-conoce-mas:hover {
-    background-color: #301375; /* Un poco más oscuro al pasar el mouse */
-    transform: translateY(-3px);
-    box-shadow: 0 15px 30px rgba(66, 29, 157, 0.4);
-}
-
-/* Animación sutil para el badge */
-@keyframes floatBadge {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
-}
-
-/* --- RESPONSIVE (MÓVIL) --- */
-@media (max-width: 900px) {
-    .why-content {
-        grid-template-columns: 1fr; /* Una columna en tablets/móvil */
-        text-align: center;
-        gap: 40px;
-    }
-
-    .why-image img {
-        width: 300px;
-        height: 300px;
-    }
-    
-    .check-badge {
-        width: 70px;
-        height: 70px;
-        right: 15%; /* Ajuste posición móvil */
-    }
-
-    .benefits-list li {
-        justify-content: center; /* Centrar lista en móvil */
-        text-align: left;
-    }
-    
-    .why-description {
-        margin: 0 auto 30px;
-    }
-}
-
 /* --- LISTA DE BENEFICIOS CON HOVER --- */
 .benefits-list {
     display: flex;
@@ -476,7 +447,7 @@ body {
     background-color: #fff;
     border-radius: 12px; /* Bordes más redondos */
     height: 80px; /* Altura fija para que no salte */
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     cursor: pointer;
     overflow: hidden; /* Mantiene todo dentro de la tarjeta */
     transition: all 0.3s ease;
@@ -525,10 +496,10 @@ body {
     justify-content: center;
     padding: 0 20px;
     text-align: center;
-    
+
     /* Inicialmente invisible y desplazado abajo */
     opacity: 0;
-    transform: translateY(100%); 
+    transform: translateY(100%);
     transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Animación suave */
 }
 
@@ -541,25 +512,72 @@ body {
 }
 
 /* --- ACCIÓN AL PASAR EL MOUSE (HOVER) --- */
-
-/* 1. La tarjeta sube un poquito y hace más sombra */
 .hover-item:hover {
     box-shadow: 0 10px 25px rgba(66, 29, 157, 0.2);
     transform: translateY(-2px);
 }
 
-/* 2. El título se desvanece un poco o se mueve arriba (opcional) */
 .hover-item:hover .visible-content {
     opacity: 0;
     transform: translateY(-50%); /* Se va para arriba */
 }
 
-/* 3. La descripción sube y cubre todo */
 .hover-item:hover .hidden-content {
     opacity: 1;
     transform: translateY(0); /* Vuelve a su sitio original */
 }
 
+/* --- EL BOTÓN (TU COLOR SOLICITADO) --- */
+.btn-conoce-mas {
+    display: inline-block;
+    background-color: #421D9D; /* EL COLOR QUE PEDISTE */
+    color: #ffffff;
+    padding: 15px 40px;
+    border-radius: 30px; /* Botón redondeado */
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-decoration: none;
+    letter-spacing: 1px;
+    box-shadow: 0 10px 20px rgba(66, 29, 157, 0.3); /* Sombra morada */
+    transition: all 0.3s ease;
+}
+
+.btn-conoce-mas:hover {
+    background-color: #301375; /* Un poco más oscuro al pasar el mouse */
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(66, 29, 157, 0.4);
+}
+
+/* Animación sutil para el badge */
+@keyframes floatBadge {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+/* --- RESPONSIVE (MÓVIL) --- */
+@media (max-width: 900px) {
+    .why-content {
+        grid-template-columns: 1fr; /* Una columna en tablets/móvil */
+        text-align: center;
+        gap: 40px;
+    }
+
+    .why-image img, .image-circle-bg {
+        width: 300px;
+        height: 300px;
+        margin: 0 auto;
+    }
+
+    .check-badge {
+        width: 70px;
+        height: 70px;
+        right: 15%; /* Ajuste posición móvil */
+    }
+
+    .why-description {
+        margin: 0 auto 30px;
+    }
+}
 
 /* ===========================================
    UBICACIÓN (ESTILO STORE LOCATOR)
@@ -573,10 +591,12 @@ body {
 
 .section-title-dark {
     text-align: center;
-    color: #2c3e7a; /* Morado marca */
+    color: #421D9D; /* Morado marca */
     margin-bottom: 50px;
     font-size: 2.2rem;
     font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 /* --- GRID PRINCIPAL --- */
@@ -590,7 +610,7 @@ body {
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1); /* Sombra elegante */
-    
+
     /* Animación de entrada */
     opacity: 0;
     transform: translateY(30px);
@@ -610,7 +630,7 @@ body {
     flex-direction: column;
     position: relative;
     z-index: 2; /* Para que la sombra caiga sobre el mapa */
-    box-shadow: 5px 0 20px rgba(0,0,0,0.05);
+    box-shadow: 5px 0 20px rgba(0, 0, 0, 0.05);
 }
 
 /* Imagen de la sede */
@@ -619,30 +639,36 @@ body {
     height: 200px;
     position: relative;
     overflow: hidden;
+    border-radius: 8px 8px 0 0;
 }
 
-.sede-image img {
+.sede-bg-img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    /* === AQUÍ ESTÁ LA MAGIA PARA VER EL MEDIO === */
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 100%;
     transition: transform 0.5s ease;
 }
 
-.location-info-card:hover .sede-image img {
-    transform: scale(1.05); /* Zoom suave al pasar mouse */
+/* Efecto Zoom al pasar el mouse */
+.location-info-card:hover .sede-bg-img {
+    transform: scale(1.05);
 }
 
 .badge-sede {
     position: absolute;
     top: 15px;
     left: 15px;
-    background: #3bbca8; /* Verde Turquesa */
+    background: #3bbca8;
     color: white;
     padding: 5px 12px;
     border-radius: 20px;
     font-size: 0.8rem;
     font-weight: 700;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 2;
 }
 
 /* Contenido de texto */
@@ -666,31 +692,17 @@ body {
     margin-bottom: 20px;
 }
 
-.address i { color: #db4437; margin-top: 4px; } /* Pin rojo de mapa */
-
-.separator {
-    height: 1px;
-    background: #eee;
-    margin: 20px 0;
+.address i {
+    color: #db4437;
+    margin-top: 4px;
 }
 
-/* LISTA DE REFERENCIAS */
-.ref-title {
-    font-size: 0.9rem;
-    color: #888;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 15px;
-    font-weight: 600;
-}
-
-.referencias-list {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 30px 0;
-}
-
-.referencias-list li {
+/* --- LISTA DE REFERENCIAS (Estilo Hover) --- */
+.route-trigger {
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer; /* Manito */
+    transition: background-color 0.3s ease;
     display: flex;
     align-items: center;
     gap: 15px;
@@ -699,7 +711,11 @@ body {
     font-size: 0.95rem;
 }
 
-.referencias-list i {
+.route-trigger:hover {
+    background-color: #f0fdfa; /* Colorcito suave al pasar el mouse */
+}
+
+.route-trigger i {
     width: 35px;
     height: 35px;
     background: #f0f7f6; /* Fondo verde muy claro */
@@ -710,6 +726,21 @@ body {
     justify-content: center;
     font-size: 0.9rem;
     flex-shrink: 0;
+}
+
+.separator {
+    height: 1px;
+    background: #eee;
+    margin: 20px 0;
+}
+
+.ref-title {
+    font-size: 0.9rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    font-weight: 600;
 }
 
 /* Botón Cómo Llegar */
@@ -735,37 +766,80 @@ body {
 }
 
 /* --- COLUMNA DERECHA: MAPA --- */
-.location-map {
+.map-container {
+    position: relative; /* Necesario */
+    width: 100%;
     height: 100%;
     min-height: 500px; /* Altura mínima para que se vea bien */
-    width: 100%;
+    border-radius: 0; /* Grid ya redondea */
+    overflow: hidden;
     background: #eee;
 }
 
-.location-map iframe {
+.map-container iframe {
     filter: saturate(1.1); /* Hacer el mapa un poco más vivo */
 }
 
-/* --- RESPONSIVE (MÓVIL) --- */
+/* La capa superpuesta (Enlace + Imagen) */
+.croquis-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* Estado inicial: Invisible y no bloquea el mouse */
+    opacity: 0;
+    pointer-events: none; 
+    z-index: 10;
+    transition: opacity 0.4s ease;
+    background-color: white; /* Fondo blanco mientras carga la imagen */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.croquis-overlay img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Que la imagen cubra todo el espacio */
+}
+
+/* Estado Activo: Visible y permite clic */
+.croquis-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+/* ESTO VA EN TU CSS */
+
+.croquis-overlay img {
+    width: 100%;
+    height: 100%;
+    
+    /* CAMBIO CLAVE: 'contain' asegura que se vea TODA la imagen sin zoom ni recortes */
+    object-fit: contain; 
+    
+    /* Opcional: Fondo blanco para los espacios vacíos que queden a los lados */
+    background-color: white; 
+}
+
+/* --- RESPONSIVE UBICACIÓN (MÓVIL) --- */
 @media (max-width: 900px) {
     .location-grid {
         grid-template-columns: 1fr; /* Una sola columna */
         max-width: 500px; /* Ancho máximo en móvil */
     }
-    
-    .location-map {
+
+    .map-container {
         height: 350px; /* Mapa más pequeño en celular */
-        order: -1; /* OPCIONAL: Si quieres que el mapa salga PRIMERO arriba, descomenta esto */
+        min-height: 350px;
+        order: -1; /* OPCIONAL: Si quieres que el mapa salga PRIMERO arriba */
     }
 
     .info-content {
         padding: 25px;
     }
 }
-
-
-
-
 
 /* ===========================================
    TESTIMONIOS (CARRUSEL INFINITO)
@@ -827,8 +901,6 @@ body {
     animation-play-state: paused;
 }
 
-
-
 /* --- TARJETA DE TESTIMONIO --- */
 .review-card {
     background: #ffffff;
@@ -836,7 +908,7 @@ body {
     padding: 25px;
     width: 320px; /* Ancho fijo ideal */
     flex-shrink: 0; /* Evita deformaciones */
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     border: 1px solid #eee;
     display: flex;
     flex-direction: column;
@@ -846,7 +918,7 @@ body {
 
 .review-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
     border-color: #2dc4ad; /* Borde verde al pasar mouse */
 }
 
@@ -882,8 +954,13 @@ body {
     font-weight: 600;
 }
 
-.source-google { color: #DB4437; }
-.source-facebook { color: #1877F2; }
+.source-google {
+    color: #DB4437;
+}
+
+.source-facebook {
+    color: #1877F2;
+}
 
 /* Estrellas */
 .review-stars {
@@ -898,10 +975,10 @@ body {
     line-height: 1.5;
     color: #555;
     font-style: italic;
-    
+
     /* Cortar texto si es muy largo (opcional) */
     display: -webkit-box;
-    -webkit-line-clamp: 4; 
+    -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -918,10 +995,13 @@ body {
         width: 280px;
         padding: 20px;
     }
-    .reviews-container::before, .reviews-container::after {
+
+    .reviews-container::before,
+    .reviews-container::after {
         width: 50px; /* Fade más pequeño en móvil */
     }
 }
+
 /* ===========================================
    NORMATIVAS (CARRUSEL INFINITO - VERSIÓN COLOR & FOCUS)
    =========================================== */
@@ -929,18 +1009,8 @@ body {
 .normativas-section-carousel {
     padding: 60px 0;
     background-color: #ffffff; /* Fondo Blanco Puro */
-    overflow: hidden; 
+    overflow: hidden;
     position: relative;
-}
-
-.section-title-dark {
-    font-size: 2rem;
-    font-weight: 800; /* Letra un poco más gruesa para autoridad */
-    color: #421D9D;
-    text-align: center;
-    margin-bottom: 50px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
 }
 
 /* El contenedor que delimita el área visible */
@@ -989,29 +1059,29 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    
+
     /* TAMAÑO FIJO DE LA CAJA: Aquí está el truco para alinearlos */
-    width: 250px; 
+    width: 250px;
     height: 160px; /* Altura suficiente para logo + texto */
-    
+
     padding: 0 20px;
 }
 
 /* --- LA IMAGEN (TAMAÑO UNIFORME) --- */
 .normativa-slide img {
     /* Define el espacio máximo que puede ocupar el logo */
-    width: 100%; 
+    width: 100%;
     height: 90px; /* Todos los logos tendrán esta altura máxima */
-    
+
     /* ESTO EVITA QUE SE DEFORMEN */
-    object-fit: contain; 
-    
+    object-fit: contain;
+
     margin-bottom: 15px;
-    
+
     /* ESTADO NORMAL: A color, pero suave */
     filter: none; /* Quitamos el gris */
     opacity: 0.6; /* Un poco transparentes para que no saturen */
-    
+
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Transición suave */
     transform: translateZ(0); /* Mejora rendimiento */
 }
@@ -1019,12 +1089,10 @@ body {
 /* --- EFECTO AL PASAR EL MOUSE (ENFOQUE MEJORADO) --- */
 .normativa-slide:hover img {
     opacity: 1; /* Color total */
-    
     /* EFECTO 3D: Crece + Sube + Sombra */
-    transform: scale(1.15) translateY(-8px); 
-    
+    transform: scale(1.15) translateY(-8px);
     /* Sombra que sigue la forma del PNG (mejor que box-shadow) */
-    filter: drop-shadow(0 15px 20px rgba(0, 0, 0, 0.2)); 
+    filter: drop-shadow(0 15px 20px rgba(0, 0, 0, 0.2));
 }
 
 /* Texto */
@@ -1049,22 +1117,25 @@ body {
 
 /* Móviles */
 @media (max-width: 768px) {
-    .carousel-track { animation-duration: 20s; }
-    .normativa-slide { 
+    .carousel-track {
+        animation-duration: 20s;
+    }
+
+    .normativa-slide {
         width: 180px; /* Cajas más pequeñas en móvil */
         height: 140px;
         padding: 0 10px;
     }
-    .normativa-slide img { height: 70px; }
+
+    .normativa-slide img {
+        height: 70px;
+    }
 }
 
 /* --- EXCEPCIÓN PARA LOGOS MUY ANCHOS (Como DIGESA) --- */
 .normativa-slide.wide-slide {
-    /* Le damos el doble de espacio (o lo que necesites) */
-    width: 500px; 
-    
-    /* Opcional: Ajustamos un poco el padding para que no quede pegado */
-    padding: 0 10px; 
+    width: 500px;
+    padding: 0 10px;
 }
 
 /* Ajuste para móviles: que no sea TAN gigante en celular */
@@ -1104,20 +1175,12 @@ body {
 }
 
 /* ===========================================
-   RESPONSIVE
+   RESPONSIVE GLOBAL ADICIONAL
    =========================================== */
 
 @media (max-width: 1024px) {
     .hero-title {
         font-size: 2rem;
-    }
-
-    .why-content {
-        grid-template-columns: 1fr;
-    }
-
-    .why-image {
-        text-align: center;
     }
 }
 
@@ -1128,10 +1191,6 @@ body {
 
     .hero-title {
         font-size: 1.75rem;
-    }
-
-    .services-cards {
-        grid-template-columns: 1fr 1fr;
     }
 
     .stats-container {
@@ -1148,11 +1207,6 @@ body {
         font-size: 2rem;
     }
 
-    .map-marker {
-        position: static;
-        margin-top: 20px;
-    }
-
     .whatsapp-float {
         width: 50px;
         height: 50px;
@@ -1167,19 +1221,7 @@ body {
         font-size: 1.5rem;
     }
 
-    .services-cards {
-        grid-template-columns: 1fr;
-    }
-
     .stat-number {
         font-size: 2rem;
-    }
-
-    .testimonials-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .normativas-grid {
-        grid-template-columns: 1fr;
     }
 }
