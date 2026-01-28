@@ -19,40 +19,54 @@ body {
 /* ===========================================
    HERO SECTION
    =========================================== */
+/* 1. La Sección Madre (Agregamos fondo blanco) */
 .hero-section {
     position: relative;
     padding: 60px 20px 80px;
-    min-height: 90vh; /* Ocupa casi toda la pantalla */
+    min-height: 85vh; /* Ojo: 10vh es muy poquito, mejor usa 85vh o 90vh */
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    
+    /* IMPORTANTE: Fondo blanco para que la imagen transparente se vea bien */
+    background-color: #ffffff; 
 }
 
-/* Fondo */
+/* 2. El Contenedor de la foto */
 .hero-bg-fix {
     position: absolute;
     inset: 0;
-    z-index: -1;
+    z-index: 0; /* Lo dejamos al fondo */
 }
 
+/* 3. La FOTO MISMA (Aquí aplicamos el 20%) */
 .hero-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    
+    /* AQUÍ ESTÁ LA MAGIA */
+    opacity: 0.6; /* 20% de visibilidad (muy suave) */
+    
+    /* Si quisieras que se vea un poco más, sube a 0.3 o 0.4 */
 }
 
 .bg-overlay {
     position: absolute;
     inset: 0;
-    
-    /* RADIAL GRADIENT: Del centro hacia afuera */
-    background: radial-gradient(circle, 
-        rgba(255, 255, 255, 0.95) 10%,   /* Centro: Blanco casi sólido (para que se lea el texto) */
-        rgba(255, 255, 255, 0.7) 40%,    /* Medio: Transición suave */
-       rgba(59, 188, 168, 0.20) 0%, 
-        rgba(59, 188, 168, 0.60) 100%);  /* Bordes: Tu verde (#3BBCA8) transparente */
-        z-index: 1; /* Esto asegura que el color quede ENCIMA de la foto */
+    z-index: 1;
+
+    /* 1. ÁNGULO INCLINADO: Usamos '105deg' en lugar de '90deg' para inclinar la línea.
+       
+       2. TRANSPARENCIA (Opacidad):
+          - Verde: Bajamos de 0.95 a 0.5 (50% transparente) para ver la foto.
+          - Blanco central: Bajamos de 1.0 a 0.8 (80% opaco) para que el texto se lea bien pero deje pasar algo de luz.
+    */
+    background: linear-gradient(105deg, 
+        rgba(59, 188, 168, 0.5) 0%,   /* Esquina sup. izquierda (Verde transparente) */
+        rgba(255, 255, 255, 0.8) 50%, /* Centro diagonal (Blanco semi-transparente) */
+        rgba(59, 188, 168, 0.5) 100%); /* Esquina inf. derecha (Verde transparente) */
 }
 .hero-content {
     position: relative;

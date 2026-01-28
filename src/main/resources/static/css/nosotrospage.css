@@ -3,6 +3,42 @@
    ======================================= */
 
 /* 1. HERO (Sin cambios) */
+/* BORRA ESTO DE TU CSS SI YA USASTE EL HTML DE ARRIBA */
+/* 1. IMPORTANTE: Esto va en la línea 1 de tu CSS para cargar la letra */
+@import url('https://fonts.googleapis.com/css2?family=Poltawski+Nowy:ital,wght@0,400..700;1,400..700&display=swap');
+
+/* ... (aquí va el resto de tu CSS que ya tenías) ... */
+
+/* 2. Agrega esto al final para el texto que me pasaste */
+/* TEXTO DEL HERO (Versión Extendida y Grande) */
+.hero-description {
+    font-family: 'Poltawski Nowy', serif !important;
+    
+    /* 1. TAMAÑO: Mucho más grande para que se lea bien */
+    font-size: 3.8rem; 
+    
+    /* 2. PESO: Un poco más grueso para dar fuerza */
+    font-weight: 600;  
+    
+    color: #421D9D;
+    text-align: center;
+    line-height: 1.1;  /* Líneas un poco más juntas para que se vea compacto */
+    
+    /* 3. ANCHO: Aquí está la clave para que sea "extenso" */
+    max-width: 2000px; /* Permitimos que ocupe casi toda la pantalla */
+    width: 100%;        /* Ocupa el 95% del espacio disponible */
+    
+    margin: 40px auto; /* Centrado y con aire arriba/abajo */
+    text-shadow: 0 2px 10px rgba(255, 255, 255, 0.5); /* Sombra suave para resaltar sobre la foto */
+}
+
+/* Ajuste para celular (para que no se salga de la pantalla) */
+@media (max-width: 768px) {
+    .hero-description {
+        font-size: 1.4rem; /* En celular lo bajamos un poco */
+        line-height: 1.5;
+    }
+}
 .bg-hero-gradient {
     background: linear-gradient(123.79deg, rgba(250, 255, 254, 0) 50.71%, rgba(255, 255, 255, .2) 52.17%),
         linear-gradient(280.42deg, rgba(59, 188, 168, .18) 13.12%, rgba(255, 251, 251, .2) 45.24%),

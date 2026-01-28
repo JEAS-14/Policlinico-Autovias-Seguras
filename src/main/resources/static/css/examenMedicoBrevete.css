@@ -157,7 +157,6 @@ body {
     align-items: start;
     grid-auto-rows: auto;
 }
-
 .license-card {
     background: white;
     border-radius: 15px;
@@ -167,13 +166,17 @@ body {
     overflow: hidden;
     cursor: pointer;
     min-height: 160px;
-    /* Mantiene un área de detección mínima */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     transition: all 0.4s ease;
-}
 
+    /* AÑADE ESTO PARA QUITAR EL PARPADEO */
+    isolation: isolate; 
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    pointer-events: auto;
+}
 .license-card.card-expandable {
     background: white;
 }
@@ -202,18 +205,10 @@ body {
     visibility: visible;
     transition: opacity 0.3s ease;
 }
-
-.card-expandable .card-simple {
-    opacity: 1;
-    transition: opacity 0.3s ease, max-height 0.3s ease;
-    max-height: 200px;
-}
-
 .card-expandable:hover .card-simple {
     opacity: 0;
     visibility: hidden;
-    position: absolute;
-    /* Clave: deja de ocupar espacio para que no haya saltos */
+    display: none; /* Mantiene la estabilidad de la tarjeta */
     pointer-events: none;
 }
 
@@ -229,8 +224,9 @@ body {
 .card-expandable:hover .card-expanded {
     opacity: 1;
     max-height: 1000px;
-    /* Valor alto para permitir todo el texto */
     visibility: visible;
+    /* Forzamos a que ocupe espacio de inmediato */
+    display: block; 
 }
 
 .row-flex {
