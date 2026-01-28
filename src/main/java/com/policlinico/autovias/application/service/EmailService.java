@@ -1,7 +1,8 @@
-package com.policlinico.autovias.service;
+package com.policlinico.autovias.application.service;
 
-import com.policlinico.autovias.model.dto.ConsultaDTO;
-import com.policlinico.autovias.model.entity.Consulta;
+import com.policlinico.autovias.application.dto.ConsultaDTO;
+import com.policlinico.autovias.domain.entity.Consulta;
+
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;

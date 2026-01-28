@@ -1,6 +1,5 @@
-package com.policlinico.autovias.controller;
+package com.policlinico.autovias.infrastructure.web.controller;
 
-import com.policlinico.autovias.model.dto.ConsultaDTO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -8,21 +7,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import com.policlinico.autovias.model.dto.ConsultaDTO;
-import com.policlinico.autovias.service.EmailService;
+
+import com.policlinico.autovias.application.dto.ConsultaDTO;
+import com.policlinico.autovias.application.service.ConsultaService;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequestMapping("/consulta")
+@RequiredArgsConstructor // Simplifica el constructor para inyección
 public class ConsultaController {
 
-    private final EmailService emailService;
-
-    public ConsultaController(EmailService emailService) {
-        this.emailService = emailService;
-    }
+    private final ConsultaService consultaService;
 
     @GetMapping("/formulario")
     public String mostrarFormulario(Model model) {
@@ -46,10 +43,8 @@ public class ConsultaController {
             return "formulario";
         }
 
-        String ticket = "C-" + System.currentTimeMillis();
-
-        emailService.enviarNotificacionConsulta(consultaDTO, ticket);
-        emailService.enviarConfirmacionCliente(consultaDTO, ticket);
+        // Delegamos TODO al servicio: Crear ticket, Guardar en DB y Enviar Emails
+        consultaService.crearConsulta(consultaDTO);
 
         return "redirect:/consulta/confirmacion";
     }

@@ -1,4 +1,4 @@
-package com.policlinico.autovias.model.entity;
+package com.policlinico.autovias.domain.enums;
 
 public enum EstadoConsulta {
     PENDIENTE("Pendiente", "badge-warning"),

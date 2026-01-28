@@ -1,7 +1,8 @@
-package com.policlinico.autovias.repository;
+package com.policlinico.autovias.infrastructure.persitence.repository;
 
-import com.policlinico.autovias.model.entity.Consulta;
-import com.policlinico.autovias.model.entity.EstadoConsulta;
+import com.policlinico.autovias.domain.entity.Consulta;
+import com.policlinico.autovias.domain.enums.EstadoConsulta;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

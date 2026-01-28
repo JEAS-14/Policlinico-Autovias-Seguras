@@ -1,10 +1,11 @@
-package com.policlinico.autovias.service;
+package com.policlinico.autovias.application.service;
 
-import com.policlinico.autovias.model.dto.ConsultaDTO;
-import com.policlinico.autovias.model.dto.RespuestaDTO;
-import com.policlinico.autovias.model.entity.Consulta;
-import com.policlinico.autovias.model.entity.EstadoConsulta;
-import com.policlinico.autovias.repository.ConsultaRepository;
+import com.policlinico.autovias.application.dto.ConsultaDTO;
+import com.policlinico.autovias.application.dto.RespuestaDTO;
+import com.policlinico.autovias.domain.entity.Consulta;
+import com.policlinico.autovias.domain.enums.EstadoConsulta;
+import com.policlinico.autovias.infrastructure.persitence.repository.ConsultaRepository;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;

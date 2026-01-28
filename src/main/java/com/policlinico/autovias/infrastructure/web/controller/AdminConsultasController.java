@@ -1,9 +1,10 @@
-package com.policlinico.autovias.controller;
+package com.policlinico.autovias.infrastructure.web.controller;
 
-import com.policlinico.autovias.model.dto.RespuestaDTO;
-import com.policlinico.autovias.model.entity.Consulta;
-import com.policlinico.autovias.model.entity.EstadoConsulta;
-import com.policlinico.autovias.service.ConsultaService;
+import com.policlinico.autovias.application.dto.RespuestaDTO;
+import com.policlinico.autovias.application.service.ConsultaService;
+import com.policlinico.autovias.domain.entity.Consulta;
+import com.policlinico.autovias.domain.enums.EstadoConsulta;
+
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

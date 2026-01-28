@@ -1,5 +1,4 @@
-package com.policlinico.autovias.controller;
-
+package com.policlinico.autovias.infrastructure.web.controller;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;

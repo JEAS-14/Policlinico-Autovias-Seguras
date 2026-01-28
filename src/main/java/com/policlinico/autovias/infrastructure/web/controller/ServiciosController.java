@@ -1,4 +1,4 @@
-package com.policlinico.autovias.controller;
+package com.policlinico.autovias.infrastructure.web.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

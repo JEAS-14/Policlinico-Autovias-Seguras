@@ -1,4 +1,4 @@
-package com.policlinico.autovias.model.dto;
+package com.policlinico.autovias.application.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;

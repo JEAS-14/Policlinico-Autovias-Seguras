@@ -1,10 +1,12 @@
-package com.policlinico.autovias.model.entity;
+package com.policlinico.autovias.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
+
+import com.policlinico.autovias.domain.enums.EstadoConsulta;
 
 @Entity
 @Table(name = "consultas")
@@ -64,7 +66,7 @@ public class Consulta {
     }
     
     // Constructor desde DTO
-    public static Consulta fromDTO(com.policlinico.autovias.model.dto.ConsultaDTO dto) {
+    public static Consulta fromDTO(com.policlinico.autovias.application.dto.ConsultaDTO dto) {
         Consulta consulta = new Consulta();
         consulta.setNombre(dto.getNombre());
         consulta.setApellido(dto.getApellido());
