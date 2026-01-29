@@ -3,40 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Centro de Capacitación Teórica - Preparación exclusiva para el examen de reglas del MTC.">
-    <title>Policlínico Autovías Seguras | Capacitación Teórica MTC</title>
+    <title>Escuela de Conductores | Policlínico Autovías Seguras</title>
     
     <link rel="stylesheet" th:href="@{/css/fragments/navbar.css}">
     <link rel="stylesheet" th:href="@{/css/fragments/footer.css}">
     <link rel="stylesheet" th:href="@{/css/escuelaConductores.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <style>
-        .hero-escuela {
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            /* Ajusta la altura si sientes que queda muy vacío sin el form */
-            min-height: 80vh; 
-        }
-        .methodology-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        .step-card {
-            background: #fff;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            text-align: center;
-            transition: transform 0.3s;
-        }
-        .step-card:hover { transform: translateY(-5px); }
-        .step-icon { font-size: 2.5rem; color: #4c1d95; margin-bottom: 1rem; }
-    </style>
 </head>
 <body>
 
@@ -44,101 +16,67 @@
 
     <main>
         <section class="hero-escuela">
-            <div class="container hero-content" style="max-width: 900px;">
-                <span class="badge-new fade-in" style="background: #25D366; color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.9rem; font-weight: bold; margin-bottom: 15px; display: inline-block;">
-                    <i class="fas fa-check-circle"></i> Actualizado Balotario MTC 2026
+            <div class="container hero-content">
+                <span class="badge-new fade-in">
+                    <i class="fas fa-map-marker-alt"></i> Clases 100% Presenciales
                 </span>
                 
-                <h1 class="fade-in" style="font-size: 3.5rem; line-height: 1.2;">
-                    Domina el Examen de Reglas <br> <span style="color: var(--color-purple);">Sin Miedo a Reprobar</span>
+                <h1 class="fade-in">
+                    Aprueba tu Examen Teórico <br> <span>En Nuestras Aulas Modernas</span>
                 </h1>
                 
-                <p class="fade-in" style="font-size: 1.3rem; margin: 20px 0; color: #555;">
-                    Somos un Centro de Capacitación Teórica especializado. Te preparamos con simulacros inteligentes y clases en vivo para tu recategorización o licencia nueva.
+                <p class="fade-in">
+                    Olvídate del Zoom. Ven a nuestro centro, aprende con instructores cara a cara y practica en computadoras idénticas a las del Touring.
                 </p>
                 
-                <div class="hero-buttons fade-in" style="justify-content: center;">
-                    <a href="#paquetes" class="btn btn-purple">VER PLANES DE ESTUDIO</a>
-                    <a href="https://wa.me/51913889497" class="btn btn-green"><i class="fab fa-whatsapp"></i> ASESORÍA GRATUITA</a>
+                <div class="hero-buttons fade-in">
+                    <a href="#cotizar" class="btn btn-primary">COTIZAR AHORA</a>
+                    <a href="https://wa.me/51913889497" class="btn btn-whatsapp" target="_blank">
+                        <i class="fab fa-whatsapp"></i> PREGUNTAR POR WHATSAPP
+                    </a>
                 </div>
 
-                <div class="stats-box slide-up" style="margin-top: 3rem; justify-content: center;">
-                    <div class="stat-item"><span class="stat-number" data-target="98">0</span><span class="stat-desc">% Aprobados</span></div>
+                <div class="stats-box slide-up">
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="98">0</span>
+                        <span class="stat-desc">% Aprobados</span>
+                    </div>
                     <div class="divider"></div>
-                    <div class="stat-item"><span class="stat-number" data-target="2000">0</span><span class="stat-desc">Preguntas MTC</span></div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="45">0</span>
+                        <span class="stat-desc">Minutos Simulacro</span>
+                    </div>
                     <div class="divider"></div>
-                    <div class="stat-item"><span class="stat-number" data-target="24">0</span><span class="stat-desc">Horas Soporte</span></div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="15">0</span>
+                        <span class="stat-desc">Años Enseñando</span>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="lead-section" style="background: #f9fafb;">
+        <section class="methodology-section">
             <div class="container">
                 <div class="text-center slide-up">
-                    <h2 class="section-title">Tu Ruta Hacia el Brevete</h2>
-                    <p class="section-desc">Olvídate de leer manuales aburridos. Nuestro método es dinámico y directo al grano.</p>
+                    <h2 class="section-title">¿Por qué elegir presencial?</h2>
+                    <p class="section-desc">La interacción directa es la clave para aprender rápido.</p>
                 </div>
 
                 <div class="methodology-grid">
                     <div class="step-card slide-up">
-                        <div class="step-icon"><i class="fas fa-laptop-file"></i></div>
-                        <h3>1. Clases Zoom</h3>
-                        <p>Sesiones en vivo donde explicamos las reglas difíciles, mecánica básica y primeros auxilios.</p>
+                        <div class="icon-bg"><i class="fas fa-chalkboard-teacher"></i></div>
+                        <h3>Pizarra Activa</h3>
+                        <p>El instructor dibuja situaciones de tránsito reales y responde tus dudas al instante.</p>
                     </div>
-                    <div class="step-card slide-up">
-                        <div class="step-icon"><i class="fas fa-list-check"></i></div>
-                        <h3>2. Simulacros MTC</h3>
-                        <p>Plataforma virtual con las mismas preguntas y tiempo que el examen real del Touring.</p>
+                    <div class="step-card slide-up" style="transition-delay: 0.1s;">
+                        <div class="icon-bg"><i class="fas fa-desktop"></i></div>
+                        <h3>Laboratorio MTC</h3>
+                        <p>Sala equipada con el sistema oficial para que pierdas el miedo al mouse y la pantalla.</p>
                     </div>
-                    <div class="step-card slide-up">
-                        <div class="step-icon"><i class="fas fa-certificate"></i></div>
-                        <h3>3. Validación</h3>
-                        <p>Te evaluamos internamente hasta que estés listo para dar tu examen oficial sin riesgos.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="paquetes" class="packages-section">
-            <div class="container">
-                <h2 class="section-title">Programas de Capacitación</h2>
-                <p class="section-desc">Elige el nivel de profundidad que necesitas para tu examen.</p>
-
-                <div class="packages-grid">
-                    <div class="package-card slide-up">
-                        <div class="pkg-header">KIT VIRTUAL</div>
-                        <div class="pkg-icon"><i class="fas fa-file-pdf"></i></div>
-                        <ul class="pkg-list">
-                            <li><i class="fas fa-check"></i> Balotario PDF 2026</li>
-                            <li><i class="fas fa-check"></i> 5 Simulacros Web</li>
-                            <li><i class="fas fa-check"></i> Guía de Señales</li>
-                            <li><i class="fas fa-times" style="color: #ccc;"></i> Sin Clases en Vivo</li>
-                        </ul>
-                        <button class="btn-choose">Seleccionar</button>
-                    </div>
-
-                    <div class="package-card popular slide-up">
-                        <div class="pkg-header">AULA VIRTUAL</div>
-                        <div class="pkg-icon"><i class="fas fa-chalkboard-user"></i></div>
-                        <ul class="pkg-list">
-                            <li><i class="fas fa-check"></i> <strong>Clases Vía Zoom</strong></li>
-                            <li><i class="fas fa-check"></i> Simulacros Ilimitados</li>
-                            <li><i class="fas fa-check"></i> Resolución de Dudas</li>
-                            <li><i class="fas fa-check"></i> Videos Grabados</li>
-                        </ul>
-                        <button class="btn-choose btn-highlight">Más Popular</button>
-                    </div>
-
-                    <div class="package-card slide-up">
-                        <div class="pkg-header">GARANTÍA TOTAL</div>
-                        <div class="pkg-icon"><i class="fas fa-user-graduate"></i></div>
-                        <ul class="pkg-list">
-                            <li><i class="fas fa-check"></i> Tutor Personalizado</li>
-                            <li><i class="fas fa-check"></i> Programación de Cita MTC</li>
-                            <li><i class="fas fa-check"></i> Repaso Intensivo Pre-Examen</li>
-                            <li><i class="fas fa-check"></i> Si desapruebas, te devolvemos</li>
-                        </ul>
-                        <button class="btn-choose">Seleccionar</button>
+                    <div class="step-card slide-up" style="transition-delay: 0.2s;">
+                        <div class="icon-bg"><i class="fas fa-book-reader"></i></div>
+                        <h3>Material Físico</h3>
+                        <p>Te entregamos balotarios impresos y guías para que repases donde quieras.</p>
                     </div>
                 </div>
             </div>
@@ -146,47 +84,63 @@
 
         <section class="topics-section">
             <div class="container">
-                <h2 class="section-title">¿Qué aprenderás en el curso?</h2>
-                <p class="section-desc">Cubrimos todas las áreas evaluadas por el MTC.</p>
+                <div class="text-center slide-up">
+                    <h2 class="section-title">¿Qué vas a aprender?</h2>
+                    <p class="section-desc">Desglosamos el balotario para que lo entiendas fácil.</p>
+                </div>
                 
                 <div class="topics-grid">
-                    <div class="topic-item slide-up">
-                        <i class="fas fa-traffic-light fa-3x" style="color: #4c1d95; margin-bottom: 10px;"></i>
-                        <span>Reglamento Nacional de Tránsito</span>
+                    <div class="topic-card slide-up">
+                        <div class="topic-icon"><i class="fas fa-traffic-light"></i></div>
+                        <h3>Reglamento de Tránsito</h3>
+                        <p>Prioridades de paso, uso de carriles y límites de velocidad.</p>
                     </div>
-                    <div class="topic-item slide-up">
-                        <i class="fas fa-car-crash fa-3x" style="color: #4c1d95; margin-bottom: 10px;"></i>
-                        <span>Mecánica Básica & Averías</span>
+                    <div class="topic-card slide-up">
+                        <div class="topic-icon"><i class="fas fa-wrench"></i></div>
+                        <h3>Mecánica Básica</h3>
+                        <p>Tablero del auto, cambio de llantas y revisión de niveles.</p>
                     </div>
-                    <div class="topic-item slide-up">
-                        <i class="fas fa-gavel fa-3x" style="color: #4c1d95; margin-bottom: 10px;"></i>
-                        <span>Infracciones y Sistema de Puntos</span>
+                    <div class="topic-card slide-up">
+                        <div class="topic-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                        <h3>Infracciones</h3>
+                        <p>Memoriza el cuadro de sanciones y el sistema de puntos.</p>
                     </div>
-                    <div class="topic-item slide-up">
-                        <i class="fas fa-route fa-3x" style="color: #4c1d95; margin-bottom: 10px;"></i>
-                        <span>Manejo a la Defensiva</span>
+                    <div class="topic-card slide-up">
+                        <div class="topic-icon"><i class="fas fa-shield-alt"></i></div>
+                        <h3>Manejo Defensivo</h3>
+                        <p>Técnicas para anticipar accidentes y mantener distancia.</p>
+                    </div>
+                    <div class="topic-card slide-up">
+                        <div class="topic-icon"><i class="fas fa-first-aid"></i></div>
+                        <h3>Primeros Auxilios</h3>
+                        <p>Protocolo PAS y actuación legal en accidentes.</p>
+                    </div>
+                    <div class="topic-card slide-up">
+                        <div class="topic-icon"><i class="fas fa-road"></i></div>
+                        <h3>Señalización</h3>
+                        <p>Diferencia entre señales Reguladoras, Preventivas e Informativas.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="testimonials-section">
+        <section id="cotizar" class="cta-section">
             <div class="container">
-                <h2 class="section-title">Resultados Reales</h2>
-                <p class="section-desc">Alumnos que aprobaron su examen teórico a la primera.</p>
-
-                <div class="testimonials-grid">
-                    <div class="testimonial-card slide-up">
-                        <div class="quote">"Tenía miedo a las preguntas de mecánica, pero el profesor lo explicó súper fácil en el Zoom."</div>
-                        <p class="author">- Carlos M. (Recategorización A2)</p>
+                <div class="cta-box slide-up">
+                    <div class="cta-content">
+                        <h2>¡Asegura tu Brevete Hoy!</h2>
+                        <p>Tenemos inicios de grupos todas las semanas. Consulta por nuestros horarios disponibles y promociones vigentes.</p>
+                        <ul class="cta-benefits">
+                            <li><i class="fas fa-check-circle"></i> Horarios Flexibles</li>
+                            <li><i class="fas fa-check-circle"></i> Instructores Certificados</li>
+                            <li><i class="fas fa-check-circle"></i> Aulas en Lince/Lima</li>
+                        </ul>
+                        <div class="cta-buttons">
+                            <a th:href="@{/consulta/cotizar}" class="btn btn-primary btn-lg">SOLICITAR PRECIO</a>
+                        </div>
                     </div>
-                    <div class="testimonial-card slide-up">
-                        <div class="quote">"El simulador es idéntico al del Touring. Cuando fui al examen real, ya sabía todas las respuestas."</div>
-                        <p class="author">- Ana P. (Licencia A1)</p>
-                    </div>
-                    <div class="testimonial-card slide-up">
-                        <div class="quote">"Muy recomendado para quienes trabajan y tienen poco tiempo para leer el reglamento."</div>
-                        <p class="author">- Jorge L. (Revalidación)</p>
+                    <div class="cta-image">
+                        <i class="fas fa-calendar-check"></i>
                     </div>
                 </div>
             </div>
@@ -194,14 +148,10 @@
 
     </main>
 
-    <a href="https://wa.me/51913889497" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
     <div th:replace="~{fragments/footer :: footer}"></div>
+    
     <script th:src="@{/js/fragments/navbar.js}"></script>
-    <script th:src="@{/js/home.js}"></script>
     <script th:src="@{/js/escuelaConductores.js}"></script>
-        
+
 </body>
 </html>

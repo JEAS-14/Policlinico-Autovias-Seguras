@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libro de Reclamaciones | Policlínico Autovías Seguras</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poltawski+Nowy:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" th:href="@{/css/fragments/navbar.css}">
+    <link rel="stylesheet" th:href="@{/css/fragments/footer.css}">
+    <link rel="stylesheet" th:href="@{/css/libroReclamaciones.css}">
+</head>
+<body>
+
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <main class="libro-container">
+        
+        <div class="libro-header">
+            <h1><i class="fas fa-book-open"></i> Libro de Reclamaciones</h1>
+            <p>Conforme a lo establecido en el Código de Protección y Defensa del Consumidor, ponemos a su disposición este libro virtual.</p>
+            <div class="fecha-box">
+                Fecha: <span id="fecha-actual"></span>
+            </div>
+        </div>
+
+        <form class="reclamo-form">
+            
+            <fieldset>
+                <legend><i class="fas fa-user"></i> 1. Identificación del Consumidor</legend>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Nombre Completo:</label>
+                        <input type="text" placeholder="Ingresa tu nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label>DNI / CE:</label>
+                        <input type="text" placeholder="N° de documento" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Domicilio:</label>
+                    <input type="text" placeholder="Dirección completa, Distrito, Ciudad" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Teléfono:</label>
+                        <input type="tel" placeholder="999 999 999" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Correo Electrónico:</label>
+                        <input type="email" placeholder="ejemplo@correo.com" required>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend><i class="fas fa-box-open"></i> 2. Identificación del Bien Contratado</legend>
+                
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="tipo_bien" value="producto">
+                        <span>Producto</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="tipo_bien" value="servicio" checked>
+                        <span>Servicio</span>
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label>Descripción del Bien Contratado:</label>
+                    <textarea rows="2" placeholder="Ej: Examen Médico Ocupacional, Licencia A1..."></textarea>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend><i class="fas fa-edit"></i> 3. Detalle de la Reclamación</legend>
+                
+                <div class="radio-group tipo-reclamo">
+                    <label class="radio-option">
+                        <input type="radio" name="tipo_reclamo" value="reclamo">
+                        <span class="tag-reclamo">RECLAMO</span>
+                        <small>(Disconformidad relacionada a los productos o servicios)</small>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="tipo_reclamo" value="queja">
+                        <span class="tag-queja">QUEJA</span>
+                        <small>(Disconformidad no relacionada directamente al giro del negocio, ej: atención)</small>
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label>Detalle:</label>
+                    <textarea rows="4" placeholder="Describa los hechos..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Pedido del Consumidor:</label>
+                    <textarea rows="2" placeholder="¿Qué solución espera?"></textarea>
+                </div>
+            </fieldset>
+
+            <div class="form-actions">
+                <p class="legal-text">
+                    * La formulación del reclamo no impide acudir a otras vías de solución de controversias ni es requisito previo para interponer una denuncia ante el INDECOPI.
+                    <br>
+                    * El proveedor deberá dar respuesta al reclamo en un plazo no mayor a 15 días hábiles.
+                </p>
+                <button type="submit" class="btn-enviar">ENVIAR HOJA DE RECLAMACIÓN</button>
+            </div>
+
+        </form>
+
+    </main>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+    <script>
+        document.getElementById('fecha-actual').textContent = new Date().toLocaleDateString('es-PE', {
+            weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+        });
+    </script>
+    <script th:src="@{/js/fragments/navbar.js}"></script>
+
+</body>
+</html>

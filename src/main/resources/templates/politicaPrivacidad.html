@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Políticas de Privacidad | Policlínico Autovías Seguras</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poltawski+Nowy:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" th:href="@{/css/fragments/navbar.css}">
+    <link rel="stylesheet" th:href="@{/css/fragments/footer.css}">
+    <link rel="stylesheet" th:href="@{/css/politicaPrivacidad.css}">
+</head>
+
+<body>
+
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <header class="privacy-header">
+        <div class="container">
+            <h1 class="animate-down">Políticas de Privacidad</h1>
+            <p class="animate-up">Tu seguridad y confianza son nuestra prioridad</p>
+        </div>
+    </header>
+
+    <main class="privacy-content">
+        <div class="container">
+            
+            <div class="intro-box fade-in">
+                <i class="fas fa-shield-halved intro-icon"></i>
+                <h2>En AUTOVIAS SEGURAS SAC</h2>
+                <p>Valoramos y respetamos tu privacidad. Esta Política de Privacidad describe cómo recopilamos, utilizamos y protegemos la información personal que nos proporcionas cuando utilizas nuestros servicios.</p>
+            </div>
+
+            <div class="privacy-grid">
+
+                <article class="policy-card reveal-up">
+                    <div class="card-header">
+                        <div class="icon-box"><i class="fas fa-database"></i></div>
+                        <h3>Recopilación de Información</h3>
+                    </div>
+                    <p>Recopilamos información personal que nos proporcionas voluntariamente cuando interactúas con nosotros, ya sea al registrarte en nuestro sitio web, utilizar nuestras aplicaciones móviles, comunicarte con nuestro equipo de atención al cliente o participar en encuestas y promociones. Esta información puede incluir tu nombre, dirección de correo electrónico, dirección postal, número de teléfono y otra información relevante.</p>
+                </article>
+
+                <article class="policy-card reveal-up" style="transition-delay: 0.1s;">
+                    <div class="card-header">
+                        <div class="icon-box"><i class="fas fa-hand-holding-heart"></i></div>
+                        <h3>Uso de la Información</h3>
+                    </div>
+                    <p>Utilizamos la información que recopilamos para proporcionarte nuestros servicios, procesar tus solicitudes, mejorar nuestra atención al cliente, personalizar tu experiencia con nosotros, comunicarnos contigo sobre tus transacciones y proporcionarte información relevante sobre nuestros productos y servicios.</p>
+                </article>
+
+                <article class="policy-card reveal-up" style="transition-delay: 0.2s;">
+                    <div class="card-header">
+                        <div class="icon-box"><i class="fas fa-lock"></i></div>
+                        <h3>Protección de la Información</h3>
+                    </div>
+                    <p>Nos comprometemos a proteger la seguridad de tu información personal. Implementamos medidas de seguridad físicas, técnicas y administrativas para proteger tus datos contra el acceso no autorizado, la divulgación, la alteración o la destrucción.</p>
+                </article>
+
+                <article class="policy-card reveal-up" style="transition-delay: 0.3s;">
+                    <div class="card-header">
+                        <div class="icon-box"><i class="fas fa-user-shield"></i></div>
+                        <h3>Compartir Información</h3>
+                    </div>
+                    <p>No vendemos, alquilamos ni compartimos tu información personal con terceros, excepto en los casos necesarios para proporcionarte nuestros servicios, cumplir con la ley o proteger nuestros derechos, propiedad o seguridad.</p>
+                </article>
+
+                <article class="policy-card reveal-up" style="transition-delay: 0.4s;">
+                    <div class="card-header">
+                        <div class="icon-box"><i class="fas fa-sync-alt"></i></div>
+                        <h3>Cambios en la Política</h3>
+                    </div>
+                    <p>Nos reservamos el derecho de actualizar esta Política de Privacidad en cualquier momento. Te notificaremos sobre los cambios significativos mediante una notificación en nuestro sitio web o por otros medios que consideremos apropiados.</p>
+                </article>
+
+            </div>
+
+            <div class="contact-section fade-in">
+                <div class="contact-icon"><i class="fas fa-envelope-open-text"></i></div>
+                <h3>Contacto</h3>
+                <p>Si tienes alguna pregunta o inquietud sobre nuestra Política de Privacidad o sobre el manejo de tus datos, no dudes en escribirnos.</p>
+                <a href="mailto:contacto@autoviasseguras.com" class="btn-contact">CONTACTAR SOPORTE</a>
+            </div>
+
+        </div>
+    </main>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+    <script th:src="@{/js/fragments/navbar.js}"></script>
+    <script th:src="@{/js/politicaPrivacidad.js}"></script>
+
+</body>
+</html>

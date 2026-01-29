@@ -62,4 +62,22 @@ public class HomeController {
     public String nuestroBlog() {
         return "nuestroBlog";
     }
+
+
+    @GetMapping("/politicaPrivacidad")
+    public String politicaPrivacidad() {
+        return "politicaPrivacidad";
+    }
+
+    // Ruta para Términos y Condiciones
+    @GetMapping("/terminosCondiciones")
+    public String terminosCondiciones() {
+        return "terminosCondiciones";
+    }
+
+    // Ruta para el Libro de Reclamaciones
+    @GetMapping("/libroReclamaciones")
+    public String libroReclamaciones() {
+        return "libroReclamaciones";
+    }
 }

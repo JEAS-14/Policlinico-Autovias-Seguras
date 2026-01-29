@@ -1,4 +1,6 @@
-/* --- Variables --- */
+/* ==========================================================================
+   1. VARIABLES Y GLOBAL
+   ========================================================================== */
 :root {
     --primary-purple: #4a148c;
     --btn-purple: #5836be;
@@ -14,18 +16,12 @@ body {
     background: linear-gradient(to bottom, var(--bg-gradient-top), var(--bg-gradient-bottom));
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: var(--text-dark);
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
+    margin: 0; padding: 0; overflow-x: hidden;
 }
 
-.container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
+.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
 
-/* --- HERO SECTION --- */
+/* HERO */
 .hero-brevete {
     height: 680px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -33,130 +29,46 @@ body {
         linear-gradient(280.42deg, rgba(59, 188, 168, 0.176) 13.12%, rgba(255, 251, 251, 0.2) 45.24%),
         linear-gradient(101.84deg, rgba(59, 188, 168, 0.384) 18.18%, rgba(238, 249, 247, 0.6) 46.15%),
         url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=1000&auto=format&fit=crop');
-    background-size: cover;
-    background-position: 50% 10%;
-    padding: 130px 100px;
-    text-align: center;
+    background-size: cover; background-position: 50% 10%;
+    padding: 130px 100px; text-align: center;
 }
+.hero-content h1 { color: var(--primary-purple); font-weight: 800; font-size: 2.7rem; margin-bottom: 15px; }
+.hero-content h3 { color: #421D9D; font-weight: 800; font-size: 1.5rem; margin-bottom: 15px; }
+.hero-buttons { display: flex; justify-content: center; gap: 15px; margin: 25px 0; }
+.btn { padding: 18px 30px; border-radius: 15px; text-decoration: none; color: white; font-weight: bold; }
+.btn-purple { background-color: var(--btn-purple); }
+.btn-green { background-color: var(--btn-green); }
+.subtitle { padding: 15px 0; color: #2E1A5F; margin-bottom: 40px; font-style: italic; }
 
-.hero-content h1 {
-    color: var(--primary-purple);
-    font-weight: 800;
-    font-size: 2.7rem;
-    margin-bottom: 15px;
-}
-
-.hero-content h3 {
-    color: #421D9D;
-    font-weight: 800;
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-}
-
-.hero-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin: 25px 0;
-}
-
-.btn {
-    padding: 18px 30px;
-    border-radius: 15px;
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-}
-
-.btn-purple {
-    background-color: var(--btn-purple);
-
-}
-
-.btn-green {
-    background-color: var(--btn-green);
-}
-
-.subtitle {
-    padding: 15px 0;
-    color: #2E1A5F;
-    margin-bottom: 40px;
-    font-style: italic;
-}
-
-/* Estadísticas (Igual que EMO) */
+/* ESTADÍSTICAS */
 .stats-box {
-    background: white;
-    border-radius: 20px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-    display: flex;
-    justify-content: space-around;
-    padding: 20px 50px;
-    align-items: center;
-    flex-wrap: wrap;
-    max-width: 900px;
-    margin: 0 auto;
-    position: relative;
+    background: white; border-radius: 20px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    display: flex; justify-content: space-around; padding: 20px 50px;
+    align-items: center; flex-wrap: wrap; max-width: 900px; margin: 0 auto; position: relative;
 }
+.stat-item { padding: 0 20px; align-items: center; }
+.stat-number { font-size: 3.5rem; font-weight: 700; color: var(--bg-green-brand); line-height: 1; margin-bottom: 5px; }
+.stat-desc { font-size: 0.9rem; color: #666; font-weight: 500; max-width: 150px; margin: 0 auto; }
+.divider { width: 2px; height: 60px; background-color: #eee; }
 
-.stat-item {
-    padding: 0 20px;
-    align-items: center;
-}
+/* CATEGORÍAS */
+.category-section { padding: 40px 0; }
+.section-header { text-align: center; margin-bottom: 30px; }
+.header-expandido { display: flex; align-items: center; gap: 15px; margin-bottom: 5px; }
+.header-icon { font-size: 2.5rem; color: var(--primary-purple); margin-bottom: 10px; display: block; }
+.section-title { color: var(--primary-purple); font-weight: 800; text-transform: uppercase; }
 
-.stat-number {
-    font-size: 3.5rem;
-    font-weight: 700;
-    color: var(--bg-green-brand);
-    line-height: 1;
-    margin-bottom: 5px;
-}
-
-.divider {
-    width: 2px;
-    height: 60px;
-    background-color: #eee;
-}
-
-/* --- SECCIONES DE CATEGORÍAS --- */
-.category-section {
-    padding: 40px 0;
-}
-
-.section-header {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.header-expandido {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 5px;
-}
-
-.header-icon {
-    font-size: 2.5rem;
-    color: var(--primary-purple);
-    margin-bottom: 10px;
-    display: block;
-}
-
-.section-title {
-    color: var(--primary-purple);
-    font-weight: 800;
-    text-transform: uppercase;
-}
-
-/* --- TARJETAS INTERACTIVAS (GRID) --- */
+/* ==========================================================================
+   TARJETAS INTERACTIVAS (GRID)
+   ========================================================================== */
 .cards-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 25px;
     padding-bottom: 20px;
     align-items: start;
-    grid-auto-rows: auto;
 }
+
 .license-card {
     background: white;
     border-radius: 15px;
@@ -165,302 +77,137 @@ body {
     position: relative;
     overflow: hidden;
     cursor: pointer;
-    min-height: 160px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    
+    /* ANTI-PARPADEO: Altura mínima fija */
+    min-height: 250px; 
+    
+    display: flex; flex-direction: column; justify-content: center;
     transition: all 0.4s ease;
-
-    /* AÑADE ESTO PARA QUITAR EL PARPADEO */
-    isolation: isolate; 
-    backface-visibility: hidden;
     transform: translateZ(0);
-    pointer-events: auto;
-}
-.license-card.card-expandable {
-    background: white;
 }
 
-.license-card.white-card {
-    background: white;
-}
-
-.license-card:hover {
+/* ESTADO ACTIVO (Manejado por JS mouseenter) */
+.license-card.active {
     transform: scale(1.05);
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
     z-index: 100;
     background: linear-gradient(135deg, #3bbca8 0%, #5dd5c3 100%);
-}
-
-.card-expandable:hover {
-    background: linear-gradient(135deg, #3bbca8 0%, #5dd5c3 100%);
-}
-
-/* Estado simple (por defecto) */
-.card-simple {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    opacity: 1;
-    visibility: visible;
-    transition: opacity 0.3s ease;
-}
-.card-expandable:hover .card-simple {
-    opacity: 0;
-    visibility: hidden;
-    display: none; /* Mantiene la estabilidad de la tarjeta */
-    pointer-events: none;
-}
-
-/* Estado expandido (solo visible en hover) */
-.card-expanded {
-    opacity: 0;
-    max-height: 0;
-    visibility: hidden;
-    overflow: hidden;
-    transition: opacity 0.3s ease, max-height 0.5s ease, visibility 0.3s;
-}
-
-.card-expandable:hover .card-expanded {
-    opacity: 1;
-    max-height: 1000px;
-    visibility: visible;
-    /* Forzamos a que ocupe espacio de inmediato */
-    display: block; 
-}
-
-.row-flex {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    width: 100%;
-}
-
-.row-flex>div:first-child {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.col-icon {
-    flex-shrink: 0;
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    background: white;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    display: grid;
-    place-items: center;
-    transition: all 0.3s ease;
-}
-
-.icon-card {
-    font-size: 2.5rem;
-    color: #1e5a8e;
-    line-height: 1;
-}
-
-.card-expandable:hover .col-icon {
-    width: 75px;
-    height: 75px;
-}
-
-.card-expandable:hover .icon-card {
-    font-size: 2.8rem;
-}
-
-.white-card .col-icon {
-    background: #e8f5f3;
-}
-
-.white-card .icon-card {
-    color: #3bbca8;
-}
-
-.col-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
     justify-content: flex-start;
 }
 
+/* --- VISTA SIMPLE --- */
+.card-simple {
+    display: flex; flex-direction: column; gap: 15px; align-items: center; width: 100%;
+    opacity: 1; visibility: visible; transition: opacity 0.3s ease;
+}
+
+/* Ocultar simple cuando está activo */
+.license-card.active .card-simple {
+    opacity: 0; visibility: hidden; 
+    position: absolute; top: 20px; pointer-events: none;
+}
+
+/* --- VISTA EXPANDIDA --- */
+.card-expanded {
+    opacity: 0; max-height: 0; visibility: hidden; overflow: hidden;
+    transition: opacity 0.3s ease, max-height 0.5s ease;
+}
+
+/* Mostrar expandido cuando está activo */
+.license-card.active .card-expanded {
+    opacity: 1; max-height: 1000px; visibility: visible; display: block;
+}
+
+/* --- ESTILOS INTERNOS --- */
+.row-flex { display: flex; flex-direction: column; gap: 15px; width: 100%; }
+.row-flex>div:first-child { display: flex; align-items: center; gap: 15px; }
+
+.col-icon {
+    flex-shrink: 0; width: 70px; height: 70px; border-radius: 50%;
+    background: white; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: grid; place-items: center; transition: all 0.3s ease;
+}
+.icon-card { font-size: 2.5rem; color: #1e5a8e; line-height: 1; }
+
+.license-card.active .col-icon { width: 75px; height: 75px; background: rgba(255,255,255,0.2); }
+.license-card.active .icon-card { font-size: 2.8rem; color: white; }
+.license-card.active h3 { color: white; margin-bottom: 10px; }
+
 .license-card h3 {
-    color: #1e5a8e;
-    font-weight: 800;
-    font-size: 1.15rem;
-    margin: 0;
-    text-transform: uppercase;
-    line-height: 1.3;
+    color: #1e5a8e; font-weight: 800; font-size: 1.15rem; margin: 0;
+    text-transform: uppercase; line-height: 1.3; text-align: center;
 }
 
-.card-expandable h3 {
-    margin-bottom: 12px;
-    color: #1e5a8e;
-}
+.white-card .col-icon { background: #e8f5f3; }
+.white-card .icon-card { color: #3bbca8; }
+.white-card h3 { color: #1e5a8e; }
 
-.card-expandable:hover h3 {
-    color: white;
-}
+/* Listas */
+.box-wrapper { background: transparent; padding: 0; margin-bottom: 12px; }
+.box-wrapper strong { color: white; font-size: 1rem; display: block; margin-bottom: 8px; }
+.box-wrapper ul { list-style: none; padding: 0; margin: 0; font-size: 0.88rem; color: white; line-height: 1.6; }
+.box-wrapper ul li { margin-bottom: 6px; padding-left: 18px; position: relative; }
+.box-wrapper ul li::before { content: "●"; position: absolute; left: 0; color: white; font-weight: bold; font-size: 1rem; }
 
-.white-card h3 {
-    color: #1e5a8e;
-}
-
-.box-wrapper {
-    background: transparent;
-    border-radius: 0;
-    padding: 0;
-    margin-bottom: 12px;
-    box-shadow: none;
-}
-
-.box-wrapper strong {
-    color: white;
-    font-size: 1rem;
-    display: block;
-    margin-bottom: 8px;
-}
-
-.box-wrapper ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    font-size: 0.88rem;
-    color: white;
-    line-height: 1.6;
-}
-
-.box-wrapper ul li {
-    margin-bottom: 6px;
-    padding-left: 18px;
-    position: relative;
-}
-
-.box-wrapper ul li::before {
-    content: "●";
-    position: absolute;
-    left: 0;
-    color: white;
-    font-weight: bold;
-    font-size: 1rem;
-}
-
+/* BOTÓN VER MÁS (VISIBLE) */
 .btn-ver-mas {
-    background-color: #25d366;
-    color: white;
-    border: none;
-    padding: 13px 30px;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    text-transform: uppercase;
-    width: 100%;
-    margin-top: 10px;
-    margin-bottom: 5px;
+    background-color: #25d366; color: white; border: none;
+    padding: 13px 30px; border-radius: 8px; font-weight: bold;
+    cursor: pointer; text-transform: uppercase; width: 100%;
+    margin-top: 10px; margin-bottom: 5px;
     box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
     transition: all 0.3s ease;
+    display: block;
+}
+.btn-ver-mas:hover { background-color: #1fa855; transform: translateY(-2px); }
+
+/* Ocultar botón cuando está activa */
+.license-card.active .btn-ver-mas {
+    display: none !important;
 }
 
-.btn-ver-mas:hover {
-    background-color: #1fa855;
-    transform: translateY(-2px);
-}
-
-/* --- INFORMACIÓN ADICIONAL (LINKS ABAJO) --- */
-.info-section {
-    padding: 40px 0 80px;
-    text-align: center;
-}
-
-.info-title {
-    color: var(--primary-purple);
-    margin-bottom: 30px;
-    font-weight: 800;
-}
-
-.info-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px;
-}
+/* OTROS */
+.info-section { padding: 40px 0 80px; text-align: center; }
+.info-title { color: var(--primary-purple); margin-bottom: 30px; font-weight: 800; }
+.info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
 
 .info-btn {
-    background: white;
-    border: 2px solid #ddd;
-    border-radius: 10px;
-    padding: 15px;
-    text-decoration: none;
-    color: #555;
-    font-size: 0.85rem;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-align: left;
-    transition: all 0.3s;
+    background: white; border: 2px solid #ddd; border-radius: 10px;
+    padding: 15px; text-decoration: none; color: #555; font-size: 0.85rem; font-weight: bold;
+    display: flex; align-items: center; gap: 10px; text-align: left; transition: all 0.3s;
 }
+.info-btn i { font-size: 1.5rem; color: var(--primary-purple); }
+.info-btn:hover { border-color: var(--primary-purple); background: #f9f9ff; transform: translateY(-3px); }
 
-.info-btn i {
-    font-size: 1.5rem;
-    color: var(--primary-purple);
-}
+.btn-touring { border-color: #ff9800; color: #e65100; }
+.btn-touring i { color: #ff9800; }
+.btn-touring:hover { background-color: #fff3e0; }
 
-.info-btn:hover {
-    border-color: var(--primary-purple);
-    background: #f9f9ff;
-    transform: translateY(-3px);
-}
+.fade-in { opacity: 0; transition: opacity 0.8s ease; }
+.visible { opacity: 1; transform: translateY(0px); }
 
-/* Estilo especial para el botón naranja del Touring */
-.btn-touring {
-    border-color: #ff9800;
-    color: #e65100;
-}
-
-.btn-touring i {
-    color: #ff9800;
-}
-
-.btn-touring:hover {
-    background-color: #fff3e0;
-}
-
-/* Animaciones JS */
-
-.fade-in {
-    opacity: 0;
-    transition: opacity 0.8s ease;
-}
-
-.visible {
-    opacity: 1;
-    transform: translateY(0px);
-}
-
-.stat-desc {
-    font-size: 0.9rem;
-    color: #666;
-    font-weight: 500;
-    max-width: 150px;
-    margin: 0 auto;
-}
-
-
-/* Botón flotante */
 .whatsapp-float {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: var(--btn-green);
-    color: white;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-    z-index: 1000;
-    text-decoration: none;
+    position: fixed; bottom: 20px; right: 20px;
+    background-color: var(--btn-green); color: white;
+    width: 50px; height: 50px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    z-index: 1000; text-decoration: none;
+}
+
+/* ==========================================================================
+   RESPONSIVE MÓVIL
+   ========================================================================== */
+@media (max-width: 768px) {
+    .hero-brevete { height: auto; min-height: 100vh; padding: 120px 20px 60px 20px; background-position: center center; }
+    .hero-content h1 { font-size: 2rem; }
+    .hero-content h3 { font-size: 1.2rem; }
+    .hero-buttons { flex-direction: column; width: 100%; }
+    .btn { width: 100%; box-sizing: border-box; text-align: center; display: block; }
+    .stats-box { flex-direction: column; padding: 30px 20px; gap: 30px; }
+    .divider { display: none; }
+    .stat-item { border-bottom: 1px solid #eee; padding-bottom: 20px; width: 100%; text-align: center; }
+    .stat-item:last-child { border-bottom: none; }
+    .cards-grid { grid-template-columns: 1fr; padding: 0 10px; }
+    .header-expandido { flex-direction: column; }
 }

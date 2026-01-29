@@ -1,0 +1,182 @@
+:root {
+    --primary-purple: #2E1A5F;
+    --primary-teal: #3BBCA8;
+    --bg-light: #f4f7fa;
+    --text-dark: #333;
+    --text-gray: #555;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    margin: 0;
+    padding-top: 100px; /* Espacio para el Navbar */
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- CABECERA --- */
+.privacy-header {
+    background: linear-gradient(135deg, #1a1a2e 0%, var(--primary-purple) 100%);
+    color: white;
+    padding: 70px 0 90px 0; /* Un poco más de espacio abajo para el efecto visual */
+    text-align: center;
+    clip-path: ellipse(150% 100% at 50% 0%); /* Efecto curvo moderno */
+    margin-bottom: 20px;
+}
+
+.privacy-header h1 {
+    font-family: 'Poltawski Nowy', serif;
+    font-size: 2.8rem;
+    margin-bottom: 10px;
+}
+
+.privacy-header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    font-weight: 300;
+}
+
+/* --- CONTENIDO --- */
+.privacy-content {
+    padding-bottom: 60px;
+}
+
+.intro-box {
+    text-align: center;
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    margin-top: -60px; /* Efecto flotante sobre el header */
+    margin-bottom: 50px;
+    position: relative;
+    z-index: 2;
+}
+
+.intro-icon {
+    font-size: 2.5rem;
+    color: var(--primary-teal);
+    margin-bottom: 15px;
+}
+
+.intro-box h2 {
+    color: var(--primary-purple);
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+/* --- GRILLA DE TARJETAS --- */
+.privacy-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.policy-card {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    border-left: 5px solid var(--primary-purple);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.policy-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(46, 26, 95, 0.1);
+    border-left-color: var(--primary-teal);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.icon-box {
+    width: 45px;
+    height: 45px;
+    background-color: rgba(46, 26, 95, 0.05);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-purple);
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.policy-card h3 {
+    margin: 0;
+    color: var(--primary-purple);
+    font-size: 1.2rem;
+}
+
+.policy-card p {
+    color: var(--text-gray);
+    line-height: 1.7;
+    margin: 0;
+    padding-left: 60px; /* Alineado con el título */
+}
+
+/* --- CONTACTO --- */
+.contact-section {
+    margin-top: 60px;
+    text-align: center;
+    background: #eefdfa; /* Fondo muy suave teal */
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(59, 188, 168, 0.2);
+}
+
+.contact-icon {
+    font-size: 2rem;
+    color: var(--primary-teal);
+    margin-bottom: 15px;
+}
+
+.btn-contact {
+    display: inline-block;
+    margin-top: 20px;
+    background-color: var(--primary-teal);
+    color: white;
+    padding: 12px 30px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+.btn-contact:hover {
+    background-color: var(--primary-purple);
+}
+
+/* --- ANIMACIONES --- */
+.animate-down { animation: slideDown 1s ease-out; }
+.animate-up { animation: slideUp 1s ease-out; }
+
+@keyframes slideDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+.reveal-up, .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+.visible { opacity: 1; transform: translateY(0); }
+
+/* --- RESPONSIVE (MÓVIL) --- */
+@media (max-width: 768px) {
+    .privacy-header h1 { font-size: 2rem; }
+    .intro-box { margin-top: -30px; padding: 25px; }
+    
+    .policy-card p {
+        padding-left: 0; /* Quitar sangría en móvil para ganar espacio */
+        margin-top: 10px;
+    }
+    
+    .card-header { margin-bottom: 5px; }
+}

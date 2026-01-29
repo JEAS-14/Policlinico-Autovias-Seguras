@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Términos y Condiciones | Policlínico Autovías Seguras</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poltawski+Nowy:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" th:href="@{/css/fragments/navbar.css}">
+    <link rel="stylesheet" th:href="@{/css/fragments/footer.css}">
+    <link rel="stylesheet" th:href="@{/css/terminosCondiciones.css}">
+</head>
+
+<body>
+
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <header class="terms-header">
+        <div class="container">
+            <h1 class="animate-down">Términos y Condiciones</h1>
+            <p class="animate-up">Información legal importante para nuestros usuarios</p>
+        </div>
+    </header>
+
+    <main class="terms-content">
+        <div class="container">
+            
+            <div class="intro-box fade-in">
+                <h2>Bienvenido a AUTOVIAS SEGURAS SAC</h2>
+                <p>Tu destino confiable para productos médicos de calidad. Antes de utilizar nuestro sitio web, te recomendamos que leas atentamente estos términos y condiciones.</p>
+            </div>
+
+            <div class="terms-grid">
+
+                <article class="term-item reveal-left">
+                    <div class="term-icon"><i class="fas fa-check-circle"></i></div>
+                    <div class="term-text">
+                        <h3>1. Aceptación de términos</h3>
+                        <p>Al acceder y utilizar nuestro sitio web, aceptas estar sujeto a estos términos y condiciones. Si no estás de acuerdo con alguno de estos términos, por favor, abstente de utilizar nuestro sitio.</p>
+                    </div>
+                </article>
+
+                <article class="term-item reveal-right">
+                    <div class="term-icon"><i class="fas fa-laptop-medical"></i></div>
+                    <div class="term-text">
+                        <h3>2. Uso del sitio web</h3>
+                        <p>Nuestro sitio web está destinado únicamente para fines informativos y de compra de productos médicos. Queda prohibido cualquier uso no autorizado del sitio, incluyendo la violación de la seguridad del mismo o de nuestra base de datos.</p>
+                    </div>
+                </article>
+
+                <article class="term-item reveal-left">
+                    <div class="term-icon"><i class="fas fa-user-lock"></i></div>
+                    <div class="term-text">
+                        <h3>3. Registro de cuenta</h3>
+                        <p>Al registrarte en nuestro sitio web, te comprometes a proporcionar información precisa y actualizada. Eres responsable de mantener la confidencialidad de tu cuenta y contraseña, y aceptas ser responsable de todas las actividades que ocurran bajo tu cuenta.</p>
+                    </div>
+                </article>
+
+                <article class="term-item reveal-right">
+                    <div class="term-icon"><i class="fas fa-user-shield"></i></div>
+                    <div class="term-text">
+                        <h3>4. Privacidad</h3>
+                        <p>Nos comprometemos a proteger tu privacidad y seguridad en línea. Por favor, consulta nuestra Política de Privacidad para obtener más información sobre cómo recopilamos, utilizamos y protegemos tu información personal.</p>
+                    </div>
+                </article>
+
+                <article class="term-item reveal-left">
+                    <div class="term-icon"><i class="fas fa-copyright"></i></div>
+                    <div class="term-text">
+                        <h3>5. Propiedad intelectual</h3>
+                        <p>Todo el contenido de nuestro sitio web, incluyendo texto, gráficos, logotipos, iconos, imágenes, clips de audio y video, descargas digitales, y cualquier otro contenido, está protegido por derechos de autor y otras leyes de propiedad intelectual.</p>
+                    </div>
+                </article>
+
+                <article class="term-item reveal-right">
+                    <div class="term-icon"><i class="fas fa-shopping-cart"></i></div>
+                    <div class="term-text">
+                        <h3>6. Compra de productos</h3>
+                        <p>Al realizar una compra a través de nuestro sitio web, aceptas cumplir con nuestras políticas de compra, incluyendo términos de pago, envío y devolución. Te recomendamos revisar detenidamente estas políticas antes de realizar una compra.</p>
+                    </div>
+                </article>
+
+                <article class="term-item reveal-left">
+                    <div class="term-icon"><i class="fas fa-comments"></i></div>
+                    <div class="term-text">
+                        <h3>7. Comentarios y opiniones</h3>
+                        <p>Nos encanta recibir tus comentarios y opiniones sobre nuestros productos y servicios. Sin embargo, nos reservamos el derecho de moderar y eliminar cualquier comentario que consideremos inapropiado, ofensivo o fraudulento.</p>
+                    </div>
+                </article>
+
+                <article class="term-item reveal-right">
+                    <div class="term-icon"><i class="fas fa-edit"></i></div>
+                    <div class="term-text">
+                        <h3>8. Modificaciones de términos</h3>
+                        <p>Nos reservamos el derecho de modificar estos términos y condiciones en cualquier momento y sin previo aviso. Te recomendamos revisar periódicamente esta página para estar al tanto de cualquier cambio.</p>
+                    </div>
+                </article>
+
+                <article class="term-item reveal-left">
+                    <div class="term-icon"><i class="fas fa-gavel"></i></div>
+                    <div class="term-text">
+                        <h3>9. Ley aplicable</h3>
+                        <p>Estos términos y condiciones se rigen por las leyes de <strong>Perú</strong>, y cualquier disputa relacionada con estos términos estará sujeta a la jurisdicción exclusiva de los tribunales de <strong>Lima</strong>.</p>
+                    </div>
+                </article>
+
+            </div>
+
+            <div class="action-box fade-in">
+                <p>Al utilizar nuestro sitio web, aceptas cumplir con estos términos y condiciones.</p>
+                <a th:href="@{/}" class="btn-accept">ENTENDIDO Y ACEPTAR</a>
+            </div>
+
+        </div>
+    </main>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+    <script th:src="@{/js/fragments/navbar.js}"></script>
+    <script th:src="@{/js/terminosCondiciones.js}"></script>
+
+</body>
+</html>
