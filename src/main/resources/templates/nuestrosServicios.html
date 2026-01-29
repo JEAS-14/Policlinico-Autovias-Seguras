@@ -1,24 +1,31 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Policlínico Autovías Seguras - Exámenes médicos ocupacionales, licencias de conducir y SUCAMEC">
+    <meta name="description"
+        content="Policlínico Autovías Seguras - Exámenes médicos ocupacionales, licencias de conducir y SUCAMEC">
     <title>Policlínico Autovías Seguras | Nuestros Servicios</title>
-    
+
     <script src="https://cdn.tailwindcss.com"></script>
 
     <link rel="stylesheet" th:href="@{/css/fragments/navbar.css}">
     <link rel="stylesheet" th:href="@{/css/fragments/footer.css}">
     <link rel="stylesheet" th:href="@{/css/nuestrosServicios.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poltawski+Nowy:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
+
 <body class="pt-[85px]">
 
     <div th:replace="~{fragments/navbar :: navbar}"></div>
 
-    <section class="relative py-16 md:py-24 bg-hero-servicios overflow-hidden flex items-center justify-center min-h-[400px] md:min-h-[500px]">
+    <section
+        class="relative py-16 md:py-24 bg-hero-servicios overflow-hidden flex items-center justify-center min-h-[400px] md:min-h-[500px]">
         <!-- Círculos decorativos con blur -->
         <div class="blur-circle blur-circle-1"></div>
         <div class="blur-circle blur-circle-2"></div>
@@ -27,15 +34,14 @@
         <div class="blur-circle blur-circle-5"></div>
         <div class="blur-circle blur-circle-6"></div>
         <div class="blur-circle blur-circle-7"></div>
-        
+
         <div class="max-w-7xl mx-auto px-6 relative z-10 w-full">
             <div class="text-center animate-on-scroll">
-                <h2 class="text-4xl md:text-6xl lg:text-7xl font-bold text-[#2E1A5F] leading-tight mb-8">
-                    Soluciones Integrales de<br>Salud y Seguridad Vial
+                <h2 class="font-poltawski text-4xl md:text-6xl lg:text-7xl font-bold text-[#421D9D] leading-tight mb-8">
+                    Todo lo que necesitas en un solo lugar.
+                    <br>
+                    Autorizados por MTC, DIGESA, MINSA y SUCAMEC.
                 </h2>
-                <p class="text-lg md:text-2xl text-[#2E1A5F]/70 max-w-3xl mx-auto">
-                    Todo lo que necesitas en un solo lugar. Autorizados por MTC,DIGESA, MINSA y SUCAMEC.
-                </p>
             </div>
         </div>
     </section>
@@ -43,13 +49,15 @@
     <section id="servicios" class="relative py-16 bg-white">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid md:grid-cols-2 gap-8 lg:gap-10 max-w-6xl mx-auto">
-                
-                <div class="bg-white rounded-3xl shadow-card-custom overflow-hidden service-card animate-on-scroll delay-1">
+
+                <div
+                    class="bg-white rounded-3xl shadow-card-custom overflow-hidden service-card animate-on-scroll delay-1">
                     <div class="relative h-48 overflow-hidden">
-                        <img th:src="@{https://res.cloudinary.com/dtozni6ik/image/upload/v1767590080/a656839e-4c63-4fa8-8040-8f94551e1a9c.png}" alt="Medicina Ocupacional" class="w-full h-full object-cover object-top">
+                        <img th:src="@{https://res.cloudinary.com/dtozni6ik/image/upload/v1767590080/a656839e-4c63-4fa8-8040-8f94551e1a9c.png}"
+                            alt="Medicina Ocupacional" class="w-full h-full object-cover object-top">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
                     </div>
-                    
+
                     <div class="relative -mt-12 flex justify-center">
                         <div class="bg-[#3BBCA8] w-24 h-24 rounded-full flex items-center justify-center shadow-icon">
                             <i class="fas fa-user-md text-white text-4xl"></i>
@@ -63,7 +71,7 @@
                         <p class="text-gray-600 text-center text-sm mb-5">
                             Evaluaciones médicas completas para garantizar la salud de tus colaboradores.
                         </p>
-                        
+
                         <ul class="space-y-3 mb-6">
                             <li class="flex items-start gap-2">
                                 <i class="fas fa-check text-[#3BBCA8] mt-1"></i>
@@ -71,26 +79,29 @@
                             </li>
                             <li class="flex items-start gap-2">
                                 <i class="fas fa-check text-[#3BBCA8] mt-1"></i>
-                                <span class="text-gray-700 text-sm">Campañas de Salud</span>
+                                <span class="text-gray-700 text-sm">Campañas inhouse </span>
                             </li>
                             <li class="flex items-start gap-2">
                                 <i class="fas fa-check text-[#3BBCA8] mt-1"></i>
-                                <span class="text-gray-700 text-sm">Resultados en 24h</span>
+                                <span class="text-gray-700 text-sm">Resultados en menos de 24 horas</span>
                             </li>
                         </ul>
 
-                        <a th:href="@{/servicios/examenMedicoOcupacional}" class="block w-full py-3 border-2 border-[#2E1A5F] text-[#2E1A5F] rounded-lg font-semibold text-center btn-detalle">
+                        <a th:href="@{/servicios/examenMedicoOcupacional}"
+                            class="block w-full py-3 border-2 border-[#2E1A5F] text-[#2E1A5F] rounded-lg font-semibold text-center btn-detalle">
                             Ver Más Detalles
                         </a>
                     </div>
                 </div>
 
-                <div class="bg-white rounded-3xl shadow-card-custom overflow-hidden service-card animate-on-scroll delay-2">
+                <div
+                    class="bg-white rounded-3xl shadow-card-custom overflow-hidden service-card animate-on-scroll delay-2">
                     <div class="relative h-48 overflow-hidden">
-                        <img th:src="@{https://res.cloudinary.com/dtozni6ik/image/upload/v1767590163/a71d6550-5864-48f4-8867-fad058e362b8.png}" alt="Licencias de Conducir" class="w-full h-full object-cover">
+                        <img th:src="@{https://res.cloudinary.com/dtozni6ik/image/upload/v1767590163/a71d6550-5864-48f4-8867-fad058e362b8.png}"
+                            alt="Licencias de Conducir" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
                     </div>
-                    
+
                     <div class="relative -mt-12 flex justify-center">
                         <div class="bg-[#3BBCA8] w-24 h-24 rounded-full flex items-center justify-center shadow-icon">
                             <i class="fas fa-id-card text-white text-4xl"></i>
@@ -104,7 +115,7 @@
                         <p class="text-gray-600 text-center text-sm mb-5">
                             Obtén o revalida tu licencia de conducir sin complicaciones.
                         </p>
-                        
+
                         <ul class="space-y-3 mb-6">
                             <li class="flex items-start gap-2">
                                 <i class="fas fa-check text-[#3BBCA8] mt-1"></i>
@@ -116,22 +127,25 @@
                             </li>
                             <li class="flex items-start gap-2">
                                 <i class="fas fa-check text-[#3BBCA8] mt-1"></i>
-                                <span class="text-gray-700 text-sm">Registro biométrico MTC</span>
+                                <span class="text-gray-700 text-sm">Certificado 100% válido ante el MTC</span>
                             </li>
                         </ul>
 
-                        <a th:href="@{/servicios/examenMedicoBrevete}" class="block w-full py-3 border-2 border-[#2E1A5F] text-[#2E1A5F] rounded-lg font-semibold text-center btn-detalle">
+                        <a th:href="@{/servicios/examenMedicoBrevete}"
+                            class="block w-full py-3 border-2 border-[#2E1A5F] text-[#2E1A5F] rounded-lg font-semibold text-center btn-detalle">
                             Ver Más Detalles
                         </a>
                     </div>
                 </div>
 
-                <div class="bg-white rounded-3xl shadow-card-custom overflow-hidden service-card animate-on-scroll delay-3">
+                <div
+                    class="bg-white rounded-3xl shadow-card-custom overflow-hidden service-card animate-on-scroll delay-3">
                     <div class="relative h-48 overflow-hidden">
-                        <img th:src="@{https://res.cloudinary.com/dtozni6ik/image/upload/v1767590173/8b6e3fdb-7ea7-48c5-9003-4067c7ff4083.png}" alt="Examen Sucamec" class="w-full h-full object-top">
+                        <img th:src="@{https://res.cloudinary.com/dtozni6ik/image/upload/v1767590173/8b6e3fdb-7ea7-48c5-9003-4067c7ff4083.png}"
+                            alt="Examen Sucamec" class="w-full h-full object-top">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
                     </div>
-                    
+
                     <div class="relative -mt-12 flex justify-center">
                         <div class="bg-[#3BBCA8] w-24 h-24 rounded-full flex items-center justify-center shadow-icon">
                             <i class="fas fa-shield-alt text-white text-4xl"></i>
@@ -145,15 +159,16 @@
                         <p class="text-gray-600 text-center text-sm mb-5">
                             Evaluación obligatoria para portar armas y servicios de seguridad.
                         </p>
-                        
+
                         <ul class="space-y-3 mb-6">
                             <li class="flex items-start gap-2">
                                 <i class="fas fa-check text-[#3BBCA8] mt-1"></i>
-                                <span class="text-gray-700 text-sm">Examen Psicosomatico para uso de arma (L1 al L6)</span>
+                                <span class="text-gray-700 text-sm">Examen Psicosomatico para uso de arma (L1 al
+                                    L6)</span>
                             </li>
                             <li class="flex items-start gap-2">
                                 <i class="fas fa-check text-[#3BBCA8] mt-1"></i>
-                                <span class="text-gray-700 text-sm">Examen físico y mental</span>
+                                <span class="text-gray-700 text-sm">Examen físico y mental(Carnet Sucamec)</span>
                             </li>
                             <li class="flex items-start gap-2">
                                 <i class="fas fa-check text-[#3BBCA8] mt-1"></i>
@@ -161,18 +176,21 @@
                             </li>
                         </ul>
 
-                        <a th:href="@{/servicios/examenSucamec}" class="block w-full py-3 border-2 border-[#2E1A5F] text-[#2E1A5F] rounded-lg font-semibold text-center btn-detalle">
+                        <a th:href="@{/servicios/examenSucamec}"
+                            class="block w-full py-3 border-2 border-[#2E1A5F] text-[#2E1A5F] rounded-lg font-semibold text-center btn-detalle">
                             Ver Más Detalles
                         </a>
                     </div>
                 </div>
 
-                <div class="bg-white rounded-3xl shadow-card-custom overflow-hidden service-card animate-on-scroll delay-4">
+                <div
+                    class="bg-white rounded-3xl shadow-card-custom overflow-hidden service-card animate-on-scroll delay-4">
                     <div class="relative h-48 overflow-hidden">
-                        <img th:src="@{https://res.cloudinary.com/dtozni6ik/image/upload/v1767590149/82645900-9f7f-4ba5-b4f2-dcb7cd583bef.png}" alt="Escuela de Conductores" class="w-full h-full object-cover">
+                        <img th:src="@{https://res.cloudinary.com/dtozni6ik/image/upload/v1767590149/82645900-9f7f-4ba5-b4f2-dcb7cd583bef.png}"
+                            alt="Escuela de Conductores" class="w-full h-full object-cover">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
                     </div>
-                    
+
                     <div class="relative -mt-12 flex justify-center">
                         <div class="bg-[#3BBCA8] w-24 h-24 rounded-full flex items-center justify-center shadow-icon">
                             <i class="fas fa-car text-white text-4xl"></i>
@@ -186,7 +204,7 @@
                         <p class="text-gray-600 text-center text-sm mb-5">
                             Capacitación profesional para mejorar tus habilidades al volante.
                         </p>
-                        
+
                         <ul class="space-y-3 mb-6">
                             <li class="flex items-start gap-2">
                                 <i class="fas fa-check text-[#3BBCA8] mt-1"></i>
@@ -202,7 +220,8 @@
                             </li>
                         </ul>
 
-                        <a th:href="@{/servicios/escuelaConductores}" class="block w-full py-3 border-2 border-[#2E1A5F] text-[#2E1A5F] rounded-lg font-semibold text-center btn-detalle">
+                        <a th:href="@{/servicios/escuelaConductores}"
+                            class="block w-full py-3 border-2 border-[#2E1A5F] text-[#2E1A5F] rounded-lg font-semibold text-center btn-detalle">
                             Ver Más Detalles
                         </a>
                     </div>
@@ -220,6 +239,7 @@
 
     <script th:src="@{/js/fragments/navbar.js}"></script>
     <script th:src="@{/js/nuestrosServicios.js}"></script>
-    
+
 </body>
+
 </html>

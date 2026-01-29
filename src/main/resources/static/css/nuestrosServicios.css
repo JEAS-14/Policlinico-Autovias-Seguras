@@ -1,6 +1,12 @@
 /* src/main/resources/static/css/nuestros-servicios.css */
 
 /* --- Animaciones de Entrada --- */
+@import url('https://fonts.googleapis.com/css2?family=Poltawski+Nowy:ital,wght@0,400..700;1,400..700&display=swap');
+
+/* Agrega esto a tu CSS */
+.font-poltawski {
+    font-family: 'Poltawski Nowy', serif;
+}
 @keyframes fadeInUp {
     from {
         opacity: 0;

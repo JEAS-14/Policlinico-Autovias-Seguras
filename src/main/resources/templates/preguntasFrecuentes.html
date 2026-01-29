@@ -17,21 +17,21 @@
 
     <div th:replace="~{fragments/navbar :: navbar}"></div>
 
-<section class="relative py-16 md:py-20 bg-hero-preguntas overflow-hidden">
-    
-    <div class="absolute inset-0 pointer-events-none">
-        <div class="floating-dot dot-1"></div>
-        <div class="floating-dot dot-2"></div>
-        <div class="floating-dot dot-3"></div>
-        <div class="floating-dot dot-4"></div>
-        <div class="floating-dot dot-5"></div>
-        <div class="floating-dot dot-6"></div>
-    </div>
-    <div class="max-w-6xl mx-auto px-6">
-        <div class="text-center mb-10 animate-on-scroll">
-            <h2 class="text-5xl md:text-6xl font-bold text-[#2E1A5F] mb-3">
-                Centro de Ayuda
-            </h2>
+    <section class="relative py-16 md:py-20 bg-hero-preguntas overflow-hidden">
+
+        <div class="absolute inset-0 pointer-events-none">
+            <div class="floating-dot dot-1"></div>
+            <div class="floating-dot dot-2"></div>
+            <div class="floating-dot dot-3"></div>
+            <div class="floating-dot dot-4"></div>
+            <div class="floating-dot dot-5"></div>
+            <div class="floating-dot dot-6"></div>
+        </div>
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-10 animate-on-scroll">
+                <h2 class="text-5xl md:text-6xl font-bold text-[#2E1A5F] mb-3">
+                    Centro de Ayuda
+                </h2>
                 <p class="text-[#2E1A5F]/60 text-base">
                     Resuelve tus dudas sobre nuestros servicios principales
                 </p>
@@ -92,8 +92,24 @@
                         <i class="fas fa-chevron-down text-[#3BBCA8] transition-transform duration-300"></i>
                     </button>
                     <div class="faq-answer hidden px-6 pb-5 text-[#2E1A5F]/80 border-t border-gray-100 mt-2 pt-2">
-                        <p>Atendemos de Lunes a Viernes de 8:00 AM a 6:00 PM y Sábados de 8:00 AM a 1:00 PM en horario
-                            corrido.</p>
+                        <ul class="space-y-2 text-sm md:text-base">
+                            <li>
+                                <strong class="text-[#421D9D]">Brevetes (L-V):</strong>
+                                7:30 AM - 3:30 PM
+                            </li>
+                            <li>
+                                <strong class="text-[#421D9D]">Examen Médico (EMO):</strong>
+                                7:00 AM - 5:00 PM
+                            </li>
+                            <li>
+                                <strong class="text-[#421D9D]">SUCAMEC:</strong>
+                                7:30 AM - 4:30 PM
+                            </li>
+                            <li>
+                                <strong class="text-[#421D9D]">Escuela de Conductores:</strong>
+                                7:00 AM - 9:30 PM
+                            </li>
+                        </ul>
                     </div>
                 </div>
 
@@ -105,7 +121,10 @@
                         <i class="fas fa-chevron-down text-[#3BBCA8] transition-transform duration-300"></i>
                     </button>
                     <div class="faq-answer hidden px-6 pb-5 text-[#2E1A5F]/80 border-t border-gray-100 mt-2 pt-2">
-                        <p>No es necesario. La atención es por estricto orden de llegada para garantizar fluidez.</p>
+                        <p>
+                            No es necesario, pero <strong>sería recomendable sacar una cita</strong> para asegurar tu
+                            atención y evitar esperas.
+                        </p>
                     </div>
                 </div>
 
@@ -117,8 +136,10 @@
                         <i class="fas fa-chevron-down text-[#3BBCA8] transition-transform duration-300"></i>
                     </button>
                     <div class="faq-answer hidden px-6 pb-5 text-[#2E1A5F]/80 border-t border-gray-100 mt-2 pt-2">
-                        <p>Aceptamos efectivo, tarjetas de crédito/débito (Visa, Mastercard), Yape, Plin y
-                            transferencias bancarias BCP/BBVA.</p>
+                        <p>
+                            Aceptamos efectivo, tarjetas de crédito/débito (Visa, Mastercard), Yape, Plin y
+                            transferencias bancarias BCP/Interbank.
+                        </p>
                     </div>
                 </div>
 
@@ -130,8 +151,10 @@
                         <i class="fas fa-chevron-down text-[#3BBCA8] transition-transform duration-300"></i>
                     </button>
                     <div class="faq-answer hidden px-6 pb-5 text-[#2E1A5F]/80 border-t border-gray-100 mt-2 pt-2">
-                        <p>Sí, contamos con una zona de parqueo exclusiva y vigilada para nuestros clientes frente al
-                            policlínico.</p>
+                        <p>
+                            Sí, contamos con espacios de estacionamiento disponibles frente a las instalaciones del
+                            policlínico para su comodidad.
+                        </p>
                     </div>
                 </div>
 
@@ -143,8 +166,10 @@
                         <i class="fas fa-chevron-down text-[#3BBCA8] transition-transform duration-300"></i>
                     </button>
                     <div class="faq-answer hidden px-6 pb-5 text-[#2E1A5F]/80 border-t border-gray-100 mt-2 pt-2">
-                        <p>Por lo general no laboramos domingos ni feriados calendario, salvo comunicados especiales en
-                            nuestras redes sociales.</p>
+                        <p>
+                            <strong>Sí, atendemos con normalidad los días feriados.</strong> Únicamente no laboramos los
+                            domingos, salvo comunicados especiales en nuestras redes sociales.
+                        </p>
                     </div>
                 </div>
 
@@ -171,19 +196,6 @@
                     <div class="faq-answer hidden px-6 pb-5 text-[#2E1A5F]/80 border-t border-gray-100 mt-2 pt-2">
                         <p>Por protocolos de aforo, sugerimos ingresar solo el paciente, salvo casos de adultos mayores
                             o personas con discapacidad que requieran asistencia.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item bg-white rounded-2xl shadow-hard-purple overflow-hidden animate-on-scroll"
-                    data-category="general">
-                    <button
-                        class="faq-question w-full px-6 py-5 flex justify-between items-center text-left hover:bg-[#3BBCA8]/10 transition-colors">
-                        <span class="text-lg font-bold text-[#2E1A5F]">¿Toman foto tamaño pasaporte aquí?</span>
-                        <i class="fas fa-chevron-down text-[#3BBCA8] transition-transform duration-300"></i>
-                    </button>
-                    <div class="faq-answer hidden px-6 pb-5 text-[#2E1A5F]/80 border-t border-gray-100 mt-2 pt-2">
-                        <p>Sí, la toma fotográfica biométrica está incluida en el proceso de evaluación para Brevetes y
-                            SUCAMEC sin costo adicional.</p>
                     </div>
                 </div>
 
@@ -262,8 +274,10 @@
                         <i class="fas fa-chevron-down text-[#3BBCA8] transition-transform duration-300"></i>
                     </button>
                     <div class="faq-answer hidden px-6 pb-5 text-[#2E1A5F]/80 border-t border-gray-100 mt-2 pt-2">
-                        <p>Sí, registramos tu huella digital y el resultado en el Sistema Nacional de Conductores (SNC)
-                            en tiempo real al finalizar la evaluación.</p>
+                        <p>
+                            Sí, trabajamos con el <strong>sistema directo</strong>, por lo cual la emisión de tu
+                            certificado es inmediata y se registra al instante ante el MTC.
+                        </p>
                     </div>
                 </div>
 
@@ -366,8 +380,17 @@
                         <i class="fas fa-chevron-down text-[#3BBCA8] transition-transform duration-300"></i>
                     </button>
                     <div class="faq-answer hidden px-6 pb-5 text-[#2E1A5F]/80 border-t border-gray-100 mt-2 pt-2">
-                        <p>Realizamos Exámenes Médicos Pre-ocupacionales (Ingreso), Periódicos (Anuales), de Retiro y
-                            cambios de puesto de trabajo.</p>
+                        <p class="mb-2">
+                            Realizamos Exámenes Médicos Pre-ocupacionales (Ingreso), Periódicos (Anuales) y de Retiro.
+                        </p>
+                        <p class="mb-2 font-bold text-[#421D9D]">Nuestras evaluaciones incluyen:</p>
+                        <ul class="list-disc pl-5 space-y-1">
+                            <li>Examen Clínico y Osteomuscular</li>
+                            <li>Oftalmología y Otorrinolaringología</li>
+                            <li>Evaluación Auditiva (Audiometría)</li>
+                            <li>Psicología</li>
+                            <li>Exámenes de Laboratorio y más.</li>
+                        </ul>
                     </div>
                 </div>
 
@@ -379,22 +402,10 @@
                         <i class="fas fa-chevron-down text-[#3BBCA8] transition-transform duration-300"></i>
                     </button>
                     <div class="faq-answer hidden px-6 pb-5 text-[#2E1A5F]/80 border-t border-gray-100 mt-2 pt-2">
-                        <p>Los informes médicos se envían digitalmente a la empresa contratante en un plazo de 24 a 48
-                            horas hábiles.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item bg-white rounded-2xl shadow-hard-purple overflow-hidden animate-on-scroll"
-                    data-category="ocupacional">
-                    <button
-                        class="faq-question w-full px-6 py-5 flex justify-between items-center text-left hover:bg-[#3BBCA8]/10 transition-colors">
-                        <span class="text-lg font-bold text-[#2E1A5F]">¿Hacen pruebas de Audiometría y
-                            Espirometría?</span>
-                        <i class="fas fa-chevron-down text-[#3BBCA8] transition-transform duration-300"></i>
-                    </button>
-                    <div class="faq-answer hidden px-6 pb-5 text-[#2E1A5F]/80 border-t border-gray-100 mt-2 pt-2">
-                        <p>Sí, contamos con cabina audiométrica certificada y espirómetros calibrados para evaluar la
-                            función auditiva y pulmonar.</p>
+                        <p>
+                            Los informes médicos se envían digitalmente a la empresa contratante en un plazo máximo de
+                            <strong>24 horas</strong>.
+                        </p>
                     </div>
                 </div>
 
@@ -485,8 +496,7 @@
                         <i class="fas fa-chevron-down text-[#3BBCA8] transition-transform duration-300"></i>
                     </button>
                     <div class="faq-answer hidden px-6 pb-5 text-[#2E1A5F]/80 border-t border-gray-100 mt-2 pt-2">
-                        <p>DNI vigente (o CE), no tener multas electorales y realizar el pago del derecho. Nosotros
-                            tomamos la foto biométrica.</p>
+                        <p>DNI vigente (o CE), no tener multas electorales y realizar el pago del derecho.</p>
                     </div>
                 </div>
 
@@ -511,7 +521,7 @@
                         <i class="fas fa-chevron-down text-[#3BBCA8] transition-transform duration-300"></i>
                     </button>
                     <div class="faq-answer hidden px-6 pb-5 text-[#2E1A5F]/80 border-t border-gray-100 mt-2 pt-2">
-                        <p>Sí, registramos tu aptitud en la plataforma SEL de SUCAMEC aproximadamente 2 a 3 horas
+                        <p>Sí, registramos tu aptitud en la plataforma SEL de SUCAMEC inmediatamente
                             después de tu evaluación.</p>
                     </div>
                 </div>
@@ -590,9 +600,10 @@
                         <i class="fas fa-chevron-down text-[#3BBCA8] transition-transform duration-300"></i>
                     </button>
                     <div class="faq-answer hidden px-6 pb-5 text-[#2E1A5F]/80 border-t border-gray-100 mt-2 pt-2">
-                        <p>El certificado médico tiene una vigencia de <strong>6 meses</strong> para iniciar tu trámite
-                            en SUCAMEC.</p>
-                    </div>
+    <p>
+        Tanto el examen <strong>Psicosomático</strong> como el de <strong>Salud Física y Mental</strong> tienen una vigencia de <strong>3 meses</strong> para realizar tu trámite.
+    </p>
+</div>
                 </div>
 
                 <div class="faq-item bg-white rounded-2xl shadow-hard-purple overflow-hidden animate-on-scroll"
@@ -722,23 +733,27 @@
                         <span class="text-lg font-bold text-[#2E1A5F]">¿Qué documentos necesito para inscribirme?</span>
                         <i class="fas fa-chevron-down text-[#3BBCA8] transition-transform duration-300"></i>
                     </button>
-                    <div class="faq-answer hidden px-6 pb-5 text-[#2E1A5F]/80 border-t border-gray-100 mt-2 pt-2">
-                        <p>Solo tu DNI físico y licencia de conducir (física o virtual) para validar tus datos en el
-                            sistema.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item bg-white rounded-2xl shadow-hard-purple overflow-hidden animate-on-scroll"
-                    data-category="conductores">
-                    <button
-                        class="faq-question w-full px-6 py-5 flex justify-between items-center text-left hover:bg-[#3BBCA8]/10 transition-colors">
-                        <span class="text-lg font-bold text-[#2E1A5F]">¿El curso tiene examen final?</span>
-                        <i class="fas fa-chevron-down text-[#3BBCA8] transition-transform duration-300"></i>
-                    </button>
-                    <div class="faq-answer hidden px-6 pb-5 text-[#2E1A5F]/80 border-t border-gray-100 mt-2 pt-2">
-                        <p>Sí, es un requisito normativo aprobar la evaluación de conocimientos al final del taller para
-                            obtener el certificado.</p>
-                    </div>
+                   <div class="faq-answer hidden px-6 pb-5 text-[#2E1A5F]/80 border-t border-gray-100 mt-2 pt-2">
+    <p class="mb-2">Los requisitos varían según el curso:</p>
+    <ul class="space-y-2 list-disc pl-5">
+        <li>
+            <strong class="text-[#421D9D]">Recategorización:</strong> 
+            Certificado médico para la categoría correspondiente.
+        </li>
+        <li>
+            <strong class="text-[#421D9D]">COFIPRO:</strong> 
+            Contar con la categoría B-IIc.
+        </li>
+        <li>
+            <strong class="text-[#421D9D]">Cambiemos de Actitud:</strong> 
+            Licencia de conducir y resolución con fecha firme.
+        </li>
+        <li>
+            <strong class="text-[#421D9D]">Curso de la Normativa:</strong> 
+            Contar con licencia profesional.
+        </li>
+    </ul>
+</div>
                 </div>
 
                 <div id="contact-cta" class="contact-cta-container animate-on-scroll">
@@ -767,14 +782,14 @@
             </div>
         </div>
     </section>
-            <a href="https://wa.me/51913889497" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-whatsapp"></i>
-            </a>
+    <a href="https://wa.me/51913889497" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
-            <div th:replace="~{fragments/footer :: footer}"></div>
+    <div th:replace="~{fragments/footer :: footer}"></div>
 
-            <script th:src="@{/js/fragments/navbar.js}"></script>
-            <script th:src="@{/js/preguntasFrecuentes.js}"></script>
+    <script th:src="@{/js/fragments/navbar.js}"></script>
+    <script th:src="@{/js/preguntasFrecuentes.js}"></script>
 </body>
 
 </html>
