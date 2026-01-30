@@ -59,6 +59,32 @@ body {
 /* ==========================================================================
    3. TÍTULOS DE SECCIÓN (ARREGLADO)
    ========================================================================== */
+/* --- ICONO MOTO BIIC (Swap Azul a Verde) --- */
+
+.icono-moto-biic {
+    width: 60px;  /* Tamaño del icono */
+    height: 60px;
+    margin: 0 auto; /* Para centrarlo si es necesario */
+    
+    /* ESTADO NORMAL: MOTO AZUL */
+    background-image: url('https://res.cloudinary.com/dtozni6ik/image/upload/v1769788854/002-bicitaxi-1_ul2toz.png');
+    
+    background-size: contain;    /* Que la imagen entre completa sin cortarse */
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: all 0.3s ease;   /* Suaviza el cambio */
+}
+
+/* ESTADO HOVER: Cuando pasas el mouse por la tarjeta */
+/* IMPORTANTE: Reemplaza ".card" por la clase de tu tarjeta si se llama distinto */
+.card:hover .icono-moto-biic {
+    
+    /* CAMBIO A: MOTO VERDE */
+    background-image: url('https://res.cloudinary.com/dtozni6ik/image/upload/v1769788854/003-bicitaxi-2_ijeg45.png');
+    
+    transform: scale(1.1); /* Efecto de "zoom" ligero */
+}
+
 .category-section { padding: 60px 0 20px; }
 
 .section-header {

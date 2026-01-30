@@ -1,360 +1,364 @@
-
-        /* --- 1. CONFIGURACIÓN BASE --- */
-        :root {
-            --brand-purple: #2E1A5F;
-            --brand-teal: #3BBCA8;
-            --brand-dark: #1a0f35;
-            --text-main: #333333;
-            --text-light: #666666;
-            --bg-light: #f8f9fc;
-            --white: #ffffff;
-            --shadow-soft: 0 10px 30px rgba(46, 26, 95, 0.08);
-            --shadow-hover: 0 20px 40px rgba(46, 26, 95, 0.15);
-        }
-
-        body {
-            background-color: var(--white);
-            font-family: 'Poppins', sans-serif;
-            color: var(--text-main);
-            margin: 0;
-            padding-top: 80px; /* Espacio para el Navbar fijo */
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        /* --- ANIMACIONES DEL TÍTULO HERO --- */
-
-/* 1. Definición de la animación de entrada (aparece desde abajo) */
-@keyframes slideInUp {
-    0% {
-        opacity: 0;
-        transform: translateY(30px); /* Empieza más abajo */
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0); /* Termina en su sitio */
-    }
+/* =========================================
+   1. VARIABLES Y CONFIGURACIÓN BASE
+   ========================================= */
+:root {
+    --brand-purple: #2E1A5F;
+    --brand-teal: #3BBCA8;
+    --brand-dark: #1a0f35;
+    --text-main: #333333;
+    --text-light: #666666;
+    --bg-light: #f8f9fc;
+    --white: #ffffff;
+    --shadow-soft: 0 10px 30px rgba(46, 26, 95, 0.08);
+    --shadow-hover: 0 20px 40px rgba(46, 26, 95, 0.15);
 }
 
-/* 2. Definición del latido (se agranda y se achica) */
-@keyframes textPulse {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.05); /* Crece un 5% */
-        text-shadow: 0 0 20px rgba(59, 188, 168, 0.3); /* Brillo suave */
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-/* --- NUEVO ESTILO PARA HORARIOS (GRID) --- */
-.time-grid-list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 Columnas perfectas */
-    gap: 8px; /* Espacio entre cuadros */
-    list-style: none; /* Sin puntos */
-    padding: 0;
-    margin: 5px 0 15px 0;
-}
-
-.time-grid-list li {
-    background: white;
+body {
+    background-color: var(--white);
+    font-family: 'Poppins', sans-serif;
     color: var(--text-main);
-    border: 1px solid #e2e8f0;
-    border-radius: 6px;
-    padding: 6px 4px;
-    text-align: center;
-    font-size: 0.75rem;
-    font-weight: 600;
-    transition: all 0.2s ease;
+    margin: 0;
+    padding-top: 80px; /* Espacio para el Navbar fijo */
+    overflow-x: hidden;
 }
 
-/* Efecto suave al pasar el mouse */
-.time-grid-list li:hover {
-    border-color: var(--brand-teal);
-    color: var(--brand-teal);
-    background: #f0fdfa;
-    transform: translateY(-2px);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-/* Título de la sección de horarios */
-.schedule-title {
-    font-size: 0.8rem;
-    font-weight: 700;
+a { text-decoration: none; }
+
+/* =========================================
+   2. NAVBAR (Barra de Navegación)
+   ========================================= */
+.navbar {
+    position: fixed;
+    top: 0; left: 0; width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px); /* Efecto borroso detrás */
+    z-index: 1000;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+    padding: 15px 0;
+}
+
+.nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
     color: var(--brand-purple);
-    display: block;
-    margin-bottom: 8px;
-    border-bottom: 1px dashed #ddd;
-    padding-bottom: 4px;
+}
+.logo span { color: var(--brand-teal); }
+
+.nav-links {
+    display: flex;
+    gap: 30px;
 }
 
-/* --- APLICACIÓN DE LAS ANIMACIONES --- */
+.nav-links a {
+    color: var(--text-main);
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: 0.3s;
+}
+.nav-links a:hover { color: var(--brand-teal); }
 
-/* Aplicar entrada al H1 completo */
+/* =========================================
+   3. HERO SECTION (Fondo Moderno y Animado)
+   ========================================= */
+.hero-escuela {
+    position: relative;
+    /* Degradado Morado + Foto de Transporte */
+    background: linear-gradient(135deg, rgba(46, 26, 95, 0.95) 0%, rgba(46, 26, 95, 0.85) 100%),
+                url('https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=1470&auto=format&fit=crop');
+    
+    background-size: cover;       
+    background-position: center;  
+    background-attachment: fixed; /* Parallax */
+    
+    padding: 140px 0 100px;       
+    color: white;                 
+    text-align: center;
+    overflow: hidden;
+}
+
+/* Animación de entrada para el H1 */
 .hero-escuela h1 {
-    animation: slideInUp 1s ease-out forwards; /* Dura 1 segundo */
-}
-
-/* Aplicar el latido SOLO al texto degradado */
-.hero-escuela h1 .text-gradient {
-    display: inline-block; /* Importante para que pueda transformarse */
-    animation: textPulse 3s infinite ease-in-out; /* Se repite infinitamente */
-    transform-origin: center; /* Crece desde el centro */
-}
-
-/* Opcional: Retraso para el párrafo de abajo para que entre después */
-.hero-escuela p {
-    opacity: 0; /* Oculto al inicio */
+    font-size: 3.5rem;
+    line-height: 1.1;
+    color: white;
+    font-weight: 800;
+    margin-bottom: 25px;
+    letter-spacing: -1px;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); 
     animation: slideInUp 1s ease-out forwards;
-    animation-delay: 0.5s; /* Espera medio segundo antes de entrar */
 }
 
-/* Opcional: Retraso para los botones */
-.hero-buttons {
+/* Efecto Neón y Latido para "En Tiempo Récord" */
+.text-gradient {
+    background: linear-gradient(90deg, #3BBCA8, #6fffd4); 
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 20px rgba(59, 188, 168, 0.5));
+    font-weight: 900;
+    display: inline-block;
+    animation: textPulse 3s infinite ease-in-out;
+}
+
+/* Párrafo */
+.hero-escuela p {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 700px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+    font-weight: 400;
     opacity: 0;
     animation: slideInUp 1s ease-out forwards;
-    animation-delay: 0.8s; /* Espera casi un segundo */
+    animation-delay: 0.5s;
 }
 
-        a { text-decoration: none; }
+/* Botones Hero */
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: slideInUp 1s ease-out forwards;
+    animation-delay: 0.8s;
+}
 
-        /* --- 2. NAVBAR (Nuevo - Faltaba en tu código) --- */
-        .navbar {
-            position: fixed;
-            top: 0; left: 0; width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
-            padding: 15px 0;
-        }
+/* Etiqueta Nueva Temporada */
+.badge-tech {
+    background: rgba(255, 255, 255, 0.1);
+    color: #6fffd4;
+    padding: 8px 25px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
 
-        .nav-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+/* Botones Generales */
+.btn {
+    padding: 15px 35px;
+    border-radius: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--brand-purple);
-        }
-        .logo span { color: var(--brand-teal); }
+.btn-primary {
+    background: var(--brand-teal); /* Color resaltado para el botón principal */
+    color: white;
+    box-shadow: 0 10px 20px rgba(59, 188, 168, 0.3);
+}
+.btn-primary:hover {
+    background: white;
+    color: var(--brand-teal);
+    transform: translateY(-3px);
+}
 
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
+.btn-whatsapp {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+}
+.btn-whatsapp:hover {
+    background: #25D366;
+    border-color: #25D366;
+    color: white;
+}
 
-        .nav-links a {
-            color: var(--text-main);
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: 0.3s;
-        }
-        .nav-links a:hover { color: var(--brand-teal); }
+/* =========================================
+   4. SECCIÓN DE PROGRAMAS (GRID)
+   ========================================= */
+.programs-section {
+    padding: 80px 0;
+    background: var(--bg-light);
+}
 
-        /* --- 3. HERO SECTION (Tu código corregido) --- */
-        .hero-escuela {
-            padding: 80px 0 60px;
-            background: linear-gradient(180deg, rgba(59, 188, 168, 0.05) 0%, rgba(255,255,255,0) 100%);
-            text-align: center;
-        }
+.section-header { text-align: center; margin-bottom: 60px; }
+.section-title { font-size: 2.5rem; color: var(--brand-purple); font-weight: 800; margin-bottom: 15px; }
+.section-desc { color: var(--text-light); font-size: 1.1rem; }
 
-        .badge-tech {
-            background: rgba(59, 188, 168, 0.1);
-            color: var(--brand-teal);
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 700;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 25px;
-        }
+.programs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
 
-        .hero-escuela h1 {
-            font-size: 3.5rem;
-            line-height: 1.1;
-            color: var(--brand-purple);
-            font-weight: 800;
-            margin-bottom: 20px;
-            letter-spacing: -1px;
-        }
+.program-card {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    position: relative;
+    transition: all 0.4s ease;
+    border: 1px solid rgba(0,0,0,0.03);
+    box-shadow: var(--shadow-soft);
+    display: flex; flex-direction: column; justify-content: space-between;
+}
+.program-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-hover); }
 
-        .text-gradient {
-            background: linear-gradient(90deg, var(--brand-purple), var(--brand-teal));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+/* Header de la tarjeta */
+.card-header-tech {
+    font-size: 0.9rem; font-weight: 800; color: var(--brand-teal);
+    background: rgba(59, 188, 168, 0.1); display: inline-block;
+    padding: 5px 12px; border-radius: 50px; margin-bottom: 15px;
+}
+.card-top-content h3 { font-size: 1.3rem; margin: 0 0 5px 0; color: var(--brand-purple); }
+.card-desc { font-size: 0.95rem; color: var(--text-light); margin-bottom: 20px; }
 
-        .hero-escuela p {
-            font-size: 1.2rem;
-            color: var(--text-light);
-            max-width: 700px;
-            margin: 0 auto 40px;
-            line-height: 1.6;
-        }
+/* Cuerpo expandible */
+.card-body-expand { border-top: 1px dashed #eee; padding-top: 20px; margin-bottom: 20px; }
+.tech-list { list-style: none; padding: 0; margin: 0; }
+.tech-list li { margin-bottom: 10px; display: flex; align-items: center; gap: 10px; font-size: 0.9rem; }
+.tech-list li i { color: var(--brand-teal); }
 
-        .hero-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
+/* Botón de la tarjeta */
+.btn-card-action {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 20px; border-radius: 12px; border: 2px solid var(--brand-purple);
+    color: var(--brand-purple); font-weight: 700; transition: 0.3s;
+}
+.btn-card-action:hover { background: var(--brand-purple); color: white; }
 
-        .btn {
-            padding: 15px 35px;
-            border-radius: 12px;
-            font-weight: 700;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
+/* Tarjeta Destacada */
+.program-card.highlight { border: 2px solid var(--brand-purple); transform: scale(1.02); z-index: 2; }
+.program-card.highlight:hover { transform: scale(1.05); }
+.program-card.highlight .btn-card-action { background: var(--brand-purple); color: white; }
 
-        .btn-primary {
-            background: var(--brand-purple);
-            color: white;
-            box-shadow: 0 10px 20px rgba(46, 26, 95, 0.2);
-        }
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(46, 26, 95, 0.3);
-        }
+/* --- Horarios en Tarjetas (Etiquetas) --- */
+.schedule-box { margin-bottom: 20px; }
+.s-label { font-size: 0.8rem; font-weight: 700; color: #555; margin-bottom: 8px; display: block; }
+.s-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.time-tag {
+    background: white; color: var(--brand-purple); border: 1px solid #ddd;
+    padding: 4px 8px; border-radius: 6px; font-size: 0.75rem; font-weight: 700;
+}
+.free-advice-badge {
+    background-color: var(--brand-purple); color: white; text-align: center;
+    font-size: 0.8rem; font-weight: 700; padding: 8px; border-radius: 8px; margin-top: 15px;
+}
 
-        .btn-whatsapp {
-            background: white;
-            color: #25D366;
-            border: 2px solid #25D366;
-        }
-        .btn-whatsapp:hover {
-            background: #25D366;
-            color: white;
-        }
+/* =========================================
+   5. CURSOS ESPECIALES (GRID AVANZADO)
+   ========================================= */
+.special-courses-section { padding: 80px 0; background: white; }
+.special-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-top: 40px; }
 
-        /* --- 4. GRID DE PROGRAMAS (Lo que ya arreglamos) --- */
-        .programs-section {
-            padding: 80px 0;
-            background: var(--bg-light);
-        }
+.special-card {
+    display: flex; gap: 20px; padding: 25px; border-radius: 16px;
+    background: white; border: 1px solid #f0f0f0; transition: 0.3s;
+    align-items: flex-start;
+}
+.special-card:hover { border-color: var(--brand-teal); box-shadow: var(--shadow-soft); }
 
-        .section-header { text-align: center; margin-bottom: 60px; }
-        .section-title { font-size: 2.5rem; color: var(--brand-purple); font-weight: 800; margin-bottom: 15px; }
-        .section-desc { color: var(--text-light); font-size: 1.1rem; }
+.s-icon {
+    width: 60px; height: 60px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; flex-shrink: 0;
+}
+.s-icon.purple { background: #f3e8ff; color: var(--brand-purple); }
+.s-icon.teal { background: #e0f2f1; color: var(--brand-teal); }
 
-        .programs-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
+.s-content { width: 100%; }
+.s-header-flex { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+.s-header-flex h4 { margin: 0; color: var(--brand-purple); font-size: 1.1rem; }
+.mini-price { background: var(--brand-teal); color: white; font-weight: 700; font-size: 0.8rem; padding: 3px 8px; border-radius: 6px; }
+.s-subtitle { margin: 0 0 10px 0; font-size: 0.9rem; color: var(--text-light); }
+.simple-list { list-style: none; padding: 0; margin-bottom: 0; }
+.simple-list li { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; margin-bottom: 5px; }
+.simple-list li i { color: var(--brand-teal); }
 
-        .program-card {
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            position: relative;
-            transition: all 0.4s ease;
-            border: 1px solid rgba(0,0,0,0.03);
-            box-shadow: var(--shadow-soft);
-            display: flex; flex-direction: column; justify-content: space-between;
-        }
-        .program-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-hover); }
+/* --- NUEVA CUADRÍCULA DE HORARIOS (Estética) --- */
+.schedule-title {
+    font-size: 0.8rem; font-weight: 700; color: var(--brand-purple);
+    display: block; margin-bottom: 8px; border-bottom: 1px dashed #e2e8f0; padding-bottom: 4px;
+}
+.time-grid-list {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;
+    list-style: none; padding: 0; margin: 0 0 15px 0;
+}
+.time-grid-list li {
+    background-color: white; border: 1px solid #e2e8f0; border-radius: 8px;
+    padding: 6px 4px; text-align: center; font-size: 0.75rem; font-weight: 600;
+    color: var(--text-main); transition: all 0.2s ease; cursor: default;
+}
+.time-grid-list li:hover {
+    border-color: var(--brand-teal); color: var(--brand-teal);
+    background-color: #f0fdfa; transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(59, 188, 168, 0.15);
+}
 
-        .card-header-tech {
-            font-size: 0.9rem; font-weight: 800; color: var(--brand-teal);
-            background: rgba(59, 188, 168, 0.1); display: inline-block;
-            padding: 5px 12px; border-radius: 50px; margin-bottom: 15px;
-        }
-        .card-top-content h3 { font-size: 1.3rem; margin: 0 0 5px 0; color: var(--brand-purple); }
-        .card-desc { font-size: 0.95rem; color: var(--text-light); margin-bottom: 20px; }
-        
-        .card-body-expand { border-top: 1px dashed #eee; padding-top: 20px; margin-bottom: 20px; }
-        .tech-list { list-style: none; padding: 0; margin: 0; }
-        .tech-list li { margin-bottom: 10px; display: flex; align-items: center; gap: 10px; font-size: 0.9rem; }
-        .tech-list li i { color: var(--brand-teal); }
+/* =========================================
+   6. ANIMACIONES Y KEYFRAMES
+   ========================================= */
+@keyframes slideInUp {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
 
-        .btn-card-action {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 12px 20px; border-radius: 12px; border: 2px solid var(--brand-purple);
-            color: var(--brand-purple); font-weight: 700; transition: 0.3s;
-        }
-        .btn-card-action:hover { background: var(--brand-purple); color: white; }
+@keyframes textPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); text-shadow: 0 0 20px rgba(59, 188, 168, 0.3); }
+    100% { transform: scale(1); }
+}
 
-        /* Destacado */
-        .program-card.highlight { border: 2px solid var(--brand-purple); transform: scale(1.02); }
-        .program-card.highlight:hover { transform: scale(1.05); }
-        .program-card.highlight .btn-card-action { background: var(--brand-purple); color: white; }
+/* Clases utilitarias para JS Scroll */
+.fade-in { opacity: 0; transition: opacity 1s ease-out; }
+.slide-up { opacity: 0; transform: translateY(50px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+.visible { opacity: 1; transform: translateY(0); }
 
-        /* --- 5. CURSOS ESPECIALES (Tu código recuperado) --- */
-        .special-courses-section { padding: 80px 0; background: white; }
-        .special-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-top: 40px; }
-        
-        .special-card {
-            display: flex; gap: 20px; padding: 25px; border-radius: 16px;
-            background: white; border: 1px solid #f0f0f0; transition: 0.3s;
-        }
-        .special-card:hover { border-color: var(--brand-teal); box-shadow: var(--shadow-soft); }
-        
-        .s-icon {
-            width: 60px; height: 60px; border-radius: 14px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.5rem; flex-shrink: 0;
-        }
-        .s-icon.purple { background: #f3e8ff; color: var(--brand-purple); }
-        .s-icon.teal { background: #e0f2f1; color: var(--brand-teal); }
-        
-        .s-content { width: 100%; }
-        .s-header-flex { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
-        .s-header-flex h4 { margin: 0; color: var(--brand-purple); font-size: 1.1rem; }
-        .mini-price { background: var(--brand-teal); color: white; font-weight: 700; font-size: 0.8rem; padding: 3px 8px; border-radius: 6px; }
-        .s-subtitle { margin: 0 0 10px 0; font-size: 0.9rem; color: var(--text-light); }
-        .simple-list { list-style: none; padding: 0; }
-        .simple-list li { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; margin-bottom: 5px; }
-        .simple-list li i { color: var(--brand-teal); }
+/* Seccion Estadísticas */
+.stats-section {
+    background: var(--brand-purple); padding: 60px 0; color: white; text-align: center; margin-top: 50px;
+}
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; }
+.stat-item i { font-size: 2.5rem; color: var(--brand-teal); margin-bottom: 10px; }
+.stat-number { font-size: 3rem; font-weight: 800; line-height: 1; margin-bottom: 5px; }
 
-        /* --- 6. REQUISITOS (Tu código recuperado) --- */
-        .requirements-section { padding: 60px 0; background: var(--bg-light); }
-        .req-box { background: white; border-radius: 24px; padding: 50px; box-shadow: var(--shadow-soft); text-align: center; }
-        .req-title h2 { color: var(--brand-purple); font-size: 2rem; margin-bottom: 40px; }
-        .req-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 40px; }
-        
-        .req-item { display: flex; flex-direction: column; align-items: center; gap: 15px; }
-        .req-item i {
-            font-size: 2.5rem; color: var(--brand-teal); background: rgba(59, 188, 168, 0.1);
-            width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.3s;
-        }
-        .req-item:hover i { background: var(--brand-teal); color: white; transform: rotateY(180deg); }
-        .req-item span { font-weight: 600; color: var(--text-main); }
+/* =========================================
+   7. FOOTER Y EXTRAS
+   ========================================= */
+.cta-simple {
+    padding: 80px 0; background: var(--brand-purple); text-align: center; color: white;
+    background-image: radial-gradient(circle at top right, #3b2375 0%, transparent 40%);
+}
+.cta-simple h2 { font-size: 2.5rem; margin-bottom: 10px; }
+.btn-white { background: white; color: var(--brand-purple); padding: 18px 45px; border-radius: 50px; font-weight: 700; }
+.btn-white:hover { background: var(--brand-teal); color: white; }
 
-        /* --- 7. CTA y EXTRAS --- */
-        .cta-simple {
-            padding: 80px 0; background: var(--brand-purple); text-align: center; color: white;
-            background-image: radial-gradient(circle at top right, #3b2375 0%, transparent 40%);
-        }
-        .cta-simple h2 { font-size: 2.5rem; margin-bottom: 10px; }
-        .btn-white { background: white; color: var(--brand-purple); padding: 18px 45px; border-radius: 50px; font-weight: 700; }
-        .btn-white:hover { background: var(--brand-teal); color: white; }
+.whatsapp-float {
+    position: fixed; bottom: 30px; right: 30px; background-color: #25D366; color: white;
+    width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 32px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 9999;
+    transition: transform 0.3s;
+}
+.whatsapp-float:hover { transform: scale(1.1); }
 
-        .whatsapp-float {
-            position: fixed; bottom: 30px; right: 30px; background-color: #25D366; color: white;
-            width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 32px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); z-index: 9999;
-        }
-
-        /* Responsive Navbar */
-        @media (max-width: 768px) {
-            .nav-links { display: none; } /* Oculto menú simple en móvil para simplificar */
-            .hero-escuela h1 { font-size: 2.2rem; }
-            .hero-buttons { flex-direction: column; }
-            .btn { width: 100%; justify-content: center; }
-        }
+/* Responsive Media Queries */
+@media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hero-escuela { background-attachment: scroll; padding: 100px 0 60px; }
+    .hero-escuela h1 { font-size: 2.5rem; }
+    .programs-grid { grid-template-columns: 1fr; }
+    .hero-buttons { flex-direction: column; }
+    .btn { width: 100%; justify-content: center; }
+}
