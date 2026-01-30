@@ -1,19 +1,22 @@
 :root {
-    --brand-purple: #2E1A5F; /* Tu morado oscuro */
-    --brand-teal: #3BBCA8;   /* Tu turquesa */
-    --brand-green: #25D366;  /* Whatsapp */
-    --bg-light: #f8fafc;     /* Gris muy claro para fondos */
-    --text-dark: #1e293b;
-    --text-gray: #64748b;
+    --brand-purple: #2E1A5F;
+    --brand-teal: #3BBCA8;
+    --brand-dark: #1a0f35;
+    --text-main: #333333;
+    --text-light: #666666;
+    --bg-light: #f8f9fc;
     --white: #ffffff;
+    --shadow-soft: 0 10px 30px rgba(46, 26, 95, 0.08);
+    --shadow-hover: 0 20px 40px rgba(46, 26, 95, 0.15);
 }
 
 body {
     background-color: var(--white);
-    color: var(--text-dark);
     font-family: 'Poppins', sans-serif;
+    color: var(--text-main);
     margin: 0;
-    padding-top: 100px;
+    overflow-x: hidden;
+    padding-top: 100px; /* Espacio para el navbar fijo */
 }
 
 .container {
@@ -22,225 +25,541 @@ body {
     padding: 0 20px;
 }
 
-.text-center { text-align: center; }
-
-/* --- HERO SECTION (Limpio) --- */
+/* --- HERO SECTION --- */
 .hero-escuela {
     padding: 80px 0 60px;
+    background: linear-gradient(180deg, rgba(59, 188, 168, 0.05) 0%, rgba(255,255,255,0) 100%);
     text-align: center;
-    background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%);
 }
 
-.badge-new {
-    background: rgba(59, 188, 168, 0.1); /* Teal muy suave */
+.badge-tech {
+    background: rgba(59, 188, 168, 0.1);
     color: var(--brand-teal);
     padding: 8px 20px;
-    border-radius: 30px;
+    border-radius: 50px;
     font-size: 0.9rem;
     font-weight: 700;
-    display: inline-block;
-    margin-bottom: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 25px;
 }
 
 .hero-escuela h1 {
     font-size: 3.5rem;
-    font-weight: 800;
-    color: var(--brand-purple);
     line-height: 1.1;
+    color: var(--brand-purple);
+    font-weight: 800;
     margin-bottom: 20px;
+    letter-spacing: -1px;
 }
 
-.hero-escuela h1 span { color: var(--brand-teal); }
+.text-gradient {
+    background: linear-gradient(90deg, var(--brand-purple), var(--brand-teal));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 
 .hero-escuela p {
     font-size: 1.2rem;
-    color: var(--text-gray);
+    color: var(--text-light);
     max-width: 700px;
-    margin: 0 auto 35px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
 }
 
 .hero-buttons {
     display: flex;
     justify-content: center;
-    gap: 15px;
-    margin-bottom: 50px;
+    gap: 20px;
     flex-wrap: wrap;
 }
 
 .btn {
     padding: 15px 35px;
-    border-radius: 50px;
+    border-radius: 12px;
     font-weight: 700;
     text-decoration: none;
-    transition: all 0.3s;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
 }
-.btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
 
-.btn-primary { background: var(--brand-purple); color: white; }
-.btn-primary:hover { background: #4c1d95; }
+.btn-primary {
+    background: var(--brand-purple);
+    color: white;
+    box-shadow: 0 10px 20px rgba(46, 26, 95, 0.2);
+}
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(46, 26, 95, 0.3);
+}
 
-.btn-whatsapp { background: var(--brand-green); color: white; }
-
-/* --- STATS BOX --- */
-.stats-box {
+.btn-whatsapp {
     background: white;
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.06);
-    display: flex;
-    justify-content: space-around;
-    max-width: 800px;
-    margin: 0 auto;
-    border: 1px solid #f1f5f9;
+    color: #25D366;
+    border: 2px solid #25D366;
 }
-.stat-number { display: block; font-size: 2.5rem; font-weight: 800; color: var(--brand-purple); }
-.stat-desc { font-size: 0.85rem; color: var(--text-gray); text-transform: uppercase; font-weight: 700; }
-.divider { width: 1px; background: #e2e8f0; }
-
-/* --- SECCIONES GENERALES --- */
-.section-title { font-size: 2.5rem; color: var(--brand-purple); margin-bottom: 10px; font-weight: 800; }
-.section-desc { color: var(--text-gray); margin-bottom: 50px; font-size: 1.1rem; }
-
-/* --- METODOLOGÍA --- */
-.methodology-section { padding: 90px 0; background: white; }
-
-.methodology-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+.btn-whatsapp:hover {
+    background: #25D366;
+    color: white;
 }
 
-.step-card {
-    background: #f8fafc;
-    padding: 40px 30px;
-    border-radius: 20px;
+/* --- PROGRAMAS SECTION (Tarjetas) --- */
+.programs-section {
+    padding: 80px 0;
+    background: var(--bg-light);
+}
+
+.section-header {
     text-align: center;
-    transition: all 0.3s;
-    border: 1px solid transparent;
+    margin-bottom: 60px;
 }
 
-.step-card:hover { 
-    background: white;
-    border-color: var(--brand-teal);
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(59, 188, 168, 0.1);
-}
-
-.icon-bg {
-    width: 70px; height: 70px;
-    background: white;
+.section-title {
+    font-size: 2.5rem;
     color: var(--brand-purple);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.8rem;
-    margin: 0 auto 20px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-}
-
-.step-card h3 { color: var(--brand-purple); margin-bottom: 15px; }
-.step-card p { color: var(--text-gray); font-size: 0.95rem; line-height: 1.6; }
-
-/* --- TEMARIO (AHORA BLANCO Y LIMPIO) --- */
-.topics-section {
-    padding: 90px 0;
-    background: #f1f5f9; /* Gris muy suave */
-}
-
-.topics-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
-}
-
-.topic-card {
-    background: white;
-    padding: 30px;
-    border-radius: 15px;
-    text-align: left;
-    transition: all 0.3s;
-    border-left: 5px solid transparent; /* Borde invisible inicial */
-    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-}
-
-/* Efecto Hover: Borde morado y sombra */
-.topic-card:hover {
-    transform: translateY(-5px);
-    border-left-color: var(--brand-purple);
-    box-shadow: 0 15px 30px rgba(46, 26, 95, 0.08);
-}
-
-.topic-icon {
-    font-size: 2rem;
-    color: var(--brand-teal);
+    font-weight: 800;
     margin-bottom: 15px;
 }
 
-.topic-card h3 {
-    font-size: 1.2rem;
-    color: var(--brand-purple);
-    margin-bottom: 10px;
-    font-weight: 700;
+.section-desc {
+    color: var(--text-light);
+    font-size: 1.1rem;
 }
 
-.topic-card p {
-    font-size: 0.9rem;
-    color: var(--text-gray);
+.programs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+/* ESTILO DE TARJETAS MODERNO */
+.program-card {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    position: relative;
+    transition: all 0.4s ease;
+    border: 1px solid rgba(0,0,0,0.03);
+    box-shadow: var(--shadow-soft);
+}
+
+.program-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-hover);
+}
+
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.license-type {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--brand-purple);
+    letter-spacing: -1px;
+}
+
+.icon-circle {
+    width: 50px;
+    height: 50px;
+    background: #f0fdfa; /* Fondo menta muy suave */
+    color: var(--brand-teal);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    display: none; /* Ocultamos el icono circular porque ahora usamos el precio */
+}
+
+.program-card h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--text-main);
+}
+
+.card-desc {
+    font-size: 0.95rem;
+    color: var(--text-light);
+    margin-bottom: 25px;
+    line-height: 1.4;
+}
+
+/* --- ESTILOS DE PRECIOS (Integrado) --- */
+.price-badge {
+    background: #f0fdfa;
+    color: var(--brand-teal);
+    font-size: 1.4rem;
+    font-weight: 800;
+    padding: 5px 15px;
+    border-radius: 12px;
+    letter-spacing: -0.5px;
+    border: 1px solid rgba(59, 188, 168, 0.2);
+}
+
+.price-badge.highlight-price {
+    background: var(--brand-purple);
+    color: white;
+    box-shadow: 0 4px 10px rgba(46, 26, 95, 0.2);
+    border: none;
+}
+
+/* --- ESTILOS DE HORARIOS (Integrado) --- */
+.schedule-box {
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px dashed #e2e8f0;
+}
+
+.schedule-box.highlight-box {
+    background: rgba(46, 26, 95, 0.03);
+    border-color: rgba(46, 26, 95, 0.1);
+}
+
+.s-label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-light);
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.s-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.s-tags span {
+    background: white;
+    color: var(--brand-purple);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.program-card:hover .s-tags span {
+    border-color: var(--brand-teal);
+    color: var(--brand-teal);
+}
+
+.details-divider {
+    height: 1px;
+    background: #f0f0f0;
+    margin: 15px 0;
+    width: 100%;
+}
+
+.tech-list {
+    list-style: none;
+    padding: 0;
     margin: 0;
+    padding-top: 5px;
+}
+
+.tech-list li {
+    font-size: 0.9rem;
+    color: var(--text-main);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.tech-list li i {
+    color: var(--brand-teal);
+    font-size: 1rem;
+}
+
+/* Tarjeta Destacada (A3c) */
+.program-card.highlight {
+    border: 2px solid var(--brand-purple);
+    background: #fff;
+    transform: scale(1.02);
+}
+.program-card.highlight:hover {
+    transform: scale(1.02) translateY(-10px);
+}
+
+.popular-tag {
+    position: absolute;
+    top: -12px;
+    right: 30px;
+    background: var(--brand-purple);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 5px 15px;
+    border-radius: 20px;
+    text-transform: uppercase;
+}
+
+/* --- CURSOS ESPECIALES --- */
+.special-courses-section {
+    padding: 80px 0;
+    background: white;
+}
+
+.special-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.special-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 25px;
+    border-radius: 16px;
+    background: white;
+    border: 1px solid #f0f0f0;
+    transition: 0.3s;
+}
+
+.special-card:hover {
+    border-color: var(--brand-teal);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.s-icon {
+    width: 60px; height: 60px;
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+.s-icon.purple { background: #f3e8ff; color: var(--brand-purple); }
+.s-icon.teal { background: #e0f2f1; color: var(--brand-teal); }
+
+.s-content { width: 100%; }
+
+.s-header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.s-header-flex h4 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--brand-purple);
+}
+
+.mini-price {
+    background: var(--brand-teal);
+    color: white;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 4px 10px;
+    border-radius: 6px;
+}
+
+.s-subtitle {
+    margin: 0 0 10px 0;
+    font-size: 0.9rem;
+    color: var(--text-light);
     line-height: 1.5;
 }
 
-/* --- SECCIÓN DE COTIZACIÓN (CTA) --- */
-.cta-section { padding: 60px 0 100px; background: white; }
-
-.cta-box {
-    background: linear-gradient(135deg, var(--brand-purple) 0%, #4a2c8c 100%);
-    border-radius: 25px;
-    padding: 50px;
+.simple-list { list-style: none; padding: 0; margin: 0; }
+.simple-list li {
+    font-size: 0.85rem;
+    color: var(--text-main);
+    margin-bottom: 6px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 8px;
+}
+.simple-list li i { color: var(--brand-teal); }
+
+/* --- REQUISITOS --- */
+.requirements-section {
+    padding: 60px 0;
+    background: var(--bg-light);
+}
+
+.req-box {
+    background: white;
+    border-radius: 24px;
+    padding: 50px;
+    box-shadow: var(--shadow-soft);
+    text-align: center;
+}
+
+.req-title h2 {
+    color: var(--brand-purple);
+    font-size: 2rem;
+    margin-bottom: 40px;
+}
+
+.req-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 40px;
+}
+
+.req-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.req-item i {
+    font-size: 2.5rem;
+    color: var(--brand-teal);
+    background: rgba(59, 188, 168, 0.1);
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    transition: 0.3s;
+}
+
+.req-item:hover i {
+    background: var(--brand-teal);
     color: white;
-    box-shadow: 0 20px 40px rgba(46, 26, 95, 0.2);
-    position: relative;
-    overflow: hidden;
+    transform: rotateY(180deg);
 }
 
-.cta-content { max-width: 600px; z-index: 2; }
-
-.cta-content h2 { font-size: 2.2rem; margin-bottom: 15px; font-weight: 800; }
-.cta-content p { font-size: 1.1rem; margin-bottom: 30px; opacity: 0.9; }
-
-.cta-benefits {
-    list-style: none; padding: 0; margin-bottom: 30px;
-    display: flex; gap: 20px; flex-wrap: wrap;
-}
-.cta-benefits li { font-weight: 600; font-size: 0.95rem; }
-.cta-benefits i { color: var(--brand-teal); margin-right: 8px; }
-
-.cta-image {
-    font-size: 10rem;
-    color: rgba(255,255,255,0.05);
-    position: absolute;
-    right: -20px; bottom: -30px;
-    transform: rotate(-15deg);
+.req-item span {
+    font-weight: 600;
+    color: var(--text-main);
 }
 
-.btn-lg { padding: 18px 40px; font-size: 1.1rem; background: var(--brand-teal); }
-.btn-lg:hover { background: white; color: var(--brand-purple); }
+/* --- CTA FINAL --- */
+.cta-simple {
+    padding: 80px 0;
+    background: var(--brand-purple);
+    text-align: center;
+    color: white;
+    background-image: radial-gradient(circle at top right, #3b2375 0%, transparent 40%);
+}
+
+.cta-simple h2 { font-size: 2.5rem; margin-bottom: 10px; }
+.cta-simple p { opacity: 0.8; margin-bottom: 30px; font-size: 1.2rem; }
+
+.btn-white {
+    background: white;
+    color: var(--brand-purple);
+    padding: 18px 45px;
+    font-size: 1.1rem;
+    border-radius: 50px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+.btn-white:hover {
+    background: var(--brand-teal);
+    color: white;
+}
 
 /* --- ANIMACIONES --- */
-.fade-in, .slide-up { opacity: 0; transform: translateY(20px); transition: 0.8s ease-out; }
+.fade-in, .slide-up { opacity: 0; transform: translateY(30px); transition: 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
 .visible { opacity: 1; transform: translateY(0); }
+.pulse-btn { animation: pulse 2s infinite; }
 
-/* RESPONSIVE */
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(255, 255, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+}
+
+/* --- RESPONSIVE --- */
 @media (max-width: 768px) {
-    .hero-escuela h1 { font-size: 2.2rem; }
+    .hero-escuela h1 { font-size: 2.5rem; }
     .hero-buttons { flex-direction: column; }
-    .stats-box { flex-direction: column; gap: 30px; padding: 40px; }
-    .divider { display: none; }
-    
-    .cta-box { flex-direction: column; text-align: center; padding: 30px; }
-    .cta-benefits { justify-content: center; }
-    .cta-image { display: none; } /* Ocultar icono grande en móvil */
+    .btn { width: 100%; justify-content: center; }
+    .program-card { padding: 20px; }
+    .req-grid { gap: 30px; }
+    .program-card.highlight { transform: none; }
+    .program-card.highlight:hover { transform: translateY(-5px); }
+    .s-header-flex { flex-direction: column; align-items: flex-start; gap: 5px; }
+}
+/* Botón Flotante de WhatsApp */
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #25D366; /* Color oficial */
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 9999; /* Para que siempre esté encima de todo */
+    text-decoration: none;
+    transition: all 0.3s ease; /* Animación suave */
+}
+
+/* Efecto al pasar el mouse */
+.whatsapp-float:hover {
+    background-color: #20BA56;
+    transform: scale(1.1); /* Crece un poquito */
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* Ajuste para móviles (opcional, para que no tape contenido) */
+@media (max-width: 768px) {
+    .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        font-size: 28px;
+        bottom: 20px;
+        right: 20px;
+    }
+}
+/* Botón Flotante de WhatsApp */
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #25D366; /* Color oficial */
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 9999; /* Para que siempre esté encima de todo */
+    text-decoration: none;
+    transition: all 0.3s ease; /* Animación suave */
+}
+
+/* Efecto al pasar el mouse */
+.whatsapp-float:hover {
+    background-color: #20BA56;
+    transform: scale(1.1); /* Crece un poquito */
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* Ajuste para móviles (opcional, para que no tape contenido) */
+@media (max-width: 768px) {
+    .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        font-size: 28px;
+        bottom: 20px;
+        right: 20px;
+    }
 }

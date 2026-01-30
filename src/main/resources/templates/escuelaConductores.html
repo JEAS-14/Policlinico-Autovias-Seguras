@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Escuela de Conductores | Policlínico Autovías Seguras</title>
-    
+
     <link rel="stylesheet" th:href="@{/css/fragments/navbar.css}">
     <link rel="stylesheet" th:href="@{/css/fragments/footer.css}">
     <link rel="stylesheet" th:href="@{/css/escuelaConductores.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
+
 <body>
 
     <div th:replace="~{fragments/navbar :: navbar}"></div>
@@ -17,141 +19,238 @@
     <main>
         <section class="hero-escuela">
             <div class="container hero-content">
-                <span class="badge-new fade-in">
-                    <i class="fas fa-map-marker-alt"></i> Clases 100% Presenciales
+                <span class="badge-tech fade-in">
+                    <i class="fas fa-check-circle"></i> Autorizado por el MTC
                 </span>
-                
+
                 <h1 class="fade-in">
-                    Aprueba tu Examen Teórico <br> <span>En Nuestras Aulas Modernas</span>
+                    Escuela de <br> <span class="text-gradient">Conductores Profesionales</span>
                 </h1>
-                
+
                 <p class="fade-in">
-                    Olvídate del Zoom. Ven a nuestro centro, aprende con instructores cara a cara y practica en computadoras idénticas a las del Touring.
+                    Obtén tu licencia profesional (A2, A3) o recupérala con nuestros cursos de recategorización y
+                    sensibilización. Rápido, legal y seguro.
                 </p>
-                
+
                 <div class="hero-buttons fade-in">
-                    <a href="#cotizar" class="btn btn-primary">COTIZAR AHORA</a>
-                    <a href="https://wa.me/51913889497" class="btn btn-whatsapp" target="_blank">
-                        <i class="fab fa-whatsapp"></i> PREGUNTAR POR WHATSAPP
+                    <a href="/consulta/cotizar" class="btn btn-primary">COTIZA</a>
+                    <a href="https://wa.me/51913889497" class="btn btn-whatsapp">
+                        <i class="fab fa-whatsapp"></i> CONSULTAR
                     </a>
                 </div>
-
-                <div class="stats-box slide-up">
-                    <div class="stat-item">
-                        <span class="stat-number" data-target="98">0</span>
-                        <span class="stat-desc">% Aprobados</span>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="stat-item">
-                        <span class="stat-number" data-target="45">0</span>
-                        <span class="stat-desc">Minutos Simulacro</span>
-                    </div>
-                    <div class="divider"></div>
-                    <div class="stat-item">
-                        <span class="stat-number" data-target="15">0</span>
-                        <span class="stat-desc">Años Enseñando</span>
-                    </div>
-                </div>
             </div>
         </section>
 
-        <section class="methodology-section">
+        <section id="programas" class="programs-section">
             <div class="container">
-                <div class="text-center slide-up">
-                    <h2 class="section-title">¿Por qué elegir presencial?</h2>
-                    <p class="section-desc">La interacción directa es la clave para aprender rápido.</p>
+                <div class="section-header slide-up">
+                    <h2 class="section-title">Recategorización Profesional</h2>
+                    <p class="section-desc">Cursos homologados con todo incluido: Teoría, Manejo y Trámites.</p>
                 </div>
 
-                <div class="methodology-grid">
-                    <div class="step-card slide-up">
-                        <div class="icon-bg"><i class="fas fa-chalkboard-teacher"></i></div>
-                        <h3>Pizarra Activa</h3>
-                        <p>El instructor dibuja situaciones de tránsito reales y responde tus dudas al instante.</p>
-                    </div>
-                    <div class="step-card slide-up" style="transition-delay: 0.1s;">
-                        <div class="icon-bg"><i class="fas fa-desktop"></i></div>
-                        <h3>Laboratorio MTC</h3>
-                        <p>Sala equipada con el sistema oficial para que pierdas el miedo al mouse y la pantalla.</p>
-                    </div>
-                    <div class="step-card slide-up" style="transition-delay: 0.2s;">
-                        <div class="icon-bg"><i class="fas fa-book-reader"></i></div>
-                        <h3>Material Físico</h3>
-                        <p>Te entregamos balotarios impresos y guías para que repases donde quieras.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+                <div class="programs-grid">
 
-        <section class="topics-section">
-            <div class="container">
-                <div class="text-center slide-up">
-                    <h2 class="section-title">¿Qué vas a aprender?</h2>
-                    <p class="section-desc">Desglosamos el balotario para que lo entiendas fácil.</p>
-                </div>
-                
-                <div class="topics-grid">
-                    <div class="topic-card slide-up">
-                        <div class="topic-icon"><i class="fas fa-traffic-light"></i></div>
-                        <h3>Reglamento de Tránsito</h3>
-                        <p>Prioridades de paso, uso de carriles y límites de velocidad.</p>
-                    </div>
-                    <div class="topic-card slide-up">
-                        <div class="topic-icon"><i class="fas fa-wrench"></i></div>
-                        <h3>Mecánica Básica</h3>
-                        <p>Tablero del auto, cambio de llantas y revisión de niveles.</p>
-                    </div>
-                    <div class="topic-card slide-up">
-                        <div class="topic-icon"><i class="fas fa-exclamation-triangle"></i></div>
-                        <h3>Infracciones</h3>
-                        <p>Memoriza el cuadro de sanciones y el sistema de puntos.</p>
-                    </div>
-                    <div class="topic-card slide-up">
-                        <div class="topic-icon"><i class="fas fa-shield-alt"></i></div>
-                        <h3>Manejo Defensivo</h3>
-                        <p>Técnicas para anticipar accidentes y mantener distancia.</p>
-                    </div>
-                    <div class="topic-card slide-up">
-                        <div class="topic-icon"><i class="fas fa-first-aid"></i></div>
-                        <h3>Primeros Auxilios</h3>
-                        <p>Protocolo PAS y actuación legal en accidentes.</p>
-                    </div>
-                    <div class="topic-card slide-up">
-                        <div class="topic-icon"><i class="fas fa-road"></i></div>
-                        <h3>Señalización</h3>
-                        <p>Diferencia entre señales Reguladoras, Preventivas e Informativas.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+                    <div class="program-card highlight slide-up">
+                        <div class="card-top">
+                            <span class="license-type">A-IIa</span>
+                        </div>
+                        <h3>Profesional Básica</h3>
+                        <p class="card-desc">Taxi y Transporte de Personal.</p>
 
-        <section id="cotizar" class="cta-section">
-            <div class="container">
-                <div class="cta-box slide-up">
-                    <div class="cta-content">
-                        <h2>¡Asegura tu Brevete Hoy!</h2>
-                        <p>Tenemos inicios de grupos todas las semanas. Consulta por nuestros horarios disponibles y promociones vigentes.</p>
-                        <ul class="cta-benefits">
-                            <li><i class="fas fa-check-circle"></i> Horarios Flexibles</li>
-                            <li><i class="fas fa-check-circle"></i> Instructores Certificados</li>
-                            <li><i class="fas fa-check-circle"></i> Aulas en Lince/Lima</li>
+                        <div class="schedule-box">
+                            <span class="s-label"><i class="far fa-clock"></i> Turnos Mañana (L-S):</span>
+                            <div class="s-tags">
+                                <span>07:00 - 13:00</span> <span>07:30 - 13:00</span>
+                                <span>08:00 - 14:00</span> <span>08:30 - 14:30</span>
+                            </div>
+                        </div>
+
+                        <div class="details-divider"></div>
+
+                        <ul class="tech-list">
+                            <li><i class="fas fa-history"></i> <strong>Requisito:</strong> 2 años con A-I</li>
+                            <li><i class="fas fa-book-reader"></i> <strong>30h Teoría</strong></li>
+                            <li><i class="fas fa-file-alt"></i> Balotario Desarrollado MTC</li>
+                            <li><i class="fas fa-laptop-medical"></i> Simulacro Virtual de Reglas</li>
                         </ul>
-                        <div class="cta-buttons">
-                            <a th:href="@{/consulta/cotizar}" class="btn btn-primary btn-lg">SOLICITAR PRECIO</a>
+                    </div>
+
+                    <div class="program-card highlight slide-up">
+                        <div class="card-top">
+                            <span class="license-type">A-IIb</span>
+                        </div>
+                        <h3>Mercancía y Escolar</h3>
+                        <p class="card-desc">Microbuses y Furgones.</p>
+
+                        <div class="schedule-box">
+                            <span class="s-label"><i class="far fa-clock"></i> Turnos Mañana (L-S):</span>
+                            <div class="s-tags">
+                                <span>07:00 - 13:00</span> <span>07:30 - 13:00</span>
+                                <span>08:00 - 14:00</span> <span>08:30 - 14:30</span>
+                            </div>
+                        </div>
+
+                        <div class="details-divider"></div>
+
+                        <ul class="tech-list">
+                            <li><i class="fas fa-history"></i> <strong>Req:</strong> 3 años A-I o 1 año A-IIa</li>
+                            <li><i class="fas fa-book-reader"></i> <strong>30h Teoría</strong></li>
+                            <li><i class="fas fa-file-alt"></i> Balotario Desarrollado MTC</li>
+                            <li><i class="fas fa-laptop-medical"></i> Simulacro Virtual de Reglas</li>
+                        </ul>
+                    </div>
+
+                    <div class="program-card highlight slide-up">
+                        <div class="card-top">
+                            <span class="license-type">A-IIIa/b</span>
+                        </div>
+                        <h3>Carga Pesada / Bus</h3>
+                        <p class="card-desc">Omnibus y Camiones (+12 ton).</p>
+
+                        <div class="schedule-box">
+                            <span class="s-label"><i class="far fa-clock"></i> Turnos Mañana (L-S):</span>
+                            <div class="s-tags">
+                                <span>07:00 - 13:00</span> <span>07:30 - 13:00</span>
+                                <span>08:00 - 14:00</span> <span>08:30 - 14:30</span>
+                            </div>
+                        </div>
+
+                        <div class="details-divider"></div>
+
+                        <ul class="tech-list">
+                            <li><i class="fas fa-history"></i> <strong>Req:</strong> 2 años con A-IIb</li>
+                            <li><i class="fas fa-book-reader"></i> <strong>30h Teoría</strong></li>
+                            <li><i class="fas fa-file-alt"></i> Balotario Desarrollado MTC</li>
+                            <li><i class="fas fa-laptop-medical"></i> Simulacro Virtual de Reglas</li>
+                        </ul>
+                    </div>
+
+                    <div class="program-card highlight slide-up">
+                        <div class="card-top">
+                            <span class="license-type">A-IIIc</span>
+                        </div>
+                        <h3>Licencia Maestra</h3>
+                        <p class="card-desc">Todo tipo de vehículo.</p>
+
+                        <div class="schedule-box highlight-box">
+                            <span class="s-label"><i class="far fa-clock"></i> Turnos Mañana (L-S):</span>
+                            <div class="s-tags">
+                                <span>07:00 - 13:00</span> <span>07:30 - 13:00</span>
+                                <span>08:00 - 14:00</span> <span>08:30 - 14:30</span>
+                            </div>
+                        </div>
+
+                        <div class="details-divider"></div>
+
+                        <ul class="tech-list">
+                            <li><i class="fas fa-history"></i> <strong>Req:</strong> 4 años A-IIb o 2 A-IIIa/b</li>
+                            <li><i class="fas fa-book-reader"></i> <strong>50h Teoría</strong></li>
+                            <li><i class="fas fa-star"></i> Duración Extendida: 15 Días</li>
+                            <li><i class="fas fa-file-alt"></i> Balotario + Simulacro Virtual</li>
+                            <li><i class="fas fa-calendar-check"></i> Gestión Completa de Cita</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="special-courses-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Cursos Especiales y Talleres</h2>
+                    <p class="section-desc">Capacitaciones específicas para mercancías peligrosas y recuperación de
+                        puntos.</p>
+                </div>
+
+                <div class="special-grid">
+
+                    <div class="special-card slide-up">
+                        <div class="s-icon purple"><i class="fas fa-fire-extinguisher"></i></div>
+                        <div class="s-content">
+                            <div class="s-header-flex">
+                                <h4>Licencia A4</h4>
+                            </div>
+                            <p class="s-subtitle">Residuos y Materiales Peligrosos</p>
+                            <ul class="simple-list">
+                                <li><i class="fas fa-laptop-house"></i> Curso No Presencial.</li>
+                                <li><i class="fas fa-clock"></i> Entrega en 3-4 días.</li>
+                                <li><i class="fas fa-file-signature"></i> Incluye Examen Médico.</li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="cta-image">
-                        <i class="fas fa-calendar-check"></i>
+
+                    <div class="special-card slide-up">
+                        <div class="s-icon teal"><i class="fas fa-user-clock"></i></div>
+                        <div class="s-content">
+                            <div class="s-header-flex">
+                                <h4>Taller Actitud</h4>
+                            </div>
+                            <p class="s-subtitle">Recuperación de Licencia</p>
+                            <ul class="simple-list">
+                                <li><i class="fas fa-calendar-day"></i> 1 Solo Día (5 Horas).</li>
+                                <li><i class="fas fa-chalkboard-teacher"></i> Presencial (Alf. Ugarte).</li>
+                                <li><i class="fas fa-check-double"></i> Para sanciones/puntos.</li>
+                            </ul>
+                        </div>
                     </div>
+
+                    <div class="special-card slide-up">
+                        <div class="s-icon purple"><i class="fas fa-id-badge"></i></div>
+                        <div class="s-content">
+                            <div class="s-header-flex">
+                                <h4>COFIPRO</h4>
+                            </div>
+                            <p class="s-subtitle">Validación Profesional</p>
+                            <ul class="simple-list">
+                                <li><i class="fas fa-user-check"></i> Para mercancías/personas.</li>
+                                <li><i class="fas fa-notes-medical"></i> Incluye Examen Médico.</li>
+                                <li><i class="fas fa-share-square"></i> Registro directo.</li>
+                            </ul>
+                        </div>
+                    </div>
+
                 </div>
+            </div>
+        </section>
+
+
+
+        <section class="cta-simple">
+            <div class="container">
+                <h2>¿Listo para empezar?</h2>
+                <p>Las vacantes son limitadas por grupo.</p>
+                <a href="https://wa.me/51913889497" class="btn btn-white pulse-btn">
+                    <i class="fab fa-whatsapp"></i> AGENDAR AHORA
+                </a>
             </div>
         </section>
 
     </main>
 
+   <a href="https://wa.me/51913889497" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
     <div th:replace="~{fragments/footer :: footer}"></div>
-    
+
     <script th:src="@{/js/fragments/navbar.js}"></script>
     <script th:src="@{/js/escuelaConductores.js}"></script>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-in, .slide-up').forEach(el => observer.observe(el));
+        });
+    </script>
+
 </body>
+
 </html>

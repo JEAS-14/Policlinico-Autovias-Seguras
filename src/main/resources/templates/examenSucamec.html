@@ -20,8 +20,9 @@
     <main>
         <section class="hero-sucamec">
             <div class="container ">
-                <h1 class="fade-in " >Examen médico - SUCAMEC</h1>
-                <p class="fade-in" style="font-size: 1.2rem;">Realiza tu evaluación médica para obtener tu licencia de uso de armas de fuego de uso
+                <h1 class="fade-in ">Examen médico - SUCAMEC</h1>
+                <p class="fade-in" style="font-size: 1.2rem;">Realiza tu evaluación médica para obtener tu licencia de
+                    uso de armas de fuego de uso
                     civil.</p>
 
                 <div class="hero-buttons fade-in">
@@ -38,7 +39,7 @@
                 <div class="stats-box slide-up">
                     <div class="stat-item">
                         <span class="stat-number" data-target="10">0</span>
-                        <span class="stat-desc">Años de experiencia</span>
+                        <span class="stat-desc">Años de experiencia en el sector</span>
                     </div>
                     <div class="divider"></div>
                     <div class="stat-item">
@@ -48,7 +49,7 @@
                     <div class="divider"></div>
                     <div class="stat-item">
                         <span class="stat-number" data-target="15">0</span>
-                        <span class="stat-desc">Mil pacientes</span>
+                        <span class="stat-desc">Mil pacientes satisfechos</span>
                     </div>
                 </div>
             </div>
@@ -94,42 +95,57 @@
             </div>
         </section>
 
-        
 
         <section class="requirements-section">
-            <div class="container bg-white-rounded slide-up">
-                <h2 class="section-title">REQUISITOS PARA TU CITA</h2>
-                <p class="section-desc">Prepara estos documentos antes de acercarte.</p>
+            <div class="container">
 
-                <ul class="requirements-list">
-                    <li><i class="fas fa-check-circle"></i> DNI Vigente o Carnet de Extranjería.</li>
-                    <li><i class="fas fa-check-circle"></i> No tener antecedentes penales, judiciales ni policiales.
-                    </li>
-                    <li><i class="fas fa-check-circle"></i> 3 fotos tamaño carnet (Fondo blanco, sin lentes).</li>
-                </ul>
+                <div class="sucamec-super-card slide-up">
+
+                    <div class="floating-badge">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+
+                    <div class="card-layout">
+                        <div class="card-info">
+                            <h2 class="section-title">EXAMEN PARA CARNET SUCAMEC</h2>
+                            <p class="lead-text">Evaluacion de Salud Física y Mental.</p>
+
+                            <div class="divider-left"></div>
+
+                            <p class="detail-text">
+                                Realizamos las evaluacion fisica y mental para obtener el carnet SUCAMEC.
+                            </p>
+
+                            <div class="cta-integrated">
+                                <p><strong>¿Listo para tramitarlo?</strong></p>
+                                <a href="/consulta/cotizar" class="btn btn-green-large">
+                                    Agendar Cita SUCAMEC <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="card-image">
+                            <img src="https://res.cloudinary.com/dtozni6ik/image/upload/v1769738087/1-10_wphezm.jpg"
+                                alt="Evaluación Médica SUCAMEC">
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
 
-        <section class="cta-bottom">
-            <div class="container text-center">
-                <h2 class="section-title">¡Realiza Tu Examen Hoy Mismo Y Agiliza Tu Trámite!</h2>
-                <p class="section-desc">Atención rápida y segura cumpliendo con todos los protocolos de ley.</p>
-                <a href="/consulta/cotizar" class="btn btn-green-large">Reservar</a>
-            </div>
-        </section>
+        <a href="https://wa.me/51913889497" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-whatsapp"></i>
+        </a>
 
-    </main>
+        <div th:replace="~{fragments/footer :: footer}"></div>
 
-    <a href="https://wa.me/51913889497" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+        <script th:src="@{/js/fragments/navbar.js}"></script>
+        <script th:src="@{/js/home.js}"></script>
+        <script th:src="@{/js/examenSucamec.js}"></script>
 
-    <div th:replace="~{fragments/footer :: footer}"></div>
-
-    <script th:src="@{/js/fragments/navbar.js}"></script>
-    <script th:src="@{/js/home.js}"></script>
-    <script th:src="@{/js/examenSucamec.js}"></script>
 
 </body>
+
 
 </html>
