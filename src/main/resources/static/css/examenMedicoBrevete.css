@@ -1,5 +1,5 @@
 /* ==========================================================================
-   1. VARIABLES Y GLOBAL
+   1. VARIABLES Y CONFIGURACIÓN GLOBAL
    ========================================================================== */
 :root {
     --primary-purple: #4a148c;
@@ -21,21 +21,26 @@ body {
 
 .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
 
-/* HERO */
+/* ==========================================================================
+   2. HERO SECTION (BANNER PRINCIPAL)
+   ========================================================================== */
 .hero-brevete {
-    height: 680px;
+    height: auto;
+    min-height: 600px; /* Altura mínima para PC */
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     background: linear-gradient(123.79deg, rgba(250, 255, 254, 0) 50.71%, rgba(255, 255, 255, 0.2) 52.17%),
         linear-gradient(280.42deg, rgba(59, 188, 168, 0.176) 13.12%, rgba(255, 251, 251, 0.2) 45.24%),
         linear-gradient(101.84deg, rgba(59, 188, 168, 0.384) 18.18%, rgba(238, 249, 247, 0.6) 46.15%),
         url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=1000&auto=format&fit=crop');
     background-size: cover; background-position: 50% 10%;
-    padding: 130px 100px; text-align: center;
+    padding: 100px 20px; text-align: center;
 }
-.hero-content h1 { color: var(--primary-purple); font-weight: 800; font-size: 2.7rem; margin-bottom: 15px; }
-.hero-content h3 { color: #421D9D; font-weight: 800; font-size: 1.5rem; margin-bottom: 15px; }
-.hero-buttons { display: flex; justify-content: center; gap: 15px; margin: 25px 0; }
-.btn { padding: 18px 30px; border-radius: 15px; text-decoration: none; color: white; font-weight: bold; }
+
+.hero-content h1 {
+    color: var(--primary-purple); font-weight: 800; font-size: 3rem; margin-bottom: 15px;
+}
+.hero-buttons { display: flex; justify-content: center; gap: 15px; margin: 30px 0; }
+.btn { padding: 15px 30px; border-radius: 10px; text-decoration: none; color: white; font-weight: bold; display: inline-block;}
 .btn-purple { background-color: var(--btn-purple); }
 .btn-green { background-color: var(--btn-green); }
 .subtitle { padding: 15px 0; color: #2E1A5F; margin-bottom: 40px; font-style: italic; }
@@ -43,336 +48,234 @@ body {
 /* ESTADÍSTICAS */
 .stats-box {
     background: white; border-radius: 20px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-    display: flex; justify-content: space-around; padding: 20px 50px;
-    align-items: center; flex-wrap: wrap; max-width: 900px; margin: 0 auto; position: relative;
+    display: flex; justify-content: space-around; padding: 30px;
+    align-items: center; flex-wrap: wrap; max-width: 900px; margin: 0 auto;
 }
-.stat-item { padding: 0 20px; align-items: center; }
-.stat-number { font-size: 3.5rem; font-weight: 700; color: var(--bg-green-brand); line-height: 1; margin-bottom: 5px; }
-.stat-desc { font-size: 0.9rem; color: #666; font-weight: 500; max-width: 150px; margin: 0 auto; }
-.divider { width: 2px; height: 60px; background-color: #eee; }
-
-/* CATEGORÍAS */
-.category-section { padding: 40px 0; }
-.section-header { text-align: center; margin-bottom: 30px; }
-.header-expandido { display: flex; align-items: center; gap: 15px; margin-bottom: 5px; }
-.header-icon { font-size: 2.5rem; color: var(--primary-purple); margin-bottom: 10px; display: block; }
-.section-title { color: var(--primary-purple); font-weight: 800; text-transform: uppercase; }
+.stat-item { padding: 0 20px; text-align: center; }
+.stat-number { font-size: 2.5rem; font-weight: 700; color: var(--bg-green-brand); line-height: 1; display: block; margin-bottom: 5px; }
+.stat-desc { font-size: 0.9rem; color: #666; font-weight: 500; }
+.divider { width: 1px; height: 50px; background-color: #ddd; }
 
 /* ==========================================================================
-   TARJETAS INTERACTIVAS (GRID)
+   3. TÍTULOS DE SECCIÓN (ARREGLADO)
+   ========================================================================== */
+.category-section { padding: 60px 0 20px; }
+
+.section-header {
+    text-align: center;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-icon {
+    font-size: 3rem; /* Icono grande */
+    color: var(--primary-purple);
+    margin-bottom: 15px;
+    display: block;
+}
+
+.section-title {
+    color: var(--primary-purple);
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: 2rem;
+    line-height: 1.2;
+    margin: 0;
+}
+
+/* ==========================================================================
+   4. TARJETAS INTERACTIVAS (ACORDEÓN - AUTOVÍAS)
    ========================================================================== */
 .cards-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
-    padding-bottom: 20px;
-    align-items: start;
+    gap: 30px;
+    padding-bottom: 40px;
+    align-items: start; 
 }
 
 .license-card {
     background: white;
-    border-radius: 15px;
-    padding: 25px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    border-radius: 20px;
+    padding: 30px 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     position: relative;
     overflow: hidden;
     cursor: pointer;
-    
-    /* ANTI-PARPADEO: Altura mínima fija */
-    min-height: 250px; 
-    
-    display: flex; flex-direction: column; justify-content: center;
+    display: flex;
+    flex-direction: column;
     transition: all 0.4s ease;
-    transform: translateZ(0);
+    border: 2px solid transparent;
 }
 
-/* ESTADO ACTIVO (Manejado por JS mouseenter) */
-.license-card.active {
-    transform: scale(1.05);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-    z-index: 100;
-    background: linear-gradient(135deg, #3bbca8 0%, #5dd5c3 100%);
-    justify-content: flex-start;
+/* Interacción Hover */
+.license-card:hover {
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+    border-color: #3bbca8;
 }
 
-/* --- VISTA SIMPLE --- */
-.card-simple {
-    display: flex; flex-direction: column; gap: 15px; align-items: center; width: 100%;
-    opacity: 1; visibility: visible; transition: opacity 0.3s ease;
+/* Cabecera Tarjeta */
+.card-header {
+    display: flex; flex-direction: column; align-items: center; gap: 15px; margin-bottom: 10px; z-index: 2; background: white; 
 }
 
-/* Ocultar simple cuando está activo */
-.license-card.active .card-simple {
-    opacity: 0; visibility: hidden; 
-    position: absolute; top: 20px; pointer-events: none;
-}
-
-
-/* ==========================================================================
-   TARJETAS INTERACTIVAS (GRID) - VERSIÓN "CLICK" (SIN PARPADEO)
-   ========================================================================== */
-.cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
-    padding-bottom: 20px;
-    align-items: start;
-}
-
-.license-card {
-    background: white;
-    border-radius: 15px;
-    padding: 25px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    position: relative;
-    overflow: hidden;
-    /* Quitamos cursor pointer general para evitar clics accidentales */
-    
-    display: flex; 
-    flex-direction: column; 
-    justify-content: space-between; /* Empuja el botón al final */
-    
-    transition: all 0.4s ease;
-    transform: translateZ(0);
-    border: 2px solid transparent; /* Para evitar saltos al añadir borde */
-}
-
-/* ESTADO ACTIVO (Manejado por JS CLIC, NO HOVER) */
-.license-card.active {
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-    z-index: 10;
-    border-color: #3bbca8; /* Borde verde al activar */
-    background: #fcfcfc;
-}
-
-/* --- VISTA SIMPLE (Icono + Título) --- */
-.card-simple {
-    display: flex; 
-    flex-direction: column; 
-    gap: 15px; 
-    align-items: center; 
-    width: 100%;
-    margin-bottom: 15px;
-}
-
-/* --- VISTA EXPANDIDA (Detalles ocultos) --- */
-.card-expanded {
-    max-height: 0; /* Altura 0 por defecto */
-    opacity: 0;
-    overflow: hidden;
-    transition: max-height 0.5s ease-out, opacity 0.3s ease;
-}
-
-/* Cuando la tarjeta tiene la clase .active */
-.license-card.active .card-expanded {
-    max-height: 500px; /* Altura suficiente para mostrar contenido */
-    opacity: 1;
-    margin-bottom: 15px; /* Espacio antes del botón */
-}
-
-/* --- ESTILOS INTERNOS (Iconos, Listas) --- */
 .col-icon {
-    width: 70px; height: 70px; border-radius: 50%;
-    background: #f0f4f8; 
+    width: 80px; height: 80px; border-radius: 50%;
+    background: #f0fdfa; /* Fondo suave */
     display: grid; place-items: center; 
-    margin: 0 auto;
-    transition: all 0.3s ease;
+    margin: 0 auto; transition: all 0.3s ease;
 }
-.icon-card { font-size: 2.5rem; color: #1e5a8e; }
+.icon-card { font-size: 2.5rem; color: #1e5a8e; transition: 0.3s; }
+
+.license-card:hover .col-icon { background: #e0f2f1; transform: scale(1.1); }
+.license-card:hover .icon-card { color: #3bbca8; }
 
 .license-card h3 {
-    color: #1e5a8e; font-weight: 800; font-size: 1.2rem; margin: 0;
+    color: #1e5a8e; font-weight: 800; font-size: 1.3rem; margin: 0;
     text-transform: uppercase; text-align: center;
 }
 
-/* Listas de requisitos */
-.box-wrapper strong { color: #3bbca8; font-size: 1rem; display: block; margin-bottom: 8px; border-bottom: 1px solid #eee; padding-bottom: 5px;}
-.box-wrapper ul { list-style: none; padding: 0; margin: 0; font-size: 0.9rem; color: #555; line-height: 1.6; text-align: left;}
-.box-wrapper ul li { margin-bottom: 6px; padding-left: 15px; position: relative; }
-.box-wrapper ul li::before { content: "✓"; position: absolute; left: 0; color: #25d366; font-weight: bold; }
+/* Cuerpo Acordeón */
+.card-body {
+    max-height: 0; opacity: 0; overflow: hidden;
+    transition: max-height 0.5s ease, opacity 0.4s ease;
+}
 
-/* --- BOTÓN ACCIÓN (CAMBIANTE) --- */
+.license-card:hover .card-body {
+    max-height: 500px; opacity: 1; margin-bottom: 20px;
+}
+
+.requirements-list strong {
+    display: block; color: #3bbca8; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px;
+}
+.requirements-list ul { list-style: none; padding: 0; margin: 0; font-size: 0.95rem; color: #555; text-align: left; }
+.requirements-list ul li { margin-bottom: 8px; padding-left: 20px; position: relative; }
+.requirements-list ul li::before { content: "✓"; position: absolute; left: 0; color: #25d366; font-weight: bold; }
+
+/* Botón Acción */
 .btn-card-action {
-    display: block;
-    width: 100%;
-    padding: 12px 0;
-    border-radius: 8px;
-    font-weight: 800;
-    text-transform: uppercase;
+    margin-top: auto; display: block; width: 100%; padding: 12px 0;
+    border-radius: 10px; font-weight: 800; text-transform: uppercase; text-align: center; text-decoration: none;
+    transition: all 0.3s ease; background-color: transparent; color: #3bbca8; border: 2px solid #3bbca8;
+}
+
+.license-card:hover .btn-card-action {
+    background-color: #25d366; color: white; border-color: #25d366;
+    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+}
+
+.text-open { display: none; }
+.license-card:hover .text-closed { display: none; }
+.license-card:hover .text-open { display: inline-block; }
+
+/* ==========================================================================
+   5. INFORMACIÓN ADICIONAL (RECUPERADO)
+   ========================================================================== */
+.info-section {
+    padding: 60px 0 80px;
+    background-color: #f8f9fa; /* Fondo gris muy suave para separar */
     text-align: center;
-    cursor: pointer;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    
-    /* Estado Inicial: VER MÁS */
-    background-color: transparent;
-    color: #3bbca8;
-    border: 2px solid #3bbca8;
 }
 
-.btn-card-action:hover {
-    background-color: #e0f2f1;
+.info-title {
+    color: var(--primary-purple);
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
 
-/* Estado Activo: COTIZAR (Se activa vía JS) */
-.btn-card-action.btn-quote-mode {
-    background-color: #25d366; /* Verde WhatsApp */
-    color: white;
-    border-color: #25d366;
-    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+/* Grilla de Botones */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
 }
 
-.btn-card-action.btn-quote-mode:hover {
-    background-color: #128c7e;
-    transform: translateY(-2px);
-}
-
-/* Mostrar expandido cuando está activo */
-.license-card.active .card-expanded {
-    opacity: 1; max-height: 1000px; visibility: visible; display: block;
-}
-
-/* --- ESTILOS INTERNOS --- */
-.row-flex { display: flex; flex-direction: column; gap: 15px; width: 100%; }
-.row-flex>div:first-child { display: flex; align-items: center; gap: 15px; }
-
-.col-icon {
-    flex-shrink: 0; width: 70px; height: 70px; border-radius: 50%;
-    background: white; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    display: grid; place-items: center; transition: all 0.3s ease;
-}
-.icon-card { font-size: 2.5rem; color: #1e5a8e; line-height: 1; }
-
-.license-card.active .col-icon { width: 75px; height: 75px; background: rgba(255,255,255,0.2); }
-.license-card.active .icon-card { font-size: 2.8rem; color: white; }
-.license-card.active h3 { color: white; margin-bottom: 10px; }
-
-.license-card h3 {
-    color: #1e5a8e; font-weight: 800; font-size: 1.15rem; margin: 0;
-    text-transform: uppercase; line-height: 1.3; text-align: center;
-}
-
-.white-card .col-icon { background: #e8f5f3; }
-.white-card .icon-card { color: #3bbca8; }
-.white-card h3 { color: #1e5a8e; }
-
-/* Listas */
-.box-wrapper { background: transparent; padding: 0; margin-bottom: 12px; }
-.box-wrapper strong { color: white; font-size: 1rem; display: block; margin-bottom: 8px; }
-.box-wrapper ul { list-style: none; padding: 0; margin: 0; font-size: 0.88rem; color: white; line-height: 1.6; }
-.box-wrapper ul li { margin-bottom: 6px; padding-left: 18px; position: relative; }
-.box-wrapper ul li::before { content: "●"; position: absolute; left: 0; color: white; font-weight: bold; font-size: 1rem; }
-
-/* BOTÓN VER MÁS (VISIBLE) */
-.btn-ver-mas {
-    background-color: #25d366; color: white; border: none;
-    padding: 13px 30px; border-radius: 8px; font-weight: bold;
-    cursor: pointer; text-transform: uppercase; width: 100%;
-    margin-top: 10px; margin-bottom: 5px;
-    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
-    transition: all 0.3s ease;
-    display: block;
-}
-.btn-ver-mas:hover { background-color: #1fa855; transform: translateY(-2px); }
-
-/* Ocultar botón cuando está activa */
-.license-card.active .btn-ver-mas {
-    display: none !important;
-}
-
-/* OTROS */
-.info-section { padding: 40px 0 80px; text-align: center; }
-.info-title { color: var(--primary-purple); margin-bottom: 30px; font-weight: 800; }
-.info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
-
+/* Botones Individuales */
 .info-btn {
-    background: white; border: 2px solid #ddd; border-radius: 10px;
-    padding: 15px; text-decoration: none; color: #555; font-size: 0.85rem; font-weight: bold;
-    display: flex; align-items: center; gap: 10px; text-align: left; transition: all 0.3s;
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 15px;
+    padding: 20px 25px;
+    text-decoration: none;
+    color: #555;
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-align: left;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
-.info-btn i { font-size: 1.5rem; color: var(--primary-purple); }
-.info-btn:hover { border-color: var(--primary-purple); background: #f9f9ff; transform: translateY(-3px); }
 
-.btn-touring { border-color: #ff9800; color: #e65100; }
-.btn-touring i { color: #ff9800; }
-.btn-touring:hover { background-color: #fff3e0; }
+.info-btn i {
+    font-size: 2rem;
+    color: var(--primary-purple);
+    flex-shrink: 0; /* Para que el icono no se aplaste */
+}
 
-.fade-in { opacity: 0; transition: opacity 0.8s ease; }
-.visible { opacity: 1; transform: translateY(0px); }
+/* Hover de botones info */
+.info-btn:hover {
+    border-color: var(--primary-purple);
+    background: #fff;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(74, 20, 140, 0.15);
+}
 
-.whatsapp-float {
-    position: fixed; bottom: 20px; right: 20px;
-    background-color: var(--btn-green); color: white;
-    width: 50px; height: 50px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 24px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-    z-index: 1000; text-decoration: none;
+.info-btn:hover i {
+    color: var(--btn-green);
 }
 
 /* ==========================================================================
-   RESPONSIVE MÓVIL
+   6. UTILIDADES Y EXTRAS
    ========================================================================== */
-/* =========================================
-   CORRECCIÓN PARA CELULARES (RESPONSIVE)
-   ========================================= */
+.fade-in { opacity: 0; transition: opacity 0.8s ease; } /* Se activa con JS */
+.visible { opacity: 1; }
+
+.whatsapp-float {
+    position: fixed; bottom: 30px; right: 30px;
+    background-color: var(--btn-green); color: white;
+    width: 60px; height: 60px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 30px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000; text-decoration: none; transition: transform 0.3s;
+}
+.whatsapp-float:hover { transform: scale(1.1); }
+
+/* ==========================================================================
+   7. RESPONSIVE DESIGN (CELULAR)
+   ========================================================================== */
 @media (max-width: 768px) {
+    /* Hero */
+    .hero-brevete { padding: 120px 20px 60px 20px; }
+    .hero-content h1 { font-size: 2.2rem; }
+    .hero-buttons { flex-direction: column; width: 100%; }
+    .btn { width: 100%; box-sizing: border-box; text-align: center; }
     
-    /* 1. ARREGLAR EL HEADER GIGANTE */
-    .blog-header {
-        height: auto; /* Quitamos la altura fija */
-        min-height: 300px; /* Altura mínima decente */
-        padding: 80px 20px 40px; /* Reducimos el relleno */
-    }
-
-    .blog-header h1 {
-        font-size: 2.5rem; /* Bajamos de 6.5rem a 2.5rem */
-        line-height: 1.2; /* Mejor espaciado entre líneas */
-        word-wrap: break-word; /* Evita que palabras largas rompan la pantalla */
-    }
-
-    .blog-header p {
-        font-size: 1.1rem; /* Texto descriptivo un poco más chico */
-    }
-
-    /* 2. ARREGLAR EL POST DESTACADO */
-    .featured-post {
-        flex-direction: column; /* Imagen arriba, texto abajo */
-        height: auto;
-    }
-
-    .featured-image {
-        min-height: 200px; /* Altura controlada para la imagen */
-        flex: none; /* Evita deformaciones */
-    }
-
-    .featured-content {
-        padding: 25px; /* Menos relleno (antes era 50px) */
-    }
-
-    .featured-content h2 {
-        font-size: 1.5rem; /* Título más manejable */
-    }
-
-    /* 3. ARREGLAR EL MODAL EN MÓVIL */
-    .modal-content {
-        width: 95%; /* Que ocupe casi todo el ancho */
-        margin: 10px;
-        max-height: 85vh;
-    }
-
-    .modal-header-img {
-        height: 180px; /* Imagen del modal más pequeña */
-    }
-
-    .modal-body-content {
-        padding: 20px; /* Menos relleno interno */
-    }
+    /* Stats */
+    .stats-box { flex-direction: column; gap: 30px; }
+    .divider { display: none; }
+    .stat-item { border-bottom: 1px solid #eee; padding-bottom: 20px; width: 100%; }
+    .stat-item:last-child { border-bottom: none; }
     
-    .close-modal {
-        top: 10px;
-        right: 10px;
-        width: 35px;
-        height: 35px;
-        font-size: 1.5rem;
-    }
+    /* Títulos */
+    .section-title { font-size: 1.5rem; }
+    .header-icon { font-size: 2.5rem; }
+    .info-title { font-size: 1.4rem; flex-direction: column; }
+
+    /* Tarjetas y Grid */
+    .cards-grid { grid-template-columns: 1fr; }
+    .info-grid { grid-template-columns: 1fr; }
+    
+    /* Ajuste texto botones */
+    .info-btn { font-size: 0.85rem; padding: 15px; }
 }

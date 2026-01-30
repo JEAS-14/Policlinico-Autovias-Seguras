@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Policlínico Autovías Seguras - Exámenes médicos ocupacionales, licencias de conducir y SUCAMEC">
+    <meta name="description"
+        content="Policlínico Autovías Seguras - Exámenes médicos ocupacionales, licencias de conducir y SUCAMEC">
     <title>Policlínico Autovías Seguras | Examen Para Licencias De Conducir</title>
-    
+
     <link rel="stylesheet" th:href="@{/css/fragments/navbar.css}">
     <link rel="stylesheet" th:href="@{/css/fragments/footer.css}">
     <link rel="stylesheet" th:href="@{/css/examenMedicoBrevete.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
+
 <body>
     <div th:replace="~{fragments/navbar ::  navbar}"></div>
 
@@ -18,11 +21,13 @@
         <section class="hero-brevete">
             <div class="container hero-content">
                 <h1 class="fade-in">Examen médico para Brevetes</h1>
-                <p class="fade-in" style="font-size: 1.2rem;">Autorizado por el MTC. Válido para nuevos, <br> revalidación y categorización</p>
-                
+                <p class="fade-in" style="font-size: 1.2rem;">Autorizado por el MTC. Válido para nuevos, <br>
+                    revalidación y categorización</p>
+
                 <div class="hero-buttons fade-in">
                     <a href="#" class="btn btn-purple" style="font-size: 1.2rem;">¡COTIZA AHORA!</a>
-                    <a href="https://wa.me/51913889497" class="btn btn-green" style="font-size: 1.2rem;"><i class="fab fa-whatsapp"></i> WHATSAPP</a>
+                    <a href="https://wa.me/51913889497" class="btn btn-green" style="font-size: 1.2rem;"><i
+                            class="fab fa-whatsapp"></i> WHATSAPP</a>
                 </div>
 
                 <div class="fade-in mt-4">
@@ -31,334 +36,277 @@
                 </div>
 
                 <div class="stats-box fade-in-up " style="transition-delay: 0.6s;">
-                    <div class="stat-item"><span class="stat-number" data-target="10" data-plus="true">0 </span> <br> <span class="stat-desc">Años de experiencia en el sector</span></div>
+                    <div class="stat-item"><span class="stat-number" data-target="10" data-plus="true">0 </span> <br>
+                        <span class="stat-desc">Años de experiencia en el sector</span></div>
                     <div class="divider"></div>
-                    <div class="stat-item"><span class="stat-number" data-target="1500" data-plus="true">0 </span> <br> <span class="stat-desc">Empresas afiliadas</span></div>
+                    <div class="stat-item"><span class="stat-number" data-target="1500" data-plus="true">0 </span> <br>
+                        <span class="stat-desc">Empresas afiliadas</span></div>
                     <div class="divider"></div>
-                    <div class="stat-item"><span class="stat-number" data-target="15" data-plus="true">0 </span> <br> <span class="stat-desc">Mil pacientes satisfechos</span></div>
+                    <div class="stat-item"><span class="stat-number" data-target="15" data-plus="true">0 </span> <br>
+                        <span class="stat-desc">Mil pacientes satisfechos</span></div>
                 </div>
             </div>
         </section>
 
-      <section class="category-section">
-    <div class="container">
-        <div class="section-header">
-            <i class="fas fa-car-crash header-icon"></i>
-            <h2 class="section-title">CATEGORÍAS DE BREVETES PARA VEHÍCULOS</h2>
-        </div>
-
-        <div class="cards-grid">
-            <div class="license-card card-expandable">
-                <div class="card-simple">
-                    <div class="col-icon alignY iconCategoria">
-                        <i class="fas fa-car icon-card"></i>
-                    </div>
-                    <div class="col-content">
-                        <h3>NUEVO AI</h3>
-                    </div>
+        <section class="category-section">
+            <div class="container">
+                <div class="section-header">
+                    <i class="fas fa-car-crash header-icon"></i>
+                    <h2 class="section-title">CATEGORÍAS DE BREVETES PARA VEHÍCULOS</h2>
                 </div>
-                <div class="card-expanded">
-                    <div class="row-flex">
-                        <div>
+
+                <div class="cards-grid">
+                    <div class="license-card">
+                        <div class="card-header">
                             <div class="col-icon">
                                 <i class="fas fa-car icon-card"></i>
                             </div>
-                            <div class="col-content">
-                                <h3>NUEVO AI</h3>
+                            <h3>NUEVO AI</h3>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="requirements-list">
+                                <strong>Requisitos:</strong>
+                                <ul>
+                                    <li>Examen médico en <strong>AUTOVÍAS SEGURAS</strong></li>
+                                    <li>Edad mínima 18 años</li>
+                                    <li>DNI o CE original y vigente</li>
+                                    <li>Aprobar examen de reglas y manejo</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="box-wrapper">
-                            <div><strong>Requisitos:</strong></div>
-                            <ul>
-                                <li>Examen médico en <strong>AUTOVÍAS SEGURAS</strong></li>
-                                <li>Edad mínima 18 años</li>
-                                <li>DNI o CE original y vigente</li>
-                                <li>Aprobar examen de reglas y manejo</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <button class="btn-ver-mas">VER MÁS</button>
-            </div>
 
-            <div class="license-card white-card card-expandable">
-                <div class="card-simple">
-                    <div class="col-icon">
-                        <i class="fas fa-id-card icon-card"></i>
+                        <a href="https://wa.me/51913889497?text=Hola,%20deseo%20información%20sobre%20Nuevo%20A1"
+                            class="btn-card-action" target="_blank">
+                            <span class="text-closed">VER MÁS</span>
+                            <span class="text-open"><i class="fab fa-whatsapp"></i> COTIZAR</span>
+                        </a>
                     </div>
-                    <div class="col-content">
-                        <h3>REVALIDACIÓN AI</h3>
-                    </div>
-                </div>
-                <div class="card-expanded">
-                    <div class="row-flex">
-                        <div>
+
+                    <div class="license-card white-card">
+                        <div class="card-header">
                             <div class="col-icon">
                                 <i class="fas fa-id-card icon-card"></i>
                             </div>
-                            <div class="col-content">
-                                <h3>REVALIDACIÓN AI</h3>
+                            <h3>REVALIDACIÓN AI</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="requirements-list">
+                                <strong>Requisitos:</strong>
+                                <ul>
+                                    <li>Examen médico en <strong>AUTOVÍAS SEGURAS</strong></li>
+                                    <li>Licencia vencida o por vencer</li>
+                                    <li>DNI o CE original y vigente</li>
+                                    <li>No contar con multas pendientes</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="box-wrapper">
-                            <div><strong>Requisitos:</strong></div>
-                            <ul>
-                                <li>Examen médico en <strong>AUTOVÍAS SEGURAS</strong></li>
-                                <li>Licencia de conducir vencida o por vencer</li>
-                                <li>DNI o CE original y vigente</li>
-                                <li>No contar con multas electorales o de tránsito pendientes</li>
-                            </ul>
-                        </div>
+                        <a href="https://wa.me/51913889497?text=Hola,%20deseo%20información%20sobre%20Revalidación%20A1"
+                            class="btn-card-action" target="_blank">
+                            <span class="text-closed">VER MÁS</span>
+                            <span class="text-open"><i class="fab fa-whatsapp"></i> COTIZAR</span>
+                        </a>
                     </div>
-                </div>
-                <button class="btn-ver-mas">VER MÁS</button>
-            </div>
 
-            <div class="license-card white-card card-expandable">
-                <div class="card-simple">
-                    <div class="col-icon">
-                        <i class="fas fa-bus icon-card"></i>
-                    </div>
-                    <div class="col-content">
-                        <h3>REVALIDACIÓN AII y AIII</h3>
-                    </div>
-                </div>
-                <div class="card-expanded">
-                    <div class="row-flex">
-                        <div>
+                    <div class="license-card white-card">
+                        <div class="card-header">
                             <div class="col-icon">
                                 <i class="fas fa-bus icon-card"></i>
                             </div>
-                            <div class="col-content">
-                                <h3>REVALIDACIÓN AII y AIII</h3>
+                            <h3>REVALIDACIÓN AII y AIII</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="requirements-list">
+                                <strong>Requisitos:</strong>
+                                <ul>
+                                    <li>Examen médico en <strong>AUTOVÍAS SEGURAS</strong></li>
+                                    <li>Licencia profesional vencida</li>
+                                    <li>DNI o CE original y vigente</li>
+                                    <li>Antecedentes penales y policiales</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="box-wrapper">
-                            <div><strong>Requisitos:</strong></div>
-                            <ul>
-                                <li>Examen médico en <strong>AUTOVÍAS SEGURAS</strong></li>
-                                <li>Licencia profesional vencida o por vencer</li>
-                                <li>DNI o CE original y vigente</li>
-                                <li>Certificado de antecedentes penales y policiales</li>
-                            </ul>
-                        </div>
+                        <a href="https://wa.me/51913889497?text=Hola,%20deseo%20información%20sobre%20Revalidación%20Profesional"
+                            class="btn-card-action" target="_blank">
+                            <span class="text-closed">VER MÁS</span>
+                            <span class="text-open"><i class="fab fa-whatsapp"></i> COTIZAR</span>
+                        </a>
                     </div>
-                </div>
-                <button class="btn-ver-mas">VER MÁS</button>
-            </div>
 
-            <div class="license-card white-card card-expandable">
-                <div class="card-simple">
-                    <div class="col-icon">
-                        <i class="fas fa-exchange-alt icon-card"></i>
-                    </div>
-                    <div class="col-content">
-                        <h3>RECATEGORIZACIÓN AII y AIII</h3>
-                    </div>
-                </div>
-                <div class="card-expanded">
-                    <div class="row-flex">
-                        <div>
+                    <div class="license-card white-card">
+                        <div class="card-header">
                             <div class="col-icon">
                                 <i class="fas fa-exchange-alt icon-card"></i>
                             </div>
-                            <div class="col-content">
-                                <h3>RECATEGORIZACIÓN AII y AIII</h3>
+                            <h3>RECATEGORIZACIÓN AII y AIII</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="requirements-list">
+                                <strong>Requisitos:</strong>
+                                <ul>
+                                    <li>Examen médico en <strong>AUTOVÍAS SEGURAS</strong></li>
+                                    <li>Licencia vigente categoría inferior</li>
+                                    <li>DNI o CE original</li>
+                                    <li>Certificado de escuela de conductores</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="box-wrapper">
-                            <div><strong>Requisitos:</strong></div>
-                            <ul>
-                                <li>Examen médico en <strong>AUTOVÍAS SEGURAS</strong></li>
-                                <li>Licencia vigente de categoría inferior</li>
-                                <li>DNI o CE original y vigente</li>
-                                <li>Certificado de capacitación del curso de formación</li>
-                            </ul>
-                        </div>
+                        <a href="https://wa.me/51913889497?text=Hola,%20deseo%20información%20sobre%20Recategorización"
+                            class="btn-card-action" target="_blank">
+                            <span class="text-closed">VER MÁS</span>
+                            <span class="text-open"><i class="fab fa-whatsapp"></i> COTIZAR</span>
+                        </a>
                     </div>
-                </div>
-                <button class="btn-ver-mas">VER MÁS</button>
-            </div>
 
-            <div class="license-card white-card card-expandable">
-                <div class="card-simple">
-                    <div class="col-icon">
-                        <i class="fas fa-ambulance icon-card"></i>
-                    </div>
-                    <div class="col-content">
-                        <h3>ESPECIAL AIV</h3>
-                    </div>
-                </div>
-                <div class="card-expanded">
-                    <div class="row-flex">
-                        <div>
+                    <div class="license-card white-card">
+                        <div class="card-header">
                             <div class="col-icon">
                                 <i class="fas fa-ambulance icon-card"></i>
                             </div>
-                            <div class="col-content">
-                                <h3>ESPECIAL AIV</h3>
+                            <h3>ESPECIAL AIV</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="requirements-list">
+                                <strong>Requisitos:</strong>
+                                <ul>
+                                    <li>Examen médico en <strong>AUTOVÍAS SEGURAS</strong></li>
+                                    <li>DNI o CE original</li>
+                                    <li>Curso de materiales peligrosos</li>
+                                    <li>Sin multas graves</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="box-wrapper">
-                            <div><strong>Requisitos:</strong></div>
-                            <ul>
-                                <li>Examen médico en <strong>AUTOVÍAS SEGURAS</strong></li>
-                                <li>DNI o CE original y vigente</li>
-                                <li>Para transporte de materiales peligrosos o vehículos de emergencia</li>
-                                <li>Certificado de capacitación específica</li>
-                            </ul>
-                        </div>
+                        <a href="https://wa.me/51913889497?text=Hola,%20deseo%20información%20sobre%20Licencia%20A4"
+                            class="btn-card-action" target="_blank">
+                            <span class="text-closed">VER MÁS</span>
+                            <span class="text-open"><i class="fab fa-whatsapp"></i> COTIZAR</span>
+                        </a>
                     </div>
+
                 </div>
-                <button class="btn-ver-mas">VER MÁS</button>
+
             </div>
-        </div>
-    </div>
-</section>
+        </section>
 
         <section class="category-section">
             <div class="container">
-                <div class="section-header ">
+                <div class="section-header">
                     <i class="fas fa-motorcycle header-icon"></i>
                     <h2 class="section-title">CATEGORÍAS DE BREVETES PARA MOTOS</h2>
                 </div>
 
                 <div class="cards-grid">
-                    <div class="license-card card-expandable">
-                        <div class="card-simple">
+
+                    <div class="license-card">
+                        <div class="card-header">
                             <div class="col-icon">
                                 <i class="fas fa-biking icon-card"></i>
                             </div>
-                            <div class="col-content">
-                                <h3>NUEVO BIIB</h3>
+                            <h3>NUEVO BIIB</h3>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="requirements-list">
+                                <strong>Requisitos:</strong>
+                                <ul>
+                                    <li>Examen médico en <strong>AUTOVÍAS SEGURAS</strong></li>
+                                    <li>Edad mínima 18 años</li>
+                                    <li>DNI o CE original y vigente</li>
+                                    <li>Aprobar examen de Reglas</li>
+                                    <li>Aprobar examen de Manejo</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="card-expanded">
-                            <div class="row-flex">
-                                <div>
-                                    <div class="col-icon">
-                                        <i class="fas fa-biking icon-card"></i>
-                                    </div>
-                                    <div class="col-content">
-                                        <h3>NUEVO BIIB</h3>
-                                    </div>
-                                </div>
-                                <div class="box-wrapper">
-                                    <div><strong>Requisitos:</strong></div>
-                                    <ul>
-                                        <li>Examen médico en <strong>AUTOVÍAS SEGURAS</strong></li>
-                                        <li>Edad mínima 18 años</li>
-                                        <li>DNI o CE original y vigente</li>
-                                        <li>Aprobar examen de Reglas de Tránsito</li>
-                                        <li>Aprobar examen práctico de manejo</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <button class="btn-ver-mas">VER MÁS</button>
+
+                        <a href="https://wa.me/51913889497?text=Hola,%20deseo%20información%20sobre%20Moto%20BIIB"
+                            class="btn-card-action" target="_blank">
+                            <span class="text-closed">VER MÁS</span>
+                            <span class="text-open"><i class="fab fa-whatsapp"></i> COTIZAR</span>
+                        </a>
                     </div>
 
-                    <div class="license-card card-expandable">
-                        <div class="card-simple">
+                    <div class="license-card">
+                        <div class="card-header">
                             <div class="col-icon">
                                 <i class="fas fa-box icon-card"></i>
                             </div>
-                            <div class="col-content">
-                                <h3>NUEVO BIIC</h3>
+                            <h3>NUEVO BIIC</h3>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="requirements-list">
+                                <strong>Requisitos:</strong>
+                                <ul>
+                                    <li>Examen médico en <strong>AUTOVÍAS SEGURAS</strong></li>
+                                    <li>Edad mínima 18 años</li>
+                                    <li>Licencia BIIB previa</li>
+                                    <li>DNI o CE original y vigente</li>
+                                    <li>Aprobar examen de Reglas</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="card-expanded">
-                            <div class="row-flex">
-                                <div>
-                                    <div class="col-icon">
-                                        <i class="fas fa-box icon-card"></i>
-                                    </div>
-                                    <div class="col-content">
-                                        <h3>NUEVO BIIC</h3>
-                                    </div>
-                                </div>
-                                <div class="box-wrapper">
-                                    <div><strong>Requisitos:</strong></div>
-                                    <ul>
-                                        <li>Examen médico en <strong>AUTOVÍAS SEGURAS</strong></li>
-                                        <li>Edad mínima 18 años</li>
-                                        <li>DNI o CE original y vigente</li>
-                                        <li>Licencia categoría BIIB vigente</li>
-                                        <li>Aprobar examen de Reglas de Tránsito</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <button class="btn-ver-mas">VER MÁS</button>
+
+                        <a href="https://wa.me/51913889497?text=Hola,%20deseo%20información%20sobre%20Moto%20BIIC"
+                            class="btn-card-action" target="_blank">
+                            <span class="text-closed">VER MÁS</span>
+                            <span class="text-open"><i class="fab fa-whatsapp"></i> COTIZAR</span>
+                        </a>
                     </div>
 
-                    <div class="license-card card-expandable">
-                        <div class="card-simple">
+                    <div class="license-card white-card">
+                        <div class="card-header">
                             <div class="col-icon">
                                 <i class="fas fa-sync icon-card"></i>
                             </div>
-                            <div class="col-content">
-                                <h3>REVALIDACIÓN BII</h3>
+                            <h3>REVALIDACIÓN BIIB</h3>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="requirements-list">
+                                <strong>Requisitos:</strong>
+                                <ul>
+                                    <li>Examen médico en <strong>AUTOVÍAS SEGURAS</strong></li>
+                                    <li>Licencia BIIB por vencer</li>
+                                    <li>DNI o CE original y vigente</li>
+                                    <li>No tener papeletas pendientes</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="card-expanded">
-                            <div class="row-flex">
-                                <div>
-                                    <div class="col-icon">
-                                        <i class="fas fa-sync icon-card"></i>
-                                    </div>
-                                    <div class="col-content">
-                                        <h3>REVALIDACIÓN BII</h3>
-                                    </div>
-                                </div>
-                                <div class="box-wrapper">
-                                    <div><strong>Requisitos:</strong></div>
-                                    <ul>
-                                        <li>Examen médico en <strong>AUTOVÍAS SEGURAS</strong></li>
-                                        <li>Licencia BII a renovar</li>
-                                        <li>DNI o CE original y vigente</li>
-                                        <li>No tener papeletas pendientes</li>
-                                        <li>Pago de derechos correspondientes</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <button class="btn-ver-mas">VER MÁS</button>
+
+                        <a href="https://wa.me/51913889497?text=Hola,%20deseo%20información%20sobre%20Revalidación%20Moto%20BII"
+                            class="btn-card-action" target="_blank">
+                            <span class="text-closed">VER MÁS</span>
+                            <span class="text-open"><i class="fab fa-whatsapp"></i> COTIZAR</span>
+                        </a>
                     </div>
 
-                    <div class="license-card card-expandable">
-                        <div class="card-simple">
+                    <div class="license-card white-card">
+                        <div class="card-header">
                             <div class="col-icon">
                                 <i class="fas fa-sync-alt icon-card"></i>
                             </div>
-                            <div class="col-content">
-                                <h3>REVALIDACIÓN BIIC</h3>
+                            <h3>REVALIDACIÓN BIIC</h3>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="requirements-list">
+                                <strong>Requisitos:</strong>
+                                <ul>
+                                    <li>Examen médico en <strong>AUTOVÍAS SEGURAS</strong></li>
+                                    <li>Licencia BIIC por vencer</li>
+                                    <li>DNI o CE original y vigente</li>
+                                    <li>Certificado de no adeudo</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="card-expanded">
-                            <div class="row-flex">
-                                <div>
-                                    <div class="col-icon">
-                                        <i class="fas fa-sync-alt icon-card"></i>
-                                    </div>
-                                    <div class="col-content">
-                                        <h3>REVALIDACIÓN BIIC</h3>
-                                    </div>
-                                </div>
-                                <div class="box-wrapper">
-                                    <div><strong>Requisitos:</strong></div>
-                                    <ul>
-                                        <li>Examen médico en <strong>AUTOVÍAS SEGURAS</strong></li>
-                                        <li>Licencia BIIC a renovar</li>
-                                        <li>DNI o CE original y vigente</li>
-                                        <li>Certificado de no adeudo de multas</li>
-                                        <li>Pago de derechos correspondientes</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        <button class="btn-ver-mas" onclick="toggleCard(this)">
-    Ver más
-</button>
+
+                        <a href="https://wa.me/51913889497?text=Hola,%20deseo%20información%20sobre%20Revalidación%20Moto%20BIIC"
+                            class="btn-card-action" target="_blank">
+                            <span class="text-closed">VER MÁS</span>
+                            <span class="text-open"><i class="fab fa-whatsapp"></i> COTIZAR</span>
+                        </a>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -366,8 +314,8 @@
         <section class="info-section">
             <div class="container">
                 <h3 class="info-title"><i class="fas fa-info-circle"></i> INFORMACIÓN ADICIONAL</h3>
-                
-                 <div class="info-grid">
+
+                <div class="info-grid">
                     <a href="https://cev.touring.pe/inscripcion" class="info-btn">
                         <i class="fas fa-laptop-code"></i>
                         <span>PROGRAMAR EXAMEN DE REGLAS<br>Y/O MANEJO (TOURING)</span>
@@ -414,9 +362,10 @@
 
     <div th:replace="~{fragments/footer :: footer}"></div>
 
-     <script th:src="@{/js/fragments/navbar.js}"></script>
+    <script th:src="@{/js/fragments/navbar.js}"></script>
     <script th:src="@{/js/home.js}"></script>
     <script th:src="@{/js/examenMedicoBrevete.js}"></script>
-        
+
 </body>
+
 </html>
