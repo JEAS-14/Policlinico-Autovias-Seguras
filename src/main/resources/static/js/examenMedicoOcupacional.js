@@ -1,84 +1,103 @@
-document.addEventListener('DOMContentLoaded', () => {
+/* ================================================================
+   1. FUNCIONES PARA INTERACCIÓN (Llamadas desde el HTML)
+   ================================================================ */
+
+// Función para abrir tarjetas de Licencias (Botón "Ver más")
+function toggleCard(boton) {
+    const tarjeta = boton.closest('.license-card');
     
-    // --- 1. ANIMACIÓN DE APARICIÓN (Scroll Reveal) ---
+    // Cierra las demás tarjetas para que no se amontonen
+    document.querySelectorAll('.license-card').forEach(card => {
+        if (card !== tarjeta) card.classList.remove('tarjeta-abierta');
+    });
+
+    // Abre o cierra la tarjeta actual
+    tarjeta.classList.toggle('tarjeta-abierta');
+}
+
+// Función para el Acordeón de Salud Ocupacional
+function toggleOcupational(card) {
+    // Si ya está abierta, la cerramos
+    if (card.classList.contains('active')) {
+        card.classList.remove('active');
+        return;
+    }
+
+    // Cerramos todas las demás primero (efecto acordeón)
+    document.querySelectorAll('.type-card').forEach(c => {
+        c.classList.remove('active');
+    });
+
+    // Abrimos la que se clickeó
+    card.classList.add('active');
+}
+
+
+/* ================================================================
+   2. LÓGICA AUTOMÁTICA (Al cargar la página)
+   ================================================================ */
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    // --- A. ANIMACIÓN SCROLL (Elementos aparecen al bajar) ---
+    
     const observerOptions = {
-        threshold: 0.15, // Se activa cuando el 15% del elemento es visible
+        threshold: 0.15, 
         rootMargin: "0px 0px -50px 0px"
     };
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
+                // Añadimos las clases para activar la animación CSS
                 entry.target.classList.add('visible');
                 
-                // Si el elemento visible es la caja de estadísticas, iniciamos el contador
+                // Soporte para tus otras clases (si las usas en otras secciones)
+                entry.target.classList.remove('hidden-state'); 
+                entry.target.classList.add('visible-state');
+
+                // Si el elemento visible es la caja de estadísticas, iniciamos los números
                 if (entry.target.classList.contains('stats-box')) {
                     startCounters();
                 }
                 
+                // Dejamos de observar este elemento (para que no se anime 2 veces)
                 observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
-    // Seleccionar elementos a animar (tienen clase fade-in o slide-up en el HTML)
-    const animatedElements = document.querySelectorAll('.fade-in, .slide-up, .stats-box');
-    animatedElements.forEach(el => observer.observe(el));
+    // Buscamos todos los elementos que deben animarse
+    const elementsToAnimate = document.querySelectorAll('.fade-in, .slide-up, .stats-box, .js-scroll-item');
+    elementsToAnimate.forEach(el => observer.observe(el));
 
 
-    // --- 2. LÓGICA DEL CONTADOR DE NÚMEROS ---
+    // --- B. CONTADORES DE NÚMEROS (+1500) ---
+    
     let countersStarted = false;
 
     function startCounters() {
-        if (countersStarted) return; // Evitar que corra dos veces
+        if (countersStarted) return; // Evita que corra dos veces
         countersStarted = true;
 
         const counters = document.querySelectorAll('.stat-number');
-        const speed = 200; // Mientras más bajo, más rápido
+        const speed = 200; // Velocidad de la animación
 
         counters.forEach(counter => {
             const updateCount = () => {
-                const target = +counter.getAttribute('data-target'); // Obtener el número final (ej: 1500)
-                const count = +counter.innerText; // Número actual
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText.replace('+', ''); // Limpia símbolos
                 
-                // Calcular el incremento para que todos terminen al mismo tiempo aprox
-                const inc = target / speed; 
+                const inc = target / speed;
 
                 if (count < target) {
-                    // Sumar y mostrar sin decimales feos, usando Math.ceil
                     counter.innerText = Math.ceil(count + inc);
-                    setTimeout(updateCount, 20); // Repetir cada 20ms
+                    setTimeout(updateCount, 20);
                 } else {
-                    // Asegurar que termine en el número exacto y añadir el "+" si es necesario
-                    counter.innerText = "+" + target; 
+                    counter.innerText = "+" + target; // Finaliza con el "+"
                 }
             };
             updateCount();
         });
     }
-});
-
-document.addEventListener("DOMContentLoaded", function() {
-    // Seleccionamos todos los items que tienen la clase animable
-    const scrollItems = document.querySelectorAll('.js-scroll-item');
-
-    const observerOptions = {
-        root: null,
-        threshold: 0.2 // Se activa cuando se ve el 20% del elemento
-    };
-
-    const scrollObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Quitamos el estado oculto y añadimos el visible
-                entry.target.classList.remove('hidden-state');
-                entry.target.classList.add('visible-state');
-                observer.unobserve(entry.target); // Dejamos de observar una vez animado
-            }
-        });
-    }, observerOptions);
-
-    scrollItems.forEach(item => {
-        scrollObserver.observe(item);
-    });
 });
