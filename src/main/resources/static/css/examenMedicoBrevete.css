@@ -107,10 +107,124 @@ body {
     position: absolute; top: 20px; pointer-events: none;
 }
 
-/* --- VISTA EXPANDIDA --- */
+
+/* ==========================================================================
+   TARJETAS INTERACTIVAS (GRID) - VERSIÓN "CLICK" (SIN PARPADEO)
+   ========================================================================== */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    padding-bottom: 20px;
+    align-items: start;
+}
+
+.license-card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+    /* Quitamos cursor pointer general para evitar clics accidentales */
+    
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-between; /* Empuja el botón al final */
+    
+    transition: all 0.4s ease;
+    transform: translateZ(0);
+    border: 2px solid transparent; /* Para evitar saltos al añadir borde */
+}
+
+/* ESTADO ACTIVO (Manejado por JS CLIC, NO HOVER) */
+.license-card.active {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+    border-color: #3bbca8; /* Borde verde al activar */
+    background: #fcfcfc;
+}
+
+/* --- VISTA SIMPLE (Icono + Título) --- */
+.card-simple {
+    display: flex; 
+    flex-direction: column; 
+    gap: 15px; 
+    align-items: center; 
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+/* --- VISTA EXPANDIDA (Detalles ocultos) --- */
 .card-expanded {
-    opacity: 0; max-height: 0; visibility: hidden; overflow: hidden;
-    transition: opacity 0.3s ease, max-height 0.5s ease;
+    max-height: 0; /* Altura 0 por defecto */
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out, opacity 0.3s ease;
+}
+
+/* Cuando la tarjeta tiene la clase .active */
+.license-card.active .card-expanded {
+    max-height: 500px; /* Altura suficiente para mostrar contenido */
+    opacity: 1;
+    margin-bottom: 15px; /* Espacio antes del botón */
+}
+
+/* --- ESTILOS INTERNOS (Iconos, Listas) --- */
+.col-icon {
+    width: 70px; height: 70px; border-radius: 50%;
+    background: #f0f4f8; 
+    display: grid; place-items: center; 
+    margin: 0 auto;
+    transition: all 0.3s ease;
+}
+.icon-card { font-size: 2.5rem; color: #1e5a8e; }
+
+.license-card h3 {
+    color: #1e5a8e; font-weight: 800; font-size: 1.2rem; margin: 0;
+    text-transform: uppercase; text-align: center;
+}
+
+/* Listas de requisitos */
+.box-wrapper strong { color: #3bbca8; font-size: 1rem; display: block; margin-bottom: 8px; border-bottom: 1px solid #eee; padding-bottom: 5px;}
+.box-wrapper ul { list-style: none; padding: 0; margin: 0; font-size: 0.9rem; color: #555; line-height: 1.6; text-align: left;}
+.box-wrapper ul li { margin-bottom: 6px; padding-left: 15px; position: relative; }
+.box-wrapper ul li::before { content: "✓"; position: absolute; left: 0; color: #25d366; font-weight: bold; }
+
+/* --- BOTÓN ACCIÓN (CAMBIANTE) --- */
+.btn-card-action {
+    display: block;
+    width: 100%;
+    padding: 12px 0;
+    border-radius: 8px;
+    font-weight: 800;
+    text-transform: uppercase;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    
+    /* Estado Inicial: VER MÁS */
+    background-color: transparent;
+    color: #3bbca8;
+    border: 2px solid #3bbca8;
+}
+
+.btn-card-action:hover {
+    background-color: #e0f2f1;
+}
+
+/* Estado Activo: COTIZAR (Se activa vía JS) */
+.btn-card-action.btn-quote-mode {
+    background-color: #25d366; /* Verde WhatsApp */
+    color: white;
+    border-color: #25d366;
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+}
+
+.btn-card-action.btn-quote-mode:hover {
+    background-color: #128c7e;
+    transform: translateY(-2px);
 }
 
 /* Mostrar expandido cuando está activo */
@@ -198,16 +312,67 @@ body {
 /* ==========================================================================
    RESPONSIVE MÓVIL
    ========================================================================== */
+/* =========================================
+   CORRECCIÓN PARA CELULARES (RESPONSIVE)
+   ========================================= */
 @media (max-width: 768px) {
-    .hero-brevete { height: auto; min-height: 100vh; padding: 120px 20px 60px 20px; background-position: center center; }
-    .hero-content h1 { font-size: 2rem; }
-    .hero-content h3 { font-size: 1.2rem; }
-    .hero-buttons { flex-direction: column; width: 100%; }
-    .btn { width: 100%; box-sizing: border-box; text-align: center; display: block; }
-    .stats-box { flex-direction: column; padding: 30px 20px; gap: 30px; }
-    .divider { display: none; }
-    .stat-item { border-bottom: 1px solid #eee; padding-bottom: 20px; width: 100%; text-align: center; }
-    .stat-item:last-child { border-bottom: none; }
-    .cards-grid { grid-template-columns: 1fr; padding: 0 10px; }
-    .header-expandido { flex-direction: column; }
+    
+    /* 1. ARREGLAR EL HEADER GIGANTE */
+    .blog-header {
+        height: auto; /* Quitamos la altura fija */
+        min-height: 300px; /* Altura mínima decente */
+        padding: 80px 20px 40px; /* Reducimos el relleno */
+    }
+
+    .blog-header h1 {
+        font-size: 2.5rem; /* Bajamos de 6.5rem a 2.5rem */
+        line-height: 1.2; /* Mejor espaciado entre líneas */
+        word-wrap: break-word; /* Evita que palabras largas rompan la pantalla */
+    }
+
+    .blog-header p {
+        font-size: 1.1rem; /* Texto descriptivo un poco más chico */
+    }
+
+    /* 2. ARREGLAR EL POST DESTACADO */
+    .featured-post {
+        flex-direction: column; /* Imagen arriba, texto abajo */
+        height: auto;
+    }
+
+    .featured-image {
+        min-height: 200px; /* Altura controlada para la imagen */
+        flex: none; /* Evita deformaciones */
+    }
+
+    .featured-content {
+        padding: 25px; /* Menos relleno (antes era 50px) */
+    }
+
+    .featured-content h2 {
+        font-size: 1.5rem; /* Título más manejable */
+    }
+
+    /* 3. ARREGLAR EL MODAL EN MÓVIL */
+    .modal-content {
+        width: 95%; /* Que ocupe casi todo el ancho */
+        margin: 10px;
+        max-height: 85vh;
+    }
+
+    .modal-header-img {
+        height: 180px; /* Imagen del modal más pequeña */
+    }
+
+    .modal-body-content {
+        padding: 20px; /* Menos relleno interno */
+    }
+    
+    .close-modal {
+        top: 10px;
+        right: 10px;
+        width: 35px;
+        height: 35px;
+        font-size: 1.5rem;
+    }
 }

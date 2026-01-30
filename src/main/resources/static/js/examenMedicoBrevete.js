@@ -40,6 +40,38 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+
+    function handleCardInteraction(btn, licenseType) {
+    const card = btn.closest('.license-card');
+    const isAlreadyOpen = card.classList.contains('active');
+
+    // 1. Si el botón ya está en modo "Cotizar" (tarjeta abierta), redirigir a WhatsApp
+    if (isAlreadyOpen) {
+        const message = `Hola, deseo cotizar el examen para Brevete: ${licenseType}`;
+        const whatsappUrl = `https://wa.me/51913889497?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, '_blank');
+        return;
+    }
+
+    // 2. Si la tarjeta está cerrada:
+    // Primero, cerramos TODAS las otras tarjetas para mantener el orden
+    document.querySelectorAll('.license-card').forEach(c => {
+        c.classList.remove('active');
+        const b = c.querySelector('.btn-card-action');
+        b.innerText = "VER MÁS";
+        b.classList.remove('btn-quote-mode');
+        // Reseteamos el icono si quieres
+        b.innerHTML = 'VER MÁS <i class="fas fa-chevron-down"></i>';
+    });
+
+    // 3. Abrimos la tarjeta actual
+    card.classList.add('active');
+    
+    // 4. Transformamos el botón a "COTIZAR"
+    btn.innerHTML = '<i class="fab fa-whatsapp"></i> COTIZAR AHORA';
+    btn.classList.add('btn-quote-mode');
+}
+
     // ==========================================
     // 2. LÓGICA DE TARJETAS (AUTOMÁTICO - HOVER)
     // ==========================================
