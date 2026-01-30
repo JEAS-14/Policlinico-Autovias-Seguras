@@ -49,6 +49,20 @@ body {
     font-weight: 500;
 }
 
+/* Responsive para móvil */
+@media (max-width: 768px) {
+    .blog-header {
+        height: 300px;
+        padding: 50px 20px 30px;
+    }
+    .blog-header h1 {
+        font-size: 3rem;
+    }
+    .blog-header p {
+        font-size: 1.2rem;
+    }
+}
+
 /* --- DESTACADO (Featured) --- */
 .featured-post {
     background-color: var(--bg-light);

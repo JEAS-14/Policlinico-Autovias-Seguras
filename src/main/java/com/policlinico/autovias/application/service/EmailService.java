@@ -1,6 +1,7 @@
 package com.policlinico.autovias.application.service;
 
 import com.policlinico.autovias.application.dto.ConsultaDTO;
+import com.policlinico.autovias.application.dto.ReclamacionDTO;
 import com.policlinico.autovias.domain.entity.Consulta;
 
 import jakarta.mail.MessagingException;
@@ -41,6 +42,7 @@ public class EmailService {
 
             helper.setFrom(emailRemitente);
             helper.setTo(emailDestinatario);
+            helper.setCc(emailRemitente); // Copia al remitente para que llegue a "Recibidos"
             helper.setSubject("🔔 Nueva Consulta - Ticket " + numeroTicket);
 
             Context context = new Context();
@@ -138,6 +140,75 @@ public class EmailService {
             log.error("Error al enviar respuesta al cliente para ticket {}", 
                 consulta.getNumeroTicket(), e);
             throw new RuntimeException("Error al enviar respuesta por email", e);
+        }
+    }
+
+    /**
+     * Envía email de notificación de reclamación
+     */
+    public void enviarNotificacionReclamacion(ReclamacionDTO reclamacion) {
+        try {
+            MimeMessage message = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+
+            helper.setFrom(emailRemitente);
+            helper.setTo(emailDestinatario);
+            helper.setCc(emailRemitente); // Copia al remitente para que llegue a "Recibidos"
+            helper.setSubject("📋 Nueva Reclamación - Libro de Reclamaciones");
+
+            Context context = new Context();
+            context.setVariable("nombre", reclamacion.getNombre());
+            context.setVariable("apellido", reclamacion.getApellido());
+            context.setVariable("dniCe", reclamacion.getDniCe());
+            context.setVariable("domicilio", reclamacion.getDomicilio());
+            context.setVariable("telefono", reclamacion.getTelefono());
+            context.setVariable("email", reclamacion.getEmail());
+            context.setVariable("detalle", reclamacion.getDetalle());
+            context.setVariable("pedido", reclamacion.getPedido() != null ? reclamacion.getPedido() : "N/A");
+            context.setVariable("fecha", LocalDateTime.now().format(
+                DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
+            ));
+
+            String htmlContent = templateEngine.process("email/notificacion-reclamacion", context);
+            helper.setText(htmlContent, true);
+
+            mailSender.send(message);
+            log.info("Email de reclamación enviado a {} para {}", emailDestinatario, reclamacion.getNombre() + " " + reclamacion.getApellido());
+
+        } catch (MessagingException e) {
+            log.error("Error al enviar email de reclamación para {}", reclamacion.getNombre() + " " + reclamacion.getApellido(), e);
+            throw new RuntimeException("Error al enviar notificación de reclamación por email", e);
+        }
+    }
+
+    /**
+     * Envía email de confirmación al reclamante
+     */
+    public void enviarConfirmacionReclamante(ReclamacionDTO reclamacion) {
+        try {
+            MimeMessage message = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+
+            helper.setFrom(emailRemitente);
+            helper.setTo(reclamacion.getEmail());
+            helper.setSubject("✅ Reclamación Enviada - Policlínico Autovías Seguras");
+
+            Context context = new Context();
+            context.setVariable("nombre", reclamacion.getNombre());
+            context.setVariable("apellido", reclamacion.getApellido());
+            context.setVariable("fecha", LocalDateTime.now().format(
+                DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
+            ));
+
+            String htmlContent = templateEngine.process("email/confirmacion-reclamacion", context);
+            helper.setText(htmlContent, true);
+
+            mailSender.send(message);
+            log.info("Confirmación enviada al reclamante {} {}", reclamacion.getNombre(), reclamacion.getApellido());
+
+        } catch (MessagingException e) {
+            log.error("Error al enviar confirmación al reclamante {}", reclamacion.getEmail(), e);
+            throw new RuntimeException("Error al enviar confirmación por email", e);
         }
     }
 }

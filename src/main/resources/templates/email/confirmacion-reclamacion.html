@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        .header { background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+                  color: white; padding: 20px; text-align: center; border-radius: 5px 5px 0 0; }
+        .content { background: #f4f4f4; padding: 20px; }
+        .info-row { background: white; padding: 12px; margin: 8px 0; border-radius: 4px; }
+        .label { font-weight: bold; color: #1e3c72; }
+        .footer { text-align: center; padding: 20px; font-size: 12px; color: #666; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Reclamación Enviada</h1>
+            <p>Policlínico Autovías Seguras</p>
+        </div>
+        <div class="content">
+            <div class="info-row">
+                <span class="label">Estimado/a <span th:text="${nombre}"></span> <span th:text="${apellido}"></span>,</span>
+            </div>
+            <p>Hemos recibido su reclamación a través de nuestro Libro de Reclamaciones Virtual. Le confirmamos que ha sido enviada exitosamente a nuestro equipo.</p>
+            <p><strong>Próximos pasos:</strong></p>
+            <ul>
+                <li>Revisaremos su reclamación en un plazo máximo de 15 días hábiles.</li>
+                <li>Le responderemos al correo electrónico proporcionado.</li>
+                <li>Si necesita contactarnos, puede hacerlo a través de nuestros canales oficiales.</li>
+            </ul>
+            <div class="info-row">
+                <span class="label">Fecha de envío:</span>
+                <span th:text="${fecha}"></span>
+            </div>
+            <p>Gracias por confiar en nosotros. Su opinión es importante para mejorar nuestros servicios.</p>
+        </div>
+        <div class="footer">
+            <p>Este es un mensaje automático. No responda a este correo.</p>
+            <p>Policlínico Autovías Seguras - Todos los derechos reservados.</p>
+        </div>
+    </div>
+</body>
+</html>

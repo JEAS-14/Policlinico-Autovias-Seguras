@@ -26,83 +26,65 @@
             </div>
         </div>
 
-        <form class="reclamo-form">
+        <!-- Mensajes de éxito/error -->
+        <div th:if="${success}" class="alert alert-success">
+            <i class="fas fa-check-circle"></i> <span th:text="${success}"></span>
+        </div>
+        <div th:if="${error}" class="alert alert-error">
+            <i class="fas fa-exclamation-triangle"></i> <span th:text="${error}"></span>
+        </div>
+
+        <form class="reclamo-form" th:action="@{/libroReclamaciones}" method="post">
             
             <fieldset>
                 <legend><i class="fas fa-user"></i> 1. Identificación del Consumidor</legend>
                 
                 <div class="form-row">
                     <div class="form-group">
-                        <label>Nombre Completo:</label>
-                        <input type="text" placeholder="Ingresa tu nombre" required>
+                        <label>Nombre:</label>
+                        <input type="text" name="nombre" placeholder="Ingresa tu nombre" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+" title="Solo letras y espacios" required>
                     </div>
                     <div class="form-group">
-                        <label>DNI / CE:</label>
-                        <input type="text" placeholder="N° de documento" required>
+                        <label>Apellido:</label>
+                        <input type="text" name="apellido" placeholder="Ingresa tu apellido" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+" title="Solo letras y espacios" required>
                     </div>
                 </div>
 
                 <div class="form-group">
+                    <label>DNI / CE:</label>
+                    <input type="text" name="dniCe" placeholder="N° de documento" pattern="[0-9]{8-9}" title="Solo números, 8-9 dígitos" required>
+                </div>
+
+                <div class="form-group">
                     <label>Domicilio:</label>
-                    <input type="text" placeholder="Dirección completa, Distrito, Ciudad" required>
+                    <input type="text" name="domicilio" placeholder="Dirección completa, Distrito, Ciudad" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\s,.-]+" title="Letras, números, espacios y caracteres básicos" required>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
                         <label>Teléfono:</label>
-                        <input type="tel" placeholder="999 999 999" required>
+                        <input type="tel" name="telefono" placeholder="999999999" pattern="[0-9]{9}" title="Solo números, 9 dígitos" required>
                     </div>
                     <div class="form-group">
                         <label>Correo Electrónico:</label>
-                        <input type="email" placeholder="ejemplo@correo.com" required>
+                        <input type="email" name="email" placeholder="ejemplo@correo.com" required>
                     </div>
                 </div>
             </fieldset>
 
             <fieldset>
-                <legend><i class="fas fa-box-open"></i> 2. Identificación del Bien Contratado</legend>
+                <legend><i class="fas fa-edit"></i> 2. Detalle de la Reclamación</legend>
                 
-                <div class="radio-group">
-                    <label class="radio-option">
-                        <input type="radio" name="tipo_bien" value="producto">
-                        <span>Producto</span>
-                    </label>
-                    <label class="radio-option">
-                        <input type="radio" name="tipo_bien" value="servicio" checked>
-                        <span>Servicio</span>
-                    </label>
-                </div>
-
-                <div class="form-group">
-                    <label>Descripción del Bien Contratado:</label>
-                    <textarea rows="2" placeholder="Ej: Examen Médico Ocupacional, Licencia A1..."></textarea>
-                </div>
-            </fieldset>
-
-            <fieldset>
-                <legend><i class="fas fa-edit"></i> 3. Detalle de la Reclamación</legend>
-                
-                <div class="radio-group tipo-reclamo">
-                    <label class="radio-option">
-                        <input type="radio" name="tipo_reclamo" value="reclamo">
-                        <span class="tag-reclamo">RECLAMO</span>
-                        <small>(Disconformidad relacionada a los productos o servicios)</small>
-                    </label>
-                    <label class="radio-option">
-                        <input type="radio" name="tipo_reclamo" value="queja">
-                        <span class="tag-queja">QUEJA</span>
-                        <small>(Disconformidad no relacionada directamente al giro del negocio, ej: atención)</small>
-                    </label>
-                </div>
+               
 
                 <div class="form-group">
                     <label>Detalle:</label>
-                    <textarea rows="4" placeholder="Describa los hechos..." required></textarea>
+                    <textarea rows="4" name="detalle" placeholder="Describa los hechos..." required></textarea>
                 </div>
 
                 <div class="form-group">
                     <label>Pedido del Consumidor:</label>
-                    <textarea rows="2" placeholder="¿Qué solución espera?"></textarea>
+                    <textarea rows="2" name="pedido" placeholder="¿Qué solución espera?"></textarea>
                 </div>
             </fieldset>
 
@@ -124,6 +106,41 @@
     <script>
         document.getElementById('fecha-actual').textContent = new Date().toLocaleDateString('es-PE', {
             weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+        });
+
+        // Validación en tiempo real
+        const nombreInput = document.querySelector('input[name="nombre"]');
+        const apellidoInput = document.querySelector('input[name="apellido"]');
+        const dniInput = document.querySelector('input[name="dniCe"]');
+        const telefonoInput = document.querySelector('input[name="telefono"]');
+
+        // Solo letras para nombre y apellido
+        function soloLetras(event) {
+            const regex = /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]*$/;
+            if (!regex.test(event.target.value)) {
+                event.target.value = event.target.value.replace(/[^A-Za-zÁÉÍÓÚáéíóúÑñ\s]/g, '');
+            }
+        }
+
+        // Solo números para DNI y teléfono
+        function soloNumeros(event) {
+            const regex = /^[0-9]*$/;
+            if (!regex.test(event.target.value)) {
+                event.target.value = event.target.value.replace(/[^0-9]/g, '');
+            }
+        }
+
+        nombreInput.addEventListener('input', soloLetras);
+        apellidoInput.addEventListener('input', soloLetras);
+        dniInput.addEventListener('input', soloNumeros);
+        telefonoInput.addEventListener('input', soloNumeros);
+
+        // Limitar longitud
+        dniInput.addEventListener('input', function() {
+            if (this.value.length > 12) this.value = this.value.slice(0, 12);
+        });
+        telefonoInput.addEventListener('input', function() {
+            if (this.value.length > 9) this.value = this.value.slice(0, 9);
         });
     </script>
     <script th:src="@{/js/fragments/navbar.js}"></script>

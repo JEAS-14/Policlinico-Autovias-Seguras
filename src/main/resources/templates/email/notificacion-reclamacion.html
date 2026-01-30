@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        .header { background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+                  color: white; padding: 20px; text-align: center; border-radius: 5px 5px 0 0; }
+        .content { background: #f4f4f4; padding: 20px; }
+        .info-row { background: white; padding: 12px; margin: 8px 0; border-radius: 4px; }
+        .label { font-weight: bold; color: #1e3c72; }
+        .footer { text-align: center; padding: 20px; font-size: 12px; color: #666; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Nueva Reclamación Recibida</h1>
+            <p>Libro de Reclamaciones Virtual</p>
+        </div>
+        <div class="content">
+            <h3>1. Identificación del Consumidor</h3>
+            <div class="info-row">
+                <span class="label">Nombre:</span>
+                <span th:text="${nombre}"></span>
+            </div>
+            <div class="info-row">
+                <span class="label">Apellido:</span>
+                <span th:text="${apellido}"></span>
+            </div>
+            <div class="info-row">
+                <span class="label">DNI/CE:</span>
+                <span th:text="${dniCe}"></span>
+            </div>
+            <div class="info-row">
+                <span class="label">Domicilio:</span>
+                <span th:text="${domicilio}"></span>
+            </div>
+            <div class="info-row">
+                <span class="label">Teléfono:</span>
+                <span th:text="${telefono}"></span>
+            </div>
+            <div class="info-row">
+                <span class="label">Email:</span>
+                <span th:text="${email}"></span>
+            </div>
+
+            <h3>2. Detalle de la Reclamación</h3>
+            <div class="info-row">
+                <span class="label">Detalle:</span><br>
+                <p th:text="${detalle}"></p>
+            </div>
+            <div class="info-row">
+                <span class="label">Pedido del Consumidor:</span><br>
+                <p th:text="${pedido}"></p>
+            </div>
+            <div class="info-row">
+                <span class="label">Fecha de Recepción:</span>
+                <span th:text="${fecha}"></span>
+            </div>
+        </div>
+        <div class="footer">
+            <p>Recuerda responder al reclamante en un plazo no mayor a 15 días hábiles.</p>
+        </div>
+    </div>
+</body>
+</html>
