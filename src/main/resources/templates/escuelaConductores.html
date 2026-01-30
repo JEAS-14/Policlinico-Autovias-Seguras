@@ -1,29 +1,22 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Escuela de Manejo Profesional | Autovías</title>
-    
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    
+    <link rel="stylesheet" th:href="@{/css/fragments/navbar.css}">
+    <link rel="stylesheet" th:href="@{/css/fragments/footer.css}">
     <link rel="stylesheet" href="/css/escuelaConductores.css">
-
 </head>
+
 <body>
 
-    <nav class="navbar">
-        <div class="container nav-content">
-            <div class="logo">Auto<span>Vías</span></div>
-            <div class="nav-links">
-                <a href="#">Inicio</a>
-                <a href="#">Recategorización</a>
-                <a href="#">Cursos</a>
-                <a href="#">Contacto</a>
-            </div>
-            </div>
-    </nav>
+    <nav th:replace="fragments/navbar :: navbar"></nav>
 
     <section class="hero-escuela">
         <div class="container">
@@ -32,11 +25,9 @@
             </div>
             <h1>Tu Brevete Profesional <br><span class="text-gradient">En Tiempo Récord</span></h1>
             <p>Obtén tu licencia de conducir A2 y A3 con la escuela líder. Clases teóricas virtuales y prácticas con vehículos modernos.</p>
-            
+
             <div class="hero-buttons">
-                <a href="#programas" class="btn btn-primary">
-                    VER PROGRAMAS
-                </a>
+                <a href="#programas" class="btn btn-primary">VER PROGRAMAS</a>
                 <a href="https://wa.me/51913889497" class="btn btn-whatsapp">
                     <i class="fab fa-whatsapp"></i> ESCRÍBENOS
                 </a>
@@ -44,12 +35,12 @@
         </div>
     </section>
 
-   <section class="programs-section">
+    <section id="programas" class="programs-section">
         <div class="container">
             
             <div class="section-header">
-                <h2 style="color: var(--brand-purple); font-size: 2.5rem; margin-bottom: 10px;">Nuestros Programas</h2>
-                <p style="color: var(--text-light);">Elige la licencia ideal para tu futuro profesional</p>
+                <h2 class="section-title">Programas de Recategorización</h2>
+                <p class="section-desc">Elige la licencia ideal para tu futuro profesional</p>
             </div>
 
             <div class="programs-grid">
@@ -59,6 +50,16 @@
                     <div class="card-top-content">
                         <h3>Licencia Pro Básica</h3>
                         <p class="card-desc">Taxis y Colectivos</p>
+                    </div>
+
+                    <div class="schedule-box">
+                        <span class="s-label"><i class="far fa-clock"></i> Turnos Mañana (L-S):</span>
+                        <div class="s-tags">
+                            <span class="time-tag">07:00 - 13:00</span>
+                            <span class="time-tag">07:30 - 13:00</span>
+                            <span class="time-tag">08:00 - 14:00</span>
+                            <span class="time-tag">08:30 - 14:30</span>
+                        </div>
                     </div>
 
                     <div class="card-body-expand">
@@ -82,6 +83,16 @@
                         <p class="card-desc">Microbuses y Furgones</p>
                     </div>
 
+                    <div class="schedule-box">
+                        <span class="s-label"><i class="far fa-clock"></i> Turnos Mañana (L-S):</span>
+                        <div class="s-tags">
+                            <span class="time-tag">07:00 - 13:00</span>
+                            <span class="time-tag">07:30 - 13:00</span>
+                            <span class="time-tag">08:00 - 14:00</span>
+                            <span class="time-tag">08:30 - 14:30</span>
+                        </div>
+                    </div>
+
                     <div class="card-body-expand">
                         <ul class="tech-list">
                             <li><i class="fas fa-calendar-alt"></i> <strong>Duración:</strong> 8 Días</li>
@@ -101,6 +112,16 @@
                     <div class="card-top-content">
                         <h3>Pasajeros</h3>
                         <p class="card-desc">Buses Interprovinciales</p>
+                    </div>
+
+                    <div class="schedule-box">
+                        <span class="s-label"><i class="far fa-clock"></i> Turnos Mañana (L-S):</span>
+                        <div class="s-tags">
+                            <span class="time-tag">07:00 - 13:00</span>
+                            <span class="time-tag">07:30 - 13:00</span>
+                            <span class="time-tag">08:00 - 14:00</span>
+                            <span class="time-tag">08:30 - 14:30</span>
+                        </div>
                     </div>
 
                     <div class="card-body-expand">
@@ -124,6 +145,16 @@
                         <p class="card-desc">Tráiler y Volquetes</p>
                     </div>
 
+                    <div class="schedule-box">
+                        <span class="s-label"><i class="far fa-clock"></i> Turnos Mañana (L-S):</span>
+                        <div class="s-tags">
+                            <span class="time-tag">07:00 - 13:00</span>
+                            <span class="time-tag">07:30 - 13:00</span>
+                            <span class="time-tag">08:00 - 14:00</span>
+                            <span class="time-tag">08:30 - 14:30</span>
+                        </div>
+                    </div>
+
                     <div class="card-body-expand">
                         <ul class="tech-list">
                             <li><i class="fas fa-calendar-alt"></i> <strong>Duración:</strong> 8 Días</li>
@@ -139,18 +170,32 @@
                 </div>
 
                 <div class="program-card highlight">
-                    <div class="card-header-tech">A-IIIc (Máxima)</div>
+                    <div class="card-header-tech" style="font-size: 1.2rem;">A-IIIc</div>
                     <div class="card-top-content">
-                        <h3>Licencia General</h3>
-                        <p class="card-desc">Todos los vehículos</p>
+                        <h3>Licencia Maestra</h3>
+                        <p class="card-desc">Todo tipo de vehículo.</p>
+                    </div>
+
+                    <div class="schedule-box">
+                        <span class="s-label"><i class="far fa-clock"></i> Turnos Mañana (L-S):</span>
+                        <div class="s-tags">
+                            <span class="time-tag">07:00 - 13:00</span>
+                            <span class="time-tag">07:30 - 13:00</span>
+                            <span class="time-tag">08:00 - 14:00</span>
+                            <span class="time-tag">08:30 - 14:30</span>
+                        </div>
                     </div>
 
                     <div class="card-body-expand">
                         <ul class="tech-list">
-                            <li><i class="fas fa-calendar-alt"></i> <strong>Duración:</strong> 15 Días</li>
-                            <li><i class="fas fa-history"></i> <strong>Req:</strong> 4 años A-IIb</li>
-                            <li><i class="fas fa-layer-group"></i> Curso Integral</li>
+                            <li><i class="fas fa-history"></i> <span><strong>Req:</strong> 4 años A-IIb o 2 A-IIIa/b</span></li>
+                            <li><i class="fas fa-book-open"></i> <span><strong>50h Teoría</strong></span></li>
+                            <li><i class="fas fa-star"></i> <span>Duración Extendida: 15 Días</span></li>
+                            <li><i class="fas fa-file-alt"></i> <span>Balotario + Simulacro Virtual</span></li>
                         </ul>
+                        <div class="free-advice-badge">
+                            Asesoría Gratuita en todo el proceso
+                        </div>
                     </div>
 
                     <a href="https://wa.me/51913889497?text=Hola,%20deseo%20cotizar%20Curso%20A3C" class="btn-card-action">
@@ -162,58 +207,127 @@
             </div>
         </div>
     </section>
-    <section class="special-courses-section">
+
+<section class="special-courses-section">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Cursos de Especialización</h2>
-                <p class="section-desc">Complementa tu perfil profesional</p>
+                <p class="section-desc">Amplía tus oportunidades y regulariza tu situación</p>
             </div>
 
             <div class="special-grid">
+
                 <div class="special-card">
-                    <div class="s-icon purple"><i class="fas fa-shield-alt"></i></div>
+                    <div class="s-icon purple"><i class="fas fa-truck-moving"></i></div>
                     <div class="s-content">
                         <div class="s-header-flex">
-                            <h4>Seguridad Vial</h4>
-                            <span class="mini-price">S/ 120</span>
+                            <h4>Licencia A4</h4>
+                            <span class="mini-price">Especial</span>
                         </div>
-                        <p class="s-subtitle">Normativa actualizada MTC</p>
+                        <p class="s-subtitle">Transporte de Materiales Peligrosos</p>
                         <ul class="simple-list">
-                            <li><i class="fas fa-check-circle"></i> 100% Virtual</li>
-                            <li><i class="fas fa-check-circle"></i> Certificado al instante</li>
+                            <li><i class="fas fa-user-clock"></i> <strong>Edad:</strong> Mínimo 22 años</li>
+                            <li><i class="fas fa-id-card"></i> <strong>Req:</strong> Licencia vigente (A1-A3)</li>
+                            <li><i class="fas fa-file-medical"></i> Examen Médico + Curso</li>
+                            <li><i class="fas fa-university"></i> Pagos Banco de la Nación</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="special-card">
-                    <div class="s-icon teal"><i class="fas fa-hard-hat"></i></div>
+                    <div class="s-icon teal"><i class="fas fa-user-check"></i></div>
                     <div class="s-content">
                         <div class="s-header-flex">
-                            <h4>Manejo Defensivo</h4>
-                            <span class="mini-price">S/ 150</span>
+                            <h4>Cambiemos de Actitud</h4>
+                            <span class="mini-price">Rehabilitación</span>
                         </div>
-                        <p class="s-subtitle">Prevención de accidentes 4x4</p>
+                        <p class="s-subtitle">Para conductores sancionados</p>
+                        
+                        <div class="schedule-box">
+                            <span class="schedule-title"><i class="far fa-clock"></i> Turnos Disponibles:</span>
+                            <ul class="time-grid-list">
+                                <li>07:00 – 12:00</li>
+                                <li>07:30 – 12:30</li>
+                                <li>08:00 – 13:00</li>
+                                <li>08:30 – 13:30</li>
+                                <li>09:00 – 14:00</li>
+                                <li>09:30 – 14:30</li>
+                                <li>10:00 – 15:00</li>
+                                <li>10:30 – 15:30</li>
+                                <li>11:00 – 16:00</li>
+                            </ul>
+                        </div>
+
                         <ul class="simple-list">
-                            <li><i class="fas fa-check-circle"></i> Práctica en circuito</li>
-                            <li><i class="fas fa-check-circle"></i> Doble certificación</li>
+                            <li><i class="fas fa-exclamation-circle"></i> <strong>Req:</strong> Sanción cumplida y DNI</li>
+                            <li><i class="fas fa-fingerprint"></i> Presencial con Biométrico</li>
+                            <li><i class="fas fa-certificate"></i> Certificado Inmediato</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="special-card">
-                    <div class="s-icon purple"><i class="fas fa-first-aid"></i></div>
+                    <div class="s-icon purple"><i class="fas fa-motorcycle"></i></div>
                     <div class="s-content">
                         <div class="s-header-flex">
-                            <h4>Primeros Auxilios</h4>
-                            <span class="mini-price">S/ 100</span>
+                            <h4>COFIPRO Moto B-IIc</h4>
+                            <span class="mini-price">Nuevo</span>
                         </div>
-                        <p class="s-subtitle">Para conductores profesionales</p>
+                        <p class="s-subtitle">Transporte de Pasajeros/Carga</p>
+                        
+                        <div class="schedule-box">
+                            <span class="schedule-title"><i class="far fa-clock"></i> Turnos Disponibles:</span>
+                            <ul class="time-grid-list">
+                                <li>07:00 – 13:00</li>
+                                <li>07:30 – 13:00</li>
+                                <li>08:00 – 14:00</li>
+                                <li>08:30 – 14:30</li>
+                                <li>09:00 – 15:00</li>
+                                <li>09:30 – 15:30</li>
+                                <li>10:00 – 16:00</li>
+                            </ul>
+                        </div>
+
                         <ul class="simple-list">
-                            <li><i class="fas fa-check-circle"></i> Taller presencial</li>
-                            <li><i class="fas fa-check-circle"></i> Valido para CV</li>
+                            <li><i class="fas fa-user"></i> <strong>Req:</strong> 18 Años + DNI</li>
+                            <li><i class="fas fa-file-medical"></i> Examen Médico (Autovías)</li>
+                            <li><i class="fas fa-calendar-check"></i> <strong>Duración:</strong> 3 Días (23h)</li>
                         </ul>
                     </div>
                 </div>
+
+                <div class="special-card">
+                    <div class="s-icon teal"><i class="fas fa-clipboard-list"></i></div>
+                    <div class="s-content">
+                        <div class="s-header-flex">
+                            <h4>Actualización Normativa</h4>
+                            <span class="mini-price">MTC</span>
+                        </div>
+                        <p class="s-subtitle">Pasajeros y Mercancías</p>
+
+                         <div class="schedule-box">
+                            <span class="schedule-title"><i class="far fa-clock"></i> Turnos Disponibles:</span>
+                            <ul class="time-grid-list">
+                                <li>07:00 – 12:00</li>
+                                <li>07:30 – 12:30</li>
+                                <li>08:00 – 13:00</li>
+                                <li>08:30 – 13:30</li>
+                                <li>09:00 – 14:00</li>
+                                <li>09:30 – 14:30</li>
+                                <li>10:00 – 15:00</li>
+                                <li>10:30 – 15:30</li>
+                                <li>11:00 – 16:00</li>
+                            </ul>
+                        </div>
+
+                        <ul class="simple-list">
+                            <li><i class="fas fa-id-card"></i> <strong>Req:</strong> DNI + Licencia Prof.</li>
+                            <li><i class="fas fa-fingerprint"></i> Presencial + Biométrico</li>
+                            <li><i class="fas fa-certificate"></i> Certificado Registrado MTC</li>
+                        </ul>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -232,5 +346,9 @@
         <i class="fab fa-whatsapp"></i>
     </a>
 
+    <footer th:replace="fragments/footer :: footer"></footer>
+   <script src="/js/escuelaConductores.js"></script>
+
 </body>
+
 </html>

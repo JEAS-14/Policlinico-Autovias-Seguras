@@ -25,6 +25,102 @@
             margin: 0 auto;
             padding: 0 20px;
         }
+        /* --- ANIMACIONES DEL TÍTULO HERO --- */
+
+/* 1. Definición de la animación de entrada (aparece desde abajo) */
+@keyframes slideInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px); /* Empieza más abajo */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* Termina en su sitio */
+    }
+}
+
+/* 2. Definición del latido (se agranda y se achica) */
+@keyframes textPulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05); /* Crece un 5% */
+        text-shadow: 0 0 20px rgba(59, 188, 168, 0.3); /* Brillo suave */
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+/* --- NUEVO ESTILO PARA HORARIOS (GRID) --- */
+.time-grid-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 Columnas perfectas */
+    gap: 8px; /* Espacio entre cuadros */
+    list-style: none; /* Sin puntos */
+    padding: 0;
+    margin: 5px 0 15px 0;
+}
+
+.time-grid-list li {
+    background: white;
+    color: var(--text-main);
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 6px 4px;
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+/* Efecto suave al pasar el mouse */
+.time-grid-list li:hover {
+    border-color: var(--brand-teal);
+    color: var(--brand-teal);
+    background: #f0fdfa;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* Título de la sección de horarios */
+.schedule-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--brand-purple);
+    display: block;
+    margin-bottom: 8px;
+    border-bottom: 1px dashed #ddd;
+    padding-bottom: 4px;
+}
+
+/* --- APLICACIÓN DE LAS ANIMACIONES --- */
+
+/* Aplicar entrada al H1 completo */
+.hero-escuela h1 {
+    animation: slideInUp 1s ease-out forwards; /* Dura 1 segundo */
+}
+
+/* Aplicar el latido SOLO al texto degradado */
+.hero-escuela h1 .text-gradient {
+    display: inline-block; /* Importante para que pueda transformarse */
+    animation: textPulse 3s infinite ease-in-out; /* Se repite infinitamente */
+    transform-origin: center; /* Crece desde el centro */
+}
+
+/* Opcional: Retraso para el párrafo de abajo para que entre después */
+.hero-escuela p {
+    opacity: 0; /* Oculto al inicio */
+    animation: slideInUp 1s ease-out forwards;
+    animation-delay: 0.5s; /* Espera medio segundo antes de entrar */
+}
+
+/* Opcional: Retraso para los botones */
+.hero-buttons {
+    opacity: 0;
+    animation: slideInUp 1s ease-out forwards;
+    animation-delay: 0.8s; /* Espera casi un segundo */
+}
 
         a { text-decoration: none; }
 
