@@ -4,340 +4,334 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="Policlínico Autovías Seguras - Exámenes médicos ocupacionales, licencias de conducir y SUCAMEC">
-    <title>Policlínico Autovías Seguras | Examen Médico Ocupacional</title>
+    <title>Escuela de Manejo Profesional | Autovías</title>
 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <link rel="stylesheet" th:href="@{/css/fragments/navbar.css}">
     <link rel="stylesheet" th:href="@{/css/fragments/footer.css}">
-    <link rel="stylesheet" th:href="@{/css/examenMedicoOcupacional.css}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <link rel="stylesheet" th:href="@{/css/escuelaConductores.css}">
 </head>
 
 <body>
 
-    <div th:replace="~{fragments/navbar ::  navbar}"></div>
+    <nav th:replace="~{fragments/navbar :: navbar}"></nav>
 
-    <main>
-
-        <section class="hero-emo">
-            <div class="container hero-content">
-                <h1 class="fade-in" style="font-size: 2.8rem;">Examen médico ocupacional (EMO) en Lima - resultados en
-                    24 horas</h1>
-                <p class="fade-in" style="font-size: 1.5rem;">Agenda tu cita y recibe tus resultados en 24 horas.</p>
-
-                <div class="hero-buttons fade-in">
-                    <a href="/consulta/cotizar" class="btn btn-purple btn-hero">
-                        ¡COTIZA AHORA!
-                    </a>
-
-                    <a href="https://wa.me/51913889497" class="btn btn-green btn-hero">
-                        <i class="fab fa-whatsapp"> </i> WHATSAPP
-                    </a>
-                </div>
-
-                <div class="fade-in">
-                    <h3>POLICLÍNICO AUTOVÍAS SEGURAS</h3>
-                    <p class="subtitle " style="font-size: 1.2rem;">Confianza y rapidez en un solo lugar</p>
-                </div>
-
-                <div class="stats-container fade-in-up" style="transition-delay: 0.6s;">
-
-                    <div class="stat-item">
-                        <div class="stat-number" data-target="10" data-plus="true">0</div>
-                        <div class="stat-label">Años de experiencia en el sector</div>
-                    </div>
-
-                    <div class="stat-divider"></div>
-
-                    <div class="stat-item">
-                        <div class="stat-number" data-target="1500" data-plus="true">0</div>
-                        <div class="stat-label">Empresas afiliadas</div>
-                    </div>
-
-                    <div class="stat-divider"></div>
-
-                    <div class="stat-item">
-                        <div class="stat-number" data-target="15" data-plus="true">0</div>
-                        <div class="stat-label">Mil pacientes satisfechos</div>
-                    </div>
-                </div>
+    <section class="hero-escuela">
+        <div class="container">
+            <div class="badge-tech">
+                <i class="fas fa-star"></i> Nueva Temporada 2026
             </div>
-        </section>
+            <h1>Tu Brevete Profesional <br><span class="text-gradient">En Tiempo Récord</span></h1>
+            <p>Obtén tu licencia de conducir A2 y A3 con la escuela líder. Clases teóricas virtuales y prácticas con vehículos modernos.</p>
 
-        <!--Tipos de examenes-->
-        <div class="unified-background">
+            <div class="hero-buttons">
+                <a th:href="@{/consulta/cotizar}" class="btn btn-primary">¡COTIZA AHORA!</a>
+                <a href="https://wa.me/51913889497" class="btn btn-whatsapp" target="_blank">
+                    <i class="fab fa-whatsapp"></i> ESCRÍBENOS
+                </a>
+            </div>
+        </div>
+    </section>
 
-            <section class="types-section">
-                <div class="container">
-                    <h2 class="section-title">SALUD OCUPACIONAL</h2>
-                    <p class="section-desc">Ofrecemos todos los tipos de exámenes médicos ocupacionales requeridos por
-                        la legislación peruana.</p>
-                    <div class="types-list">
-                        <div class="type-card slide-up" onclick="toggleOcupational(this)">
-                            <div class="card-header-ocupacional">
-                                <div class="icon-box"><i class="fas fa-user-md"></i></div>
-                                <div class="text-box">
-                                    <h3>Pre-Ocupacional</h3>
-                                    <p>Descarte patologías preexistentes.</p>
-                                </div>
-                                <div class="toggle-icon"><i class="fas fa-chevron-down"></i></div>
-                            </div>
-                            <div class="card-details">
-                                <p>El examen médico preocupacional es una evaluación que se realiza antes de que el
-                                    trabajador inicie sus funciones. Permite determinar su estado de salud y verificar
-                                    si cuenta con la aptitud laboral necesaria para el puesto al que postula, asegurando
-                                    el cumplimiento normativo de la empresa.</p>
-                                <span class="objetivos-title">Objetivos del examen:</span>
-                                <ul>
-                                    <li>Evaluar el estado de salud del postulante.</li>
-                                    <li>Determinar la aptitud médica para la posición solicitada.</li>
-                                </ul>
-                                <a href="/consulta/cotizar" class="btn-cotizar-card">Cotizar Ahora</a>
-                            </div>
-                        </div>
+    <section id="programas" class="programs-section">
+        <div class="container">
+            
+            <div class="section-header">
+                <h2 class="section-title">Programas de Recategorización</h2>
+                <p class="section-desc">Elige la licencia ideal para tu futuro profesional</p>
+            </div>
 
-                        <div class="type-card slide-up" onclick="toggleOcupational(this)">
-                            <div class="card-header-ocupacional">
-                                <div class="icon-box"><i class="far fa-calendar-alt"></i></div>
-                                <div class="text-box">
-                                    <h3>Periódico</h3>
-                                    <p>Identifica a tiempo factores de riesgo.</p>
-                                </div>
-                                <div class="toggle-icon"><i class="fas fa-chevron-down"></i></div>
-                            </div>
-                            <div class="card-details">
-                                <p>Los exámenes médicos periódicos forman parte esencial de la Salud Ocupacional. Se
-                                    realizan de manera anual en actividades de alto riesgo y de forma bianual en otros
-                                    casos. Su finalidad es detectar a tiempo problemas de salud relacionados con las
-                                    labores de los trabajadores.</p>
-                                <span class="objetivos-title">Objetivos del examen:</span>
-                                <ul>
-                                    <li>Identificar de manera temprana posibles problemas de salud en los colaboradores.
-                                    </li>
-                                    <li>Relacionar los hallazgos médicos con las actividades y riesgos ocupacionales
-                                        propios del puesto.</li>
-                                </ul>
-                                <a href="/consulta/cotizar" class="btn-cotizar-card">Cotizar Ahora</a>
-                            </div>
-                        </div>
+            <div class="programs-grid">
 
-                        <div class="type-card slide-up" onclick="toggleOcupational(this)">
-                            <div class="card-header-ocupacional">
-                                <div class="icon-box"><i class="fas fa-briefcase"></i></div>
-                                <div class="text-box">
-                                    <h3>Por Cambio De Puesto</h3>
-                                    <p>Complementa evaluaciones anteriores.</p>
-                                </div>
-                                <div class="toggle-icon"><i class="fas fa-chevron-down"></i></div>
-                            </div>
-                            <div class="card-details">
-                                <p>Evaluación médica específica realizada al trabajador cada vez que cambie de puesto de
-                                    trabajo, funciones, tareas o exposición a nuevos o mayores factores de riesgo, a los
-                                    cuales no fue expuesto anteriormente.</p>
-                                <span class="objetivos-title">Objetivos del examen:</span>
-                                <ul>
-                                    <li>Garantizar que la salud del trabajador es compatible con las nuevas funciones.
-                                    </li>
-                                    <li>Actualizar la vigilancia médica según los nuevos riesgos.</li>
-                                </ul>
-                                <a href="/consulta/cotizar" class="btn-cotizar-card">Cotizar Ahora</a>
-                            </div>
-                        </div>
+                <div class="program-card">
+                    <div class="card-header-tech">A-IIa</div>
+                    <div class="card-top-content">
+                        <h3>Licencia Pro Básica</h3>
+                        <p class="card-desc">Taxis y Colectivos</p>
+                    </div>
 
-                        <div class="type-card slide-up" onclick="toggleOcupational(this)">
-                            <div class="card-header-ocupacional">
-                                <div class="icon-box"><i class="fas fa-door-open"></i></div>
-                                <div class="text-box">
-                                    <h3>De Retiro</h3>
-                                    <p>Verifica el estado de salud al desvincularse.</p>
-                                </div>
-                                <div class="toggle-icon"><i class="fas fa-chevron-down"></i></div>
-                            </div>
-                            <div class="card-details">
-                                <p>El examen médico de retiro se realiza días antes de la desvinculación laboral. Su
-                                    objetivo es detectar enfermedades ocupacionales e identificar secuelas derivadas de
-                                    la actividad realizada.</p>
-                                <span class="objetivos-title">Objetivos del examen:</span>
-                                <ul>
-                                    <li>Detectar posibles enfermedades relacionadas con el trabajo.</li>
-                                    <li>Identificar secuelas propias de la actividad desempeñada.</li>
-                                    <li>Brindar un diagnóstico claro del estado de salud al culminar la relación
-                                        laboral.</li>
-                                </ul>
-                                <a href="/consulta/cotizar" class="btn-cotizar-card">Cotizar Ahora</a>
-                            </div>
-                        </div>
-
-                        <div class="type-card slide-up" onclick="toggleOcupational(this)">
-                            <div class="card-header-ocupacional">
-                                <div class="icon-box"><i class="fas fa-undo"></i></div>
-                                <div class="text-box">
-                                    <h3>De Reincorporación</h3>
-                                    <p>Verifica el estado de salud al reincorporarse.</p>
-                                </div>
-                                <div class="toggle-icon"><i class="fas fa-chevron-down"></i></div>
-                            </div>
-                            <div class="card-details">
-                                <p>El examen médico de reincorporación asegura que el trabajador pueda volver a sus
-                                    funciones de manera segura tras una ausencia prolongada. Garantiza el cumplimiento
-                                    de los requisitos legales.</p>
-                                <span class="objetivos-title">Objetivos del examen:</span>
-                                <ul>
-                                    <li>Realizar una evaluación médica completa del trabajador tras su ausencia.</li>
-                                    <li>Emitir diagnósticos específicos en relación con la función laboral que
-                                        desempeña.</li>
-                                </ul>
-                                <a href="/consulta/cotizar" class="btn-cotizar-card">Cotizar Ahora</a>
-                            </div>
-                        </div>
-
-                        <div class="type-card slide-up" onclick="toggleOcupational(this)">
-                            <div class="card-header-ocupacional">
-                                <div class="icon-box"><i class="fas fa-clinic-medical"></i></div>
-                                <div class="text-box">
-                                    <h3>Campañas Inhouse</h3>
-                                    <p>Servicios médicos directamente en tu empresa.</p>
-                                </div>
-                                <div class="toggle-icon"><i class="fas fa-chevron-down"></i></div>
-                            </div>
-                            <div class="card-details">
-                                <p>Las campañas inhouse permiten llevar nuestros servicios médicos directamente a tu
-                                    empresa, optimizando tiempo y recursos. Garantizamos el bienestar de los
-                                    trabajadores y la continuidad operativa.</p>
-                                <span class="objetivos-title">Servicios incluidos:</span>
-                                <ul>
-                                    <li>Exámenes preocupacionales y periódicos en sitio.</li>
-                                    <li>Cumplimiento de normativas laborales y protocolos.</li>
-                                    <li>Pruebas específicas: visión, audiometría, laboratorio, entre otros.</li>
-                                </ul>
-                                <a href="/consulta/cotizar" class="btn-cotizar-card">Cotizar Ahora</a>
-                            </div>
+                    <div class="schedule-box">
+                        <span class="s-label"><i class="far fa-clock"></i> Turnos Mañana (L-S):</span>
+                        <div class="s-tags">
+                            <span class="time-tag">07:00 - 13:00</span>
+                            <span class="time-tag">07:30 - 13:00</span>
+                            <span class="time-tag">08:00 - 14:00</span>
+                            <span class="time-tag">08:30 - 14:30</span>
                         </div>
                     </div>
 
-                    <section class="protocol-section">
-                        <div class="container">
-                            <h2 class="section-title">¿Qué Incluye Nuestro Protocolo Base?</h2>
-                            <p class="section-desc">Nuestro protocolo incluye todas las evaluaciones esenciales.</p>
+                    <div class="card-body-expand">
+                        <ul class="tech-list">
+                            <li><i class="fas fa-calendar-alt"></i> <strong>Duración:</strong> 8 Días</li>
+                            <li><i class="fas fa-history"></i> <strong>Antigüedad:</strong> 2 años A-I</li>
+                            <li><i class="fas fa-check"></i> Curso Teórico-Práctico</li>
+                        </ul>
+                    </div>
 
-                            <div class="protocol-icons">
-
-                                <div class="p-item js-scroll-item hidden-state">
-                                    <div class="circle-icon">
-                                        <img src="https://res.cloudinary.com/dtozni6ik/image/upload/v1768886872/Gemini_Generated_Image_ks42vvks42vvks42_1_w8bs7o.png"
-                                            alt="Laboratorio">
-                                    </div>
-                                    <span>Laboratorio</span>
-
-                                    <div class="tooltip-box">
-                                        <strong>Laboratorio Clínico</strong><br>
-                                        Hemoglobina, Glucosa, Colesterol, Triglicéridos y Examen completo de orina.
-                                    </div>
-                                </div>
-
-                                <div class="p-item js-scroll-item hidden-state">
-                                    <div class="circle-icon">
-                                        <img src="https://res.cloudinary.com/dtozni6ik/image/upload/v1768887081/imagen_2026-01-20_003120962_bpsme1.png"
-                                            alt="Oftalmología">
-                                    </div>
-                                    <span>Oftalmología</span>
-
-                                    <div class="tooltip-box">
-                                        <strong>Salud Visual</strong><br>
-                                        Medición de agudeza visual, visión de colores (Test de Ishihara) y estereopsis.
-                                    </div>
-                                </div>
-
-                                <div class="p-item js-scroll-item hidden-state">
-                                    <div class="circle-icon">
-                                        <img src="https://res.cloudinary.com/dtozni6ik/image/upload/v1768887054/imagen_2026-01-20_003054638_kyc8gs.png"
-                                            alt="Audiometría">
-                                    </div>
-                                    <span>Audiometría</span>
-
-                                    <div class="tooltip-box">
-                                        <strong>Salud Auditiva</strong><br>
-                                        Evaluación de la capacidad auditiva en cabina sonoamortiguada.
-                                    </div>
-                                </div>
-
-                                <div class="p-item js-scroll-item hidden-state">
-                                    <div class="circle-icon">
-                                        <img src="https://res.cloudinary.com/dtozni6ik/image/upload/v1768886736/Gemini_Generated_Image_mcvffbmcvffbmcvf_mhtxra.png"
-                                            alt="Espirometría">
-                                    </div>
-                                    <span>Espirometría</span>
-
-                                    <div class="tooltip-box">
-                                        <strong>Función Pulmonar</strong><br>
-                                        Prueba para medir la capacidad y volumen pulmonar del trabajador.
-                                    </div>
-                                </div>
-
-                                <div class="p-item js-scroll-item hidden-state">
-                                    <div class="circle-icon">
-                                        <img src="https://res.cloudinary.com/dtozni6ik/image/upload/v1768886735/Gemini_Generated_Image_89q7f689q7f689q7_q6ihnf.png"
-                                            alt="Psicología">
-                                    </div>
-                                    <span>Psicología</span>
-
-                                    <div class="tooltip-box">
-                                        <strong>Salud Mental</strong><br>
-                                        Evaluación psicológica ocupacional, descarte de fobias y riesgos psicosociales.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <section class="timeline-section">
-                        <div class="container">
-                            <h2 class="section-title mt-5">Tu Examen En 4 Pasos Simples</h2>
-                            <p class="section-desc">Un proceso rápido y eficiente.</p>
-
-                            <div class="steps-container js-scroll-item hidden-state">
-
-                                <div class="step">
-                                    <div class="step-circle">1</div>
-                                    <span>Agenda Tu Cita</span>
-                                    <div class="step-tooltip">
-                                        Reserva tu turno por WhatsApp o web en menos de 5 minutos.
-                                    </div>
-                                </div>
-
-                                <div class="step-line"></div>
-                                <div class="step">
-                                    <div class="step-circle">2</div>
-                                    <span>Ingreso Y Triaje</span>
-                                    <div class="step-tooltip">
-                                        Validación de identidad y toma rápida de funciones vitales.
-                                    </div>
-                                </div>
-
-                                <div class="step-line"></div>
-                                <div class="step">
-                                    <div class="step-circle">3</div>
-                                    <span>Evaluación</span>
-                                    <div class="step-tooltip">
-                                        Circuito fluido por Laboratorio, Psicología, Audiometría y más.
-                                    </div>
-                                </div>
-
-                                <div class="step-line"></div>
-                                <div class="step">
-                                    <div class="step-circle">4</div>
-                                    <span>Resultados</span>
-                                    <div class="step-tooltip">
-                                        Entrega de informes médicos digitales en 24 horas.
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </section>
+                    <a href="https://wa.me/51913889497?text=Hola,%20deseo%20cotizar%20Curso%20A2A" class="btn-card-action" target="_blank">
+                        <span class="txt-ver">VER MÁS</span>
+                        <span class="txt-cotizar"><i class="fab fa-whatsapp"></i> COTIZAR</span>
+                    </a>
                 </div>
-    </main>
+
+                <div class="program-card">
+                    <div class="card-header-tech">A-IIb</div>
+                    <div class="card-top-content">
+                        <h3>Mercancía y Escolar</h3>
+                        <p class="card-desc">Microbuses y Furgones</p>
+                    </div>
+
+                    <div class="schedule-box">
+                        <span class="s-label"><i class="far fa-clock"></i> Turnos Mañana (L-S):</span>
+                        <div class="s-tags">
+                            <span class="time-tag">07:00 - 13:00</span>
+                            <span class="time-tag">07:30 - 13:00</span>
+                            <span class="time-tag">08:00 - 14:00</span>
+                            <span class="time-tag">08:30 - 14:30</span>
+                        </div>
+                    </div>
+
+                    <div class="card-body-expand">
+                        <ul class="tech-list">
+                            <li><i class="fas fa-calendar-alt"></i> <strong>Duración:</strong> 8 Días</li>
+                            <li><i class="fas fa-history"></i> <strong>Antigüedad:</strong> 3 años A-I</li>
+                            <li><i class="fas fa-check"></i> Clases homologadas</li>
+                        </ul>
+                    </div>
+
+                    <a href="https://wa.me/51913889497?text=Hola,%20deseo%20cotizar%20Curso%20A2B" class="btn-card-action" target="_blank">
+                        <span class="txt-ver">VER MÁS</span>
+                        <span class="txt-cotizar"><i class="fab fa-whatsapp"></i> COTIZAR</span>
+                    </a>
+                </div>
+
+                <div class="program-card">
+                    <div class="card-header-tech">A-IIIa</div>
+                    <div class="card-top-content">
+                        <h3>Pasajeros</h3>
+                        <p class="card-desc">Buses Interprovinciales</p>
+                    </div>
+
+                    <div class="schedule-box">
+                        <span class="s-label"><i class="far fa-clock"></i> Turnos Mañana (L-S):</span>
+                        <div class="s-tags">
+                            <span class="time-tag">07:00 - 13:00</span>
+                            <span class="time-tag">07:30 - 13:00</span>
+                            <span class="time-tag">08:00 - 14:00</span>
+                            <span class="time-tag">08:30 - 14:30</span>
+                        </div>
+                    </div>
+
+                    <div class="card-body-expand">
+                        <ul class="tech-list">
+                            <li><i class="fas fa-calendar-alt"></i> <strong>Duración:</strong> 8 Días</li>
+                            <li><i class="fas fa-history"></i> <strong>Antigüedad:</strong> 2 años A-IIb</li>
+                            <li><i class="fas fa-bus"></i> Especialidad Omnibuses</li>
+                        </ul>
+                    </div>
+
+                    <a href="https://wa.me/51913889497?text=Hola,%20deseo%20cotizar%20Curso%20A3A" class="btn-card-action" target="_blank">
+                        <span class="txt-ver">VER MÁS</span>
+                        <span class="txt-cotizar"><i class="fab fa-whatsapp"></i> COTIZAR</span>
+                    </a>
+                </div>
+
+                <div class="program-card">
+                    <div class="card-header-tech">A-IIIb</div>
+                    <div class="card-top-content">
+                        <h3>Carga Pesada</h3>
+                        <p class="card-desc">Tráiler y Volquetes</p>
+                    </div>
+
+                    <div class="schedule-box">
+                        <span class="s-label"><i class="far fa-clock"></i> Turnos Mañana (L-S):</span>
+                        <div class="s-tags">
+                            <span class="time-tag">07:00 - 13:00</span>
+                            <span class="time-tag">07:30 - 13:00</span>
+                            <span class="time-tag">08:00 - 14:00</span>
+                            <span class="time-tag">08:30 - 14:30</span>
+                        </div>
+                    </div>
+
+                    <div class="card-body-expand">
+                        <ul class="tech-list">
+                            <li><i class="fas fa-calendar-alt"></i> <strong>Duración:</strong> 8 Días</li>
+                            <li><i class="fas fa-history"></i> <strong>Antigüedad:</strong> 2 años A-IIb</li>
+                            <li><i class="fas fa-truck"></i> Especialidad Camiones</li>
+                        </ul>
+                    </div>
+
+                    <a href="https://wa.me/51913889497?text=Hola,%20deseo%20cotizar%20Curso%20A3B" class="btn-card-action" target="_blank">
+                        <span class="txt-ver">VER MÁS</span>
+                        <span class="txt-cotizar"><i class="fab fa-whatsapp"></i> COTIZAR</span>
+                    </a>
+                </div>
+
+                <div class="program-card highlight">
+                    <div class="card-header-tech" style="font-size: 1.2rem;">A-IIIc</div>
+                    <div class="card-top-content">
+                        <h3>Licencia Maestra</h3>
+                        <p class="card-desc">Todo tipo de vehículo.</p>
+                    </div>
+
+                    <div class="schedule-box">
+                        <span class="s-label"><i class="far fa-clock"></i> Turnos Mañana (L-S):</span>
+                        <div class="s-tags">
+                            <span class="time-tag">07:00 - 13:00</span>
+                            <span class="time-tag">07:30 - 13:00</span>
+                            <span class="time-tag">08:00 - 14:00</span>
+                            <span class="time-tag">08:30 - 14:30</span>
+                        </div>
+                    </div>
+
+                    <div class="card-body-expand">
+                        <ul class="tech-list">
+                            <li><i class="fas fa-history"></i> <span><strong>Req:</strong> 4 años A-IIb o 2 A-IIIa/b</span></li>
+                            <li><i class="fas fa-book-open"></i> <span><strong>50h Teoría</strong></span></li>
+                            <li><i class="fas fa-star"></i> <span>Duración Extendida: 15 Días</span></li>
+                            <li><i class="fas fa-file-alt"></i> <span>Balotario + Simulacro Virtual</span></li>
+                        </ul>
+                        <div class="free-advice-badge">
+                            Asesoría Gratuita en todo el proceso
+                        </div>
+                    </div>
+
+                    <a href="https://wa.me/51913889497?text=Hola,%20deseo%20cotizar%20Curso%20A3C" class="btn-card-action" target="_blank">
+                        <span class="txt-ver">VER MÁS</span>
+                        <span class="txt-cotizar"><i class="fab fa-whatsapp"></i> COTIZAR</span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="special-courses-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Cursos de Especialización</h2>
+                <p class="section-desc">Amplía tus oportunidades y regulariza tu situación</p>
+            </div>
+
+            <div class="special-grid">
+
+                <div class="special-card">
+                    <div class="s-icon purple"><i class="fas fa-truck-moving"></i></div>
+                    <div class="s-content">
+                        <div class="s-header-flex">
+                            <h4>Licencia A4</h4>
+                            <span class="mini-price">Especial</span>
+                        </div>
+                        <p class="s-subtitle">Transporte de Materiales Peligrosos</p>
+                        <ul class="simple-list">
+                            <li><i class="fas fa-user-clock"></i> <strong>Edad:</strong> Mínimo 22 años</li>
+                            <li><i class="fas fa-id-card"></i> <strong>Req:</strong> Licencia vigente (A1-A3)</li>
+                            <li><i class="fas fa-file-medical"></i> Examen Médico + Curso</li>
+                            <li><i class="fas fa-university"></i> Pagos Banco de la Nación</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="special-card">
+                    <div class="s-icon teal"><i class="fas fa-user-check"></i></div>
+                    <div class="s-content">
+                        <div class="s-header-flex">
+                            <h4>Cambiemos de Actitud</h4>
+                            <span class="mini-price">Rehabilitación</span>
+                        </div>
+                        <p class="s-subtitle">Para conductores sancionados</p>
+                        
+                        <div class="schedule-box">
+                            <span class="schedule-title"><i class="far fa-clock"></i> Turnos Disponibles:</span>
+                            <ul class="time-grid-list">
+                                <li>07:00 – 12:00</li> <li>07:30 – 12:30</li>
+                                <li>08:00 – 13:00</li> <li>08:30 – 13:30</li>
+                                <li>09:00 – 14:00</li> <li>09:30 – 14:30</li>
+                                <li>10:00 – 15:00</li> <li>10:30 – 15:30</li>
+                                <li>11:00 – 16:00</li>
+                            </ul>
+                        </div>
+
+                        <ul class="simple-list">
+                            <li><i class="fas fa-exclamation-circle"></i> <strong>Req:</strong> Sanción cumplida y DNI</li>
+                            <li><i class="fas fa-fingerprint"></i> Presencial</li>
+                            <li><i class="fas fa-certificate"></i> Certificado Inmediato</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="special-card">
+                    <div class="s-icon purple"><i class="fas fa-motorcycle"></i></div>
+                    <div class="s-content">
+                        <div class="s-header-flex">
+                            <h4>COFIPRO Moto B-IIc</h4>
+                            <span class="mini-price">Nuevo</span>
+                        </div>
+                        <p class="s-subtitle">Transporte de Pasajeros/Carga</p>
+                        
+                        <div class="schedule-box">
+                            <span class="schedule-title"><i class="far fa-clock"></i> Turnos Disponibles:</span>
+                            <ul class="time-grid-list">
+                                <li>07:00 – 13:00</li> <li>07:30 – 13:00</li>
+                                <li>08:00 – 14:00</li> <li>08:30 – 14:30</li>
+                                <li>09:00 – 15:00</li> <li>09:30 – 15:30</li>
+                                <li>10:00 – 16:00</li>
+                            </ul>
+                        </div>
+
+                        <ul class="simple-list">
+                            <li><i class="fas fa-user"></i> <strong>Req:</strong> 18 Años + DNI</li>
+                            <li><i class="fas fa-file-medical"></i> Examen Médico (Autovías)</li>
+                            <li><i class="fas fa-calendar-check"></i> <strong>Duración:</strong> 3 Días (23h)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="special-card">
+                    <div class="s-icon teal"><i class="fas fa-clipboard-list"></i></div>
+                    <div class="s-content">
+                        <div class="s-header-flex">
+                            <h4>Actualización Normativa</h4>
+                            <span class="mini-price">MTC</span>
+                        </div>
+                        <p class="s-subtitle">Pasajeros y Mercancías</p>
+
+                         <div class="schedule-box">
+                            <span class="schedule-title"><i class="far fa-clock"></i> Turnos Disponibles:</span>
+                            <ul class="time-grid-list">
+                                <li>07:00 – 12:00</li> <li>07:30 – 12:30</li>
+                                <li>08:00 – 13:00</li> <li>08:30 – 13:30</li>
+                                <li>09:00 – 14:00</li> <li>09:30 – 14:30</li>
+                                <li>10:00 – 15:00</li> <li>10:30 – 15:30</li>
+                                <li>11:00 – 16:00</li>
+                            </ul>
+                        </div>
+
+                        <ul class="simple-list">
+                            <li><i class="fas fa-id-card"></i> <strong>Req:</strong> DNI + Licencia Prof.</li>
+                            <li><i class="fas fa-fingerprint"></i> Presencial</li>
+                            <li><i class="fas fa-certificate"></i> Certificado Registrado MTC</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-simple">
+        <div class="container">
+            <h2>¿Listo para empezar?</h2>
+            <p>Matricúlate hoy y obtén descuentos especiales por grupo.</p>
+            <a href="https://wa.me/51913889497" class="btn btn-white" target="_blank">
+                Contactar Asesor
+            </a>
+        </div>
+    </section>
+
     <a href="https://wa.me/51913889497" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
         <i class="fab fa-whatsapp"></i>
     </a>
@@ -345,9 +339,7 @@
     <div th:replace="~{fragments/footer :: footer}"></div>
 
     <script th:src="@{/js/fragments/navbar.js}"></script>
-    <script th:src="@{/js/home.js}"></script>
-    <script th:src="@{/js/examenMedicoOcupacional.js}"></script>
+    <script th:src="@{/js/escuelaConductores.js}"></script>
 
 </body>
-
 </html>
