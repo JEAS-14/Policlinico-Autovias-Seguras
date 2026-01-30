@@ -29,46 +29,6 @@ body {
 }
 
 a { text-decoration: none; }
-
-/* =========================================
-   2. NAVBAR (Barra de Navegación)
-   ========================================= */
-.navbar {
-    position: fixed;
-    top: 0; left: 0; width: 100%;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px); /* Efecto borroso detrás */
-    z-index: 1000;
-    box-shadow: 0 2px 20px rgba(0,0,0,0.05);
-    padding: 15px 0;
-}
-
-.nav-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: var(--brand-purple);
-}
-.logo span { color: var(--brand-teal); }
-
-.nav-links {
-    display: flex;
-    gap: 30px;
-}
-
-.nav-links a {
-    color: var(--text-main);
-    font-weight: 600;
-    font-size: 0.95rem;
-    transition: 0.3s;
-}
-.nav-links a:hover { color: var(--brand-teal); }
-
 /* =========================================
    3. HERO SECTION (Fondo Moderno y Animado)
    ========================================= */

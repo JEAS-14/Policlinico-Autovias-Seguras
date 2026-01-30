@@ -54,7 +54,7 @@
 
     <main class="contact-main">
         
-        <h1 class="page-title fade-in">Formulario de Contacto</h1>
+        <h1 class="page-title fade-in">Contáctanos</h1>
 
         <div class="contact-wrapper slide-up">
             
@@ -85,7 +85,11 @@
             </div>
 
             <div class="contact-form">
-                <!-- Mensaje de validación general (si existe) -->
+                <div class="form-header">
+                    <h2>Contáctanos</h2>
+                    <p>Completa tus datos para coordinar tu atención.</p>
+                </div>
+
                 <div th:if="${mensaje}" 
                      th:class="${tipoMensaje == 'success' ? 'alert alert-success' : 'alert alert-error'}"
                      th:text="${mensaje}">
@@ -164,12 +168,11 @@
                                 th:field="*{tipoConsulta}"
                                 th:classappend="${#fields.hasErrors('tipoConsulta')} ? 'error' : ''"
                                 required>
-                            <option value="" disabled>Selecciona Un Servicio</option>
+                            <option value="" disabled selected>Selecciona Un Servicio</option>
                             <option value="Examen Médico Ocupacional">Examen Médico Ocupacional</option>
                             <option value="Licencia de Conducir">Licencia de Conducir</option>
                             <option value="Examen SUCAMEC">Examen SUCAMEC</option>
                             <option value="Escuela de Conductores">Escuela de Conductores</option>
-                            <option value="Otros">Otros</option>
                         </select>
                         <span class="error" 
                               th:if="${#fields.hasErrors('tipoConsulta')}" 
@@ -192,7 +195,6 @@
                         </span>
                     </div>
 
-                    <!-- Campo opcional: Empresa (si lo quieres agregar) -->
                     <div class="form-group full-width" style="display: none;">
                         <input type="text" 
                                id="empresa" 
@@ -201,11 +203,13 @@
                     </div>
 
                     <div class="form-footer">
-                        <button type="submit" class="btn-submit">Enviar</button>
+                        <button type="submit" class="btn-submit">Solicitar Cita</button>
                         
                         <div class="checkbox-container">
                             <input type="checkbox" id="terms" required>
-                            <label for="terms">Acepto las Políticas De Privacidad Y El Uso De Mis Datos Para Ser Contactado.</label>
+                            <label for="terms">
+                                He leído y acepto los <a th:href="@{/terminos-condiciones}" target="_blank">Términos y Condiciones</a> y la <a th:href="@{/politica-privacidad}" target="_blank">Política de Privacidad</a>.
+                            </label>
                         </div>
                     </div>
                 </form>
@@ -217,8 +221,6 @@
     <a href="https://wa.me/51913889497" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
         <i class="fab fa-whatsapp"></i>
     </a>
-
-    <div th:replace="~{fragments/footer :: footer}"></div>
     
     <script th:src="@{/js/fragments/navbar.js}"></script>
     <script th:src="@{/js/formulario.js}"></script>

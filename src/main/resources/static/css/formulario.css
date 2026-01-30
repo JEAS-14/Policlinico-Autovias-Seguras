@@ -1,48 +1,36 @@
-/* --- Variables --- */
+/* --- Variables Actualizadas --- */
 :root {
     --primary-purple: #4a148c;
+    --accent-purple: #7b1fa2;
+    --grad-purple: linear-gradient(135deg, #4a148c 0%, #7b1fa2 100%);
     --mint-bg: #dbece9;
-    /* El color de fondo del lado izquierdo */
-    --input-bg: #f5f5f5;
-    /* Gris claro para los inputs */
+    --input-bg: #ffffff; /* Ahora blanco para mayor limpieza */
     --btn-green: #2dc4ad;
-    /* Verde del botón enviar */
-    --text-dark: #333;
-    --text-light: #666;
+    --text-dark: #2d3436;
+    --text-light: #636e72;
+    --border-color: #dfe6e9;
     --white: #ffffff;
 }
 
-body {
-    background-color: #f8f9fa;
-    /* Fondo general de la página muy suave */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: var(--text-dark);
-}
-
+/* --- Fondo General Mejorado --- */
 .contact-main {
-    padding: 40px 20px 80px;
+    padding: 60px 20px 100px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    /* Mantenemos tu degradado antiguo como base */
     background: linear-gradient(180deg, rgba(255, 255, 255, 0) 33.58%, #FFFFFF 100%),
-        linear-gradient(116.93deg, rgba(59, 188, 168, 0.38) 27.63%,
-            rgba(59, 188, 168, 0.75) 87.89%);
-
-
+                linear-gradient(116.93deg, rgba(59, 188, 168, 0.2) 27.63%, rgba(59, 188, 168, 0.5) 87.89%);
 }
 
 .page-title {
-    color: #4a90e2;
-    /* Azul claro del título "Formulario" */
-    font-size: 1.8rem;
-    font-weight: bold;
-    margin-bottom: 30px;
-    align-self: flex-start;
-    max-width: 1200px;
+    color: var(--primary-purple);
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 40px;
+    text-align: center;
     width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 10px;
+    max-width: 1100px;
 }
 
 /* --- CONTENEDOR PRINCIPAL (LA TARJETA) --- */
@@ -50,26 +38,26 @@ body {
     display: flex;
     max-width: 1100px;
     width: 100%;
-    background: white;
-    border-radius: 20px;
+    background: var(--white);
+    border-radius: 24px;
     overflow: hidden;
-    /* Para que la imagen respete los bordes redondos */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    min-height: 600px;
+    box-shadow: 0 20px 40px rgba(74, 20, 140, 0.12);
+    min-height: 650px;
 }
 
-/* --- COLUMNA IZQUIERDA (INFO) --- */
+/* --- COLUMNA IZQUIERDA (INFO CON DEGRADADO MORADO) --- */
 .contact-info {
-    flex: 2;
-    /* Ocupa 40% del ancho aprox */
-    background-color: var(--mint-bg);
+    flex: 1.2;
+    background: var(--grad-purple);
+    color: var(--white);
     display: flex;
     flex-direction: column;
     position: relative;
 }
 
 .info-image-container {
-    height: 45%;
+    height: 35%;
+    position: relative;
     overflow: hidden;
 }
 
@@ -77,79 +65,67 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    opacity: 0.8;
+}
+
+/* Filtro para mezclar la imagen con el morado */
+.info-image-container::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to bottom, transparent, var(--primary-purple));
 }
 
 .info-content {
-    padding: 30px;
-    text-align: center;
+    padding: 40px 30px;
+    text-align: left;
 }
 
 .info-content h2 {
-    color: var(--primary-purple);
-    font-size: 1.4rem;
+    color: var(--white);
+    font-size: 1.6rem;
     font-weight: 800;
-    margin-bottom: 10px;
-    line-height: 1.3;
+    margin-bottom: 15px;
+    line-height: 1.2;
 }
 
 .subtitle {
-    font-size: 0.95rem;
-    font-weight: bold;
-    margin-bottom: 30px;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 40px;
+    opacity: 0.9;
 }
 
 .info-items {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    text-align: left;
+    gap: 25px;
 }
 
 .item {
     display: flex;
     align-items: center;
     gap: 15px;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
 }
 
 .icon-circle {
-    min-width: 35px;
-    height: 35px;
-    background: white;
-    /* Círculo blanco detrás del icono? O icono de color? */
-    /* En la imagen parecen iconos de marca simples. Ajustaremos: */
-    background: none;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+    width: 25px;
+    text-align: center;
 }
 
-.item .fa-map-marker-alt {
-    color: #4285F4;
-}
-
-/* Google Maps Blue */
-.item .fa-whatsapp {
-    color: #25D366;
-}
-
-/* WhatsApp Green */
-.item .fa-envelope {
-    color: #EA4335;
-}
-
-/* Gmail Red */
-
-/* --- COLUMNA DERECHA (FORMULARIO) --- */
+/* --- COLUMNA DERECHA (LA RECTA DE DATOS) --- */
 .contact-form {
-    flex: 3;
-    /* Ocupa 60% del ancho aprox */
-    padding: 40px;
-    background: white;
+    flex: 2;
+    padding: 50px;
+    background: var(--white);
 }
 
 .form-row {
     display: flex;
-    gap: 20px;
-    margin-bottom: 20px;
+    gap: 25px;
+    margin-bottom: 25px;
 }
 
 .form-group {
@@ -160,140 +136,134 @@ body {
 
 .full-width {
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 label {
     font-size: 0.85rem;
-    font-weight: bold;
+    font-weight: 700;
     margin-bottom: 8px;
-    color: #444;
+    color: var(--primary-purple);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-input,
-select,
-textarea {
-    background-color: var(--input-bg);
-    border: none;
-    border-radius: 8px;
-    padding: 12px 15px;
+/* Estilo Moderno de Inputs */
+input, select, textarea {
+    background-color: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 14px 18px;
     font-family: inherit;
-    font-size: 0.9rem;
+    font-size: 1rem;
+    color: var(--text-dark);
     outline: none;
-    transition: box-shadow 0.2s;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-input:focus,
-select:focus,
-textarea:focus {
-    box-shadow: 0 0 0 2px var(--mint-bg);
+input:focus, select:focus, textarea:focus {
+    border-color: var(--accent-purple);
+    box-shadow: 0 0 0 4px rgba(123, 31, 162, 0.1);
+    background-color: #fff;
 }
 
 textarea {
     resize: none;
+    min-height: 120px;
 }
 
-/* Footer del Formulario */
+/* --- Footer del Formulario y Botón --- */
 .form-footer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
-    margin-top: 10px;
+    gap: 20px;
+    margin-top: 15px;
 }
 
 .btn-submit {
-    background-color: var(--btn-green);
-    color: white;
+    background: var(--grad-purple);
+    color: var(--white);
     border: none;
-    padding: 12px 60px;
-    border-radius: 30px;
-    font-size: 1rem;
-    font-weight: bold;
+    padding: 16px 80px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 700;
     cursor: pointer;
-    box-shadow: 0 4px 10px rgba(45, 196, 173, 0.3);
-    transition: transform 0.2s;
+    box-shadow: 0 10px 20px rgba(74, 20, 140, 0.2);
+    transition: all 0.3s ease;
 }
 
 .btn-submit:hover {
-    transform: translateY(-2px);
-    background-color: #25a893;
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(74, 20, 140, 0.3);
 }
 
 .checkbox-container {
     display: flex;
     align-items: flex-start;
-    gap: 10px;
-    font-size: 0.75rem;
-    color: #666;
-    max-width: 400px;
-    text-align: center;
+    gap: 12px;
+    font-size: 0.85rem;
+    color: var(--text-light);
+    max-width: 500px;
+    text-align: left;
 }
 
 .checkbox-container input {
-    margin-top: 2px;
+    margin-top: 4px;
+    width: 18px;
+    height: 18px;
+    accent-color: var(--primary-purple);
 }
 
-/* --- RESPONSIVIDAD --- */
-@media (max-width: 768px) {
+/* --- Responsividad --- */
+@media (max-width: 850px) {
     .contact-wrapper {
         flex-direction: column;
     }
 
+    .contact-info {
+        padding-bottom: 30px;
+    }
+
     .info-image-container {
-        height: 200px;
+        height: 250px;
+    }
+
+    .contact-form {
+        padding: 30px 20px;
     }
 
     .form-row {
         flex-direction: column;
-        gap: 0;
-    }
-
-    .form-group {
-        margin-bottom: 20px;
+        gap: 20px;
     }
 }
 
-/* Animaciones */
-.fade-in {
-    opacity: 0;
-    animation: fadeIn 0.8s forwards;
-}
+/* --- Animaciones Suaves --- */
+.fade-in { animation: fadeIn 0.8s ease-out forwards; }
+.slide-up { animation: slideUp 0.8s 0.2s ease-out forwards; }
 
-.slide-up {
-    opacity: 0;
-    transform: translateY(30px);
-    animation: slideUp 0.8s 0.2s forwards;
-}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
 
-@keyframes fadeIn {
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes slideUp {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Botón flotante */
+/* Botón flotante WhatsApp */
 .whatsapp-float {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: 30px;
+    right: 30px;
     background-color: #25D366;
     color: white;
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    font-size: 30px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     z-index: 1000;
-    text-decoration: none;
+    transition: transform 0.3s ease;
 }
+
+.whatsapp-float:hover { transform: scale(1.15); }

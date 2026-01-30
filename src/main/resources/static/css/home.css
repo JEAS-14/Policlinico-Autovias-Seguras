@@ -1239,3 +1239,8 @@ body {
         font-size: 2rem;
     }
 }
+@media (max-width: 768px) {
+    .blog-header h1 {
+        font-size: 2.5rem; /* Si esto sigue en 6.5rem, romperá el navbar */
+    }
+}

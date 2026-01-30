@@ -16,45 +16,112 @@ body {
     background: linear-gradient(to bottom, var(--bg-gradient-top), var(--bg-gradient-bottom));
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: var(--text-dark);
-    margin: 0; padding: 0; overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
 }
 
-.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
 
 /* ==========================================================================
    2. HERO SECTION (BANNER PRINCIPAL)
    ========================================================================== */
 .hero-brevete {
     height: auto;
-    min-height: 600px; /* Altura mínima para PC */
+    min-height: 600px;
+    /* Altura mínima para PC */
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     background: linear-gradient(123.79deg, rgba(250, 255, 254, 0) 50.71%, rgba(255, 255, 255, 0.2) 52.17%),
         linear-gradient(280.42deg, rgba(59, 188, 168, 0.176) 13.12%, rgba(255, 251, 251, 0.2) 45.24%),
         linear-gradient(101.84deg, rgba(59, 188, 168, 0.384) 18.18%, rgba(238, 249, 247, 0.6) 46.15%),
         url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=1000&auto=format&fit=crop');
-    background-size: cover; background-position: 50% 10%;
-    padding: 100px 20px; text-align: center;
+    background-size: cover;
+    background-position: 50% 10%;
+    padding: 100px 20px;
+    text-align: center;
 }
 
 .hero-content h1 {
-    color: var(--primary-purple); font-weight: 800; font-size: 3rem; margin-bottom: 15px;
+    color: var(--primary-purple);
+    font-weight: 800;
+    font-size: 3rem;
+    margin-bottom: 15px;
 }
-.hero-buttons { display: flex; justify-content: center; gap: 15px; margin: 30px 0; }
-.btn { padding: 15px 30px; border-radius: 10px; text-decoration: none; color: white; font-weight: bold; display: inline-block;}
-.btn-purple { background-color: var(--btn-purple); }
-.btn-green { background-color: var(--btn-green); }
-.subtitle { padding: 15px 0; color: #2E1A5F; margin-bottom: 40px; font-style: italic; }
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 30px 0;
+}
+
+.btn {
+    padding: 15px 30px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.btn-purple {
+    background-color: var(--btn-purple);
+}
+
+.btn-green {
+    background-color: var(--btn-green);
+}
+
+.subtitle {
+    padding: 15px 0;
+    color: #2E1A5F;
+    margin-bottom: 40px;
+    font-style: italic;
+}
 
 /* ESTADÍSTICAS */
 .stats-box {
-    background: white; border-radius: 20px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-    display: flex; justify-content: space-around; padding: 30px;
-    align-items: center; flex-wrap: wrap; max-width: 900px; margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    display: flex;
+    justify-content: space-around;
+    padding: 30px;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 900px;
+    margin: 0 auto;
 }
-.stat-item { padding: 0 20px; text-align: center; }
-.stat-number { font-size: 2.5rem; font-weight: 700; color: var(--bg-green-brand); line-height: 1; display: block; margin-bottom: 5px; }
-.stat-desc { font-size: 0.9rem; color: #666; font-weight: 500; }
-.divider { width: 1px; height: 50px; background-color: #ddd; }
+
+.stat-item {
+    padding: 0 20px;
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--bg-green-brand);
+    line-height: 1;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.stat-desc {
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: 500;
+}
+
+.divider {
+    width: 1px;
+    height: 50px;
+    background-color: #ddd;
+}
 
 /* ==========================================================================
    3. TÍTULOS DE SECCIÓN (ARREGLADO)
@@ -62,30 +129,37 @@ body {
 /* --- ICONO MOTO BIIC (Swap Azul a Verde) --- */
 
 .icono-moto-biic {
-    width: 60px;  /* Tamaño del icono */
+    width: 60px;
+    /* Tamaño del icono */
     height: 60px;
-    margin: 0 auto; /* Para centrarlo si es necesario */
-    
+    margin: 0 auto;
+    /* Para centrarlo si es necesario */
+
     /* ESTADO NORMAL: MOTO AZUL */
     background-image: url('https://res.cloudinary.com/dtozni6ik/image/upload/v1769788854/002-bicitaxi-1_ul2toz.png');
-    
-    background-size: contain;    /* Que la imagen entre completa sin cortarse */
+
+    background-size: contain;
+    /* Que la imagen entre completa sin cortarse */
     background-repeat: no-repeat;
     background-position: center;
-    transition: all 0.3s ease;   /* Suaviza el cambio */
+    transition: all 0.3s ease;
+    /* Suaviza el cambio */
 }
 
 /* ESTADO HOVER: Cuando pasas el mouse por la tarjeta */
 /* IMPORTANTE: Reemplaza ".card" por la clase de tu tarjeta si se llama distinto */
 .card:hover .icono-moto-biic {
-    
+
     /* CAMBIO A: MOTO VERDE */
     background-image: url('https://res.cloudinary.com/dtozni6ik/image/upload/v1769788854/003-bicitaxi-2_ijeg45.png');
-    
-    transform: scale(1.1); /* Efecto de "zoom" ligero */
+
+    transform: scale(1.1);
+    /* Efecto de "zoom" ligero */
 }
 
-.category-section { padding: 60px 0 20px; }
+.category-section {
+    padding: 60px 0 20px;
+}
 
 .section-header {
     text-align: center;
@@ -97,7 +171,8 @@ body {
 }
 
 .header-icon {
-    font-size: 3rem; /* Icono grande */
+    font-size: 3rem;
+    /* Icono grande */
     color: var(--primary-purple);
     margin-bottom: 15px;
     display: block;
@@ -120,7 +195,7 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
     padding-bottom: 40px;
-    align-items: start; 
+    align-items: start;
 }
 
 .license-card {
@@ -146,64 +221,139 @@ body {
 
 /* Cabecera Tarjeta */
 .card-header {
-    display: flex; flex-direction: column; align-items: center; gap: 15px; margin-bottom: 10px; z-index: 2; background: white; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+    z-index: 2;
+    background: white;
 }
 
 .col-icon {
-    width: 80px; height: 80px; border-radius: 50%;
-    background: #f0fdfa; /* Fondo suave */
-    display: grid; place-items: center; 
-    margin: 0 auto; transition: all 0.3s ease;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #f0fdfa;
+    /* Fondo suave */
+    display: grid;
+    place-items: center;
+    margin: 0 auto;
+    transition: all 0.3s ease;
 }
-.icon-card { font-size: 2.5rem; color: #1e5a8e; transition: 0.3s; }
 
-.license-card:hover .col-icon { background: #e0f2f1; transform: scale(1.1); }
-.license-card:hover .icon-card { color: #3bbca8; }
+.icon-card {
+    font-size: 2.5rem;
+    color: #1e5a8e;
+    transition: 0.3s;
+}
+
+.license-card:hover .col-icon {
+    background: #e0f2f1;
+    transform: scale(1.1);
+}
+
+.license-card:hover .icon-card {
+    color: #3bbca8;
+}
 
 .license-card h3 {
-    color: #1e5a8e; font-weight: 800; font-size: 1.3rem; margin: 0;
-    text-transform: uppercase; text-align: center;
+    color: #1e5a8e;
+    font-weight: 800;
+    font-size: 1.3rem;
+    margin: 0;
+    text-transform: uppercase;
+    text-align: center;
 }
 
 /* Cuerpo Acordeón */
 .card-body {
-    max-height: 0; opacity: 0; overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
     transition: max-height 0.5s ease, opacity 0.4s ease;
 }
 
 .license-card:hover .card-body {
-    max-height: 500px; opacity: 1; margin-bottom: 20px;
+    max-height: 500px;
+    opacity: 1;
+    margin-bottom: 20px;
 }
 
 .requirements-list strong {
-    display: block; color: #3bbca8; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px;
+    display: block;
+    color: #3bbca8;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
 }
-.requirements-list ul { list-style: none; padding: 0; margin: 0; font-size: 0.95rem; color: #555; text-align: left; }
-.requirements-list ul li { margin-bottom: 8px; padding-left: 20px; position: relative; }
-.requirements-list ul li::before { content: "✓"; position: absolute; left: 0; color: #25d366; font-weight: bold; }
+
+.requirements-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.95rem;
+    color: #555;
+    text-align: left;
+}
+
+.requirements-list ul li {
+    margin-bottom: 8px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.requirements-list ul li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #25d366;
+    font-weight: bold;
+}
 
 /* Botón Acción */
 .btn-card-action {
-    margin-top: auto; display: block; width: 100%; padding: 12px 0;
-    border-radius: 10px; font-weight: 800; text-transform: uppercase; text-align: center; text-decoration: none;
-    transition: all 0.3s ease; background-color: transparent; color: #3bbca8; border: 2px solid #3bbca8;
+    margin-top: auto;
+    display: block;
+    width: 100%;
+    padding: 12px 0;
+    border-radius: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    background-color: transparent;
+    color: #3bbca8;
+    border: 2px solid #3bbca8;
 }
 
 .license-card:hover .btn-card-action {
-    background-color: #25d366; color: white; border-color: #25d366;
+    background-color: #25d366;
+    color: white;
+    border-color: #25d366;
     box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
 }
 
-.text-open { display: none; }
-.license-card:hover .text-closed { display: none; }
-.license-card:hover .text-open { display: inline-block; }
+.text-open {
+    display: none;
+}
+
+.license-card:hover .text-closed {
+    display: none;
+}
+
+.license-card:hover .text-open {
+    display: inline-block;
+}
 
 /* ==========================================================================
    5. INFORMACIÓN ADICIONAL (RECUPERADO)
    ========================================================================== */
 .info-section {
     padding: 60px 0 80px;
-    background-color: #f8f9fa; /* Fondo gris muy suave para separar */
+    background-color: #f8f9fa;
+    /* Fondo gris muy suave para separar */
     text-align: center;
 }
 
@@ -246,7 +396,8 @@ body {
 .info-btn i {
     font-size: 2rem;
     color: var(--primary-purple);
-    flex-shrink: 0; /* Para que el icono no se aplaste */
+    flex-shrink: 0;
+    /* Para que el icono no se aplaste */
 }
 
 /* Hover de botones info */
@@ -264,44 +415,110 @@ body {
 /* ==========================================================================
    6. UTILIDADES Y EXTRAS
    ========================================================================== */
-.fade-in { opacity: 0; transition: opacity 0.8s ease; } /* Se activa con JS */
-.visible { opacity: 1; }
+.fade-in {
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+/* Se activa con JS */
+.visible {
+    opacity: 1;
+}
 
 .whatsapp-float {
-    position: fixed; bottom: 30px; right: 30px;
-    background-color: var(--btn-green); color: white;
-    width: 60px; height: 60px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 30px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    z-index: 1000; text-decoration: none; transition: transform 0.3s;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: var(--btn-green);
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    text-decoration: none;
+    transition: transform 0.3s;
 }
-.whatsapp-float:hover { transform: scale(1.1); }
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+}
 
 /* ==========================================================================
    7. RESPONSIVE DESIGN (CELULAR)
    ========================================================================== */
 @media (max-width: 768px) {
+
     /* Hero */
-    .hero-brevete { padding: 120px 20px 60px 20px; }
-    .hero-content h1 { font-size: 2.2rem; }
-    .hero-buttons { flex-direction: column; width: 100%; }
-    .btn { width: 100%; box-sizing: border-box; text-align: center; }
-    
+    .hero-brevete {
+        padding: 120px 20px 60px 20px;
+    }
+
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .btn {
+        width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+    }
+
     /* Stats */
-    .stats-box { flex-direction: column; gap: 30px; }
-    .divider { display: none; }
-    .stat-item { border-bottom: 1px solid #eee; padding-bottom: 20px; width: 100%; }
-    .stat-item:last-child { border-bottom: none; }
-    
+    .stats-box {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .divider {
+        display: none;
+    }
+
+    .stat-item {
+        border-bottom: 1px solid #eee;
+        padding-bottom: 20px;
+        width: 100%;
+    }
+
+    .stat-item:last-child {
+        border-bottom: none;
+    }
+
     /* Títulos */
-    .section-title { font-size: 1.5rem; }
-    .header-icon { font-size: 2.5rem; }
-    .info-title { font-size: 1.4rem; flex-direction: column; }
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .header-icon {
+        font-size: 2.5rem;
+    }
+
+    .info-title {
+        font-size: 1.4rem;
+        flex-direction: column;
+    }
 
     /* Tarjetas y Grid */
-    .cards-grid { grid-template-columns: 1fr; }
-    .info-grid { grid-template-columns: 1fr; }
-    
+    .cards-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
     /* Ajuste texto botones */
-    .info-btn { font-size: 0.85rem; padding: 15px; }
+    .info-btn {
+        font-size: 0.85rem;
+        padding: 15px;
+    }
 }
