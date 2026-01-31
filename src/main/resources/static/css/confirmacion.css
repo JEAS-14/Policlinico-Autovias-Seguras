@@ -1,0 +1,62 @@
+/* Estilos para página de confirmación */
+
+.confirmacion-container {
+    max-width: 600px;
+    margin: 100px auto;
+    padding: 40px;
+    text-align: center;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.success-icon {
+    font-size: 80px;
+    color: #28a745;
+    margin-bottom: 20px;
+}
+
+.confirmacion-container h1 {
+    color: #1e3c72;
+    margin-bottom: 20px;
+}
+
+.confirmacion-container p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    color: #666;
+}
+
+.btn-volver {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: white;
+    padding: 12px 30px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.btn-volver:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(30, 60, 114, 0.3);
+}
+
+@media (max-width: 480px) {
+    .confirmacion-container {
+        margin: 50px 15px;
+        padding: 20px;
+    }
+
+    .success-icon {
+        font-size: 60px;
+    }
+
+    .confirmacion-container h1 {
+        font-size: 1.5rem;
+    }
+
+    .confirmacion-container p {
+        font-size: 1rem;
+    }
+}

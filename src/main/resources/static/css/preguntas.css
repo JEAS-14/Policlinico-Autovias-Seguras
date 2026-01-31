@@ -9,9 +9,44 @@
     to { opacity: 1; transform: scale(1); }
 }
 
+@keyframes titleRiseGlow {
+    0% {
+        opacity: 0;
+        transform: translateY(18px) scale(0.98);
+        letter-spacing: 0.02em;
+        text-shadow: 0 0 0 rgba(46, 26, 95, 0);
+    }
+    60% {
+        opacity: 1;
+        transform: translateY(-2px) scale(1.01);
+        text-shadow: 0 10px 28px rgba(46, 26, 95, 0.18);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        letter-spacing: normal;
+        text-shadow: 0 6px 20px rgba(46, 26, 95, 0.12);
+    }
+}
+
+@keyframes titleFloat {
+    0%, 100% { 
+        transform: translateY(0) scale(1);
+        text-shadow: 0 4px 12px rgba(46, 26, 95, 0.1);
+    }
+    50% { 
+        transform: translateY(-3px) scale(1.01);
+        text-shadow: 0 5px 14px rgba(46, 26, 95, 0.12);
+    }
+}
+
 .animate-on-scroll { opacity: 0; }
 .is-visible { animation: fadeInUp 0.8s ease-out forwards; }
 .animate-fade-in { animation: fadeInScale 0.4s ease-out forwards; }
+.hero-title-anim {
+    animation: titleRiseGlow 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) both, titleFloat 3s ease-in-out 0.25s infinite;
+    color: #421D9D;
+}
 
 /* Delays para efectos escalonados */
 .delay-1 { animation-delay: 0.1s; }
@@ -79,6 +114,13 @@
 .whatsapp-float:hover {
     transform: scale(1.1);
     box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6);
+}
+
+/* Responsive tablet */
+@media (max-width: 1024px) {
+    .contact-card {
+        padding: 2rem;
+    }
 }
 
 /* --- 5. TARJETA DE CONTACTO FINAL --- */
@@ -151,6 +193,22 @@
 .btn-whatsapp-cta:hover {
     background-color: #3dbd6d;
     transform: scale(1.05);
+}
+
+/* Responsive móvil */
+@media (max-width: 768px) {
+    .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        font-size: 1.6rem;
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .contact-card {
+        border-radius: 24px;
+        padding: 1.5rem;
+    }
 }
 
 
@@ -229,4 +287,103 @@
 
 .faq-item:hover {
     border-color: #3BBCA8; /* Se ilumina el color del logo al pasar el mouse */
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(46, 26, 95, 0.12);
+}
+
+.faq-question {
+    transition: background-color 0.3s ease;
+}
+
+.faq-question i {
+    transition: transform 0.3s ease;
+}
+
+.faq-category-btn {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.faq-category-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(59, 188, 168, 0.25);
+}
+
+/* --- 6. MICROINTERACCIONES Y ESTADOS ACTIVOS --- */
+#faq-search {
+    transition: box-shadow 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+
+#faq-search:focus-visible {
+    border-color: #2E1A5F;
+    box-shadow: 0 0 0 4px rgba(59, 188, 168, 0.25), 0 12px 24px rgba(46, 26, 95, 0.15);
+    transform: translateY(-1px);
+}
+
+.faq-category-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.faq-category-btn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0) 20%, rgba(255, 255, 255, 0.35) 50%, rgba(255, 255, 255, 0) 80%);
+    transform: translateX(-120%);
+    transition: transform 0.6s ease;
+    pointer-events: none;
+}
+
+.faq-category-btn:hover::after {
+    transform: translateX(120%);
+}
+
+.faq-category-btn.is-active {
+    background: linear-gradient(135deg, #2E1A5F 0%, #3BBCA8 100%);
+    color: #ffffff;
+    border-color: transparent;
+    box-shadow: 0 12px 26px rgba(46, 26, 95, 0.25);
+}
+
+.faq-item {
+    position: relative;
+}
+
+.faq-item.is-open {
+    border-color: rgba(59, 188, 168, 0.45);
+    box-shadow: 0 16px 34px rgba(46, 26, 95, 0.16);
+}
+
+.faq-item.is-open .faq-question {
+    background: linear-gradient(90deg, rgba(59, 188, 168, 0.12), rgba(59, 188, 168, 0));
+}
+
+.faq-question span {
+    background-image: linear-gradient(120deg, #3BBCA8, #2E1A5F);
+    background-repeat: no-repeat;
+    background-size: 0 2px;
+    background-position: 0 100%;
+    transition: background-size 0.3s ease;
+}
+
+.faq-item:hover .faq-question span,
+.faq-item.is-open .faq-question span {
+    background-size: 100% 2px;
+}
+
+.faq-question:focus-visible {
+    outline: none;
+    box-shadow: inset 0 0 0 2px rgba(46, 26, 95, 0.35);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .animate-on-scroll,
+    .is-visible,
+    .animate-fade-in,
+    .floating-dot,
+    .faq-category-btn,
+    .faq-item {
+        animation: none !important;
+        transition: none !important;
+    }
 }

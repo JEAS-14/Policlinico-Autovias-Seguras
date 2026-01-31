@@ -71,13 +71,17 @@ body {
 }
 
 .btn {
-    padding: 20px 30px;
-    font-size: 1.2rem;
-    border-radius: 5px;
+    padding: 16px 45px;
+    font-size: 1.3rem;
+    border-radius: 8px;
     text-decoration: none;
     color: white;
-    font-weight: bold;
-    display: inline-block;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-transform: uppercase;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     transition: all var(--transition-speed) ease;
 }
 
@@ -115,16 +119,18 @@ body {
 
 /* --- Estadísticas --- */
 .stats-box {
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px var(--shadow-light);
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
     display: flex;
     justify-content: space-around;
-    padding: 20px;
-    margin: 0 80px;
+    padding: 30px 40px;
+    margin: 0 auto;
     margin-top: 40px;
     align-items: center;
     flex-wrap: wrap;
+    max-width: 900px;
+    position: relative;
 }
 
 .stat-item {
@@ -134,23 +140,29 @@ body {
 }
 
 .stat-number {
-    font-size: 3.5rem;
-    font-weight: bold;
+    font-size: 4.6rem;
+    font-weight: 700;
     color: #2dc4ad;
     display: inline-block;
     min-width: 50px;
     transition: all 0.5s ease;
+    line-height: 1;
+    font-family: 'Poppins', sans-serif;
 }
 
 .stat-desc {
-    font-size: 0.8rem;
-    color: #777;
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: 500;
+    max-width: 150px;
+    margin: 0 auto;
+    font-family: 'Poppins', sans-serif;
 }
 
 .divider {
-    width: 1px;
-    height: 40px;
-    background-color: #ddd;
+    width: 2px;
+    height: 45px;
+    background-color: #eee;
 }
 
 /* --- SECCIONES COMUNES --- */
@@ -383,8 +395,49 @@ body {
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
 }
 
+/* Ajuste para tablets */
+@media (max-width: 1024px) {
+    .hero-sucamec h1,
+    .hero-content h1 {
+        font-size: 3.2rem;
+    }
+
+    .stats-box {
+        margin: 0 20px;
+        margin-top: 30px;
+        gap: 20px;
+    }
+}
+
 /* Ajuste para celulares */
 @media (max-width: 768px) {
+    .hero-sucamec h1,
+    .hero-content h1 {
+        font-size: 2.4rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 320px;
+        text-align: center;
+    }
+
+    .stats-box {
+        margin: 0 15px;
+        margin-top: 25px;
+        flex-direction: column;
+    }
+
+    .divider {
+        display: none;
+    }
+
     .whatsapp-float {
         width: 50px;
         height: 50px;

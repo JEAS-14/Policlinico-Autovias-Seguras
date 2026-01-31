@@ -1,0 +1,260 @@
+/* ============================================
+   ADMIN DETALLE CONSULTA - Estilos Específicos
+   ============================================ */
+
+:root {
+    --admin-purple: #2E1A5F;
+    --admin-teal: #3BBCA8;
+    --admin-light: #f8f9fa;
+    --success-color: #28a745;
+}
+
+body {
+    background-color: var(--admin-light);
+}
+
+.navbar {
+    background: linear-gradient(135deg, var(--admin-purple) 0%, #4a2470 100%);
+}
+
+.navbar-user-text {
+    font-size: 0.9rem;
+}
+
+/* Badges */
+.badge {
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.badge-pending {
+    background-color: #ffc107;
+    color: #000;
+}
+
+.badge-responded {
+    background-color: var(--admin-teal);
+    color: white;
+}
+
+.badge-urgente {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Secciones de información */
+.info-section {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border-left: 4px solid var(--admin-teal);
+}
+
+.info-label {
+    font-weight: 700;
+    color: var(--admin-purple);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.3rem;
+}
+
+.info-value {
+    color: #333;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.info-value a {
+    color: var(--admin-teal);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.info-value a:hover {
+    text-decoration: underline;
+}
+
+.info-value code {
+    background: #f0f0f0;
+    padding: 0.3rem 0.5rem;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+}
+
+/* Tarjetas de acción */
+.action-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.action-card h6 {
+    color: var(--admin-purple);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.action-card h6 i {
+    color: var(--admin-teal);
+}
+
+/* Formularios */
+.form-label {
+    font-weight: 600;
+    color: var(--admin-purple);
+}
+
+.form-control,
+.form-select {
+    border: 1.5px solid #e9ecef;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--admin-teal);
+    box-shadow: 0 0 0 3px rgba(59, 188, 168, 0.1);
+    outline: none;
+}
+
+.form-check-input {
+    border-color: #dee2e6;
+    width: 1.25em;
+    height: 1.25em;
+}
+
+.form-check-input:checked {
+    background-color: var(--admin-teal);
+    border-color: var(--admin-teal);
+}
+
+.form-check-input:focus {
+    border-color: var(--admin-teal);
+    box-shadow: 0 0 0 0.25rem rgba(59, 188, 168, 0.25);
+}
+
+/* Botones de acción */
+.btn-action {
+    background: linear-gradient(135deg, var(--admin-purple) 0%, #4a2470 100%);
+    border: none;
+    color: white;
+    padding: 0.75rem;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-action:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(46, 26, 95, 0.3);
+    color: white;
+}
+
+.btn-action:active {
+    transform: translateY(0);
+}
+
+.btn-action.btn-success {
+    background: linear-gradient(135deg, var(--success-color) 0%, #20c997 100%);
+}
+
+/* Cajas de mensajes */
+.message-box {
+    background: var(--admin-light);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 3px solid var(--admin-teal);
+    line-height: 1.6;
+    white-space: pre-wrap;
+    color: #333;
+}
+
+.message-box.success {
+    border-left-color: var(--success-color);
+    background: #d4edda;
+}
+
+/* Alerta de cita programada */
+.cita-programada {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: #d4edda;
+    border-radius: 8px;
+    border-left: 3px solid var(--success-color);
+    color: #155724;
+    font-weight: 500;
+}
+
+.cita-programada i {
+    margin-right: 0.5rem;
+}
+
+/* Navbar responsivo */
+@media (max-width: 768px) {
+    .info-section,
+    .action-card {
+        padding: 1.5rem;
+    }
+
+    .navbar-brand {
+        font-size: 1.1rem;
+    }
+
+    .navbar .d-flex {
+        flex-direction: column;
+        gap: 0.5rem !important;
+    }
+
+    .navbar .btn-sm {
+        width: 100%;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .info-section,
+    .action-card {
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .navbar-brand {
+        font-size: 0.95rem;
+    }
+
+    .info-label {
+        font-size: 0.8rem;
+    }
+
+    .info-value {
+        font-size: 0.95rem;
+    }
+
+    .btn-action {
+        padding: 0.6rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Toggle para fecha de cita */
+.fecha-cita-hidden {
+    display: none;
+}
+
+.fecha-cita-hidden.show {
+    display: block;
+}

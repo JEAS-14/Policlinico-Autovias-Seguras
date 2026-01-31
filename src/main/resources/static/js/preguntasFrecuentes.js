@@ -25,21 +25,41 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
 
     // ==========================================
-    // 2. ACORDEÓN (ACTIVACIÓN POR HOVER)
+    // 2. ACORDEÓN (HOVER EN DESKTOP / CLICK EN TOUCH)
     // ==========================================
-    faqItems.forEach(item => {
+    const supportsHover = window.matchMedia('(hover: hover)').matches;
+
+    function openItem(item) {
         const answer = item.querySelector('.faq-answer');
         const icon = item.querySelector('.faq-question i');
+        item.classList.add('is-open');
+        if (answer) answer.classList.remove('hidden');
+        if (icon) icon.classList.add('rotate-180');
+    }
 
-        item.addEventListener('mouseenter', () => {
-            answer.classList.remove('hidden');
-            if (icon) icon.classList.add('rotate-180');
-        });
+    function closeItem(item) {
+        const answer = item.querySelector('.faq-answer');
+        const icon = item.querySelector('.faq-question i');
+        item.classList.remove('is-open');
+        if (answer) answer.classList.add('hidden');
+        if (icon) icon.classList.remove('rotate-180');
+    }
 
-        item.addEventListener('mouseleave', () => {
-            answer.classList.add('hidden');
-            if (icon) icon.classList.remove('rotate-180');
-        });
+    faqItems.forEach(item => {
+        const questionBtn = item.querySelector('.faq-question');
+
+        if (supportsHover) {
+            item.addEventListener('mouseenter', () => openItem(item));
+            item.addEventListener('mouseleave', () => closeItem(item));
+        } else if (questionBtn) {
+            questionBtn.addEventListener('click', () => {
+                if (item.classList.contains('is-open')) {
+                    closeItem(item);
+                } else {
+                    openItem(item);
+                }
+            });
+        }
     });
 
     // ==========================================
@@ -53,6 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (categoriaSeleccionada === 'todos' || itemCategory === categoriaSeleccionada) {
                 item.style.display = 'block';
                 visibleCount++;
+                closeItem(item);
             } else {
                 item.style.display = 'none';
             }
@@ -70,10 +91,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             categoryButtons.forEach(btn => {
                 btn.classList.remove('bg-[#2E1A5F]', 'text-white');
+                btn.classList.remove('is-active');
                 btn.classList.add('bg-white', 'text-[#2E1A5F]', 'border', 'border-[#2E1A5F]');
             });
             button.classList.remove('bg-white', 'text-[#2E1A5F]', 'border');
             button.classList.add('bg-[#2E1A5F]', 'text-white');
+            button.classList.add('is-active');
 
             aplicarFiltro(selectedCategory);
             
@@ -93,6 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Al buscar, quitamos el estado activo de los botones de categoría
             categoryButtons.forEach(btn => {
                 btn.classList.remove('bg-[#2E1A5F]', 'text-white');
+                btn.classList.remove('is-active');
                 btn.classList.add('bg-white', 'text-[#2E1A5F]', 'border', 'border-[#2E1A5F]');
             });
 
@@ -103,6 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (questionText.includes(searchTerm) || answerText.includes(searchTerm)) {
                     item.style.display = 'block';
                     hasResults = true;
+                    closeItem(item);
                 } else {
                     item.style.display = 'none';
                 }
@@ -118,6 +143,12 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 if (searchErrorMsg) searchErrorMsg.classList.add('hidden');
                 aplicarFiltro('general'); // Si borra la búsqueda, vuelve a General
+                const generalBtn = document.querySelector('.faq-category-btn[data-category="general"]');
+                if (generalBtn) {
+                    generalBtn.classList.add('is-active');
+                    generalBtn.classList.remove('bg-white', 'text-[#2E1A5F]', 'border');
+                    generalBtn.classList.add('bg-[#2E1A5F]', 'text-white');
+                }
             }
         });
     }
@@ -126,4 +157,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // 5. INICIALIZACIÓN
     // ==========================================
     aplicarFiltro('general');
+    const initialBtn = document.querySelector('.faq-category-btn[data-category="general"]');
+    if (initialBtn) initialBtn.classList.add('is-active');
 });

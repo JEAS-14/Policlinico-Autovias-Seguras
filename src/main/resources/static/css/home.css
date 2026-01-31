@@ -251,6 +251,11 @@ body {
     animation: fadeInDown 0.8s forwards;
 }
 
+/* Animación sutil para el título del hero */
+.hero-title.animate-down {
+    animation: fadeInDown 0.8s forwards, titleFloat 3s ease-in-out 0.8s infinite;
+}
+
 @keyframes fadeInUp {
     to {
         opacity: 1;
@@ -265,7 +270,24 @@ body {
     }
 }
 
+@keyframes titleFloat {
+    0%, 100% { 
+        transform: translateY(0) scale(1);
+        text-shadow: 0 4px 12px rgba(46, 26, 95, 0.1);
+    }
+    50% { 
+        transform: translateY(-3px) scale(1.01);
+        text-shadow: 0 5px 14px rgba(46, 26, 95, 0.12);
+    }
+}
+
 /* Responsive */
+@media (max-width: 1024px) {
+    .hero-title { font-size: 2.6rem; }
+    .services-cards { grid-template-columns: repeat(3, 1fr); }
+    .stats-container { padding: 35px 40px; }
+}
+
 @media (max-width: 900px) {
     .services-cards {
         grid-template-columns: 1fr 1fr; /* 2 columnas en tablet */

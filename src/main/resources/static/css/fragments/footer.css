@@ -89,6 +89,43 @@
     color: var(--secondary-green);
     padding-left: 5px;
 }
+
+/* ==========================================
+   ANIMACIONES GLOBALES (ENTRADA SUAVE)
+   ========================================== */
+.fade-in {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.slide-up {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-30px);
+}
+
+.reveal-right {
+    opacity: 0;
+    transform: translateX(30px);
+}
+
+.animate-on-scroll,
+.js-scroll-item {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.is-visible,
+.visible,
+.visible-state {
+    opacity: 1 !important;
+    transform: translateX(0) translateY(0) !important;
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
 /* Sección de Contacto */
 .footer-contact .contact-info {
     display: flex;

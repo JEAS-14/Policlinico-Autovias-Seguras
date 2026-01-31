@@ -31,11 +31,48 @@
 
 /* --- Fondos y Degradados --- */
 .bg-hero-servicios {
-    height: 600px;
+    min-height: 600px;
+    height: auto;
     background: linear-gradient(123.79deg, rgba(250, 255, 254, 0) 50.71%, rgba(255, 255, 255, 0.2) 52.17%),
         linear-gradient(280.42deg, rgba(59, 188, 168, 0.176) 13.12%, rgba(255, 251, 251, 0.2) 45.24%),
         linear-gradient(101.84deg, rgba(59, 188, 168, 0.582) 18.18%, rgba(238, 249, 247, 0.6) 46.15%),
         rgba(59, 188, 168, 0.2);
+    background-size: 200% 200%;
+    animation: gradientShift 12s ease-in-out infinite;
+}
+
+.hero-title-anim {
+    position: relative;
+    display: inline-block;
+    animation: titleFloat 3s ease-in-out infinite;
+}
+
+.hero-title-anim::after {
+    content: '';
+    display: block;
+    width: 140px;
+    height: 6px;
+    margin: 18px auto 0;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #3BBCA8, #421D9D);
+    opacity: 0.85;
+}
+
+@keyframes titleFloat {
+    0%, 100% { 
+        transform: translateY(0) scale(1);
+        text-shadow: 0 4px 12px rgba(46, 26, 95, 0.1);
+    }
+    50% { 
+        transform: translateY(-5px) scale(1.02);
+        text-shadow: 0 6px 16px rgba(46, 26, 95, 0.15);
+    }
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 /* --- Círculos Decorativos con Blur --- */
@@ -133,11 +170,64 @@
 /* --- Efectos de Interacción (Hover) --- */
 .service-card {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
 .service-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 20px 40px rgba(59, 188, 168, 0.25);
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(59,188,168,0.45), rgba(88,54,190,0.25));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.service-card:hover::before {
+    opacity: 1;
+}
+
+.service-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 40%;
+    height: 200%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+    transform: skewX(-20deg);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.service-card:hover::after {
+    opacity: 1;
+    animation: shineSweep 1.2s ease;
+}
+
+@keyframes shineSweep {
+    0% { left: -60%; }
+    100% { left: 120%; }
+}
+
+.service-card:hover .shadow-icon {
+    transform: translateY(-4px) scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+.shadow-icon {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* Efecto para el botón dentro de la card */
@@ -149,6 +239,22 @@
 
 .btn-detalle {
     transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-detalle::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+    transition: opacity 0.3s ease;
+}
+
+.btn-detalle:hover::after {
+    opacity: 1;
+    animation: shineSweep 1s ease;
 }
 
 /* Botón flotante WhatsApp */
@@ -175,4 +281,33 @@
 .whatsapp-float:hover {
     transform: scale(1.1);
     box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6);
+}
+
+/* =======================================
+   RESPONSIVE
+   ======================================= */
+@media (max-width: 1200px) {
+    .bg-hero-servicios {
+        min-height: 520px;
+        padding: 80px 0;
+    }
+
+    .blur-circle {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .bg-hero-servicios {
+        min-height: 380px;
+        padding: 60px 0;
+    }
+
+    .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        font-size: 1.6rem;
+        bottom: 20px;
+        right: 20px;
+    }
 }

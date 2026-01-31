@@ -21,6 +21,17 @@
     }
 }
 
+@keyframes titleFloat {
+    0%, 100% { 
+        transform: translateY(0) scale(1);
+        text-shadow: 0 4px 12px rgba(46, 26, 95, 0.1);
+    }
+    50% { 
+        transform: translateY(-3px) scale(1.01);
+        text-shadow: 0 5px 14px rgba(46, 26, 95, 0.12);
+    }
+}
+
 /* 2. Tu clase con la animación aplicada */
 .hero-description {
     /* --- TUS ESTILOS VISUALES (Se mantienen igual) --- */
@@ -37,7 +48,7 @@
 
     /* --- AQUÍ ESTÁ LA ANIMACIÓN DE ENTRADA QUE PEDISTE --- */
     opacity: 0; /* IMPORTANTE: Empieza invisible para no parpadear */
-    animation: entradaTriunfal 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards; 
+    animation: entradaTriunfal 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards, titleFloat 3s ease-in-out 1.5s infinite; 
     /* 1.5s de duración con un efecto de "frenado" suave al final */
 }
 
@@ -141,16 +152,173 @@
 
 /* --- RESTO DE ESTILOS (Sin cambios) --- */
 /* (Mantén aquí los estilos de Stacked Cards, Navbar, etc. que ya tenías) */
-.stacked-circle-card { position: relative; width: 320px; height: 340px; display: flex; justify-content: center; transition: transform 0.3s ease; }
-.stacked-circle-card:hover { transform: translateY(-10px); }
-.circle-purple-bg { position: absolute; top: 15px; left: 0; right: 0; margin: auto; width: 300px; height: 400px; background-color: #2E1A5F; border-radius: 50%; z-index: 1; box-shadow: 0 15px 30px rgba(46, 26, 95, 0.2); transition: all 0.3s ease; }
-.stacked-circle-card:hover .circle-purple-bg { background-color: #3BBCA8; box-shadow: 0 20px 40px rgba(59, 188, 168, 0.4); }
-.circle-white-content { position: relative; width: 300px; height: 400px; background-color: #ffffff; border-radius: 50%; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center; border: 1px solid rgba(0, 0, 0, 0.05); }
-.inner-img-container { width: 200px; height: 150px; margin-bottom: 10px; border-radius: 20%; overflow: hidden; border: 2px solid #f0f0f0; }
-.inner-img-container img { width: 100%; height: 100%; object-fit: cover; }
-.card-title { color: #2E1A5F; font-weight: 800; font-size: 1.1rem; margin-bottom: 5px; text-transform: uppercase; }
-.card-divider { width: 30px; height: 3px; background-color: #3BBCA8; margin-bottom: 10px; border-radius: 10px; }
-.card-text { font-size: 0.85rem; color: #666; line-height: 1.3; max-width: 220px; }
+.stacked-circle-card { 
+    position: relative; 
+    width: 100%;
+    max-width: 320px;
+    height: 420px; 
+    display: flex; 
+    justify-content: center; 
+    transition: transform 0.3s ease;
+    margin: 0 auto;
+}
+
+.stacked-circle-card:hover { 
+    transform: translateY(-10px); 
+}
+
+.circle-purple-bg { 
+    position: absolute; 
+    top: 15px; 
+    left: 0; 
+    right: 0; 
+    margin: auto; 
+    width: 100%;
+    max-width: 300px;
+    height: 400px; 
+    background-color: #2E1A5F; 
+    border-radius: 50%; 
+    z-index: 1; 
+    box-shadow: 0 15px 30px rgba(46, 26, 95, 0.2); 
+    transition: all 0.3s ease; 
+}
+
+.stacked-circle-card:hover .circle-purple-bg { 
+    background-color: #3BBCA8; 
+    box-shadow: 0 20px 40px rgba(59, 188, 168, 0.4); 
+}
+
+.circle-white-content { 
+    position: relative; 
+    width: 100%;
+    max-width: 300px;
+    height: 400px; 
+    background-color: #ffffff; 
+    border-radius: 50%; 
+    z-index: 2; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    padding: 20px; 
+    text-align: center; 
+    border: 1px solid rgba(0, 0, 0, 0.05); 
+}
+
+.inner-img-container { 
+    width: 200px; 
+    height: 150px; 
+    margin-bottom: 10px; 
+    border-radius: 20%; 
+    overflow: hidden; 
+    border: 2px solid #f0f0f0; 
+}
+
+.inner-img-container img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+}
+
+.card-title { 
+    color: #2E1A5F; 
+    font-weight: 800; 
+    font-size: 1.1rem; 
+    margin-bottom: 5px; 
+    text-transform: uppercase; 
+}
+
+.card-divider { 
+    width: 30px; 
+    height: 3px; 
+    background-color: #3BBCA8; 
+    margin-bottom: 10px; 
+    border-radius: 10px; 
+}
+
+.card-text { 
+    font-size: 0.85rem; 
+    color: #666; 
+    line-height: 1.3; 
+    max-width: 220px; 
+}
+
+/* Responsive para valores/valores */
+@media (max-width: 768px) {
+    .stacked-circle-card {
+        width: 100%;
+        max-width: 280px;
+        height: 380px;
+    }
+
+    .circle-purple-bg {
+        width: 100%;
+        max-width: 260px;
+        height: 360px;
+    }
+
+    .circle-white-content {
+        width: 100%;
+        max-width: 260px;
+        height: 360px;
+    }
+
+    .inner-img-container {
+        width: 150px;
+        height: 120px;
+    }
+
+    .card-title {
+        font-size: 1rem;
+    }
+
+    .card-text {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .stacked-circle-card {
+        width: 100%;
+        max-width: 240px;
+        height: 340px;
+        margin: 0 auto 20px;
+    }
+
+    .circle-purple-bg {
+        width: 100%;
+        max-width: 220px;
+        height: 320px;
+        top: 10px;
+    }
+
+    .circle-white-content {
+        width: 100%;
+        max-width: 220px;
+        height: 320px;
+        padding: 15px;
+    }
+
+    .inner-img-container {
+        width: 120px;
+        height: 90px;
+        margin-bottom: 8px;
+    }
+
+    .card-title {
+        font-size: 0.9rem;
+        margin-bottom: 3px;
+    }
+
+    .card-divider {
+        margin-bottom: 8px;
+    }
+
+    .card-text {
+        font-size: 0.75rem;
+        max-width: 180px;
+    }
+}
 .image-wrapper { position: relative; z-index: 10; }
 .main-web-image { width: 100%; border-radius: 50px; box-shadow: 0 25px 50px -12px rgba(46, 26, 95, 0.15); transition: transform 0.5s ease; }
 .main-web-image:hover { transform: scale(1.02) translateY(-5px); }

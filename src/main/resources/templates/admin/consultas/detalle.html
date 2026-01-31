@@ -6,40 +6,31 @@
     <title>Detalle Consulta - Administración</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
-    <style>
-        .badge-warning { background-color: #ffc107; }
-        .badge-info { background-color: #17a2b8; }
-        .badge-success { background-color: #28a745; }
-        .badge-primary { background-color: #007bff; }
-        .badge-secondary { background-color: #6c757d; }
-        .info-label {
-            font-weight: 600;
-            color: #6c757d;
-        }
-    </style>
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+    <link rel="stylesheet" th:href="@{/css/admin-detalle.css}">
 </head>
 <body>
-    <nav class="navbar navbar-dark bg-dark">
+    <nav class="navbar navbar-dark">
         <div class="container-fluid">
             <span class="navbar-brand mb-0 h1">
                 <i class="bi bi-clipboard2-pulse"></i> Detalle de Consulta
             </span>
-            <div class="d-flex align-items-center">
-                <span class="text-light me-3">
+            <div class="d-flex align-items-center gap-2 flex-wrap">
+                <span class="text-light me-2 navbar-user-text">
                     <i class="bi bi-person-circle"></i> 
                     <span th:text="${nombreUsuario}">Usuario</span>
                 </span>
-                <a href="/admin/consultas" class="btn btn-outline-light btn-sm me-2">
+                <a href="/admin/consultas" class="btn btn-outline-light btn-sm">
                     <i class="bi bi-arrow-left"></i> Volver
                 </a>
                 <a href="/admin/logout" class="btn btn-outline-danger btn-sm">
-                    <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
+                    <i class="bi bi-box-arrow-right"></i> Cerrar
                 </a>
             </div>
         </div>
     </nav>
 
-    <div class="container mt-4">
+    <div class="container mt-4 mb-4">
         
         <!-- Mensajes -->
         <div th:if="${success}" class="alert alert-success alert-dismissible fade show">
@@ -54,165 +45,153 @@
 
         <div class="row">
             <!-- Información de la consulta -->
-            <div class="col-md-8">
-                <div class="card mb-4">
-                    <div class="card-header bg-primary text-white">
+            <div class="col-lg-8">
+                <!-- Información Principal -->
+                <div class="info-section">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
                         <h5 class="mb-0">
-                            <i class="bi bi-file-text"></i> Información de la Consulta
+                            <i class="bi bi-file-text"></i> 
+                            Información de la Consulta
                         </h5>
+                        <span class="badge" 
+                              th:classappend="${consulta.estado == 'PENDIENTE' ? 'badge-pending' : 'badge-responded'}"
+                              th:text="${consulta.estado == 'PENDIENTE' ? 'Pendiente' : 'Respondida'}">
+                        </span>
                     </div>
-                    <div class="card-body">
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <p class="info-label mb-1">Número de Ticket</p>
-                                <p><code class="fs-5" th:text="${consulta.numeroTicket}"></code></p>
-                            </div>
-                            <div class="col-md-6">
-                                <p class="info-label mb-1">Estado</p>
-                                <p>
-                                    <span class="badge fs-6" 
-                                          th:classappend="${consulta.estado.cssClass}"
-                                          th:text="${consulta.estado.descripcion}">
-                                    </span>
-                                </p>
+
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <div class="info-label">Número de Ticket</div>
+                            <div class="info-value">
+                                <code th:text="${consulta.numeroTicket}"></code>
                             </div>
                         </div>
-
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <p class="info-label mb-1">Cliente</p>
-                                <p th:text="${consulta.nombre + ' ' + consulta.apellido}"></p>
-                            </div>
-                            <div class="col-md-6">
-                                <p class="info-label mb-1">Fecha de Consulta</p>
-                                <p th:text="${#temporals.format(consulta.fechaCreacion, 'dd/MM/yyyy HH:mm')}"></p>
+                        <div class="col-sm-6">
+                            <div class="info-label">Fecha de Consulta</div>
+                            <div class="info-value" th:text="${#temporals.format(consulta.fechaCreacion, 'dd/MM/yyyy HH:mm')}"></div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="info-label">Nombre</div>
+                            <div class="info-value" th:text="${consulta.nombre}"></div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="info-label">Apellido</div>
+                            <div class="info-value" th:text="${consulta.apellido}"></div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="info-label"><i class="bi bi-envelope"></i> Email</div>
+                            <div class="info-value">
+                                <a th:href="'mailto:' + ${consulta.email}" th:text="${consulta.email}"></a>
                             </div>
                         </div>
-
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <p class="info-label mb-1">Email</p>
-                                <p>
-                                    <i class="bi bi-envelope"></i> 
-                                    <a th:href="'mailto:' + ${consulta.email}" th:text="${consulta.email}"></a>
-                                </p>
-                            </div>
-                            <div class="col-md-6">
-                                <p class="info-label mb-1">Teléfono</p>
-                                <p>
-                                    <i class="bi bi-telephone"></i> 
-                                    <a th:href="'tel:' + ${consulta.telefono}" th:text="${consulta.telefono}"></a>
-                                </p>
+                        <div class="col-sm-6">
+                            <div class="info-label"><i class="bi bi-telephone"></i> Teléfono</div>
+                            <div class="info-value">
+                                <a th:href="'tel:' + ${consulta.telefono}" th:text="${consulta.telefono}"></a>
                             </div>
                         </div>
-
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <p class="info-label mb-1">Tipo de Consulta</p>
-                                <p th:text="${consulta.tipoConsulta}"></p>
-                            </div>
-                            <div class="col-md-6" th:if="${consulta.empresa}">
-                                <p class="info-label mb-1">Empresa</p>
-                                <p th:text="${consulta.empresa}"></p>
-                            </div>
+                        <div class="col-sm-6">
+                            <div class="info-label">Tipo de Consulta</div>
+                            <div class="info-value" th:text="${consulta.tipoConsulta}"></div>
                         </div>
-
-                        <hr>
-
-                        <div class="mb-3">
-                            <p class="info-label mb-2">Mensaje del Cliente</p>
-                            <div class="p-3 bg-light rounded">
-                                <p class="mb-0" style="white-space: pre-wrap;" th:text="${consulta.mensaje}"></p>
-                            </div>
+                        <div class="col-sm-6" th:if="${consulta.empresa}">
+                            <div class="info-label">Empresa</div>
+                            <div class="info-value" th:text="${consulta.empresa}"></div>
                         </div>
+                    </div>
+                </div>
 
-                        <!-- Respuesta (si existe) -->
-                        <div th:if="${consulta.respuesta}" class="mt-4">
-                            <hr>
-                            <h6 class="text-success"><i class="bi bi-reply-fill"></i> Respuesta Enviada</h6>
-                            
-                            <div class="row mb-2">
-                                <div class="col-md-6">
-                                    <p class="info-label mb-1">Respondido por</p>
-                                    <p th:text="${consulta.respondidoPor}"></p>
-                                </div>
-                                <div class="col-md-6">
-                                    <p class="info-label mb-1">Fecha de Respuesta</p>
-                                    <p th:text="${#temporals.format(consulta.fechaRespuesta, 'dd/MM/yyyy HH:mm')}"></p>
-                                </div>
-                            </div>
+                <!-- Mensaje del Cliente -->
+                <div class="info-section">
+                    <h6 class="mb-3">
+                        <i class="bi bi-chat-left-text"></i> 
+                        Mensaje del Cliente
+                    </h6>
+                    <div class="message-box" th:text="${consulta.mensaje}"></div>
+                </div>
 
-                            <div class="p-3 bg-success bg-opacity-10 border border-success rounded">
-                                <p class="mb-0" style="white-space: pre-wrap;" th:text="${consulta.respuesta}"></p>
-                            </div>
-
-                            <div th:if="${consulta.fechaCitaProgramada}" class="alert alert-info mt-3">
-                                <i class="bi bi-calendar-check"></i> 
-                                <strong>Cita Programada:</strong> 
-                                <span th:text="${#temporals.format(consulta.fechaCitaProgramada, 'dd/MM/yyyy HH:mm')}"></span>
-                            </div>
+                <!-- Respuesta (si existe) -->
+                <div th:if="${consulta.respuesta}" class="info-section">
+                    <h6 class="mb-3">
+                        <i class="bi bi-reply-fill"></i> Respuesta Enviada
+                    </h6>
+                    
+                    <div class="row g-3 mb-3">
+                        <div class="col-sm-6">
+                            <div class="info-label">Respondido por</div>
+                            <div class="info-value" th:text="${consulta.respondidoPor}"></div>
                         </div>
+                        <div class="col-sm-6">
+                            <div class="info-label">Fecha de Respuesta</div>
+                            <div class="info-value" th:text="${#temporals.format(consulta.fechaRespuesta, 'dd/MM/yyyy HH:mm')}"></div>
+                        </div>
+                    </div>
+
+                    <div class="message-box success" th:text="${consulta.respuesta}"></div>
+
+                    <div th:if="${consulta.fechaCitaProgramada}" class="cita-programada">
+                        <i class="bi bi-calendar-check"></i> 
+                        <strong>Cita Programada:</strong>
+                        <span th:text="${#temporals.format(consulta.fechaCitaProgramada, 'dd/MM/yyyy HH:mm')}"></span>
                     </div>
                 </div>
             </div>
 
             <!-- Panel de acciones -->
-            <div class="col-md-4">
+            <div class="col-lg-4">
                 <!-- Cambiar estado -->
-                <div class="card mb-4">
-                    <div class="card-header bg-secondary text-white">
-                        <h6 class="mb-0"><i class="bi bi-gear"></i> Cambiar Estado</h6>
-                    </div>
-                    <div class="card-body">
-                        <form method="post" th:action="@{/admin/consultas/{id}/cambiar-estado(id=${consulta.id})}">
-                            <select name="nuevoEstado" class="form-select mb-3">
-                                <option th:each="e : ${estados}" 
-                                        th:value="${e}" 
-                                        th:text="${e.descripcion}"
-                                        th:selected="${e == consulta.estado}">
-                                </option>
-                            </select>
-                            <button type="submit" class="btn btn-secondary w-100">
-                                <i class="bi bi-arrow-repeat"></i> Actualizar Estado
-                            </button>
-                        </form>
-                    </div>
+                <div class="action-card">
+                    <h6>
+                        <i class="bi bi-gear"></i> 
+                        Cambiar Estado
+                    </h6>
+                    <form method="post" th:action="@{/admin/consultas/{id}/cambiar-estado(id=${consulta.id})}">
+                        <select name="nuevoEstado" class="form-select mb-3">
+                            <option th:each="e : ${estados}" 
+                                    th:value="${e}" 
+                                    th:text="${e.descripcion}"
+                                    th:selected="${e == consulta.estado}">
+                            </option>
+                        </select>
+                        <button type="submit" class="btn-action w-100">
+                            <i class="bi bi-arrow-repeat"></i> Actualizar Estado
+                        </button>
+                    </form>
                 </div>
 
                 <!-- Responder -->
-                <div class="card" th:if="${consulta.respuesta == null}">
-                    <div class="card-header bg-success text-white">
-                        <h6 class="mb-0"><i class="bi bi-reply-fill"></i> Responder al Cliente</h6>
-                    </div>
-                    <div class="card-body">
-                        <form method="post" th:action="@{/admin/consultas/{id}/responder(id=${consulta.id})}" th:object="${respuestaDTO}">
-                            <div class="mb-3">
-                                <label class="form-label">Respuesta</label>
-                                <textarea class="form-control" th:field="*{respuesta}" rows="6" 
-                                          placeholder="Escribe tu respuesta aquí..." required></textarea>
-                            </div>
+                <div class="action-card" th:if="${consulta.respuesta == null}">
+                    <h6>
+                        <i class="bi bi-reply-fill"></i> 
+                        Responder al Cliente
+                    </h6>
+                    <form method="post" th:action="@{/admin/consultas/{id}/responder(id=${consulta.id})}" th:object="${respuestaDTO}">
+                        <div class="mb-3">
+                            <label class="form-label">Tu Respuesta</label>
+                            <textarea class="form-control" th:field="*{respuesta}" rows="6" 
+                                      placeholder="Escribe tu respuesta aquí..." required></textarea>
+                        </div>
 
-                            <div class="mb-3">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" 
-                                           th:field="*{programarCita}" id="programarCita"
-                                           onclick="toggleCita()">
-                                    <label class="form-check-label" for="programarCita">
-                                        Programar cita
-                                    </label>
-                                </div>
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" 
+                                       th:field="*{programarCita}" id="programarCita"
+                                       onclick="toggleCita()">
+                                <label class="form-check-label" for="programarCita">
+                                    Programar cita
+                                </label>
                             </div>
+                        </div>
 
-                            <div class="mb-3" id="divFechaCita" style="display: none;">
-                                <label class="form-label">Fecha y Hora de la Cita</label>
-                                <input type="datetime-local" class="form-control" th:field="*{fechaCita}">
-                            </div>
+                        <div class="mb-3 fecha-cita-hidden" id="divFechaCita">
+                            <label class="form-label">Fecha y Hora de la Cita</label>
+                            <input type="datetime-local" class="form-control" th:field="*{fechaCita}">
+                        </div>
 
-                            <button type="submit" class="btn btn-success w-100">
-                                <i class="bi bi-send"></i> Enviar Respuesta
-                            </button>
-                        </form>
-                    </div>
+                        <button type="submit" class="btn-action btn-success w-100">
+                            <i class="bi bi-send"></i> Enviar Respuesta
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -223,7 +202,7 @@
         function toggleCita() {
             const checkbox = document.getElementById('programarCita');
             const divFecha = document.getElementById('divFechaCita');
-            divFecha.style.display = checkbox.checked ? 'block' : 'none';
+            divFecha.classList.toggle('show', checkbox.checked);
         }
     </script>
 </body>

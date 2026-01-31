@@ -33,5 +33,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }
+
+        // Validación en tiempo real de nombre y apellido (solo letras y espacios)
+        const nombreInput = document.getElementById('nombre');
+        const apellidoInput = document.getElementById('apellido');
+        const onlyLetters = /[^A-Za-zÁÉÍÓÚÑáéíóúñ\s]/g;
+
+        if (nombreInput) {
+            nombreInput.addEventListener('input', function() {
+                this.value = this.value.replace(onlyLetters, '');
+            });
+        }
+
+        if (apellidoInput) {
+            apellidoInput.addEventListener('input', function() {
+                this.value = this.value.replace(onlyLetters, '');
+            });
+        }
     }
 });

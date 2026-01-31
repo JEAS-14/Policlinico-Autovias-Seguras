@@ -60,12 +60,18 @@ body {
 }
 
 .btn {
-    padding: 15px 30px;
-    border-radius: 10px;
+    padding: 16px 45px;
+    border-radius: 8px;
     text-decoration: none;
     color: white;
-    font-weight: bold;
-    display: inline-block;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
 }
 
 .btn-purple {
@@ -85,16 +91,17 @@ body {
 
 /* ESTADÍSTICAS */
 .stats-box {
-    background: white;
+    background: #ffffff;
     border-radius: 20px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
     display: flex;
     justify-content: space-around;
-    padding: 30px;
+    padding: 30px 40px;
     align-items: center;
     flex-wrap: wrap;
     max-width: 900px;
     margin: 0 auto;
+    position: relative;
 }
 
 .stat-item {
@@ -103,24 +110,28 @@ body {
 }
 
 .stat-number {
-    font-size: 2.5rem;
+    font-size: 4.6rem;
     font-weight: 700;
     color: var(--bg-green-brand);
     line-height: 1;
     display: block;
     margin-bottom: 5px;
+    font-family: 'Poppins', sans-serif;
 }
 
 .stat-desc {
     font-size: 0.9rem;
     color: #666;
     font-weight: 500;
+    max-width: 150px;
+    margin: 0 auto;
+    font-family: 'Poppins', sans-serif;
 }
 
 .divider {
-    width: 1px;
-    height: 50px;
-    background-color: #ddd;
+    width: 2px;
+    height: 45px;
+    background-color: #eee;
 }
 
 /* ==========================================================================
@@ -446,6 +457,20 @@ body {
 
 .whatsapp-float:hover {
     transform: scale(1.1);
+}
+
+/* ========================================================================== 
+   7.1 RESPONSIVE DESIGN (TABLET)
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .hero-content h1 {
+        font-size: 2.6rem;
+    }
+
+    .stats-box {
+        gap: 20px;
+        padding: 25px;
+    }
 }
 
 /* ==========================================================================

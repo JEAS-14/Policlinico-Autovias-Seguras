@@ -109,6 +109,26 @@
     font-size: 0.95rem;
 }
 
+.contact-link {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.contact-link:hover {
+    color: #ffffff;
+}
+
+.contact-phones {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.separator {
+    opacity: 0.7;
+}
+
 .icon-circle {
     font-size: 1.3rem;
     width: 25px;
@@ -120,6 +140,25 @@
     flex: 2;
     padding: 50px;
     background: var(--white);
+    border-left: 1px solid rgba(0, 0, 0, 0.04);
+    position: relative;
+}
+
+.form-header {
+    margin-bottom: 30px;
+}
+
+.form-header h2 {
+    color: var(--primary-purple);
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.form-header p {
+    color: var(--text-light);
+    font-size: 1rem;
+    margin: 0;
 }
 
 .form-row {
@@ -150,8 +189,8 @@ label {
 
 /* Estilo Moderno de Inputs */
 input, select, textarea {
-    background-color: var(--white);
-    border: 1px solid var(--border-color);
+    background-color: #f8fafc;
+    border: 1.5px solid var(--border-color);
     border-radius: 12px;
     padding: 14px 18px;
     font-family: inherit;
@@ -209,6 +248,28 @@ textarea {
     text-align: left;
 }
 
+.checkbox-container a {
+    color: var(--primary-purple);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.checkbox-container a:hover {
+    text-decoration: underline;
+}
+
+.terms-link {
+    color: var(--primary-purple);
+    font-weight: 800;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+}
+
+.hidden-field {
+    display: none;
+}
+
 .checkbox-container input {
     margin-top: 4px;
     width: 18px;
@@ -217,6 +278,12 @@ textarea {
 }
 
 /* --- Responsividad --- */
+@media (max-width: 1024px) {
+    .page-title { font-size: 2rem; }
+    .contact-wrapper { min-height: auto; }
+    .contact-form { padding: 40px; }
+}
+
 @media (max-width: 850px) {
     .contact-wrapper {
         flex-direction: column;
@@ -237,6 +304,19 @@ textarea {
     .form-row {
         flex-direction: column;
         gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-title { font-size: 1.6rem; }
+    .contact-form { padding: 25px 18px; }
+    .btn-submit { width: 100%; padding: 14px 0; }
+    .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        font-size: 26px;
+        bottom: 20px;
+        right: 20px;
     }
 }
 

@@ -71,6 +71,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const elementsToAnimate = document.querySelectorAll('.fade-in, .slide-up, .stats-box, .js-scroll-item');
     elementsToAnimate.forEach(el => observer.observe(el));
 
+    // --- C. PASOS EN MÓVIL (Mostrar tooltip al tocar) ---
+    const stepsContainer = document.querySelector('.steps-container');
+    if (stepsContainer) {
+        stepsContainer.addEventListener('click', (event) => {
+            if (!window.matchMedia('(max-width: 1024px)').matches) return;
+            const step = event.target.closest('.step');
+            if (!step) return;
+            event.preventDefault();
+            const steps = stepsContainer.querySelectorAll('.step');
+            const wasActive = step.classList.contains('active');
+            steps.forEach(s => s.classList.remove('active'));
+            if (!wasActive) step.classList.add('active');
+        });
+    }
+
 
     // --- B. CONTADORES DE NÚMEROS (+1500) ---
     

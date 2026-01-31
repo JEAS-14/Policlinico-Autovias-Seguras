@@ -9,44 +9,8 @@
     <link rel="stylesheet" th:href="@{/css/fragments/navbar.css}">
     <link rel="stylesheet" th:href="@{/css/fragments/footer.css}">
     <link rel="stylesheet" th:href="@{/css/formulario.css}">
+    <link rel="stylesheet" th:href="@{/css/formulario-validation.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <style>
-        /* Estilos para mensajes de error de validación */
-        .error {
-            color: #dc3545;
-            font-size: 0.875rem;
-            display: block;
-            margin-top: 5px;
-        }
-        
-        .form-group input.error,
-        .form-group select.error,
-        .form-group textarea.error {
-            border-color: #dc3545;
-        }
-        
-        /* Mensaje de alerta general */
-        .alert {
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-            text-align: center;
-            font-weight: 500;
-        }
-        
-        .alert-success {
-            background-color: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-        
-        .alert-error {
-            background-color: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
-    </style>
 </head>
 <body>
 
@@ -70,15 +34,23 @@
                     <div class="info-items">
                         <div class="item">
                             <i class="fas fa-map-marker-alt icon-circle"></i>
-                            <span>Av. 9 de Octubre 467, San Juan de Lurigancho</span>
+                            <a class="contact-link" href="https://www.google.com/maps/search/?api=1&query=Av.+9+de+Octubre+467,+San+Juan+de+Lurigancho" target="_blank" rel="noopener noreferrer">
+                                Av. 9 de Octubre 467, San Juan de Lurigancho
+                            </a>
                         </div>
                         <div class="item">
                             <i class="fab fa-whatsapp icon-circle"></i>
-                            <span>913 889 497 | 941 342 860</span>
+                            <span class="contact-phones">
+                                <a class="contact-link" href="https://wa.me/51913889497" target="_blank" rel="noopener noreferrer">913 889 497</a>
+                                <span class="separator">|</span>
+                                <a class="contact-link" href="https://wa.me/51941342860" target="_blank" rel="noopener noreferrer">941 342 860</a>
+                            </span>
                         </div>
                         <div class="item">
                             <i class="fas fa-envelope icon-circle"></i>
-                            <span>administracion@autoviasseguras.com</span>
+                            <a class="contact-link" href="mailto:administracion@autoviasseguras.com">
+                                administracion@autoviasseguras.com
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -108,6 +80,8 @@
                                    th:field="*{nombre}" 
                                    th:classappend="${#fields.hasErrors('nombre')} ? 'error' : ''"
                                    placeholder="Ejm. Alex" 
+                                   pattern="[A-Za-zÁÉÍÓÚÑáéíóúñ\s]+"
+                                   title="Solo letras y espacios"
                                    required>
                             <span class="error" 
                                   th:if="${#fields.hasErrors('nombre')}" 
@@ -122,6 +96,8 @@
                                    th:field="*{apellido}" 
                                    th:classappend="${#fields.hasErrors('apellido')} ? 'error' : ''"
                                    placeholder="Ejm. Cruz Valerio" 
+                                   pattern="[A-Za-zÁÉÍÓÚÑáéíóúñ\s]+"
+                                   title="Solo letras y espacios"
                                    required>
                             <span class="error" 
                                   th:if="${#fields.hasErrors('apellido')}" 
@@ -137,7 +113,9 @@
                                    id="email" 
                                    th:field="*{email}" 
                                    th:classappend="${#fields.hasErrors('email')} ? 'error' : ''"
-                                   placeholder="Ejm. Alexcruz123@gmail.com" 
+                                   placeholder="Ejm. alexcruz123@gmail.com" 
+                                   pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
+                                   title="Ingresa un correo válido (ej: nombre@dominio.com)"
                                    required>
                             <span class="error" 
                                   th:if="${#fields.hasErrors('email')}" 
@@ -195,7 +173,7 @@
                         </span>
                     </div>
 
-                    <div class="form-group full-width" style="display: none;">
+                    <div class="form-group full-width hidden-field">
                         <input type="text" 
                                id="empresa" 
                                th:field="*{empresa}" 
@@ -208,7 +186,7 @@
                         <div class="checkbox-container">
                             <input type="checkbox" id="terms" required>
                             <label for="terms">
-                                He leído y acepto los <a th:href="@{/terminos-condiciones}" target="_blank">Términos y Condiciones</a> y la <a th:href="@{/politica-privacidad}" target="_blank">Política de Privacidad</a>.
+                                He leído y acepto los <a class="terms-link" th:href="@{/terminosCondiciones}" target="_blank">Términos y Condiciones</a> y la <a class="terms-link" th:href="@{/politicaPrivacidad}" target="_blank">Política de Privacidad</a>.
                             </label>
                         </div>
                     </div>

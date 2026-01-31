@@ -34,3 +34,6 @@ build/
 
 ### Database ###
 data/
+
+### Local credentials ###
+src/main/resources/credentials/

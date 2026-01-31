@@ -35,7 +35,7 @@ html {
 /* --- LOGO --- */
 .logo {
     display: flex; align-items: center;
-    text-decoration: none; margin-right: auto;
+    text-decoration: none; margin-right: 80px;
 }
 .logo img {
     height: 85px; width: auto;
@@ -47,7 +47,7 @@ html {
 .nav-contact-bubble {
     display: flex;
     align-items: center;
-    margin-right: 30px; /* Espacio para que no se pegue al logo */
+    margin-right: 120px; /* Espacio para que no se pegue al logo */
     background: #f0fdfa;
     padding: 8px 18px;
     border-radius: 50px;
@@ -127,6 +127,13 @@ html {
 /* Ajuste del LOGO para que respete el espacio del menú */
 .logo {
     margin-right: auto !important; /* Mantiene el menú a la derecha */
+}
+
+@media (min-width: 993px) {
+    .logo {
+        margin-left: 0;
+        transform: translateX(20px);
+    }
 }
 
 /* ===========================================
