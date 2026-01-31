@@ -23,6 +23,7 @@ public class ConsultaService {
     
     private final ConsultaRepository consultaRepository;
     private final EmailService emailService;
+    private final GoogleSheetsService googleSheetsService;
     
     @Transactional
     public Consulta crearConsulta(ConsultaDTO consultaDTO) {
@@ -33,6 +34,21 @@ public class ConsultaService {
         // Guardar en base de datos
         consulta = consultaRepository.save(consulta);
         log.info("Consulta creada con ticket: {}", consulta.getNumeroTicket());
+        
+        // Guardar en Google Sheets
+        try {
+            googleSheetsService.guardarConsulta(
+                    consultaDTO.getNombre(),
+                    consultaDTO.getApellido(),
+                    consultaDTO.getEmail(),
+                    consultaDTO.getTelefono(),
+                    consultaDTO.getTipoConsulta(),
+                    consultaDTO.getMensaje(),
+                    consulta.getNumeroTicket()
+            );
+        } catch (Exception e) {
+            log.error("Error al guardar consulta en Google Sheets", e);
+        }
         
         // Enviar emails
         try {

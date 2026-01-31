@@ -2,6 +2,7 @@ package com.policlinico.autovias.infrastructure.web.controller;
 
 import com.policlinico.autovias.application.dto.ReclamacionDTO;
 import com.policlinico.autovias.application.service.EmailService;
+import com.policlinico.autovias.application.service.GoogleSheetsService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class HomeController {
 
     private final EmailService emailService;
+    private final GoogleSheetsService googleSheetsService;
     
     /**
      * Página principal / Landing page
@@ -100,6 +102,23 @@ public class HomeController {
         }
 
         try {
+            // Generar número de ticket único
+            String numeroTicket = "REC-" + System.currentTimeMillis();
+            
+            // Guardar en Google Sheets
+            googleSheetsService.guardarReclamacion(
+                    reclamacion.getNombre(),
+                    reclamacion.getApellido(),
+                    reclamacion.getDniCe(),
+                    reclamacion.getEmail(),
+                    reclamacion.getTelefono(),
+                    reclamacion.getDomicilio(),
+                    reclamacion.getDetalle(),
+                    reclamacion.getPedido(),
+                    numeroTicket
+            );
+            
+            // Enviar emails
             emailService.enviarNotificacionReclamacion(reclamacion);
             emailService.enviarConfirmacionReclamante(reclamacion);
             model.addAttribute("success", "Su reclamación ha sido enviada exitosamente. Recibirá una confirmación por email y una respuesta en un plazo máximo de 15 días hábiles.");

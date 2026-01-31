@@ -1,0 +1,441 @@
+/* ===========================================
+   FORMULARIO RESPONSIVO 100% (MOBILE FIRST)
+   =========================================== */
+
+:root {
+    --primary-purple: #4a148c;
+    --accent-purple: #7b1fa2;
+    --grad-purple: linear-gradient(135deg, #4a148c 0%, #7b1fa2 100%);
+    --mint-bg: #dbece9;
+    --input-bg: #ffffff;
+    --btn-green: #2dc4ad;
+    --text-dark: #2d3436;
+    --text-light: #636e72;
+    --border-color: #dfe6e9;
+    --white: #ffffff;
+}
+
+/* ===========================================
+   BASE (MOBILE FIRST)
+   =========================================== */
+.contact-main {
+    padding: 20px 15px 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 33.58%, #FFFFFF 100%),
+                linear-gradient(116.93deg, rgba(59, 188, 168, 0.2) 27.63%, rgba(59, 188, 168, 0.5) 87.89%);
+    min-height: 100vh;
+    margin-top: 70px;
+}
+
+.page-title {
+    color: var(--primary-purple);
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 30px;
+    text-align: center;
+    width: 100%;
+}
+
+/* ===========================================
+   CONTENEDOR PRINCIPAL (MOBILE)
+   =========================================== */
+.contact-wrapper {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    width: 100%;
+    background: var(--white);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(74, 20, 140, 0.1);
+    min-height: auto;
+}
+
+/* ===========================================
+   COLUMNA IZQUIERDA (INFO)
+   =========================================== */
+.contact-info {
+    flex: 1;
+    background: var(--grad-purple);
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 30px 20px;
+    text-align: center;
+    order: 1;
+}
+
+.info-image-container {
+    display: none;
+}
+
+.info-content {
+    padding: 0;
+    text-align: center;
+}
+
+.info-content h2 {
+    color: var(--white);
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+
+.subtitle {
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 25px;
+    opacity: 0.95;
+}
+
+.info-items {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.info-icon {
+    font-size: 1.8rem;
+}
+
+.info-item-text {
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.info-item-text strong {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+/* ===========================================
+   COLUMNA DERECHA (FORMULARIO)
+   =========================================== */
+.contact-form {
+    flex: 1;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    order: 2;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    padding: 12px 15px;
+    border: 1.5px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+    background-color: var(--input-bg);
+    color: var(--text-dark);
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--btn-green);
+    box-shadow: 0 0 0 3px rgba(45, 196, 173, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: var(--text-light);
+}
+
+/* Validaciones */
+.form-group input:invalid:not(:placeholder-shown),
+.form-group textarea:invalid:not(:placeholder-shown) {
+    border-color: #e74c3c;
+}
+
+.form-group input:valid:not(:placeholder-shown),
+.form-group textarea:valid:not(:placeholder-shown) {
+    border-color: var(--btn-green);
+}
+
+/* ===========================================
+   BOTÓN
+   =========================================== */
+.btn-submit {
+    padding: 14px 30px;
+    background-color: var(--btn-green);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(45, 196, 173, 0.3);
+    background-color: #20b299;
+}
+
+.btn-submit:active {
+    transform: translateY(0);
+}
+
+/* ===========================================
+   MENSAJES DE ALERTA
+   =========================================== */
+.alert {
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+    text-align: center;
+    display: block;
+}
+
+.alert.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* ===========================================
+   TABLET (768px+)
+   =========================================== */
+@media (min-width: 768px) {
+    .contact-main {
+        padding: 60px 30px 100px;
+        margin-top: 100px;
+    }
+
+    .page-title {
+        font-size: 2.2rem;
+        margin-bottom: 40px;
+    }
+
+    .contact-wrapper {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        max-width: 1100px;
+        width: 100%;
+        min-height: 650px;
+        gap: 0;
+    }
+
+    .contact-info {
+        padding: 40px 30px;
+        text-align: left;
+        order: 1;
+    }
+
+    .info-image-container {
+        display: block;
+        height: 35%;
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 30px;
+    }
+
+    .info-image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.8;
+    }
+
+    .info-image-container::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to bottom, transparent, var(--primary-purple));
+    }
+
+    .info-content {
+        padding: 0;
+        text-align: left;
+    }
+
+    .info-content h2 {
+        font-size: 1.6rem;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+        margin-bottom: 40px;
+    }
+
+    .info-items {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .info-item {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 15px;
+        text-align: left;
+    }
+
+    .info-icon {
+        font-size: 2rem;
+        flex-shrink: 0;
+    }
+
+    .contact-form {
+        padding: 40px 30px;
+        order: 2;
+        gap: 20px;
+    }
+
+    .form-group {
+        gap: 10px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        padding: 14px 15px;
+        font-size: 1rem;
+    }
+
+    .btn-submit {
+        padding: 14px 30px;
+        font-size: 1rem;
+        width: auto;
+        align-self: flex-start;
+        margin-top: 15px;
+    }
+}
+
+/* ===========================================
+   DESKTOP (1200px+)
+   =========================================== */
+@media (min-width: 1200px) {
+    .contact-main {
+        padding: 80px 50px 120px;
+    }
+
+    .page-title {
+        font-size: 2.5rem;
+        margin-bottom: 50px;
+    }
+
+    .contact-wrapper {
+        max-width: 1200px;
+        min-height: 700px;
+        gap: 0;
+    }
+
+    .contact-info {
+        padding: 50px 40px;
+    }
+
+    .info-content h2 {
+        font-size: 1.8rem;
+    }
+
+    .info-items {
+        gap: 30px;
+    }
+
+    .contact-form {
+        padding: 50px 40px;
+        gap: 25px;
+    }
+
+    .btn-submit {
+        padding: 16px 40px;
+        font-size: 1.05rem;
+    }
+}
+
+/* ===========================================
+   EXTRA SMALL (320px)
+   =========================================== */
+@media (max-width: 480px) {
+    .contact-main {
+        padding: 15px 12px 60px;
+        margin-top: 70px;
+    }
+
+    .page-title {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+
+    .contact-wrapper {
+        border-radius: 12px;
+    }
+
+    .contact-info,
+    .contact-form {
+        padding: 20px 15px;
+    }
+
+    .info-content h2 {
+        font-size: 1.2rem;
+    }
+
+    .subtitle {
+        font-size: 0.9rem;
+    }
+
+    .form-group label {
+        font-size: 0.9rem;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        padding: 10px 12px;
+        font-size: 16px;
+    }
+
+    .btn-submit {
+        padding: 12px 20px;
+        font-size: 0.95rem;
+    }
+}
