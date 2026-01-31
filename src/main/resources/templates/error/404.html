@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página No Encontrada - Policlínico Autovías Seguras</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/fragments/navbar.css}">
+    <link rel="stylesheet" th:href="@{/css/fragments/footer.css}">
+    <link rel="stylesheet" th:href="@{/css/error/404.css}">
+</head>
+<body>
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+    <div class="error-container">
+        <div class="error-content">
+            <div class="error-code">404</div>
+            <h1 class="error-title">Página No Encontrada</h1>
+            <p class="error-message">
+                Lo sentimos, la página que buscas no existe o ha sido movida.
+            </p>
+
+            <div class="error-suggestions">
+                <h3>¿Qué puedes hacer?</h3>
+                <ul>
+                    <li>Verifica que la URL esté escrita correctamente</li>
+                    <li>Regresa a la página anterior usando el botón de tu navegador</li>
+                    <li>Visita nuestra página de inicio para encontrar lo que buscas</li>
+                    <li>Usa el menú de navegación para explorar nuestros servicios</li>
+                </ul>
+            </div>
+
+            <a th:href="@{/}" class="btn-home">Volver al Inicio</a>
+        </div>
+    </div>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

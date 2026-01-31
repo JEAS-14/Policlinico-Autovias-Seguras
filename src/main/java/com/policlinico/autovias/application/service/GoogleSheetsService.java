@@ -14,8 +14,10 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -31,7 +33,7 @@ public class GoogleSheetsService {
     @Value("${app.sheets.spreadsheet-id}")
     private String spreadsheetId;
 
-    @Value("${app.sheets.credentials-path}")
+    @Value("${app.sheets.credentials-path:}")
     private String credentialsPath;
 
     private final ResourceLoader resourceLoader;
@@ -123,8 +125,23 @@ public class GoogleSheetsService {
      */
     private Sheets getSheetService() throws IOException {
         try {
-            Resource resource = resourceLoader.getResource(credentialsPath);
-            InputStream inputStream = resource.getInputStream();
+            InputStream inputStream;
+            
+            // Primero intenta leer desde variable de entorno
+            String credentialsJson = System.getenv("GOOGLE_CREDENTIALS_JSON");
+            
+            if (credentialsJson != null && !credentialsJson.isEmpty()) {
+                // Usar credenciales desde variable de entorno
+                inputStream = new ByteArrayInputStream(credentialsJson.getBytes(StandardCharsets.UTF_8));
+                logger.info("Usando credenciales de Google Sheets desde variable de entorno");
+            } else if (credentialsPath != null && !credentialsPath.isEmpty()) {
+                // Usar credenciales desde archivo (fallback para desarrollo local)
+                Resource resource = resourceLoader.getResource(credentialsPath);
+                inputStream = resource.getInputStream();
+                logger.info("Usando credenciales de Google Sheets desde archivo: {}", credentialsPath);
+            } else {
+                throw new IOException("No se encontraron credenciales de Google Sheets. Configure GOOGLE_CREDENTIALS_JSON o app.sheets.credentials-path");
+            }
 
             ServiceAccountCredentials credentials = ServiceAccountCredentials
                     .fromStream(inputStream);
