@@ -220,7 +220,15 @@ a { text-decoration: none; }
 /* =========================================
    5. CURSOS ESPECIALES (GRID AVANZADO)
    ========================================= */
-.special-courses-section { padding: 80px 0; background: white; }
+.special-courses-section {
+    padding: 80px 0;
+    position: relative;
+    background: linear-gradient(135deg, rgba(248, 249, 252, 0.97) 0%, rgba(255, 255, 255, 0.95) 100%),
+                url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=1470&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
 .special-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; margin-top: 40px; }
 
 .special-card {
@@ -298,8 +306,15 @@ a { text-decoration: none; }
    7. FOOTER Y EXTRAS
    ========================================= */
 .cta-simple {
-    padding: 80px 0; background: var(--brand-purple); text-align: center; color: white;
-    background-image: radial-gradient(circle at top right, #3b2375 0%, transparent 40%);
+    padding: 80px 0;
+    position: relative;
+    text-align: center;
+    color: white;
+    background: linear-gradient(135deg, rgba(46, 26, 95, 0.92) 0%, rgba(26, 15, 53, 0.88) 100%),
+                url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=1469&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 .cta-simple h2 { font-size: 2.5rem; margin-bottom: 10px; }
 .btn-white { background: white; color: var(--brand-purple); padding: 18px 45px; border-radius: 50px; font-weight: 700; }

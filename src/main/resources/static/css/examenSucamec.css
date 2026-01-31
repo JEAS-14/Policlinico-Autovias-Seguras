@@ -192,6 +192,17 @@ body {
     margin: 0 auto 40px;
 }
 
+/* --- SECCION MODALIDADES CON FONDO --- */
+.modalities-section {
+    position: relative;
+    padding: 60px 0;
+    background: linear-gradient(135deg, rgba(248, 249, 252, 0.95) 0%, rgba(240, 235, 255, 0.93) 100%),
+                url('https://res.cloudinary.com/dtozni6ik/image/upload/v1769873842/seguridad-privada_xk2bpd.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
 /* --- GRID DE MODALIDADES --- */
 .modalities-grid {
     display: grid;
@@ -237,6 +248,17 @@ body {
 .modality-card p {
     font-size: 0.9rem;
     color: #666;
+}
+
+/* --- SECCION REQUIREMENTS CON FONDO --- */
+.requirements-section {
+    position: relative;
+    padding: 80px 0;
+    background: linear-gradient(135deg, rgba(224, 247, 250, 0.96) 0%, rgba(209, 196, 233, 0.94) 100%),
+                url('https://res.cloudinary.com/dtozni6ik/image/upload/v1769873842/seguridad-privada_xk2bpd.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 /* --- SUPER TARJETA SUCAMEC (ESTILO MEJORADO) --- */
