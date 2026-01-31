@@ -48,6 +48,10 @@
 
             <h3>2. Detalle de la Reclamación</h3>
             <div class="info-row">
+                <span class="label">Tipo:</span>
+                <span th:text="${tipo}" style="background: #1e3c72; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold;"></span>
+            </div>
+            <div class="info-row">
                 <span class="label">Detalle:</span><br>
                 <p th:text="${detalle}"></p>
             </div>

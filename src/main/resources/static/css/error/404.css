@@ -1,3 +1,7 @@
+body {
+    padding-top: 100px;
+}
+
 .error-container {
     min-height: 80vh;
     display: flex;

@@ -36,6 +36,10 @@ public class ReclamacionDTO {
     @Email(message = "Email inválido")
     private String email;
 
+    @NotBlank(message = "El tipo es obligatorio")
+    @Pattern(regexp = "^(RECLAMO|QUEJA)$", message = "El tipo debe ser RECLAMO o QUEJA")
+    private String tipo;
+
     @NotBlank(message = "El detalle es obligatorio")
     private String detalle;
 

@@ -63,8 +63,10 @@ body {
     background: linear-gradient(123.79deg, rgba(250, 255, 254, 0) 50.71%, rgba(255, 255, 255, 0.2) 52.17%),
         linear-gradient(280.42deg, rgba(59, 188, 168, 0.176) 13.12%, rgba(255, 251, 251, 0.2) 45.24%),
         linear-gradient(101.84deg, rgba(59, 188, 168, 0.582) 18.18%, rgba(238, 249, 247, 0.6) 46.15%),
-        url('https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=1000&auto=format&fit=crop');
-    background-size: cover; background-position: center top;
+        url('https://res.cloudinary.com/dtozni6ik/image/upload/v1769877676/img_0677_mcsxed.webp');
+    background-size: cover; 
+    background-position: center;
+    background-attachment: fixed;
     display: flex; flex-direction: column; justify-content: center; align-items: center;
     padding: 140px 20px 60px; text-align: center;
 }
@@ -95,15 +97,17 @@ body {
    ========================================================================== */
 .unified-background {
     width: 100%;
-    /* Degradado Corregido: Turquesa muy suave -> Azul claro -> Blanco. */
-    background: linear-gradient(180deg, 
-        rgba(59, 188, 168, 0.15) 0%,  
-        #e3f2fd 50%,                  
-        #ffffff 100%);                
+    position: relative;
+    /* Imagen de fondo que cubre todo desde protocolos hasta timeline */
+    background: linear-gradient(135deg, rgba(227, 242, 253, 0.96) 0%, rgba(255, 255, 255, 0.94) 100%),
+                url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=1470&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     padding-bottom: 50px;
 }
 
-/* Hacemos transparentes las secciones para que se vea el fondo */
+/* Hacemos transparentes las secciones para que se vea el fondo unificado */
 .types-section, .protocol-section, .timeline-section {
     background: transparent !important;
     padding-top: 60px; padding-bottom: 40px;

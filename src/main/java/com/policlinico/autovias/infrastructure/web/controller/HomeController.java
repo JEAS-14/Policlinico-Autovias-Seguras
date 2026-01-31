@@ -3,8 +3,10 @@ package com.policlinico.autovias.infrastructure.web.controller;
 import com.policlinico.autovias.application.dto.ReclamacionDTO;
 import com.policlinico.autovias.application.service.EmailService;
 import com.policlinico.autovias.application.service.GoogleSheetsService;
+import com.policlinico.autovias.application.service.ReclamacionService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,10 +18,12 @@ import org.springframework.web.bind.annotation.PostMapping;
  */
 @Controller
 @RequiredArgsConstructor
+@Slf4j
 public class HomeController {
 
     private final EmailService emailService;
     private final GoogleSheetsService googleSheetsService;
+    private final ReclamacionService reclamacionService;
     
     /**
      * Página principal / Landing page
@@ -102,27 +106,11 @@ public class HomeController {
         }
 
         try {
-            // Generar número de ticket único
-            String numeroTicket = "REC-" + System.currentTimeMillis();
-            
-            // Guardar en Google Sheets
-            googleSheetsService.guardarReclamacion(
-                    reclamacion.getNombre(),
-                    reclamacion.getApellido(),
-                    reclamacion.getDniCe(),
-                    reclamacion.getEmail(),
-                    reclamacion.getTelefono(),
-                    reclamacion.getDomicilio(),
-                    reclamacion.getDetalle(),
-                    reclamacion.getPedido(),
-                    numeroTicket
-            );
-            
-            // Enviar emails
-            emailService.enviarNotificacionReclamacion(reclamacion);
-            emailService.enviarConfirmacionReclamante(reclamacion);
+            // Delegar al servicio que maneja todo: DB, Google Sheets (backup) y Emails
+            reclamacionService.crearReclamacion(reclamacion);
             model.addAttribute("success", "Su reclamación ha sido enviada exitosamente. Recibirá una confirmación por email y una respuesta en un plazo máximo de 15 días hábiles.");
         } catch (Exception e) {
+            log.error("Error al procesar reclamación", e);
             model.addAttribute("error", "Hubo un error al enviar la reclamación. Por favor, inténtelo más tarde.");
         }
 

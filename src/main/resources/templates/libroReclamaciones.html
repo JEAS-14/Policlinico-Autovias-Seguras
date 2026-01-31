@@ -75,7 +75,27 @@
             <fieldset>
                 <legend><i class="fas fa-edit"></i> 2. Detalle de la Reclamación</legend>
                 
-               
+                <div class="form-group">
+                    <label>Tipo:</label>
+                    <div class="tipo-selector">
+                        <label class="radio-option">
+                            <input type="radio" name="tipo" value="RECLAMO" required checked>
+                            <span class="radio-label">
+                                <i class="fas fa-exclamation-circle"></i>
+                                <strong>Reclamo</strong>
+                                <small>Disconformidad relacionada al servicio</small>
+                            </span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="tipo" value="QUEJA" required>
+                            <span class="radio-label">
+                                <i class="fas fa-comment-dots"></i>
+                                <strong>Queja</strong>
+                                <small>Disconformidad no relacionada al servicio</small>
+                            </span>
+                        </label>
+                    </div>
+                </div>
 
                 <div class="form-group">
                     <label>Detalle:</label>

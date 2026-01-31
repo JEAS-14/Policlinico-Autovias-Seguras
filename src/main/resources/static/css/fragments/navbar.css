@@ -27,45 +27,63 @@ html {
     max-width: 100%; /* Cambiar de 1400px a 100% para usar todo el ancho */
     padding: 0 20px;  /* Reducir de 50px a 20px para pegarlo al borde */
     display: flex;
-    justify-content: flex-start; /* Forzar que todo empiece desde la izquierda */
+    justify-content: flex-start; /* Cambiar a flex-start para permitir margin-left del logo */
     align-items: center;
     height: 100%;
 }
 
 /* --- LOGO --- */
 .logo {
-    display: flex; align-items: center;
-    text-decoration: none; margin-right: 80px;
+    display: flex; 
+    align-items: center;
+    text-decoration: none; 
+    margin-left: 80px; /* 80px desde la izquierda */
+    margin-right: 40px;
+    flex-shrink: 0; /* Evita que se comprima */
 }
 .logo img {
-    height: 85px; width: auto;
+    height: 85px; 
+    width: auto;
+    max-width: 200px; /* Limita el ancho máximo */
     object-fit: contain;
     transition: transform 0.3s;
 }
+.logo:hover img { transform: scale(1.05); }
 .logo:hover img { transform: scale(1.05); }
 /* --- ESTILO BURBUJA IZQUIERDA --- */
 .nav-contact-bubble {
     display: flex;
     align-items: center;
-    margin-right: 120px; /* Espacio para que no se pegue al logo */
+    margin-right: 30px; /* Reducir espacio */
     background: #f0fdfa;
-    padding: 8px 18px;
+    padding: 10px 22px;
     border-radius: 50px;
     border: 1px solid var(--nav-teal);
     transition: all 0.3s ease;
     flex-shrink: 0; /* Evita que se deforme en pantallas medianas */
 }
 
+.nav-contact-bubble:hover {
+    background: var(--nav-teal);
+    transform: scale(1.05);
+}
+
+.nav-contact-bubble:hover .bubble-label,
+.nav-contact-bubble:hover .bubble-number {
+    color: white;
+}
+
 /* --- ESTILO BURBUJA IZQUIERDA (CORREGIDO) --- */
 .pulse-icon {
-    width: 32px;
-    height: 32px;
+    width: 38px;
+    height: 38px;
     background: var(--nav-teal);
     color: white;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 1rem;
     position: relative;
     z-index: 1;
     animation: pulse-wave 2s infinite ease-out;
@@ -112,36 +130,29 @@ html {
 }
 
 .bubble-label {
-    font-size: 0.6rem;
+    font-size: 0.7rem;
     color: var(--nav-purple);
     font-weight: 700;
     text-transform: uppercase;
 }
 
 .bubble-number {
-    font-size: 0.95rem;
+    font-size: 1.05rem;
     color: var(--nav-purple);
     font-weight: 800;
-}
-
-/* Ajuste del LOGO para que respete el espacio del menú */
-.logo {
-    margin-right: auto !important; /* Mantiene el menú a la derecha */
-}
-
-@media (min-width: 993px) {
-    .logo {
-        margin-left: 0;
-        transform: translateX(20px);
-    }
 }
 
 /* ===========================================
    MENÚ PRINCIPAL (ESCRITORIO)
    =========================================== */
 .nav-menu {
-    display: flex; list-style: none; gap: 40px;
-    margin: 0; padding: 0; flex: 1; justify-content: center;
+    display: flex; 
+    list-style: none; 
+    gap: 30px;
+    margin: 0; 
+    padding: 0; 
+    flex: 1; 
+    justify-content: center; /* Centrado con flex */
 }
 
 /* Estilos de Enlaces */
@@ -149,7 +160,7 @@ html {
     font-family: 'Poppins', sans-serif;
     text-decoration: none;
     color: #333;
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: 500;
     position: relative;
     transition: color 0.3s;
@@ -233,8 +244,11 @@ html {
    BOTONES
    =========================================== */
 .nav-buttons {
-    display: flex; gap: 15px; align-items: center;
-    margin-left: auto; padding-left: 40px;
+    display: flex; 
+    gap: 15px; 
+    align-items: center;
+    margin-left: auto; /* Empuja los botones a la derecha */
+    padding-left: 40px;
 }
 .btn-nav-cotiza {
     display: inline-block; padding: 10px 25px;
@@ -263,14 +277,46 @@ html {
 .hamburger span { width: 30px; height: 3px; background-color: var(--nav-purple); transition: 0.3s; }
 
 @media (max-width: 1200px) {
-    .nav-container { padding: 0 20px; }
+    .nav-container { padding: 0 15px; }
     .nav-menu { gap: 20px; }
+    .logo { margin-right: 20px; }
+    .nav-contact-bubble { margin-right: 15px; padding: 8px 16px; }
+    .nav-buttons { padding-left: 20px; }
 }
 
 @media (max-width: 992px) {
     .navbar { height: 80px; }
     .hamburger { display: flex; }
-    .logo img { height: 50px; }
+    
+    /* Adaptar la burbuja de contacto en móvil */
+    .nav-contact-bubble {
+        margin-right: 10px;
+        padding: 6px 12px;
+    }
+    
+    .pulse-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 0.9rem;
+    }
+    
+    .bubble-text {
+        display: none; /* Ocultar texto en móvil, solo mostrar icono */
+    }
+    
+    /* Logo responsive */
+    .logo {
+        margin-right: auto;
+        margin-left: 50px;
+        transform: none;
+    }
+    
+    .logo img { 
+        height: 60px;
+        max-width: 150px;
+        margin-left: 50px;
+        object-fit: contain;
+    }
 
     /* CONTENEDOR MENÚ MÓVIL */
     .nav-menu {

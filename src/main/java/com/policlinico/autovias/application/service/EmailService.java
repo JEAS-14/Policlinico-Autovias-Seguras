@@ -163,6 +163,7 @@ public class EmailService {
             context.setVariable("domicilio", reclamacion.getDomicilio());
             context.setVariable("telefono", reclamacion.getTelefono());
             context.setVariable("email", reclamacion.getEmail());
+            context.setVariable("tipo", reclamacion.getTipo());
             context.setVariable("detalle", reclamacion.getDetalle());
             context.setVariable("pedido", reclamacion.getPedido() != null ? reclamacion.getPedido() : "N/A");
             context.setVariable("fecha", LocalDateTime.now().format(
@@ -196,6 +197,7 @@ public class EmailService {
             Context context = new Context();
             context.setVariable("nombre", reclamacion.getNombre());
             context.setVariable("apellido", reclamacion.getApellido());
+            context.setVariable("tipo", reclamacion.getTipo());
             context.setVariable("fecha", LocalDateTime.now().format(
                 DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
             ));

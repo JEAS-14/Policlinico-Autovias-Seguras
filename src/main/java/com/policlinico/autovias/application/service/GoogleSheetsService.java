@@ -35,6 +35,12 @@ public class GoogleSheetsService {
 
     @Value("${app.sheets.credentials-path:}")
     private String credentialsPath;
+    
+    @Value("${app.sheets.consultas-sheet}")
+    private String consultasSheet;
+    
+    @Value("${app.sheets.reclamaciones-sheet}")
+    private String reclamacionesSheet;
 
     private final ResourceLoader resourceLoader;
 
@@ -60,7 +66,7 @@ public class GoogleSheetsService {
                     numeroTicket
             ));
 
-            agregarFilaASheets("Consultas", fila);
+            agregarFilaASheets(consultasSheet, fila);
             logger.info("Consulta guardada en Google Sheets: Ticket {}", numeroTicket);
         } catch (Exception e) {
             logger.error("Error al guardar consulta en Google Sheets", e);
@@ -71,9 +77,12 @@ public class GoogleSheetsService {
      * Guarda una reclamación en Google Sheets (pestaña "Reclamaciones")
      */
     public void guardarReclamacion(String nombre, String apellido, String dni, String email,
-                                    String telefono, String direccion, String detalles,
+                                    String telefono, String direccion, String tipo, String detalles,
                                     String solicitud, String numeroTicket) {
         try {
+            logger.info("Intentando guardar reclamación en Google Sheets: {}", numeroTicket);
+            logger.info("Tipo recibido: {}", tipo);
+            
             List<Object> fila = new ArrayList<>(Arrays.asList(
                     LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
                     nombre,
@@ -82,15 +91,18 @@ public class GoogleSheetsService {
                     email,
                     telefono,
                     direccion,
+                    tipo,
                     detalles,
-                    solicitud,
+                    solicitud != null ? solicitud : "",
                     numeroTicket
             ));
 
-            agregarFilaASheets("Reclamaciones", fila);
-            logger.info("Reclamación guardada en Google Sheets: Ticket {}", numeroTicket);
+            logger.info("Fila a insertar: {} elementos", fila.size());
+            agregarFilaASheets(reclamacionesSheet, fila);
+            logger.info("Reclamación guardada exitosamente en Google Sheets: Ticket {} - Tipo: {}", numeroTicket, tipo);
         } catch (Exception e) {
-            logger.error("Error al guardar reclamación en Google Sheets", e);
+            logger.error("Error al guardar reclamación en Google Sheets. Ticket: {}, Error: {}", numeroTicket, e.getMessage(), e);
+            throw new RuntimeException("Error al guardar en Google Sheets", e);
         }
     }
 
@@ -98,26 +110,40 @@ public class GoogleSheetsService {
      * Agrega una fila al final de una hoja específica
      */
     private void agregarFilaASheets(String nombreHoja, List<Object> fila) throws IOException {
-        Sheets service = getSheetService();
+        try {
+            logger.info("Conectando a Google Sheets para hoja: {}", nombreHoja);
+            Sheets service = getSheetService();
 
-        // Encontrar la primera fila vacía
-        String range = nombreHoja + "!A:A";
-        ValueRange response = service.spreadsheets().values()
-                .get(spreadsheetId, range)
-                .execute();
+            // Encontrar la primera fila vacía
+            String range = nombreHoja + "!A:A";
+            logger.info("Buscando última fila en rango: {}", range);
+            
+            ValueRange response = service.spreadsheets().values()
+                    .get(spreadsheetId, range)
+                    .execute();
 
-        List<List<Object>> values = response.getValues();
-        int filaInsertarEn = (values != null ? values.size() : 0) + 1;
+            List<List<Object>> values = response.getValues();
+            int filaInsertarEn = (values != null ? values.size() : 0) + 1;
+            
+            logger.info("Insertando en fila: {}", filaInsertarEn);
 
-        // Insertar la nueva fila
-        String insertRange = nombreHoja + "!A" + filaInsertarEn;
-        ValueRange body = new ValueRange()
-                .setValues(Arrays.asList(fila));
+            // Insertar la nueva fila
+            String insertRange = nombreHoja + "!A" + filaInsertarEn;
+            logger.info("Rango de inserción: {}", insertRange);
+            
+            ValueRange body = new ValueRange()
+                    .setValues(Arrays.asList(fila));
 
-        service.spreadsheets().values()
-                .update(spreadsheetId, insertRange, body)
-                .setValueInputOption("USER_ENTERED")
-                .execute();
+            service.spreadsheets().values()
+                    .update(spreadsheetId, insertRange, body)
+                    .setValueInputOption("USER_ENTERED")
+                    .execute();
+                    
+            logger.info("Fila insertada exitosamente en {}", insertRange);
+        } catch (Exception e) {
+            logger.error("Error detallado al agregar fila a hoja '{}': {}", nombreHoja, e.getMessage(), e);
+            throw new IOException("Error al agregar fila a Google Sheets en hoja: " + nombreHoja, e);
+        }
     }
 
     /**

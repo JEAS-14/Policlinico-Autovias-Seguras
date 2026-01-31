@@ -121,6 +121,81 @@ input:focus, textarea:focus {
     cursor: pointer;
 }
 
+/* --- SELECTOR DE TIPO (Reclamo/Queja) --- */
+.tipo-selector {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.tipo-selector .radio-option {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    cursor: pointer;
+}
+
+.tipo-selector input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.tipo-selector .radio-label {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    background: white;
+    transition: all 0.3s ease;
+    width: 100%;
+    cursor: pointer;
+}
+
+.tipo-selector .radio-label i {
+    font-size: 1.5rem;
+    color: var(--primary-teal);
+    transition: transform 0.3s ease;
+}
+
+.tipo-selector .radio-label strong {
+    font-size: 1rem;
+    color: #333;
+    display: block;
+}
+
+.tipo-selector .radio-label small {
+    font-size: 0.75rem;
+    color: #666;
+    line-height: 1.3;
+}
+
+.tipo-selector input[type="radio"]:checked + .radio-label {
+    border-color: var(--primary-purple);
+    background: linear-gradient(135deg, rgba(46, 26, 95, 0.05) 0%, rgba(59, 188, 168, 0.05) 100%);
+    box-shadow: 0 4px 12px rgba(46, 26, 95, 0.15);
+    transform: translateY(-2px);
+}
+
+.tipo-selector input[type="radio"]:checked + .radio-label i {
+    color: var(--primary-purple);
+    transform: scale(1.15);
+}
+
+.tipo-selector input[type="radio"]:checked + .radio-label strong {
+    color: var(--primary-purple);
+}
+
+.tipo-selector .radio-label:hover {
+    border-color: var(--primary-teal);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
 .tag-reclamo { color: #d9534f; font-weight: 800; }
 .tag-queja { color: #f0ad4e; font-weight: 800; }
 
@@ -164,6 +239,7 @@ small {
     padding: 15px 20px;
     border-radius: 8px;
     margin-bottom: 20px;
+    margin-top: 20px;
     font-weight: 500;
     display: flex;
     align-items: center;
@@ -194,4 +270,12 @@ small {
     .libro-header h1 { font-size: 1.8rem; }
     legend { font-size: 1rem; }
     fieldset { padding: 15px; }
+    
+    .tipo-selector {
+        grid-template-columns: 1fr;
+    }
+    
+    .tipo-selector .radio-label {
+        padding: 12px;
+    }
 }

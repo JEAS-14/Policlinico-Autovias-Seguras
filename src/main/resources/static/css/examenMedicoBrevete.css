@@ -363,9 +363,15 @@ body {
    ========================================================================== */
 .info-section {
     padding: 60px 0 80px;
-    background-color: #f8f9fa;
-    /* Fondo gris muy suave para separar */
+    position: relative;
     text-align: center;
+    /* Fondo con imagen de carretera/conducción */
+    background: linear-gradient(135deg, rgba(248, 249, 250, 0.96) 0%, rgba(255, 255, 255, 0.94) 100%),
+                url('https://res.cloudinary.com/dtozni6ik/image/upload/v1769875739/678fc5aa2935e92ec35674b5_tgqcfq.webp');
+    background-size: auto 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .info-title {
@@ -386,14 +392,14 @@ body {
     gap: 20px;
 }
 
-/* Botones Individuales */
+/* Botones Individuales - Más llamativos */
 .info-btn {
-    background: white;
-    border: 1px solid #e0e0e0;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
+    border: 2px solid var(--primary-purple);
     border-radius: 15px;
     padding: 20px 25px;
     text-decoration: none;
-    color: #555;
+    color: var(--primary-purple);
     font-weight: 700;
     font-size: 0.9rem;
     display: flex;
@@ -401,22 +407,28 @@ body {
     gap: 15px;
     text-align: left;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 6px 15px rgba(74, 20, 140, 0.15);
 }
 
 .info-btn i {
     font-size: 2rem;
-    color: var(--primary-purple);
+    color: var(--btn-green);
     flex-shrink: 0;
     /* Para que el icono no se aplaste */
 }
 
-/* Hover de botones info */
+/* Hover de botones info - Efecto llamativo */
 .info-btn:hover {
+    background: linear-gradient(135deg, var(--primary-purple) 0%, #5836be 100%);
     border-color: var(--primary-purple);
-    background: #fff;
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(74, 20, 140, 0.15);
+    color: white;
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 12px 25px rgba(74, 20, 140, 0.3);
+}
+
+.info-btn:hover i {
+    color: var(--btn-green);
+    transform: scale(1.1);
 }
 
 .info-btn:hover i {
