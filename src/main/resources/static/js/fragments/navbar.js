@@ -4,6 +4,22 @@ document.addEventListener('DOMContentLoaded', function() {
     const navButtons = document.querySelector('.nav-buttons');
     const navLinks = document.querySelectorAll('.nav-menu a'); // Todos los enlaces
     const dropdownParents = document.querySelectorAll('.nav-menu .has-dropdown');
+    const contactBubble = document.getElementById('contactBubble');
+
+    // --- FUNCIÓN DROPDOWN DE CONTACTO ---
+    if (contactBubble) {
+        contactBubble.addEventListener('click', function(e) {
+            e.stopPropagation();
+            this.classList.toggle('active');
+        });
+        
+        // Cerrar al hacer clic fuera
+        document.addEventListener('click', function(e) {
+            if (contactBubble && !contactBubble.contains(e.target)) {
+                contactBubble.classList.remove('active');
+            }
+        });
+    }
 
     // --- FUNCIÓN HAMBURGUESA ---
     function toggleMenu() {

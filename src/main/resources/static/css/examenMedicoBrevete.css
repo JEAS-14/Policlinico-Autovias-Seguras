@@ -38,7 +38,7 @@ body {
     background: linear-gradient(123.79deg, rgba(250, 255, 254, 0) 50.71%, rgba(255, 255, 255, 0.2) 52.17%),
         linear-gradient(280.42deg, rgba(59, 188, 168, 0.176) 13.12%, rgba(255, 251, 251, 0.2) 45.24%),
         linear-gradient(101.84deg, rgba(59, 188, 168, 0.384) 18.18%, rgba(238, 249, 247, 0.6) 46.15%),
-        url('https://res.cloudinary.com/dtozni6ik/image/upload/v1770040798/imagen_2026-02-02_085958778_wjzago.png');
+        url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=1000&auto=format&fit=crop');
     background-size: cover;
     background-position: 50% 10%;
     padding: 100px 20px;
@@ -169,7 +169,20 @@ body {
 }
 
 .category-section {
+    position: relative;
     padding: 60px 0 20px;
+    background: 
+        linear-gradient(to bottom, rgba(224, 247, 250, 0.92), rgba(209, 196, 233, 0.92)),
+        url('https://res.cloudinary.com/dtozni6ik/image/upload/v1770052294/imagen_2026-02-02_121134302_jufbvu.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.category-section > * {
+    position: relative;
+    z-index: 1;
 }
 
 .section-header {
@@ -366,10 +379,10 @@ body {
     position: relative;
     text-align: center;
     /* Fondo con imagen de carretera/conducción */
-    background: linear-gradient(135deg, rgba(248, 249, 250, 0.96) 0%, rgba(255, 255, 255, 0.94) 100%),
+    background: linear-gradient(135deg, rgba(248, 249, 250, 0.96) 0%, rgba(255, 255, 255, 0.74) 100%),
                 url('https://res.cloudinary.com/dtozni6ik/image/upload/v1770040588/imagen_2026-02-02_085628525_plhjbg.png');
-    background-size: auto 100%;
-    background-position: center;
+    background-size: cover;
+    background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
 }

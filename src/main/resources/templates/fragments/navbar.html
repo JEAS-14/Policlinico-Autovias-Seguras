@@ -7,8 +7,8 @@
 <nav class="navbar" th:fragment="navbar">
     <div class="nav-container">
 
-        <div class="nav-contact-bubble">
-            <a href="tel:+51913889497" class="bubble-link">
+        <div class="nav-contact-bubble" id="contactBubble">
+            <div class="bubble-content">
                 <div class="pulse-icon">
                     <i class="fas fa-phone-alt"></i>
                 </div>
@@ -16,7 +16,17 @@
                     <span class="bubble-label">Atención inmediata</span>
                     <strong class="bubble-number">913 889 497</strong>
                 </div>
-            </a>
+            </div>
+            <div class="bubble-dropdown" id="contactDropdown">
+                <a href="tel:+51913889497" class="dropdown-option call-option">
+                    <i class="fas fa-phone"></i>
+                    <span>Llamar ahora</span>
+                </a>
+                <a href="https://wa.me/51913889497" class="dropdown-option whatsapp-option" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>Enviar WhatsApp</span>
+                </a>
+            </div>
         </div>
 
         <a th:href="@{/}" class="logo">

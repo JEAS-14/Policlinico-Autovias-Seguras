@@ -1,7 +1,7 @@
 * --- Variables y Reset --- */
 :root {
-    --primary-purple: #4a148c;
-    --btn-purple: #5836be;
+    --primary-purple: #2E1A5F;
+    --btn-purple: #2E1A5F;
     --btn-green: #25D366;
     --bg-gradient-top: #e0f7fa;
     --bg-gradient-bottom: #d1c4e9;
@@ -86,11 +86,13 @@ body {
 }
 
 .btn-purple {
-    background-color: var(--btn-purple);
+    background-color: #2E1A5F !important;
+    color: white !important;
 }
 
 .btn-green {
-    background-color: var(--btn-green);
+    background-color: #25D366 !important;
+    color: white !important;
 }
 
 .btn:hover {
@@ -99,8 +101,8 @@ body {
 }
 
 .btn-green-large {
-    background-color: var(--btn-green);
-    color: white;
+    background-color: #25D366 !important;
+    color: white !important;
     padding: 15px 40px;
     border-radius: 30px;
     font-size: 1.2rem;
