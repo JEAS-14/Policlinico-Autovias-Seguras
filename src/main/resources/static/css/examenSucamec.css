@@ -1,4 +1,4 @@
-/* --- Variables y Reset --- */
+* --- Variables y Reset --- */
 :root {
     --primary-purple: #4a148c;
     --btn-purple: #5836be;
@@ -197,7 +197,7 @@ body {
     position: relative;
     padding: 60px 0;
     background: linear-gradient(135deg, rgba(248, 249, 252, 0.95) 0%, rgba(240, 235, 255, 0.93) 100%),
-                url('https://res.cloudinary.com/dtozni6ik/image/upload/v1769873842/seguridad-privada_xk2bpd.jpg');
+                url('https://res.cloudinary.com/dtozni6ik/image/upload/v1770040501/imagen_2026-02-02_085501377_kitinb.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -255,7 +255,7 @@ body {
     position: relative;
     padding: 80px 0;
     background: linear-gradient(135deg, rgba(224, 247, 250, 0.96) 0%, rgba(209, 196, 233, 0.94) 100%),
-                url('https://res.cloudinary.com/dtozni6ik/image/upload/v1769873842/seguridad-privada_xk2bpd.jpg');
+                url('https://res.cloudinary.com/dtozni6ik/image/upload/v1770040501/imagen_2026-02-02_085501377_kitinb.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
