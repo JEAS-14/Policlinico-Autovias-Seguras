@@ -366,6 +366,34 @@ html {
     .nav-buttons { padding-left: 20px; }
 }
 
+/* Tablet específico - Rango intermedio */
+@media (max-width: 1100px) and (min-width: 993px) {
+    .nav-menu { 
+        gap: 15px; 
+    }
+    
+    .nav-menu a {
+        font-size: 1rem;
+    }
+    
+    .logo img {
+        height: 70px;
+    }
+    
+    .nav-contact-bubble {
+        padding: 8px 14px;
+    }
+    
+    .bubble-number {
+        font-size: 1.3rem;
+    }
+    
+    .btn-nav-cotiza, .btn-nav-resultados {
+        padding: 10px 20px;
+        font-size: 0.85rem;
+    }
+}
+
 @media (max-width: 992px) {
     .navbar { 
         height: 80px;
@@ -388,6 +416,23 @@ html {
         margin-right: 0;
         padding: 8px 12px;
         order: -1;
+    }
+    
+    /* El dropdown debe aparecer mejor en móvil */
+    .bubble-dropdown {
+        left: 0;
+        right: auto;
+        min-width: 200px;
+        top: calc(100% + 5px);
+    }
+    
+    .dropdown-option {
+        font-size: 0.85rem;
+        padding: 10px 14px;
+    }
+    
+    .dropdown-option i {
+        font-size: 1rem;
     }
     
     .pulse-icon {
