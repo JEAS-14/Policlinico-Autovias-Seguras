@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const navMenu = document.querySelector('.nav-menu');
     const navButtons = document.querySelector('.nav-buttons');
     const navLinks = document.querySelectorAll('.nav-menu a'); // Todos los enlaces
+    const dropdownParents = document.querySelectorAll('.nav-menu .has-dropdown');
 
     // --- FUNCIÓN HAMBURGUESA ---
     function toggleMenu() {
@@ -15,6 +16,37 @@ document.addEventListener('DOMContentLoaded', function() {
     if (hamburger) {
         hamburger.addEventListener('click', toggleMenu);
     }
+
+    // --- DROPDOWN EN MÓVIL (CLICK) ---
+    dropdownParents.forEach(dropdown => {
+        const menuLink = dropdown.querySelector('> a');
+        
+        menuLink.addEventListener('click', function(e) {
+            // Solo prevenir en móvil
+            if (window.innerWidth <= 992) {
+                e.preventDefault();
+                
+                // Cerrar otros dropdowns abiertos
+                dropdownParents.forEach(other => {
+                    if (other !== dropdown) {
+                        other.classList.remove('open');
+                    }
+                });
+                
+                // Toggle del actual
+                dropdown.classList.toggle('open');
+            }
+        });
+    });
+
+    // Cerrar dropdowns al cambiar tamaño de pantalla
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 992) {
+            dropdownParents.forEach(dropdown => {
+                dropdown.classList.remove('open');
+            });
+        }
+    });
 
     // --- LÓGICA DE ACTIVE STATE (MEJORADA) ---
     const currentUrl = window.location.pathname;

@@ -285,18 +285,32 @@ html {
 }
 
 @media (max-width: 992px) {
-    .navbar { height: 80px; }
-    .hamburger { display: flex; }
+    .navbar { 
+        height: 80px;
+        --nav-height: 80px;
+    }
+    .hamburger { 
+        display: flex;
+        position: absolute;
+        right: 20px;
+        z-index: 1002;
+    }
+    
+    .nav-container {
+        padding: 0 15px;
+        justify-content: space-between;
+    }
     
     /* Adaptar la burbuja de contacto en móvil */
     .nav-contact-bubble {
-        margin-right: 10px;
-        padding: 6px 12px;
+        margin-right: 0;
+        padding: 8px 12px;
+        order: -1;
     }
     
     .pulse-icon {
-        width: 32px;
-        height: 32px;
+        width: 36px;
+        height: 36px;
         font-size: 0.9rem;
     }
     
@@ -306,102 +320,169 @@ html {
     
     /* Logo responsive */
     .logo {
+        margin-left: 10px;
         margin-right: auto;
-        margin-left: 50px;
-        transform: none;
+        order: 0;
     }
     
     .logo img { 
-        height: 60px;
-        max-width: 150px;
-        margin-left: 50px;
+        height: 55px;
+        max-width: 140px;
+        margin-left: 0;
         object-fit: contain;
     }
 
     /* CONTENEDOR MENÚ MÓVIL */
     .nav-menu {
-        position: fixed; top: 80px; right: -100%;
-        width: 100%; height: calc(100vh - 80px);
+        position: fixed;
+        top: 80px;
+        right: -100%;
+        width: 100%;
+        height: calc(100vh - 80px);
         background: white;
         flex-direction: column;
-        align-items: stretch; /* ESTIRAR todo el ancho */
+        align-items: stretch;
         justify-content: flex-start;
-        padding-top: 20px;
-        transition: 0.4s;
+        padding: 20px 0;
+        transition: right 0.4s ease;
         overflow-y: auto;
+        gap: 0;
+        z-index: 1001;
     }
-    .nav-menu.active { right: 0; }
+    .nav-menu.active { 
+        right: 0;
+        box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+    }
     
-    /* Centramos el texto de los enlaces principales */
-    .nav-menu > li > a { 
-        font-size: 1.5rem; 
-        justify-content: center; 
+    /* Items del menú móvil */
+    .nav-menu > li {
         width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    /* Enlaces principales del menú */
+    .nav-menu > li > a { 
+        font-size: 1.2rem;
+        padding: 15px 20px;
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+        border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .nav-menu > li > a::before,
+    .nav-menu > li > a::after {
+        display: none !important;
     }
 
-    /* --- CORRECCIÓN DROPDOWN MÓVIL (LA PARTE CLAVE) --- */
+    /* --- CORRECCIÓN DROPDOWN MÓVIL --- */
     .nav-menu li.has-dropdown {
         flex-direction: column;
         height: auto;
         width: 100%;
         display: flex;
-        align-items: center;
+        align-items: stretch;
+    }
+    
+    .nav-menu li.has-dropdown > a {
+        position: relative;
+    }
+    
+    /* Flecha indicadora de dropdown en móvil */
+    .nav-menu li.has-dropdown > a::after {
+        content: '\f078';
+        font-family: 'Font Awesome 6 Free';
+        font-weight: 900;
+        font-size: 0.8rem;
+        margin-left: 10px;
+        transition: transform 0.3s;
+        display: inline-block !important;
+    }
+    
+    .nav-menu li.has-dropdown.open > a::after {
+        transform: rotate(180deg);
     }
 
     .dropdown-menu {
-        /* Usamos !important para borrar las reglas de PC a la fuerza */
         position: static !important;
         transform: none !important;
         box-shadow: none !important;
         opacity: 1 !important;
         visibility: visible !important;
         
-        display: none; /* Se oculta hasta hover/click */
+        display: none;
+        max-height: 0;
         width: 100% !important;
         min-width: 0 !important;
         
-        background-color: #f4f4f4;
+        background-color: #f8f8f8;
         border-top: none;
         border-radius: 0;
         margin: 0;
         padding: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease, padding 0.3s ease;
     }
 
-    /* Animación simple */
-    .nav-menu li.has-dropdown:hover .dropdown-menu {
+    .nav-menu li.has-dropdown.open .dropdown-menu {
         display: block;
-        animation: fadeIn 0.3s ease;
+        max-height: 500px;
+        padding: 10px 0;
     }
 
-    /* Enlaces del Dropdown CENTRADOS */
-    .dropdown-menu li a {
-        text-align: center;
-        justify-content: center !important; /* Centrado Flex */
-        padding: 15px 0;
+    /* Enlaces del Dropdown */
+    .dropdown-menu li {
         width: 100%;
-        font-size: 1.1rem;
-        padding-left: 0 !important;
+    }
+    
+    .dropdown-menu li a {
+        display: block;
+        text-align: center;
+        padding: 12px 20px;
+        width: 100%;
+        font-size: 1rem;
+        color: #666;
+        border-bottom: 1px solid #e0e0e0;
+    }
+    
+    .dropdown-menu li:last-child a {
+        border-bottom: none;
     }
 
     .dropdown-menu li a:hover {
-        padding-left: 0 !important; /* Evita saltos */
         background-color: #eaeaea;
+        color: var(--nav-purple);
+        padding-left: 20px !important;
     }
 
     /* BOTONES */
     .nav-buttons {
-        position: fixed; bottom: 0; right: -100%;
-        width: 100%; background: #f9f9f9;
-        padding: 20px; flex-direction: column;
-        transition: 0.4s; z-index: 1001;
+        position: fixed;
+        bottom: 0;
+        right: -100%;
+        width: 100%;
+        background: linear-gradient(to top, #ffffff, #f9f9f9);
+        padding: 20px;
+        flex-direction: column;
+        gap: 12px;
+        transition: right 0.4s ease;
+        z-index: 1001;
+        box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
     }
     .nav-buttons.active { right: 0; }
-    .btn-nav-cotiza, .btn-nav-resultados { width: 100%; text-align: center; }
+    .btn-nav-cotiza, .btn-nav-resultados { 
+        width: 100%;
+        text-align: center;
+        padding: 14px 25px;
+        font-size: 1rem;
+    }
 
     /* ANIMACIÓN HAMBURGUESA */
-    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 7px); }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(7px, 7px); }
     .hamburger.active span:nth-child(2) { opacity: 0; }
-    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -7px); }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
 }
 
 @keyframes fadeIn {
