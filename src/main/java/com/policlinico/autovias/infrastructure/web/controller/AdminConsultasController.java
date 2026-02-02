@@ -117,4 +117,21 @@ public class AdminConsultasController {
         
         return "redirect:/admin/consultas/" + id;
     }
+    
+    @PostMapping("/{id}/eliminar")
+    public String eliminarConsulta(
+            @PathVariable Long id,
+            RedirectAttributes redirectAttributes) {
+        
+        try {
+            consultaService.eliminarConsulta(id);
+            redirectAttributes.addFlashAttribute("success", 
+                "Consulta eliminada exitosamente");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("error", 
+                "Error al eliminar la consulta: " + e.getMessage());
+        }
+        
+        return "redirect:/admin/consultas";
+    }
 }

@@ -152,6 +152,12 @@
                                        class="btn btn-sm btn-primary">
                                         <i class="bi bi-eye"></i> Ver
                                     </a>
+                                    <button type="button" class="btn btn-sm btn-danger" 
+                                            onclick="confirmarEliminar(this)"
+                                            th:data-id="${consulta.id}"
+                                            th:data-ticket="${consulta.numeroTicket}">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
                                 </td>
                             </tr>
                             <tr th:if="${consultas.empty}">
@@ -202,6 +208,44 @@
         </div>
     </div>
 
+    <!-- Modal de confirmación -->
+    <div class="modal fade" id="modalEliminar" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title">
+                        <i class="bi bi-exclamation-triangle"></i> Confirmar Eliminación
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>¿Estás seguro de que deseas eliminar la consulta <strong id="ticketEliminar"></strong>?</p>
+                    <p class="text-danger mb-0"><i class="bi bi-exclamation-circle"></i> Esta acción no se puede deshacer.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <form id="formEliminar" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-danger">
+                            <i class="bi bi-trash"></i> Eliminar
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function confirmarEliminar(btn) {
+            const id = btn.getAttribute('data-id');
+            const ticket = btn.getAttribute('data-ticket');
+            
+            document.getElementById('ticketEliminar').textContent = ticket;
+            document.getElementById('formEliminar').action = '/admin/consultas/' + id + '/eliminar';
+            
+            const modal = new bootstrap.Modal(document.getElementById('modalEliminar'));
+            modal.show();
+        }
+    </script>
 </body>
 </html>

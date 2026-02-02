@@ -137,9 +137,28 @@ html {
 }
 
 .bubble-number {
-    font-size: 1.05rem;
+    font-size: 1.6rem;
     color: var(--nav-purple);
     font-weight: 800;
+}
+
+/* Media queries para responsividad del número */
+@media (max-width: 1200px) {
+    .bubble-number {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .bubble-number {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .bubble-number {
+        font-size: 1rem;
+    }
 }
 
 /* ===========================================

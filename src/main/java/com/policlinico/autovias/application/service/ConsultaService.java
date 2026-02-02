@@ -135,6 +135,15 @@ public class ConsultaService {
         return consultaRepository.countConsultasHoy();
     }
     
+    @Transactional
+    public void eliminarConsulta(Long id) {
+        Consulta consulta = consultaRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Consulta no encontrada"));
+        
+        log.info("Eliminando consulta con ticket: {}", consulta.getNumeroTicket());
+        consultaRepository.deleteById(id);
+    }
+    
     private String generarNumeroTicket() {
         LocalDateTime now = LocalDateTime.now();
         String fecha = now.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
