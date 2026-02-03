@@ -57,12 +57,17 @@ public class ReclamacionService {
         }
         
         // Enviar emails
+        boolean emailsEnviados = true;
         try {
             emailService.enviarNotificacionReclamacion(reclamacionDTO);
             emailService.enviarConfirmacionReclamante(reclamacionDTO);
+            log.info("Emails enviados correctamente para reclamación {}", reclamacion.getNumeroTicket());
         } catch (Exception e) {
-            log.error("Error al enviar emails para reclamación {}", reclamacion.getNumeroTicket(), e);
-            // No lanzamos excepción para no interrumpir el proceso
+            emailsEnviados = false;
+            log.error("⚠️ ERROR: No se pudieron enviar los emails para reclamación {}", reclamacion.getNumeroTicket(), e);
+            log.error("⚠️ Causa: {}", e.getMessage());
+            // Lanzamos excepción para informar al usuario
+            throw new RuntimeException("Reclamación guardada, pero no se pudo enviar email de confirmación. Contacte con nosotros si no recibe respuesta en 15 días.", e);
         }
         
         return reclamacion;
