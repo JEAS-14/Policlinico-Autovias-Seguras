@@ -6,7 +6,7 @@
     --green-brand: #3BBCA8; /* Verde menta */
     --green-whatsapp: #25d366;
     --text-dark: #2E1A5F;
-    --font-title: 'Poltawski Nowy', serif;
+    --font-title: 'Poppins', sans-serif;
     --font-body: 'Poppins', sans-serif;
 }
 
@@ -40,7 +40,7 @@ body {
     justify-content: center;
     background: var(--purple-brand);
     z-index: 20;
-    overflow-y: auto;
+    overflow: hidden;
 }
 
 @media (min-width: 1200px) {

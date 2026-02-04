@@ -1,37 +1,42 @@
 document.addEventListener("DOMContentLoaded", () => {
 
     // =========================================================
-    // 1. ANIMACIÓN DE CONTADORES (+10, +1500)
+    // 1. ANIMACIÓN DE CONTADORES (+10, +1500, +15)
     // =========================================================
-    const statsSection = document.querySelector('.stats-container');
-    const counters = document.querySelectorAll('.stat-number');
+    const statsBar = document.querySelector('.stats-bar-floating');
+    const statNumbers = document.querySelectorAll('.stat-float-number');
     let started = false;
 
-    if (statsSection && counters.length > 0) {
+    if (statsBar && statNumbers.length > 0) {
         const statsObserver = new IntersectionObserver((entries) => {
             if (entries[0].isIntersecting && !started) {
                 started = true;
-                counters.forEach(counter => {
-                    const target = +counter.getAttribute('data-target');
-                    const addPlus = counter.getAttribute('data-plus') === 'true';
+                statNumbers.forEach((counter, index) => {
+                    // Extraer número del texto (ej: "+1500" -> 1500)
+                    const textContent = counter.innerText.replace('+', '');
+                    const target = parseInt(textContent);
+                    const hasPlus = counter.innerText.includes('+');
                     const duration = 2000;
                     const increment = target / (duration / 16);
                     let current = 0;
 
+                    // Mostrar 0 al inicio
+                    counter.innerText = (hasPlus ? '+' : '') + '0';
+
                     const updateCounter = () => {
                         current += increment;
                         if (current < target) {
-                            counter.innerText = (addPlus ? '+' : '') + Math.ceil(current);
+                            counter.innerText = (hasPlus ? '+' : '') + Math.ceil(current);
                             requestAnimationFrame(updateCounter);
                         } else {
-                            counter.innerText = (addPlus ? '+' : '') + target;
+                            counter.innerText = (hasPlus ? '+' : '') + target;
                         }
                     };
                     updateCounter();
                 });
             }
         });
-        statsObserver.observe(statsSection);
+        statsObserver.observe(statsBar);
     }
 
     // =========================================================
@@ -239,11 +244,11 @@ const servicesData = [
     },
     {
         id: 1,
-        title: "Examen Para Licencias De Conducir - Brevetes",
+        title: "Examen Médico Para Licencias De Conducir - Brevete",
         desc: "Brevetes A1, A2, A3.",
         fullDesc: "Obtén tu certificado médico para brevete en tiempo récord. Validado directamente en el sistema del MTC.",
         icon: "car",
-        image: "https://res.cloudinary.com/dtozni6ik/image/upload/v1767590163/a71d6550-5864-48f4-8867-fad058e362b8.png",
+        image: "https://res.cloudinary.com/dtozni6ik/image/upload/v1770217808/imagen_2026-02-04_101005479_ptkzeq.png",
         link: "/servicios/examenMedicoBrevete"
     },
     {
@@ -252,7 +257,7 @@ const servicesData = [
         desc: "Porte de armas y seguridad.",
         fullDesc: "Evaluación integral de salud mental y física para personal de seguridad y uso civil de armas.",
         icon: "shield-alt",
-        image: "https://res.cloudinary.com/dtozni6ik/image/upload/v1767590173/8b6e3fdb-7ea7-48c5-9003-4067c7ff4083.png",
+        image: "https://res.cloudinary.com/dtozni6ik/image/upload/v1770040501/imagen_2026-02-02_085501377_kitinb.png",
         link: "/servicios/examenSucamec"
     },
     {

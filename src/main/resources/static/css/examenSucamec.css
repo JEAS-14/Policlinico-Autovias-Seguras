@@ -21,7 +21,7 @@
 
 body {
     background: linear-gradient(to bottom, var(--bg-gradient-top), var(--bg-gradient-bottom));
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Poppins', sans-serif;
     color: var(--text-dark);
 }
 
