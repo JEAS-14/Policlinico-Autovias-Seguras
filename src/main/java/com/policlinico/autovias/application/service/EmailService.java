@@ -16,7 +16,6 @@ import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
 @Service
@@ -54,8 +53,7 @@ public class EmailService {
             context.setVariable("tipoConsulta", consulta.getTipoConsulta());
             context.setVariable("empresa", consulta.getEmpresa() != null ? consulta.getEmpresa() : "N/A");
             context.setVariable("mensaje", consulta.getMensaje());
-            LocalDateTime ahoraConsulta = LocalDateTime.now(ZoneId.of("America/Lima"));
-            context.setVariable("fecha", ahoraConsulta.format(
+            context.setVariable("fecha", LocalDateTime.now().format(
                 DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
             ));
 
@@ -168,8 +166,7 @@ public class EmailService {
             context.setVariable("tipo", reclamacion.getTipo());
             context.setVariable("detalle", reclamacion.getDetalle());
             context.setVariable("pedido", reclamacion.getPedido() != null ? reclamacion.getPedido() : "N/A");
-            LocalDateTime ahoraReclamacion = LocalDateTime.now(ZoneId.of("America/Lima"));
-            context.setVariable("fecha", ahoraReclamacion.format(
+            context.setVariable("fecha", LocalDateTime.now().format(
                 DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
             ));
 
@@ -201,8 +198,7 @@ public class EmailService {
             context.setVariable("nombre", reclamacion.getNombre());
             context.setVariable("apellido", reclamacion.getApellido());
             context.setVariable("tipo", reclamacion.getTipo());
-            LocalDateTime ahoraConfirmacion = LocalDateTime.now(ZoneId.of("America/Lima"));
-            context.setVariable("fecha", ahoraConfirmacion.format(
+            context.setVariable("fecha", LocalDateTime.now().format(
                 DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
             ));
 
@@ -238,8 +234,7 @@ public class EmailService {
             context.setVariable("apellido", apellido);
             context.setVariable("estado", estado);
             context.setVariable("respuesta", respuesta != null ? respuesta : "");
-            LocalDateTime ahoraRespuesta = LocalDateTime.now(ZoneId.of("America/Lima"));
-            context.setVariable("fechaRespuesta", ahoraRespuesta.format(
+            context.setVariable("fechaRespuesta", LocalDateTime.now().format(
                 DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
             ));
 
