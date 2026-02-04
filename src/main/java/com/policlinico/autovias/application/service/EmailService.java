@@ -213,4 +213,40 @@ public class EmailService {
             throw new RuntimeException("Error al enviar confirmación por email", e);
         }
     }
+
+    public void enviarRespuestaReclamacion(String email, String nombre, String apellido, String ticket, String estado, String respuesta) {
+        try {
+            if (email == null || email.isBlank()) {
+                return;
+            }
+
+            MimeMessage message = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+
+            helper.setFrom(emailRemitente);
+            helper.setTo(email);
+            helper.setReplyTo(emailDestinatario);
+            helper.setSubject("📩 Respuesta a tu reclamación - Ticket " + ticket);
+
+            Context context = new Context();
+            context.setVariable("numeroTicket", ticket);
+            context.setVariable("nombre", nombre);
+            context.setVariable("apellido", apellido);
+            context.setVariable("estado", estado);
+            context.setVariable("respuesta", respuesta != null ? respuesta : "");
+            context.setVariable("fechaRespuesta", LocalDateTime.now().format(
+                DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
+            ));
+
+            String htmlContent = templateEngine.process("email/respuesta-reclamacion", context);
+            helper.setText(htmlContent, true);
+
+            mailSender.send(message);
+            log.info("Respuesta de reclamación enviada a {} para ticket {}", email, ticket);
+
+        } catch (MessagingException e) {
+            log.error("Error al enviar respuesta de reclamación para ticket {}", ticket, e);
+            throw new RuntimeException("Error al enviar respuesta por email", e);
+        }
+    }
 }

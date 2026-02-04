@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" th:fragment="layout(content, activeMenu)">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Admin | Policlínico</title>
+    <link rel="stylesheet" th:href="@{/css/admin/admin-layout.css}">
+    <link rel="stylesheet" th:href="@{/css/admin/admin-dashboard.css}">
+    <link rel="stylesheet" th:href="@{/css/admin/admin-consultas.css}">
+    <link rel="stylesheet" th:href="@{/css/admin/admin-reclamaciones.css}">
+    <link rel="stylesheet" th:href="@{/css/admin/admin-blog.css}">
+    <link rel="stylesheet" th:href="@{/css/admin/admin-blog-gestion.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <h2><i class="fas fa-clinic-medical"></i> Admin Panel</h2>
+                <p th:text="${nombreUsuario} ?: 'Administrador'">Administrador</p>
+            </div>
+
+            <nav class="sidebar-nav">
+                <!-- Sección Principal -->
+                <div class="nav-section">
+                    <div class="nav-section-title">Principal</div>
+                    <a href="/admin" class="nav-item" th:classappend="${activeMenu == 'dashboard'} ? 'active'">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </div>
+
+                <!-- Sección Gestión -->
+                <div class="nav-section">
+                    <div class="nav-section-title">Gestión</div>
+                    <a href="/admin/consultas" class="nav-item" th:classappend="${activeMenu == 'consultas'} ? 'active'">
+                        <i class="fas fa-inbox"></i>
+                        <span>Consultas</span>
+                        <span class="badge" th:if="${consultasPendientes != null && consultasPendientes > 0}" th:text="${consultasPendientes}">0</span>
+                    </a>
+                    <a href="/admin/reclamaciones" class="nav-item" th:classappend="${activeMenu == 'reclamaciones'} ? 'active'">
+                        <i class="fas fa-book"></i>
+                        <span>Reclamaciones</span>
+                        <span class="badge" th:if="${reclamacionesPendientes != null && reclamacionesPendientes > 0}" th:text="${reclamacionesPendientes}" style="background-color: #dc2626;">0</span>
+                    </a>
+                    <a href="/admin/blog" class="nav-item" th:classappend="${activeMenu == 'blog'} ? 'active'">
+                        <i class="fas fa-blog"></i>
+                        <span>Blog</span>
+                    </a>
+                </div>
+
+                <!-- Sección Sitio Web -->
+                <div class="nav-section">
+                    <div class="nav-section-title">Sitio Web</div>
+                    <a href="/" target="_blank" class="nav-item">
+                        <i class="fas fa-home"></i>
+                        <span>Ver Sitio</span>
+                    </a>
+                    <a href="/nuestroBlog" target="_blank" class="nav-item">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>Ver Blog</span>
+                    </a>
+                </div>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="/admin/logout" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Cerrar Sesión</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Contenido Principal -->
+        <main class="admin-content">
+            <th:block th:replace="${content}"></th:block>
+        </main>
+    </div>
+
+    <button class="mobile-menu-btn" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <script>
+        function toggleSidebar() {
+            document.querySelector('.admin-sidebar').classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

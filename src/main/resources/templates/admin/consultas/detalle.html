@@ -1,210 +1,197 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org" th:replace="~{admin/layout :: layout(~{::content}, 'consultas')}">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalle Consulta - Administración</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" th:href="@{/css/admin.css}">
-    <link rel="stylesheet" th:href="@{/css/admin-detalle.css}">
+    <title>Detalle de Consulta | Panel Admin</title>
 </head>
 <body>
-    <nav class="navbar navbar-dark">
-        <div class="container-fluid">
-            <span class="navbar-brand mb-0 h1">
-                <i class="bi bi-clipboard2-pulse"></i> Detalle de Consulta
-            </span>
-            <div class="d-flex align-items-center gap-2 flex-wrap">
-                <span class="text-light me-2 navbar-user-text">
-                    <i class="bi bi-person-circle"></i> 
-                    <span th:text="${nombreUsuario}">Usuario</span>
-                </span>
-                <a href="/admin/consultas" class="btn btn-outline-light btn-sm">
-                    <i class="bi bi-arrow-left"></i> Volver
-                </a>
-                <a href="/admin/logout" class="btn btn-outline-danger btn-sm">
-                    <i class="bi bi-box-arrow-right"></i> Cerrar
-                </a>
+    <div th:fragment="content" style="padding: 1.5rem;">
+        <!-- Header con botón volver -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+            <div>
+                <h2 style="font-size: 1.5rem; font-weight: 700; color: #312e81; margin: 0;">
+                    <i class="fas fa-file-alt"></i> Detalle de Consulta
+                </h2>
+                <p style="font-size: 0.875rem; color: #6b7280; margin-top: 0.25rem;">
+                    Ticket: <code style="background: #f3f4f6; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-family: monospace;" th:text="${consulta.numeroTicket}">CON-123</code>
+                </p>
             </div>
+            <a href="/admin/consultas" style="display: inline-flex; align-items: center; gap: 0.5rem; background: #6b7280; color: white; padding: 0.75rem 1.5rem; border-radius: 0.5rem; font-weight: 500; text-decoration: none; transition: background 0.2s;">
+                <i class="fas fa-arrow-left"></i> Volver al Listado
+            </a>
         </div>
-    </nav>
 
-    <div class="container mt-4 mb-4">
-        
         <!-- Mensajes -->
-        <div th:if="${success}" class="alert alert-success alert-dismissible fade show">
-            <i class="bi bi-check-circle"></i> <span th:text="${success}"></span>
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <div th:if="${success}" style="background: #d1fae5; border: 1px solid #a7f3d0; color: #065f46; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fas fa-check-circle"></i> <span th:text="${success}"></span>
         </div>
         
-        <div th:if="${error}" class="alert alert-danger alert-dismissible fade show">
-            <i class="bi bi-exclamation-triangle"></i> <span th:text="${error}"></span>
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <div th:if="${error}" style="background: #fee2e2; border: 1px solid #fecaca; color: #991b1b; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fas fa-exclamation-triangle"></i> <span th:text="${error}"></span>
         </div>
 
-        <div class="row">
-            <!-- Información de la consulta -->
-            <div class="col-lg-8">
+        <div style="display: grid; grid-template-columns: 1fr 400px; gap: 1.5rem;">
+            <!-- Columna Izquierda: Info de la Consulta -->
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
                 <!-- Información Principal -->
-                <div class="info-section">
-                    <div class="d-flex justify-content-between align-items-start mb-3">
-                        <h5 class="mb-0">
-                            <i class="bi bi-file-text"></i> 
-                            Información de la Consulta
-                        </h5>
-                        <span class="badge" 
-                              th:classappend="${consulta.estado == 'PENDIENTE' ? 'badge-pending' : 'badge-responded'}"
-                              th:text="${consulta.estado == 'PENDIENTE' ? 'Pendiente' : 'Respondida'}">
+                <div style="background: white; padding: 1.5rem; border-radius: 0.75rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1); border: 1px solid #e5e7eb;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                        <h3 style="font-size: 1rem; font-weight: 600; color: #312e81; margin: 0;">
+                            <i class="fas fa-user-circle"></i> Información del Cliente
+                        </h3>
+                        <span class="consultas-badge"
+                              th:classappend="${consulta.estado.name() == 'PENDIENTE' ? 'consultas-badge-pendiente' : 
+                                                consulta.estado.name() == 'EN_PROCESO' ? 'consultas-badge-proceso' :
+                                                consulta.estado.name() == 'CITA_PROGRAMADA' ? 'consultas-badge-cita' : 'consultas-badge-respondida'}"
+                              th:text="${consulta.estado.descripcion}">
+                            Pendiente
                         </span>
                     </div>
 
-                    <div class="row g-3">
-                        <div class="col-sm-6">
-                            <div class="info-label">Número de Ticket</div>
-                            <div class="info-value">
-                                <code th:text="${consulta.numeroTicket}"></code>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div>
+                            <div style="font-size: 0.75rem; font-weight: 500; color: #6b7280; text-transform: uppercase; margin-bottom: 0.25rem;">Nombre Completo</div>
+                            <div style="font-size: 0.875rem; color: #111827; font-weight: 500;" th:text="${consulta.nombre} + ' ' + ${consulta.apellido}">Juan Pérez</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 0.75rem; font-weight: 500; color: #6b7280; text-transform: uppercase; margin-bottom: 0.25rem;">Tipo de Consulta</div>
+                            <div style="font-size: 0.875rem; color: #111827; font-weight: 500;" th:text="${consulta.tipoConsulta}">Examen Médico</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 0.75rem; font-weight: 500; color: #6b7280; text-transform: uppercase; margin-bottom: 0.25rem;">
+                                <i class="fas fa-envelope"></i> Email
+                            </div>
+                            <div style="font-size: 0.875rem;">
+                                <a th:href="'mailto:' + ${consulta.email}" 
+                                   style="color: #4f46e5; text-decoration: none;"
+                                   th:text="${consulta.email}">email@example.com</a>
                             </div>
                         </div>
-                        <div class="col-sm-6">
-                            <div class="info-label">Fecha de Consulta</div>
-                            <div class="info-value" th:text="${#temporals.format(consulta.fechaCreacion, 'dd/MM/yyyy HH:mm')}"></div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="info-label">Nombre</div>
-                            <div class="info-value" th:text="${consulta.nombre}"></div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="info-label">Apellido</div>
-                            <div class="info-value" th:text="${consulta.apellido}"></div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="info-label"><i class="bi bi-envelope"></i> Email</div>
-                            <div class="info-value">
-                                <a th:href="'mailto:' + ${consulta.email}" th:text="${consulta.email}"></a>
+                        <div>
+                            <div style="font-size: 0.75rem; font-weight: 500; color: #6b7280; text-transform: uppercase; margin-bottom: 0.25rem;">
+                                <i class="fas fa-phone"></i> Teléfono
+                            </div>
+                            <div style="font-size: 0.875rem;">
+                                <a th:href="'tel:' + ${consulta.telefono}" 
+                                   style="color: #4f46e5; text-decoration: none;"
+                                   th:text="${consulta.telefono}">999999999</a>
                             </div>
                         </div>
-                        <div class="col-sm-6">
-                            <div class="info-label"><i class="bi bi-telephone"></i> Teléfono</div>
-                            <div class="info-value">
-                                <a th:href="'tel:' + ${consulta.telefono}" th:text="${consulta.telefono}"></a>
+                        <div th:if="${consulta.empresa}">
+                            <div style="font-size: 0.75rem; font-weight: 500; color: #6b7280; text-transform: uppercase; margin-bottom: 0.25rem;">Empresa</div>
+                            <div style="font-size: 0.875rem; color: #111827;" th:text="${consulta.empresa}">Empresa XYZ</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 0.75rem; font-weight: 500; color: #6b7280; text-transform: uppercase; margin-bottom: 0.25rem;">
+                                <i class="far fa-calendar"></i> Fecha de Consulta
                             </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="info-label">Tipo de Consulta</div>
-                            <div class="info-value" th:text="${consulta.tipoConsulta}"></div>
-                        </div>
-                        <div class="col-sm-6" th:if="${consulta.empresa}">
-                            <div class="info-label">Empresa</div>
-                            <div class="info-value" th:text="${consulta.empresa}"></div>
+                            <div style="font-size: 0.875rem; color: #111827;" th:text="${#temporals.format(consulta.fechaCreacion, 'dd/MM/yyyy HH:mm')}">02/02/2026 23:47</div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Mensaje del Cliente -->
-                <div class="info-section">
-                    <h6 class="mb-3">
-                        <i class="bi bi-chat-left-text"></i> 
-                        Mensaje del Cliente
-                    </h6>
-                    <div class="message-box" th:text="${consulta.mensaje}"></div>
+                <div style="background: white; padding: 1.5rem; border-radius: 0.75rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1); border: 1px solid #e5e7eb;">
+                    <h3 style="font-size: 1rem; font-weight: 600; color: #312e81; margin-bottom: 1rem;">
+                        <i class="fas fa-comment-dots"></i> Mensaje del Cliente
+                    </h3>
+                    <div style="background: #f9fafb; padding: 1rem; border-radius: 0.5rem; border-left: 3px solid #4f46e5; line-height: 1.6; color: #374151;" th:text="${consulta.mensaje}">
+                        Mensaje de la consulta aquí...
+                    </div>
                 </div>
 
                 <!-- Respuesta (si existe) -->
-                <div th:if="${consulta.respuesta}" class="info-section">
-                    <h6 class="mb-3">
-                        <i class="bi bi-reply-fill"></i> Respuesta Enviada
-                    </h6>
+                <div th:if="${consulta.respuesta}" style="background: white; padding: 1.5rem; border-radius: 0.75rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1); border: 1px solid #e5e7eb;">
+                    <h3 style="font-size: 1rem; font-weight: 600; color: #312e81; margin-bottom: 1rem;">
+                        <i class="fas fa-reply"></i> Respuesta Enviada
+                    </h3>
                     
-                    <div class="row g-3 mb-3">
-                        <div class="col-sm-6">
-                            <div class="info-label">Respondido por</div>
-                            <div class="info-value" th:text="${consulta.respondidoPor}"></div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                        <div>
+                            <div style="font-size: 0.75rem; font-weight: 500; color: #6b7280; text-transform: uppercase; margin-bottom: 0.25rem;">Respondido por</div>
+                            <div style="font-size: 0.875rem; color: #111827;" th:text="${consulta.respondidoPor}">Admin</div>
                         </div>
-                        <div class="col-sm-6">
-                            <div class="info-label">Fecha de Respuesta</div>
-                            <div class="info-value" th:text="${#temporals.format(consulta.fechaRespuesta, 'dd/MM/yyyy HH:mm')}"></div>
+                        <div>
+                            <div style="font-size: 0.75rem; font-weight: 500; color: #6b7280; text-transform: uppercase; margin-bottom: 0.25rem;">Fecha de Respuesta</div>
+                            <div style="font-size: 0.875rem; color: #111827;" th:text="${#temporals.format(consulta.fechaRespuesta, 'dd/MM/yyyy HH:mm')}">03/02/2026 10:00</div>
                         </div>
                     </div>
 
-                    <div class="message-box success" th:text="${consulta.respuesta}"></div>
+                    <div style="background: #d1fae5; padding: 1rem; border-radius: 0.5rem; border-left: 3px solid #10b981; line-height: 1.6; color: #065f46;" th:text="${consulta.respuesta}">
+                        Respuesta enviada al cliente...
+                    </div>
 
-                    <div th:if="${consulta.fechaCitaProgramada}" class="cita-programada">
-                        <i class="bi bi-calendar-check"></i> 
+                    <div th:if="${consulta.fechaCitaProgramada}" style="margin-top: 1rem; padding: 0.75rem; background: #e9d5ff; border-radius: 0.5rem; display: flex; align-items: center; gap: 0.5rem; color: #6b21a8;">
+                        <i class="fas fa-calendar-check"></i>
                         <strong>Cita Programada:</strong>
-                        <span th:text="${#temporals.format(consulta.fechaCitaProgramada, 'dd/MM/yyyy HH:mm')}"></span>
+                        <span th:text="${#temporals.format(consulta.fechaCitaProgramada, 'dd/MM/yyyy HH:mm')}">05/02/2026 15:00</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Panel de acciones -->
-            <div class="col-lg-4">
-                <!-- Cambiar estado -->
-                <div class="action-card">
-                    <h6>
-                        <i class="bi bi-gear"></i> 
-                        Cambiar Estado
-                    </h6>
+            <!-- Columna Derecha: Acciones -->
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                <!-- Cambiar Estado -->
+                <div style="background: white; padding: 1.5rem; border-radius: 0.75rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1); border: 1px solid #e5e7eb;">
+                    <h3 style="font-size: 1rem; font-weight: 600; color: #312e81; margin-bottom: 1rem;">
+                        <i class="fas fa-tasks"></i> Cambiar Estado
+                    </h3>
                     <form method="post" th:action="@{/admin/consultas/{id}/cambiar-estado(id=${consulta.id})}">
-                        <select name="nuevoEstado" class="form-select mb-3">
+                        <select name="nuevoEstado" style="width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 0.5rem; margin-bottom: 1rem; font-size: 0.875rem;">
                             <option th:each="e : ${estados}" 
                                     th:value="${e}" 
                                     th:text="${e.descripcion}"
                                     th:selected="${e == consulta.estado}">
                             </option>
                         </select>
-                        <button type="submit" class="btn-action w-100">
-                            <i class="bi bi-arrow-repeat"></i> Actualizar Estado
+                        <button type="submit" style="width: 100%; background: #4f46e5; color: white; padding: 0.75rem; border: none; border-radius: 0.5rem; font-weight: 600; cursor: pointer; transition: background 0.2s;">
+                            <i class="fas fa-sync-alt"></i> Actualizar Estado
                         </button>
                     </form>
                 </div>
-                
-                <!-- Eliminar Consulta -->
-                <div class="action-card border-danger">
-                    <h6 class="text-danger">
-                        <i class="bi bi-trash"></i> 
-                        Eliminar Consulta
-                    </h6>
-                    <p class="small text-muted mb-3">Esta acción no se puede deshacer.</p>
-                    <button type="button" class="btn btn-danger w-100" 
-                            onclick="confirmarEliminar()"
-                            th:data-id="${consulta.id}"
-                            th:data-ticket="${consulta.numeroTicket}">
-                        <i class="bi bi-trash"></i> Eliminar Consulta
-                    </button>
-                </div>
 
-                <!-- Responder -->
-                <div class="action-card" th:if="${consulta.respuesta == null}">
-                    <h6>
-                        <i class="bi bi-reply-fill"></i> 
-                        Responder al Cliente
-                    </h6>
+                <!-- Responder Consulta -->
+                <div th:if="${consulta.respuesta == null}" style="background: white; padding: 1.5rem; border-radius: 0.75rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1); border: 1px solid #e5e7eb;">
+                    <h3 style="font-size: 1rem; font-weight: 600; color: #312e81; margin-bottom: 1rem;">
+                        <i class="fas fa-reply"></i> Responder al Cliente
+                    </h3>
                     <form method="post" th:action="@{/admin/consultas/{id}/responder(id=${consulta.id})}" th:object="${respuestaDTO}">
-                        <div class="mb-3">
-                            <label class="form-label">Tu Respuesta</label>
-                            <textarea class="form-control" th:field="*{respuesta}" rows="6" 
-                                      placeholder="Escribe tu respuesta aquí..." required></textarea>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; font-size: 0.875rem; font-weight: 500; color: #374151; margin-bottom: 0.5rem;">Respuesta</label>
+                            <textarea th:field="*{respuesta}" 
+                                      rows="6" 
+                                      required
+                                      style="width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 0.5rem; font-size: 0.875rem; resize: vertical;"
+                                      placeholder="Escribe tu respuesta aquí..."></textarea>
                         </div>
 
-                        <div class="mb-3">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" 
-                                       th:field="*{programarCita}" id="programarCita"
-                                       onclick="toggleCita()">
-                                <label class="form-check-label" for="programarCita">
-                                    Programar cita
-                                </label>
+                        <div style="margin-bottom: 1rem; padding: 1rem; background: #f9fafb; border-radius: 0.5rem;">
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                <input type="checkbox" th:field="*{programarCita}" style="width: 1rem; height: 1rem; cursor: pointer;">
+                                <span style="font-size: 0.875rem; font-weight: 500; color: #374151;">Programar Cita</span>
+                            </label>
+                            <div id="citaFields" style="margin-top: 1rem; display: none;">
+                                <label style="display: block; font-size: 0.875rem; font-weight: 500; color: #374151; margin-bottom: 0.5rem;">Fecha y Hora de la Cita</label>
+                                <input type="datetime-local" 
+                                       th:field="*{fechaCita}"
+                                       style="width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 0.5rem; font-size: 0.875rem;">
                             </div>
                         </div>
 
-                        <div class="mb-3 fecha-cita-hidden" id="divFechaCita">
-                            <label class="form-label">Fecha y Hora de la Cita</label>
-                            <input type="datetime-local" class="form-control" th:field="*{fechaCita}">
-                        </div>
+                        <button type="submit" style="width: 100%; background: #10b981; color: white; padding: 0.75rem; border: none; border-radius: 0.5rem; font-weight: 600; cursor: pointer; transition: background 0.2s;">
+                            <i class="fas fa-paper-plane"></i> Enviar Respuesta
+                        </button>
+                    </form>
+                </div>
 
-                        <button type="submit" class="btn-action btn-success w-100">
-                            <i class="bi bi-send"></i> Enviar Respuesta
+                <!-- Eliminar Consulta -->
+                <div style="background: white; padding: 1.5rem; border-radius: 0.75rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1); border: 1px solid #fee2e2;">
+                    <h3 style="font-size: 1rem; font-weight: 600; color: #991b1b; margin-bottom: 1rem;">
+                        <i class="fas fa-trash"></i> Eliminar Consulta
+                    </h3>
+                    <p style="font-size: 0.875rem; color: #6b7280; margin-bottom: 1rem;">Esta acción no se puede deshacer.</p>
+                    <form method="post" th:action="@{/admin/consultas/{id}/eliminar(id=${consulta.id})}" onsubmit="return confirm('¿Estás seguro de eliminar esta consulta?');">
+                        <button type="submit" style="width: 100%; background: #dc2626; color: white; padding: 0.75rem; border: none; border-radius: 0.5rem; font-weight: 600; cursor: pointer; transition: background 0.2s;">
+                            <i class="fas fa-trash"></i> Eliminar Consulta
                         </button>
                     </form>
                 </div>
@@ -212,50 +199,15 @@
         </div>
     </div>
 
-    <!-- Modal de confirmación para eliminar -->
-    <div class="modal fade" id="modalEliminar" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header bg-danger text-white">
-                    <h5 class="modal-title">
-                        <i class="bi bi-exclamation-triangle"></i> Confirmar Eliminación
-                    </h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <p>¿Estás seguro de que deseas eliminar la consulta <strong id="ticketEliminar"></strong>?</p>
-                    <p class="text-danger mb-0"><i class="bi bi-exclamation-circle"></i> Esta acción no se puede deshacer.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <form id="formEliminar" method="post" style="display:inline;">
-                        <button type="submit" class="btn btn-danger">
-                            <i class="bi bi-trash"></i> Eliminar
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        function toggleCita() {
-            const checkbox = document.getElementById('programarCita');
-            const divFecha = document.getElementById('divFechaCita');
-            divFecha.classList.toggle('show', checkbox.checked);
-        }
+        // Mostrar/ocultar campos de cita
+        const checkboxCita = document.querySelector('input[name="programarCita"]');
+        const citaFields = document.getElementById('citaFields');
         
-        function confirmarEliminar() {
-            const btn = event.target.closest('button');
-            const id = btn.getAttribute('data-id');
-            const ticket = btn.getAttribute('data-ticket');
-            
-            document.getElementById('ticketEliminar').textContent = ticket;
-            document.getElementById('formEliminar').action = '/admin/consultas/' + id + '/eliminar';
-            
-            const modal = new bootstrap.Modal(document.getElementById('modalEliminar'));
-            modal.show();
+        if (checkboxCita) {
+            checkboxCita.addEventListener('change', function() {
+                citaFields.style.display = this.checked ? 'block' : 'none';
+            });
         }
     </script>
 </body>

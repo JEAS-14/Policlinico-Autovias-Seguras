@@ -2,6 +2,9 @@
    FORMULARIO RESPONSIVO 100% (MOBILE FIRST)
    =========================================== */
 
+/* Importar Google Fonts: Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
 :root {
     --primary-purple: #4a148c;
     --accent-purple: #7b1fa2;
@@ -15,18 +18,23 @@
     --white: #ffffff;
 }
 
+/* Aplicar Poppins globalmente */
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
 /* ===========================================
    BASE (MOBILE FIRST)
    =========================================== */
 .contact-main {
-    padding: 20px 15px 80px;
+    padding: 90px 15px 80px;
     display: flex;
     flex-direction: column;
     align-items: center;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0) 33.58%, #FFFFFF 100%),
                 linear-gradient(116.93deg, rgba(59, 188, 168, 0.2) 27.63%, rgba(59, 188, 168, 0.5) 87.89%);
     min-height: 100vh;
-    margin-top: 70px;
+    margin-top: 0;
 }
 
 .page-title {

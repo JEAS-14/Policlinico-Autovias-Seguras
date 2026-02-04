@@ -12,9 +12,17 @@
     --white: #ffffff;
 }
 
+/* --- Importar Google Fonts: Poppins --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+/* --- Aplicar Poppins globalmente --- */
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
 /* --- Fondo General Mejorado --- */
 .contact-main {
-    padding: 60px 20px 100px;
+    padding: 120px 20px 100px;
     display: flex;
     flex-direction: column;
     align-items: center;

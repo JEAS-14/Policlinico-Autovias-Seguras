@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" th:replace="~{admin/layout :: layout(~{::content}, 'blog')}">
+<head>
+    <title th:text="${articulo.id != null ? 'Editar Artículo' : 'Nuevo Artículo'}">Formulario de Artículo</title>
+</head>
+<body>
+    <div th:fragment="content" style="padding: 1.5rem;">
+            <div class="blog-header">
+                <div class="blog-title-section">
+                    <h1 class="blog-title" th:text="${articulo.id != null ? 'Editar Artículo' : 'Nuevo Artículo'}">Formulario de Artículo</h1>
+                    <a th:href="@{/admin/blog/listado}" class="blog-btn blog-btn-secondary">
+                        <i class="fas fa-arrow-left"></i>
+                        Volver al listado
+                    </a>
+                </div>
+            </div>
+
+            <!-- Alertas -->
+            <div class="blog-alert blog-alert-error" th:if="${param.error}">
+                <i class="fas fa-exclamation-circle"></i>
+                <span>Error al guardar el artículo. Por favor verifique los datos.</span>
+            </div>
+
+            <!-- Formulario -->
+            <div class="blog-form-container">
+                <form th:action="@{/admin/blog/guardar}" method="post">
+                    <!-- ID (readonly si existe, oculto si es nuevo) -->
+                    <div class="blog-form-group" th:if="${articulo.id != null}">
+                        <label for="id" class="blog-form-label">ID del Artículo</label>
+                        <input type="text" 
+                               id="id" 
+                               name="id" 
+                               class="blog-form-input" 
+                               th:value="${articulo.id}"
+                               readonly
+                               style="background: #f3f4f6; cursor: not-allowed;">
+                        <div class="blog-form-help">Este ID se asigna automáticamente y no puede modificarse</div>
+                    </div>
+                    <input type="hidden" name="id" th:if="${articulo.id == null}" th:value="${articulo.id}">
+
+                    <!-- Título -->
+                    <div class="blog-form-group">
+                        <label for="titulo" class="blog-form-label">
+                            Título <span style="color: #ef4444;">*</span>
+                        </label>
+                        <input type="text" 
+                               id="titulo" 
+                               name="titulo" 
+                               class="blog-form-input" 
+                               th:value="${articulo.titulo}"
+                               placeholder="Ingrese el título del artículo"
+                               required>
+                        <div class="blog-form-help">El título aparecerá en la lista de artículos y en la página del artículo</div>
+                    </div>
+
+                    <!-- Resumen -->
+                    <div class="blog-form-group">
+                        <label for="resumen" class="blog-form-label">
+                            Resumen <span style="color: #ef4444;">*</span>
+                        </label>
+                        <textarea id="resumen" 
+                                  name="resumen" 
+                                  class="blog-form-textarea" 
+                                  rows="3"
+                                  placeholder="Escriba un breve resumen del artículo (máximo 200 caracteres)"
+                                  maxlength="200"
+                                  required
+                                  th:text="${articulo.resumen}"></textarea>
+                        <div class="blog-form-help">Este resumen aparecerá en la vista previa del artículo</div>
+                    </div>
+
+                    <!-- Contenido -->
+                    <div class="blog-form-group">
+                        <label for="contenido" class="blog-form-label">
+                            Contenido <span style="color: #ef4444;">*</span>
+                        </label>
+                        <textarea id="contenido" 
+                                  name="contenido" 
+                                  class="blog-form-textarea large" 
+                                  rows="15"
+                                  placeholder="Escriba el contenido completo del artículo. Puede usar HTML básico."
+                                  required
+                                  th:text="${articulo.contenido}"></textarea>
+                        <div class="blog-form-help">
+                            Puede usar etiquetas HTML básicas: &lt;p&gt;, &lt;strong&gt;, &lt;em&gt;, &lt;ul&gt;, &lt;ol&gt;, &lt;li&gt;, &lt;br&gt;, etc.
+                        </div>
+                    </div>
+
+                    <!-- Fila: Fecha y Categoría -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                        <!-- Fecha -->
+                        <div class="blog-form-group">
+                            <label for="fecha" class="blog-form-label">
+                                Fecha de publicación <span style="color: #ef4444;">*</span>
+                            </label>
+                            <input type="date" 
+                                   id="fecha" 
+                                   name="fecha" 
+                                   class="blog-form-input" 
+                                   th:value="${articulo.fecha}"
+                                   required>
+                            <div class="blog-form-help">Formato: DD/MM/AAAA</div>
+                        </div>
+
+                        <!-- Categoría -->
+                        <div class="blog-form-group">
+                            <label for="categoria" class="blog-form-label">
+                                Categoría <span style="color: #ef4444;">*</span>
+                            </label>
+                            <select id="categoria" name="categoria" class="blog-form-select" required>
+                                <option value="">Seleccione una categoría</option>
+                                <option value="Actualidad" th:selected="${articulo.categoria == 'Actualidad'}">Actualidad</option>
+                                <option value="Salud" th:selected="${articulo.categoria == 'Salud'}">Salud</option>
+                                <option value="MTC" th:selected="${articulo.categoria == 'MTC'}">MTC</option>
+                                <option value="Seguridad Vial" th:selected="${articulo.categoria == 'Seguridad Vial'}">Seguridad Vial</option>
+                                <option value="Normativas" th:selected="${articulo.categoria == 'Normativas'}">Normativas</option>
+                                <option value="Consejos" th:selected="${articulo.categoria == 'Consejos'}">Consejos</option>
+                                <option value="Otros" th:selected="${articulo.categoria == 'Otros'}">Otros</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- URL de Imagen -->
+                    <div class="blog-form-group">
+                        <label for="imagen" class="blog-form-label">
+                            URL de Imagen
+                        </label>
+                        <input type="url" 
+                               id="imagen" 
+                               name="imagen" 
+                               class="blog-form-input" 
+                               th:value="${articulo.imagen}"
+                               placeholder="https://ejemplo.com/imagen.jpg">
+                        <div class="blog-form-help">URL completa de la imagen principal del artículo (opcional)</div>
+                    </div>
+
+                    <!-- Fila: Estado, Destacado y Autor -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem;">
+                        <!-- Estado -->
+                        <div class="blog-form-group">
+                            <label for="estado" class="blog-form-label">
+                                Estado <span style="color: #ef4444;">*</span>
+                            </label>
+                            <select id="estado" name="estado" class="blog-form-select" required>
+                                <option value="BORRADOR" th:selected="${articulo.estado == 'BORRADOR'}">Borrador</option>
+                                <option value="PUBLICADO" th:selected="${articulo.estado == 'PUBLICADO'}">Publicado</option>
+                            </select>
+                            <div class="blog-form-help">Solo artículos publicados aparecen en el sitio web</div>
+                        </div>
+
+                        <!-- Destacado -->
+                        <div class="blog-form-group">
+                            <label class="blog-form-label">
+                                Destacado <span style="color: #ef4444;">*</span>
+                            </label>
+                            <div class="blog-form-radio-group">
+                                <label class="blog-form-radio">
+                                    <input type="radio" name="destacado" value="SI" th:checked="${articulo.destacado == true}" required>
+                                    <span>Sí</span>
+                                </label>
+                                <label class="blog-form-radio">
+                                    <input type="radio" name="destacado" value="NO" th:checked="${articulo.destacado == false or articulo.destacado == null}" required>
+                                    <span>No</span>
+                                </label>
+                            </div>
+                            <div class="blog-form-help">Los artículos destacados aparecen en la página principal</div>
+                        </div>
+
+                        <!-- Autor -->
+                        <div class="blog-form-group">
+                            <label for="autor" class="blog-form-label">
+                                Autor <span style="color: #ef4444;">*</span>
+                            </label>
+                            <input type="text" 
+                                   id="autor" 
+                                   name="autor" 
+                                   class="blog-form-input" 
+                                   th:value="${articulo.autor != null ? articulo.autor : session.nombreUsuario}"
+                                   placeholder="Nombre del autor"
+                                   required>
+                        </div>
+                    </div>
+
+                    <!-- Botones de acción -->
+                    <div class="blog-form-actions">
+                        <button type="submit" class="blog-btn blog-btn-primary">
+                            <i class="fas fa-save"></i>
+                            Guardar Artículo
+                        </button>
+                        <a th:href="@{/admin/blog/listado}" class="blog-btn blog-btn-secondary">
+                            <i class="fas fa-times"></i>
+                            Cancelar
+                        </a>
+                    </div>
+                </form>
+            </div>
+    </div>
+
+    <script>
+        // Auto-ajustar tamaño del textarea de contenido
+        const contenidoTextarea = document.getElementById('contenido');
+        if (contenidoTextarea) {
+            contenidoTextarea.addEventListener('input', function() {
+                this.style.height = 'auto';
+                this.style.height = (this.scrollHeight) + 'px';
+            });
+        }
+
+        // Contador de caracteres para resumen
+        const resumenTextarea = document.getElementById('resumen');
+        if (resumenTextarea) {
+            const counter = document.createElement('div');
+            counter.className = 'blog-form-help';
+            counter.style.textAlign = 'right';
+            resumenTextarea.parentNode.appendChild(counter);
+            
+            function updateCounter() {
+                const length = resumenTextarea.value.length;
+                counter.textContent = `${length}/200 caracteres`;
+                counter.style.color = length > 180 ? '#ef4444' : '#6b7280';
+            }
+            
+            resumenTextarea.addEventListener('input', updateCounter);
+            updateCounter();
+        }
+    </script>
+</body>
+</html>

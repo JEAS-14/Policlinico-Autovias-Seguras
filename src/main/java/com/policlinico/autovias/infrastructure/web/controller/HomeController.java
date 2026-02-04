@@ -1,6 +1,8 @@
 package com.policlinico.autovias.infrastructure.web.controller;
 
+import com.policlinico.autovias.application.dto.ArticuloBlogDTO;
 import com.policlinico.autovias.application.dto.ReclamacionDTO;
+import com.policlinico.autovias.application.service.BlogService;
 import com.policlinico.autovias.application.service.EmailService;
 import com.policlinico.autovias.application.service.GoogleSheetsService;
 import com.policlinico.autovias.application.service.ReclamacionService;
@@ -13,6 +15,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 /**
  * Controlador principal para las páginas públicas
  */
@@ -24,6 +28,7 @@ public class HomeController {
     private final EmailService emailService;
     private final GoogleSheetsService googleSheetsService;
     private final ReclamacionService reclamacionService;
+    private final BlogService blogService;
     
     /**
      * Página principal / Landing page
@@ -71,11 +76,30 @@ public class HomeController {
     }
     
     /**
-     * Blog
+     * Blog dinámico desde Google Sheets
      * URL: http://localhost:8080/nuestroBlog
      */
     @GetMapping("/nuestroBlog")
-    public String nuestroBlog() {
+    public String nuestroBlog(Model model) {
+        try {
+            // Obtener artículo destacado (grande arriba)
+            ArticuloBlogDTO destacado = blogService.obtenerArticuloDestacado();
+            
+            // Obtener artículos normales (grid de tarjetas)
+            List<ArticuloBlogDTO> articulos = blogService.obtenerArticulosNormales();
+            
+            model.addAttribute("destacado", destacado);
+            model.addAttribute("articulos", articulos);
+            
+            log.info("Blog cargado: {} artículos (1 destacado, {} normales)", 
+                     articulos.size() + (destacado != null ? 1 : 0), 
+                     articulos.size());
+            
+        } catch (Exception e) {
+            log.error("Error al cargar blog", e);
+            model.addAttribute("error", "No se pudieron cargar los artículos en este momento");
+        }
+        
         return "nuestroBlog";
     }
 

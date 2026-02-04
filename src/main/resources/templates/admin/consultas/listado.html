@@ -1,251 +1,198 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org" th:replace="~{admin/layout :: layout(~{::content}, 'consultas')}">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Consultas - Administración</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" th:href="@{/css/admin.css}">
+    <title>Gestión de Consultas | Panel Admin</title>
 </head>
 <body>
-    <!-- NAVBAR ADMIN -->
-    <nav class="navbar">
-        <div class="container-fluid">
-            <span class="navbar-brand">
-                <i class="bi bi-clipboard2-pulse"></i>
-                Panel de Administración - Consultas
-            </span>
-            <div class="d-flex align-items-center gap-3">
-                <span class="navbar-text">
-                    <i class="bi bi-person-circle"></i>
-                    <span th:text="${nombreUsuario}">Admin</span>
-                </span>
-                <a href="/" class="btn btn-outline-light btn-sm">
-                    <i class="bi bi-house"></i> Ir al sitio
-                </a>
-                <a href="/admin/logout" class="btn btn-outline-danger btn-sm">
-                    <i class="bi bi-box-arrow-right"></i> Cerrar sesión
-                </a>
-            </div>
-        </div>
-    </nav>
-
-    <div class="container-fluid mt-4">
-        
-        <!-- Mensajes de alerta -->
-        <div th:if="${success}" class="alert alert-success alert-dismissible fade show" role="alert">
-            <i class="bi bi-check-circle"></i> <span th:text="${success}"></span>
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-        
-        <div th:if="${error}" class="alert alert-danger alert-dismissible fade show" role="alert">
-            <i class="bi bi-exclamation-triangle"></i> <span th:text="${error}"></span>
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        </div>
-
-        <!-- Estadísticas -->
-        <div class="row mb-4">
-            <div class="col-md-3">
-                <div class="card stat-card" style="border-left-color: #ffc107;">
-                    <div class="card-body">
-                        <h6 class="text-muted">Pendientes</h6>
-                        <h2 class="mb-0" th:text="${pendientes}">0</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card stat-card" style="border-left-color: #17a2b8;">
-                    <div class="card-body">
-                        <h6 class="text-muted">En Proceso</h6>
-                        <h2 class="mb-0" th:text="${enProceso}">0</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card stat-card" style="border-left-color: #28a745;">
-                    <div class="card-body">
-                        <h6 class="text-muted">Respondidas</h6>
-                        <h2 class="mb-0" th:text="${respondidas}">0</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card stat-card" style="border-left-color: #007bff;">
-                    <div class="card-body">
-                        <h6 class="text-muted">Citas Programadas</h6>
-                        <h2 class="mb-0" th:text="${citasProgramadas}">0</h2>
+    <div th:fragment="content" style="padding: 1.5rem;">
+        <!-- Header Section -->
+        <div class="consultas-header">
+            <div class="consultas-header-top">
+                <div class="consultas-title">
+                    <i class="fas fa-inbox" style="font-size: 1.5rem;"></i>
+                    <div>
+                        <h3>Gestión de Consultas</h3>
+                        <p class="consultas-subtitle">Administra y responde las consultas recibidas</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Filtros y búsqueda -->
-        <div class="card mb-4">
-            <div class="card-body">
-                <form method="get" th:action="@{/admin/consultas}" class="row g-3">
-                    <div class="col-md-4">
-                        <label class="form-label">Buscar</label>
-                        <input type="text" name="busqueda" th:value="${busqueda}" 
-                               class="form-control" placeholder="Nombre, email, ticket...">
-                    </div>
-                    <div class="col-md-4">
-                        <label class="form-label">Filtrar por Estado</label>
-                        <select name="estado" class="form-select">
-                            <option value="">Todos los estados</option>
-                            <option th:each="e : ${estados}" 
-                                    th:value="${e}" 
-                                    th:text="${e.descripcion}"
-                                    th:selected="${e == estadoActual}">
-                            </option>
-                        </select>
-                    </div>
-                    <div class="col-md-4 d-flex align-items-end">
-                        <button type="submit" class="btn btn-primary me-2">
-                            <i class="bi bi-search"></i> Buscar
-                        </button>
-                        <a th:href="@{/admin/consultas}" class="btn btn-secondary">
-                            <i class="bi bi-x-circle"></i> Limpiar
-                        </a>
-                    </div>
+        <!-- Stats Cards -->
+        <div class="consultas-stats">
+            <div class="consultas-stat-card">
+                <span class="consultas-stat-number" th:text="${pendientes}">0</span>
+                <span class="consultas-stat-label">Pendientes</span>
+            </div>
+            <div class="consultas-stat-card">
+                <span class="consultas-stat-number" th:text="${enProceso}">0</span>
+                <span class="consultas-stat-label">En Proceso</span>
+            </div>
+            <div class="consultas-stat-card">
+                <span class="consultas-stat-number" th:text="${respondidas}">0</span>
+                <span class="consultas-stat-label">Respondidas</span>
+            </div>
+            <div class="consultas-stat-card">
+                <span class="consultas-stat-number" th:text="${citasProgramadas}">0</span>
+                <span class="consultas-stat-label">Citas Programadas</span>
+            </div>
+        </div>
+
+        <!-- Search and Filters -->
+        <div class="consultas-toolbar">
+            <div class="consultas-search-row">
+                <form method="get" th:action="@{/admin/consultas}" class="consultas-search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" 
+                           name="busqueda" 
+                           th:value="${busqueda}" 
+                           placeholder="Buscar por ticket, DNI o nombre...">
                 </form>
-            </div>
-        </div>
-
-        <!-- Tabla de consultas -->
-        <div class="card">
-            <div class="card-header bg-primary text-white">
-                <h5 class="mb-0"><i class="bi bi-list-ul"></i> Consultas Recibidas</h5>
-            </div>
-            <div class="card-body p-0">
-                <div class="table-responsive">
-                    <table class="table table-hover mb-0">
-                        <thead class="table-light">
-                            <tr>
-                                <th>Ticket</th>
-                                <th>Fecha</th>
-                                <th>Cliente</th>
-                                <th>Tipo de Consulta</th>
-                                <th>Estado</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr th:each="consulta : ${consultas.content}">
-                                <td>
-                                    <code th:text="${consulta.numeroTicket}"></code>
-                                </td>
-                                <td th:text="${#temporals.format(consulta.fechaCreacion, 'dd/MM/yyyy HH:mm')}"></td>
-                                <td>
-                                    <strong th:text="${consulta.nombre + ' ' + consulta.apellido}"></strong><br>
-                                    <small class="text-muted" th:text="${consulta.email}"></small>
-                                </td>
-                                <td th:text="${consulta.tipoConsulta}"></td>
-                                <td>
-                                    <span class="badge" 
-                                          th:classappend="${consulta.estado.cssClass}"
-                                          th:text="${consulta.estado.descripcion}">
-                                    </span>
-                                </td>
-                                <td>
-                                    <a th:href="@{/admin/consultas/{id}(id=${consulta.id})}" 
-                                       class="btn btn-sm btn-primary">
-                                        <i class="bi bi-eye"></i> Ver
-                                    </a>
-                                    <button type="button" class="btn btn-sm btn-danger" 
-                                            onclick="confirmarEliminar(this)"
-                                            th:data-id="${consulta.id}"
-                                            th:data-ticket="${consulta.numeroTicket}">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr th:if="${consultas.empty}">
-                                <td colspan="6" class="text-center py-4 text-muted">
-                                    <i class="bi bi-inbox" style="font-size: 3rem;"></i>
-                                    <p class="mt-2">No hay consultas para mostrar</p>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            
-            <!-- Paginación -->
-            <div class="card-footer" th:if="${!consultas.empty}">
-                <nav>
-                    <ul class="pagination justify-content-center mb-0">
-                        <li class="page-item" th:classappend="${consultas.first} ? 'disabled'">
-                            <a class="page-link" 
-                               th:href="@{/admin/consultas(page=${consultas.number - 1}, estado=${estadoActual}, busqueda=${busqueda})}">
-                                Anterior
-                            </a>
-                        </li>
-                        
-                        <li class="page-item" th:each="i : ${#numbers.sequence(0, consultas.totalPages - 1)}"
-                            th:classappend="${i == consultas.number} ? 'active'">
-                            <a class="page-link" 
-                               th:href="@{/admin/consultas(page=${i}, estado=${estadoActual}, busqueda=${busqueda})}"
-                               th:text="${i + 1}">
-                            </a>
-                        </li>
-                        
-                        <li class="page-item" th:classappend="${consultas.last} ? 'disabled'">
-                            <a class="page-link" 
-                               th:href="@{/admin/consultas(page=${consultas.number + 1}, estado=${estadoActual}, busqueda=${busqueda})}">
-                                Siguiente
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
                 
-                <p class="text-center text-muted mt-2 mb-0">
-                    Mostrando página <strong th:text="${consultas.number + 1}"></strong> 
-                    de <strong th:text="${consultas.totalPages}"></strong>
-                    (Total: <strong th:text="${consultas.totalElements}"></strong> consultas)
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal de confirmación -->
-    <div class="modal fade" id="modalEliminar" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header bg-danger text-white">
-                    <h5 class="modal-title">
-                        <i class="bi bi-exclamation-triangle"></i> Confirmar Eliminación
-                    </h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <p>¿Estás seguro de que deseas eliminar la consulta <strong id="ticketEliminar"></strong>?</p>
-                    <p class="text-danger mb-0"><i class="bi bi-exclamation-circle"></i> Esta acción no se puede deshacer.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <form id="formEliminar" method="post" style="display:inline;">
-                        <button type="submit" class="btn btn-danger">
-                            <i class="bi bi-trash"></i> Eliminar
+                <div class="consultas-filters">
+                    <form method="get" th:action="@{/admin/consultas}" style="display: flex; gap: 0.5rem; align-items: flex-end;">
+                        <div class="consultas-filter-group">
+                            <label class="consultas-filter-label">Filtrar por Estado</label>
+                            <select name="estado" class="consultas-filter-select">
+                                <option value="">Todos los estados</option>
+                                <option th:each="e : ${estados}" 
+                                        th:value="${e}" 
+                                        th:text="${e.descripcion}"
+                                        th:selected="${e == estadoActual}">
+                                </option>
+                            </select>
+                        </div>
+                        <button type="submit" class="consultas-btn consultas-btn-primary">
+                            <i class="fas fa-search"></i>
+                            Buscar
                         </button>
+                        <a th:href="@{/admin/consultas}" class="consultas-btn consultas-btn-secondary">
+                            <i class="fas fa-times-circle"></i>
+                            Limpiar
+                        </a>
                     </form>
                 </div>
             </div>
         </div>
-    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        function confirmarEliminar(btn) {
-            const id = btn.getAttribute('data-id');
-            const ticket = btn.getAttribute('data-ticket');
+        <!-- Table Container -->
+        <div class="consultas-table-container">
+            <div style="overflow-x: auto;">
+                <table class="consultas-table">
+                    <thead>
+                        <tr>
+                            <th>Ticket / Fecha</th>
+                            <th>Cliente</th>
+                            <th>Contacto</th>
+                            <th>Tipo de Consulta</th>
+                            <th>Estado</th>
+                            <th style="text-align: center;">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="consulta : ${consultas.content}">
+                            <td>
+                                <div class="consultas-ticket">
+                                    <span class="consultas-ticket" th:text="${consulta.numeroTicket}">CON-123</span>
+                                    <div class="consultas-fecha">
+                                        <i class="far fa-calendar"></i>
+                                        <span th:text="${#temporals.format(consulta.fechaCreacion, 'dd/MM/yyyy HH:mm')}">02/02/2026 23:47</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="consultas-cliente">
+                                    <span class="consultas-cliente-nombre" th:text="${consulta.nombre + ' ' + consulta.apellido}">Juan Pérez</span>
+                                    <div class="consultas-cliente-info" th:if="${consulta.telefono}">
+                                        <i class="fas fa-phone"></i>
+                                        <span th:text="${consulta.telefono}">999999999</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="consultas-contacto">
+                                    <div class="consultas-contacto-item">
+                                        <i class="far fa-envelope"></i>
+                                        <a th:href="'mailto:' + ${consulta.email}" th:text="${consulta.email}">email@example.com</a>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <span th:text="${consulta.tipoConsulta}">Tipo de consulta</span>
+                            </td>
+                            <td>
+                                <span class="consultas-badge"
+                                      th:classappend="${consulta.estado.name() == 'PENDIENTE' ? 'consultas-badge-pendiente' : 
+                                                        consulta.estado.name() == 'EN_PROCESO' ? 'consultas-badge-proceso' :
+                                                        consulta.estado.name() == 'CITA_PROGRAMADA' ? 'consultas-badge-cita' : 'consultas-badge-respondida'}"
+                                      th:text="${consulta.estado.descripcion}">
+                                    Pendiente
+                                </span>
+                            </td>
+                            <td style="text-align: center;">
+                                <div class="consultas-actions" style="justify-content: center;">
+                                    <a th:href="@{/admin/consultas/{id}(id=${consulta.id})}" 
+                                       class="consultas-btn consultas-btn-primary"
+                                       style="padding: 0.5rem 1rem; font-size: 0.875rem;"
+                                       title="Ver detalles y responder">
+                                        <i class="fas fa-eye"></i>
+                                        Ver Detalle
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr th:if="${consultas.empty}">
+                            <td colspan="6" style="text-align: center; padding: 3rem; color: #9ca3af;">
+                                <i class="fas fa-inbox" style="font-size: 3rem; margin-bottom: 1rem; display: block;"></i>
+                                <p>No hay consultas para mostrar</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
             
-            document.getElementById('ticketEliminar').textContent = ticket;
-            document.getElementById('formEliminar').action = '/admin/consultas/' + id + '/eliminar';
-            
-            const modal = new bootstrap.Modal(document.getElementById('modalEliminar'));
-            modal.show();
-        }
-    </script>
+            <!-- Pagination -->
+            <div class="consultas-pagination" th:if="${!consultas.empty}">
+                <div class="consultas-pagination-info">
+                    Mostrando 
+                    <span th:text="${consultas.number * consultas.size + 1}">1</span> 
+                    a 
+                    <span th:text="${(consultas.number + 1) * consultas.size > consultas.totalElements ? consultas.totalElements : (consultas.number + 1) * consultas.size}">10</span> 
+                    de 
+                    <span th:text="${consultas.totalElements}">50</span> 
+                    resultados
+                </div>
+                <div class="consultas-pagination-controls">
+                    <a th:if="${!consultas.first}"
+                       th:href="@{/admin/consultas(page=${consultas.number - 1}, estado=${estadoActual}, busqueda=${busqueda})}"
+                       class="consultas-pagination-btn">
+                        Anterior
+                    </a>
+                    <span th:if="${consultas.first}" class="consultas-pagination-btn disabled">
+                        Anterior
+                    </span>
+                    <th:block th:each="i : ${#numbers.sequence(0, consultas.totalPages - 1)}">
+                        <a th:if="${i < 3 || i > consultas.totalPages - 4 || (i >= consultas.number - 1 && i <= consultas.number + 1)}"
+                           th:href="@{/admin/consultas(page=${i}, estado=${estadoActual}, busqueda=${busqueda})}"
+                           class="consultas-pagination-btn"
+                           th:classappend="${i == consultas.number} ? 'active' : ''"
+                           th:text="${i + 1}">
+                            1
+                        </a>
+                        <span th:if="${(i == 3 && consultas.number > 4) || (i == consultas.totalPages - 4 && consultas.number < consultas.totalPages - 5)}"
+                              style="padding: 0 0.5rem; color: #9ca3af;">...</span>
+                    </th:block>
+                    <a th:if="${!consultas.last}"
+                       th:href="@{/admin/consultas(page=${consultas.number + 1}, estado=${estadoActual}, busqueda=${busqueda})}"
+                       class="consultas-pagination-btn">
+                        Siguiente
+                    </a>
+                    <span th:if="${consultas.last}" class="consultas-pagination-btn disabled">
+                        Siguiente
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

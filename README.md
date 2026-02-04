@@ -92,7 +92,11 @@ Policlinico-Autovias-Seguras/
 
 3. **Ejecutar la aplicación**
    ```bash
-   mvn spring-boot:run
+   # En Windows
+   run.cmd
+   
+   # O en Linux/Mac
+   mvn clean spring-boot:run -DskipTests
    ```
 
 4. **Acceder al sitio**
@@ -102,15 +106,22 @@ Policlinico-Autovias-Seguras/
 
 | Comando | Descripción |
 |---------|-------------|
-| `mvn spring-boot:run` | Iniciar el servidor en modo desarrollo |
+| `run.cmd` | **[Windows]** Iniciar servidor con Java 21 |
 | `mvn clean compile` | Recompilar cambios (hot reload manual) |
 | `mvn clean package` | Generar archivo JAR en `target/` |
 | `mvn test` | Ejecutar tests unitarios |
 | `mvn clean install` | Instalación completa con dependencias |
 
+**NOTA:** El comando `mvn spring-boot:run` ya **NO funciona** en este proyecto por incompatibilidad de Java 25. **Usa `run.cmd` en su lugar.**
+
+### ⚠️ Nota Importante: Java 21 Requerido
+Este proyecto **solo funciona con Java 21 LTS**. Si tu VS Code tiene Java 25 configurado, usa:
+- **Windows**: `run.cmd` (incluido en el repositorio)
+- **Linux/Mac**: Verifica que tu `JAVA_HOME` apunte a Java 21
+
 ---
 
-## 🌐 Despliegue en Azure
+## 🌐 Despliegue
 
 ### Proceso Automático (CI/CD)
 

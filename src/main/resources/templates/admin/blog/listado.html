@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" th:replace="~{admin/layout :: layout(~{::content}, 'blog')}">
+<head>
+    <title>Gestión de Blog | Panel Admin</title>
+</head>
+<body>
+    <div th:fragment="content" style="padding: 1.5rem;">
+            <!-- Header con estadísticas -->
+            <div class="blog-header">
+                <div class="blog-title-section">
+                    <h1 class="blog-title">Gestión de Blog</h1>
+                    <a th:href="@{/admin/blog/nuevo}" class="blog-btn-new">
+                        <i class="fas fa-plus"></i>
+                        Nuevo Artículo
+                    </a>
+                </div>
+
+                <!-- Estadísticas -->
+                <div class="blog-stats">
+                    <div class="blog-stat-card">
+                        <div class="blog-stat-label">Total Artículos</div>
+                        <div class="blog-stat-value" th:text="${totalArticulos}">0</div>
+                    </div>
+                    <div class="blog-stat-card">
+                        <div class="blog-stat-label">Publicados</div>
+                        <div class="blog-stat-value" th:text="${articulosPublicados}">0</div>
+                    </div>
+                    <div class="blog-stat-card">
+                        <div class="blog-stat-label">Borradores</div>
+                        <div class="blog-stat-value" th:text="${articulosBorradores}">0</div>
+                    </div>
+                    <div class="blog-stat-card">
+                        <div class="blog-stat-label">Destacados</div>
+                        <div class="blog-stat-value" th:text="${articulosDestacados}">0</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alertas -->
+            <div class="blog-alert blog-alert-success" th:if="${param.ok}">
+                <i class="fas fa-check-circle"></i>
+                <span>Artículo guardado exitosamente</span>
+            </div>
+            <div class="blog-alert blog-alert-error" th:if="${param.error}">
+                <i class="fas fa-exclamation-circle"></i>
+                <span>Error al guardar el artículo. Por favor intente nuevamente.</span>
+            </div>
+
+            <!-- Tabla de artículos -->
+            <div class="blog-table-container">
+                <table class="blog-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Título</th>
+                            <th>Categoría</th>
+                            <th>Fecha</th>
+                            <th>Estado</th>
+                            <th>Destacado</th>
+                            <th>Autor</th>
+                            <th style="text-align: center;">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:if="${articulos.isEmpty()}">
+                            <td colspan="8" style="text-align: center; padding: 3rem; color: #9ca3af;">
+                                <i class="fas fa-inbox" style="font-size: 3rem; margin-bottom: 1rem; display: block;"></i>
+                                No hay artículos registrados
+                            </td>
+                        </tr>
+                        <tr th:each="articulo : ${articulos}">
+                            <td th:text="${articulo.id}">1</td>
+                            <td>
+                                <div style="font-weight: 500; color: #1f2937;" th:text="${articulo.titulo}">Título del artículo</div>
+                                <div style="font-size: 0.875rem; color: #9ca3af; margin-top: 0.25rem;" th:text="${#strings.abbreviate(articulo.resumen, 60)}">Resumen...</div>
+                            </td>
+                            <td th:text="${articulo.categoria}">Salud</td>
+                            <td th:text="${articulo.fecha}">01/01/2024</td>
+                            <td>
+                                <span th:class="${articulo.estado == 'PUBLICADO' ? 'blog-badge blog-badge-publicado' : 'blog-badge blog-badge-borrador'}" 
+                                      th:text="${articulo.estado}">PUBLICADO</span>
+                            </td>
+                            <td>
+                                <span th:class="${articulo.destacado == true ? 'blog-badge blog-badge-destacado' : 'blog-badge blog-badge-normal'}" 
+                                      th:text="${articulo.destacado == true ? 'Destacado' : 'Normal'}">Normal</span>
+                            </td>
+                            <td th:text="${articulo.autor}">Admin</td>
+                            <td style="text-align: center;">
+                                <div style="display: flex; gap: 0.5rem; justify-content: center;">
+                                    <a th:href="@{/admin/blog/editar(id=${articulo.id})}" 
+                                       class="blog-btn blog-btn-primary" 
+                                       style="padding: 0.5rem 1rem; font-size: 0.875rem;">
+                                        <i class="fas fa-edit"></i>
+                                        Editar
+                                    </a>
+                                    <form th:action="@{/admin/blog/cambiar-estado}" method="post" style="margin: 0;">
+                                        <input type="hidden" name="id" th:value="${articulo.id}">
+                                        <input type="hidden" name="nuevoEstado" th:value="${articulo.estado == 'PUBLICADO' ? 'BORRADOR' : 'PUBLICADO'}">
+                                        <button type="submit" 
+                                                th:class="${articulo.estado == 'PUBLICADO' ? 'blog-btn blog-btn-warning' : 'blog-btn blog-btn-success'}"
+                                                th:title="${articulo.estado == 'PUBLICADO' ? 'Cambiar a borrador (ocultar)' : 'Publicar (mostrar en web)'}"
+                                                style="padding: 0.5rem 1rem; font-size: 0.875rem; border: none; cursor: pointer;">
+                                            <i th:class="${articulo.estado == 'PUBLICADO' ? 'fas fa-eye-slash' : 'fas fa-eye'}"></i>
+                                            <span th:text="${articulo.estado == 'PUBLICADO' ? 'Ocultar' : 'Publicar'}">Publicar</span>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Paginación -->
+                <div class="blog-pagination" th:if="${totalPages > 1}">
+                    <button th:if="${currentPage > 0}" 
+                            class="blog-pagination-btn"
+                            th:onclick="'location.href=\'/admin/blog/listado?page=' + ${currentPage - 1} + '\''">
+                        <i class="fas fa-chevron-left"></i> Anterior
+                    </button>
+                    
+                    <span style="padding: 0 1rem; color: #6b7280;">
+                        Página <span th:text="${currentPage + 1}">1</span> de <span th:text="${totalPages}">1</span>
+                    </span>
+                    
+                    <button th:if="${currentPage < totalPages - 1}" 
+                            class="blog-pagination-btn"
+                            th:onclick="'location.href=\'/admin/blog/listado?page=' + ${currentPage + 1} + '\''">
+                        Siguiente <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+    </div>
+</body>
+</html>

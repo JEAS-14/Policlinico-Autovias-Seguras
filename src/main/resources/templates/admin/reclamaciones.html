@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" th:replace="~{admin/layout :: layout(~{::content}, 'reclamaciones')}">
+<head>
+    <title>Libro de Reclamaciones | Panel Admin</title>
+</head>
+<body>
+    <div th:fragment="content" style="padding: 1.5rem;">
+        <!-- Header Section -->
+        <div class="reclamaciones-header">
+            <div class="reclamaciones-title-section">
+                <h3>
+                    <i class="fas fa-book"></i>
+                    Libro de Reclamaciones
+                </h3>
+                <p class="reclamaciones-subtitle">Gestiona las reclamaciones según la Ley N° 29571</p>
+            </div>
+            <div class="reclamaciones-header-actions">
+                <div class="reclamaciones-stat-card">
+                    <span class="reclamaciones-stat-number" th:text="${totalReclamaciones}">0</span>
+                    <span class="reclamaciones-stat-label">Total Registros</span>
+                </div>
+                <div class="reclamaciones-stat-card" title="Reclamaciones pendientes">
+                    <span class="reclamaciones-stat-number" th:text="${reclPendientes}">0</span>
+                    <span class="reclamaciones-stat-label">Pendientes</span>
+                </div>
+                <div class="reclamaciones-stat-card" title="En revisión">
+                    <span class="reclamaciones-stat-number" th:text="${reclEnRevision}">0</span>
+                    <span class="reclamaciones-stat-label">En revisión</span>
+                </div>
+                <div class="reclamaciones-stat-card" title="Resueltas">
+                    <span class="reclamaciones-stat-number" th:text="${reclResueltas}">0</span>
+                    <span class="reclamaciones-stat-label">Resueltas</span>
+                </div>
+                <div class="reclamaciones-stat-card" title="Cerradas">
+                    <span class="reclamaciones-stat-number" th:text="${reclCerradas}">0</span>
+                    <span class="reclamaciones-stat-label">Cerradas</span>
+                </div>
+                <a href="https://docs.google.com/spreadsheets/d/1XJ0Dywv6eq3hdIbueW4-7PHi6qz00Gtw2Ub_B4viDzI" 
+                   target="_blank"
+                   class="reclamaciones-btn-sheets">
+                    <i class="fas fa-table"></i>
+                    Abrir en Google Sheets
+                </a>
+            </div>
+        </div>
+
+        <!-- Search and Filters -->
+        <div class="reclamaciones-toolbar">
+            <div class="reclamaciones-search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Buscar por ticket, DNI o nombre...">
+            </div>
+            <div class="reclamaciones-toolbar-actions">
+                <button class="reclamaciones-btn">
+                    <i class="fas fa-filter"></i>
+                    Filtrar
+                </button>
+                <button class="reclamaciones-btn">
+                    <i class="fas fa-download"></i>
+                    Exportar
+                </button>
+            </div>
+        </div>
+
+        <!-- Table Container -->
+        <div class="reclamaciones-table-container">
+            <div class="reclamaciones-table-wrapper">
+                <table class="reclamaciones-table">
+                    <thead>
+                        <tr>
+                            <th>Ticket / Fecha</th>
+                            <th>Cliente</th>
+                            <th>Contacto</th>
+                            <th>Tipo</th>
+                            <th>Estado</th>
+                            <th>Detalle</th>
+                            <th style="text-align: center;">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="reclamacion, iterStat : ${reclamaciones}" th:if="${iterStat.index > 0}">
+                            <td>
+                                <div class="reclamaciones-ticket">
+                                    <span class="reclamaciones-ticket-id" th:text="${reclamacion.size() > 10 ? reclamacion[10] : ''}">REC-123</span>
+                                    <div class="reclamaciones-fecha">
+                                        <i class="far fa-calendar"></i>
+                                        <span th:text="${reclamacion[0]}">02/02/2026</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="reclamaciones-cliente">
+                                    <span class="reclamaciones-cliente-nombre" th:text="${reclamacion[1]} + ' ' + ${reclamacion[2]}">Juan Pérez</span>
+                                    <div class="reclamaciones-cliente-info">
+                                        <i class="fas fa-id-card"></i>
+                                        <span>DNI: <span th:text="${reclamacion[3]}">12345678</span></span>
+                                    </div>
+                                    <div class="reclamaciones-cliente-info">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <span th:text="${reclamacion[6]}">Dirección</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="reclamaciones-contacto">
+                                    <div class="reclamaciones-contacto-item" th:title="${reclamacion[4]}">
+                                        <i class="far fa-envelope"></i>
+                                        <span th:text="${reclamacion[4]}">email@example.com</span>
+                                    </div>
+                                    <div class="reclamaciones-contacto-item">
+                                        <i class="fas fa-phone"></i>
+                                        <span th:text="${reclamacion[5]}">999999999</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="reclamaciones-badge"
+                                      th:classappend="${reclamacion[7] == 'RECLAMO' ? 'reclamaciones-badge-reclamo' : 'reclamaciones-badge-queja'}"
+                                      th:text="${reclamacion[7]}">
+                                    QUEJA
+                                </span>
+                            </td>
+                            <td>
+                                <span class="reclamaciones-badge"
+                                      th:with="estadoRaw=${reclamacion.size() > 11 ? reclamacion[11] : 'PENDIENTE'},
+                                               estadoFinal=${#strings.isEmpty(estadoRaw) or #strings.startsWith(estadoRaw, 'REC') ? 'PENDIENTE' : estadoRaw}"
+                                      th:classappend="${estadoFinal == 'PENDIENTE' ? 'reclamaciones-badge-pendiente' : (estadoFinal == 'EN_REVISION' ? 'reclamaciones-badge-revision' : (estadoFinal == 'RESUELTA' ? 'reclamaciones-badge-resuelta' : 'reclamaciones-badge-cerrada'))}">
+                                    <span th:if="${estadoFinal == 'PENDIENTE'}" class="reclamaciones-badge-dot" aria-hidden="true"></span>
+                                    <span th:text="${estadoFinal}">PENDIENTE</span>
+                                </span>
+                            </td>
+                            <td>
+                                <div class="reclamaciones-detalle">
+                                    <p class="reclamaciones-detalle-pedido">
+                                        <span>Pedido:</span> <span th:text="${reclamacion[9]}">Descripción</span>
+                                    </p>
+                                    <p class="reclamaciones-detalle-texto" th:text="${reclamacion[8]}">Detalle del reclamo</p>
+                                </div>
+                            </td>
+                            <td style="text-align: center;">
+                                <a th:if="${reclamacion.size() > 10}"
+                                   th:href="@{/admin/reclamaciones/detalle(ticket=${reclamacion[10]})}"
+                                   class="reclamaciones-btn reclamaciones-btn-primary"
+                                   style="padding: 0.5rem 1rem; font-size: 0.875rem;"
+                                   title="Ver detalles">
+                                    <i class="fas fa-eye"></i>
+                                    Ver Detalle
+                                </a>
+                                <span th:if="${reclamacion.size() <= 10}" class="reclamaciones-btn reclamaciones-btn-disabled" title="Sin ticket">
+                                    <i class="fas fa-eye"></i>
+                                    Ver Detalle
+                                </span>
+                            </td>
+                        </tr>
+                        <tr th:if="${#lists.isEmpty(reclamaciones) or reclamaciones.size() == 1}">
+                            <td colspan="7" style="text-align: center; padding: 3rem; color: #9ca3af;">
+                                <i class="fas fa-book" style="font-size: 3rem; margin-bottom: 1rem; display: block;"></i>
+                                <p>No hay reclamaciones registradas</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Pagination -->
+            <div class="reclamaciones-pagination" th:if="${totalPages > 1}">
+                <div class="reclamaciones-pagination-info">
+                    Mostrando 
+                    <span th:text="${(currentPage) * 20 + 1}">1</span> 
+                    a 
+                    <span th:text="${(currentPage + 1) * 20 > totalReclamaciones ? totalReclamaciones : (currentPage + 1) * 20}">20</span> 
+                    de 
+                    <span th:text="${totalReclamaciones}">50</span> 
+                    resultados
+                </div>
+                <div class="reclamaciones-pagination-controls">
+                    <a th:if="${currentPage > 0}"
+                       th:href="@{/admin/reclamaciones(page=${currentPage - 1})}"
+                       class="reclamaciones-pagination-btn">
+                        Anterior
+                    </a>
+                    <span th:if="${currentPage == 0}" class="reclamaciones-pagination-btn disabled">
+                        Anterior
+                    </span>
+                    <a th:each="i : ${#numbers.sequence(0, totalPages - 1)}"
+                       th:href="@{/admin/reclamaciones(page=${i})}"
+                       class="reclamaciones-pagination-btn"
+                       th:classappend="${i == currentPage} ? 'active' : ''"
+                       th:text="${i + 1}">
+                        1
+                    </a>
+                    <a th:if="${currentPage < totalPages - 1}"
+                       th:href="@{/admin/reclamaciones(page=${currentPage + 1})}"
+                       class="reclamaciones-pagination-btn">
+                        Siguiente
+                    </a>
+                    <span th:if="${currentPage == totalPages - 1}" class="reclamaciones-pagination-btn disabled">
+                        Siguiente
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

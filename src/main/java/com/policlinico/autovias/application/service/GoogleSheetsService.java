@@ -41,6 +41,9 @@ public class GoogleSheetsService {
     
     @Value("${app.sheets.reclamaciones-sheet}")
     private String reclamacionesSheet;
+    
+    @Value("${app.sheets.blog-sheet}")
+    private String blogSheet;
 
     private final ResourceLoader resourceLoader;
 
@@ -179,6 +182,174 @@ public class GoogleSheetsService {
             ).setApplicationName("Policlinico-Autovias-Seguras").build();
         } catch (Exception e) {
             throw new IOException("Error al crear el servicio de Google Sheets", e);
+        }
+    }
+
+    /**
+     * Lee todos los artículos del blog desde Google Sheets
+     */
+    public List<List<Object>> leerArticulosBlog() {
+        try {
+            logger.info("Leyendo artículos del blog desde Google Sheets: hoja {}", blogSheet);
+            Sheets service = getSheetService();
+            
+            String range = blogSheet + "!A:J"; // Columnas A-J (ID hasta Autor)
+            ValueRange response = service.spreadsheets().values()
+                    .get(spreadsheetId, range)
+                    .execute();
+            
+            List<List<Object>> values = response.getValues();
+            if (values == null || values.isEmpty()) {
+                logger.warn("No se encontraron artículos en la hoja {}", blogSheet);
+                return new ArrayList<>();
+            }
+            
+            logger.info("Se encontraron {} filas en la hoja de blog", values.size());
+            return values;
+            
+        } catch (Exception e) {
+            logger.error("Error al leer artículos del blog desde Google Sheets", e);
+            throw new RuntimeException("Error al leer artículos del blog", e);
+        }
+    }
+    
+    /**
+     * Lee todas las reclamaciones desde Google Sheets
+     */
+    public List<List<Object>> leerReclamaciones() {
+        try {
+            logger.info("Leyendo reclamaciones desde Google Sheets: hoja {}", reclamacionesSheet);
+            Sheets service = getSheetService();
+            
+            String range = reclamacionesSheet + "!A:O"; // Columnas A-O (Fecha hasta Estado/Respuesta)
+            ValueRange response = service.spreadsheets().values()
+                    .get(spreadsheetId, range)
+                    .execute();
+            
+            List<List<Object>> values = response.getValues();
+            if (values == null || values.isEmpty()) {
+                logger.warn("No se encontraron reclamaciones en la hoja {}", reclamacionesSheet);
+                return new ArrayList<>();
+            }
+            
+            logger.info("Se encontraron {} reclamaciones en Google Sheets", values.size() - 1); // -1 por el header
+            return values;
+            
+        } catch (Exception e) {
+            logger.error("Error al leer reclamaciones desde Google Sheets", e);
+            throw new RuntimeException("Error al leer reclamaciones: " + e.getMessage(), e);
+        }
+    }
+
+    public List<Object> buscarReclamacionPorTicket(String ticket) {
+        List<List<Object>> values = leerReclamaciones();
+        if (values == null || values.size() <= 1) {
+            return null;
+        }
+
+        for (int i = 1; i < values.size(); i++) { // saltar header
+            List<Object> fila = values.get(i);
+            if (fila.size() > 10) {
+                String t = String.valueOf(fila.get(10));
+                if (t != null && t.trim().equalsIgnoreCase(ticket != null ? ticket.trim() : "")) {
+                return fila;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    public void actualizarReclamacion(String ticket, String estado, String respuesta, String respondidoPor) {
+        try {
+            Sheets service = getSheetService();
+            List<List<Object>> values = leerReclamaciones();
+
+            int rowIndex = -1;
+            for (int i = 1; i < values.size(); i++) { // saltar header
+                List<Object> fila = values.get(i);
+                if (fila.size() > 10 && ticket.equals(String.valueOf(fila.get(10)))) {
+                    rowIndex = i + 1; // 1-based para Sheets
+                    break;
+                }
+            }
+
+            if (rowIndex == -1) {
+                throw new RuntimeException("No se encontró el ticket: " + ticket);
+            }
+
+            String fechaRespuesta = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+            List<Object> updateValues = Arrays.asList(
+                    estado,
+                    respuesta != null ? respuesta : "",
+                    respondidoPor != null ? respondidoPor : "",
+                    fechaRespuesta
+            );
+
+            String updateRange = reclamacionesSheet + "!L" + rowIndex + ":O" + rowIndex;
+            ValueRange body = new ValueRange().setValues(Arrays.asList(updateValues));
+
+            service.spreadsheets().values()
+                    .update(spreadsheetId, updateRange, body)
+                    .setValueInputOption("USER_ENTERED")
+                    .execute();
+
+            logger.info("Reclamación {} actualizada: estado={}, respondidoPor={}", ticket, estado, respondidoPor);
+
+        } catch (Exception e) {
+            logger.error("Error al actualizar reclamación en Google Sheets", e);
+            throw new RuntimeException("Error al actualizar reclamación: " + e.getMessage(), e);
+        }
+    }
+
+    public void guardarArticuloBlog(String id, String titulo, String resumen, String contenido, String fecha, 
+                                     String categoria, String imagen, String destacado, String estado, String autor) {
+        try {
+            Sheets service = getSheetService();
+            List<List<Object>> values = leerArticulosBlog();
+
+            // Buscar si existe el artículo con ese ID
+            int rowIndex = -1;
+            for (int i = 1; i < values.size(); i++) {
+                List<Object> fila = values.get(i);
+                if (fila.size() > 0 && id.equals(String.valueOf(fila.get(0)))) {
+                    rowIndex = i + 1; // 1-based
+                    break;
+                }
+            }
+
+            List<Object> articuloData = Arrays.asList(
+                    id, titulo, resumen, contenido, fecha, categoria, imagen, destacado, estado, autor
+            );
+
+            if (rowIndex == -1) {
+                // Nuevo artículo - agregar al final
+                int nextRow = values.size() + 1;
+                String insertRange = blogSheet + "!A" + nextRow;
+                ValueRange body = new ValueRange().setValues(Arrays.asList(articuloData));
+                
+                service.spreadsheets().values()
+                        .update(spreadsheetId, insertRange, body)
+                        .setValueInputOption("USER_ENTERED")
+                        .execute();
+                
+                logger.info("Artículo creado con ID: {}", id);
+            } else {
+                // Actualizar artículo existente
+                String updateRange = blogSheet + "!A" + rowIndex + ":J" + rowIndex;
+                ValueRange body = new ValueRange().setValues(Arrays.asList(articuloData));
+                
+                service.spreadsheets().values()
+                        .update(spreadsheetId, updateRange, body)
+                        .setValueInputOption("USER_ENTERED")
+                        .execute();
+                
+                logger.info("Artículo actualizado con ID: {}", id);
+            }
+            
+        } catch (Exception e) {
+            logger.error("Error al guardar artículo en Google Sheets", e);
+            throw new RuntimeException("Error al guardar artículo: " + e.getMessage(), e);
         }
     }
 }

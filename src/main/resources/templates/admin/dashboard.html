@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" th:replace="~{admin/layout :: layout(~{::content}, 'dashboard')}">
+<head>
+    <title>Dashboard | Panel Admin</title>
+</head>
+<body>
+    <div th:fragment="content">
+        <div class="content-header">
+            <h1><i class="fas fa-tachometer-alt"></i> Dashboard</h1>
+            <p>Resumen general de tu panel de administración</p>
+        </div>
+
+        <div class="content-body">
+        <!-- Alertas -->
+        <div th:if="${errorBlog}" class="alert alert-error">
+            <i class="fas fa-exclamation-triangle"></i>
+            <span th:text="${errorBlog}"></span>
+        </div>
+
+        <!-- Estadísticas Rápidas -->
+        <div class="quick-stats">
+            <div class="stat-card">
+                <h4>Total Consultas</h4>
+                <div class="number" th:text="${totalConsultas}">0</div>
+            </div>
+            <div class="stat-card">
+                <h4>Pendientes</h4>
+                <div class="number" th:text="${consultasPendientes}">0</div>
+            </div>
+            <div class="stat-card">
+                <h4>En Proceso</h4>
+                <div class="number" th:text="${consultasEnProceso}">0</div>
+            </div>
+            <div class="stat-card">
+                <h4>Respondidas</h4>
+                <div class="number" th:text="${consultasRespondidas}">0</div>
+            </div>
+        </div>
+
+        <!-- Cards de Servicios -->
+        <div class="services-grid">
+            <!-- Gestión de Consultas -->
+            <a href="/admin/consultas" class="service-card consultas">
+                <div class="icon">
+                    <i class="fas fa-inbox"></i>
+                </div>
+                <h3>Gestión de Consultas</h3>
+                <p>Administra y responde las consultas recibidas de los usuarios. Cambia estados, busca y filtra.</p>
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-number" th:text="${consultasPendientes}">0</span>
+                        <span class="stat-label">Pendientes</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" th:text="${consultasEnProceso}">0</span>
+                        <span class="stat-label">En Proceso</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Libro de Reclamaciones -->
+            <a href="/admin/reclamaciones" class="service-card reclamaciones">
+                <div class="icon">
+                    <i class="fas fa-book"></i>
+                </div>
+                <h3>Libro de Reclamaciones</h3>
+                <p>Revisa las reclamaciones y quejas registradas según la Ley N° 29571.</p>
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-number">
+                            <i class="fas fa-external-link-alt"></i>
+                        </span>
+                        <span class="stat-label">Ver en Sheets</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Gestión de Blog -->
+            <a href="/admin/blog" class="service-card blog">
+                <div class="icon">
+                    <i class="fas fa-blog"></i>
+                </div>
+                <h3>Gestión de Blog</h3>
+                <p>Administra artículos del blog desde Google Sheets. Previsualiza antes de publicar.</p>
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-number" th:text="${totalArticulos}">0</span>
+                        <span class="stat-label">Artículos</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" th:text="${tieneDestacado ? 'Sí' : 'No'}">No</span>
+                        <span class="stat-label">Destacado</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" th:replace="~{admin/layout :: layout(~{::content}, 'reclamaciones')}">
+<head>
+    <title>Detalle Reclamación | Panel Admin</title>
+</head>
+<body>
+    <div th:fragment="content" style="padding: 1.5rem;">
+        <div class="reclamaciones-header" style="margin-bottom: 1.5rem;">
+            <div class="reclamaciones-title-section">
+                <h3>
+                    <i class="fas fa-book"></i>
+                    Detalle de Reclamación
+                </h3>
+                <p class="reclamaciones-subtitle" th:text="'Ticket: ' + ${ticket}">Ticket</p>
+            </div>
+            <div class="reclamaciones-header-actions">
+                <a th:href="@{/admin/reclamaciones}" class="reclamaciones-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    Volver
+                </a>
+            </div>
+        </div>
+
+        <div th:if="${param.ok}" class="alert alert-success" style="margin-bottom: 1rem;">
+            Respuesta guardada correctamente.
+        </div>
+        <div th:if="${param.error}" class="alert alert-danger" style="margin-bottom: 1rem;">
+            No se pudo guardar la respuesta.
+        </div>
+
+        <div class="reclamaciones-table-container">
+            <div class="reclamaciones-table-wrapper" style="padding: 1.5rem;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                    <div>
+                        <h4 style="margin-bottom: 0.75rem; color: #111827;">Datos del cliente</h4>
+                        <p><strong>Nombre:</strong> <span th:text="${reclamacion[1]} + ' ' + ${reclamacion[2]}">Nombre</span></p>
+                        <p><strong>DNI:</strong> <span th:text="${reclamacion[3]}">DNI</span></p>
+                        <p><strong>Email:</strong> <span th:text="${reclamacion[4]}">email</span></p>
+                        <p><strong>Teléfono:</strong> <span th:text="${reclamacion[5]}">tel</span></p>
+                        <p><strong>Dirección:</strong> <span th:text="${reclamacion[6]}">dir</span></p>
+                    </div>
+                    <div>
+                        <h4 style="margin-bottom: 0.75rem; color: #111827;">Detalle</h4>
+                        <p><strong>Fecha:</strong> <span th:text="${reclamacion[0]}">fecha</span></p>
+                        <p><strong>Tipo:</strong> <span th:text="${reclamacion[7]}">tipo</span></p>
+                        <p><strong>Detalle:</strong> <span th:text="${reclamacion[8]}">detalle</span></p>
+                        <p><strong>Pedido:</strong> <span th:text="${reclamacion[9]}">pedido</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="reclamaciones-table-container" style="margin-top: 1.5rem;">
+            <div class="reclamaciones-table-wrapper" style="padding: 1.5rem;">
+                <h4 style="margin-bottom: 1rem; color: #111827;">Responder y actualizar estado</h4>
+                <form th:action="@{/admin/reclamaciones/responder}" method="post">
+                    <input type="hidden" name="ticket" th:value="${ticket}" />
+
+                    <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 1rem; align-items: center;">
+                        <label for="estado">Estado</label>
+                        <select id="estado" name="estado" class="reclamaciones-select" style="padding: 0.5rem;">
+                            <option th:selected="${estadoActual == 'PENDIENTE'}" value="PENDIENTE">PENDIENTE</option>
+                            <option th:selected="${estadoActual == 'EN_REVISION'}" value="EN_REVISION">EN_REVISION</option>
+                            <option th:selected="${estadoActual == 'RESUELTA'}" value="RESUELTA">RESUELTA</option>
+                            <option th:selected="${estadoActual == 'CERRADA'}" value="CERRADA">CERRADA</option>
+                        </select>
+
+                        <label for="respuesta">Respuesta</label>
+                        <textarea id="respuesta" name="respuesta" rows="6" class="reclamaciones-textarea" style="padding: 0.75rem;" th:text="${respuestaActual}"></textarea>
+                    </div>
+
+                    <div style="margin-top: 1rem; display:flex; gap:0.5rem;">
+                        <button type="submit" name="accion" value="guardar" class="reclamaciones-btn" style="border:1px solid #d1d5db; background:white; color:#374151;">
+                            <i class="fas fa-save"></i>
+                            Guardar cambios
+                        </button>
+                        <button type="submit" name="accion" value="guardarYEnviar" class="reclamaciones-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            Guardar y enviar email
+                        </button>
+                        <a th:href="@{/admin/reclamaciones}" class="reclamaciones-btn" style="border:1px solid #d1d5db; background:white; color:#374151;">
+                            <i class="fas fa-arrow-left"></i>
+                            Volver
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

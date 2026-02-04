@@ -79,14 +79,14 @@ public class ConsultaService {
         }
         
         consulta = consultaRepository.save(consulta);
-        log.info("Consulta {} respondida por {}", consulta.getNumeroTicket(), usuario);
+        log.info("Consulta {} respondida por {}", consulta.getId(), usuario);
         
         // Enviar respuesta al cliente
         try {
             emailService.enviarRespuestaCliente(consulta);
         } catch (Exception e) {
             log.error("Error al enviar respuesta al cliente para consulta {}", 
-                consulta.getNumeroTicket(), e);
+                consulta.getId(), e);
             throw new RuntimeException("Error al enviar respuesta por email", e);
         }
         
@@ -127,6 +127,10 @@ public class ConsultaService {
             .orElseThrow(() -> new RuntimeException("Consulta no encontrada"));
     }
     
+    public long contarTodas() {
+        return consultaRepository.count();
+    }
+    
     public long contarPorEstado(EstadoConsulta estado) {
         return consultaRepository.countByEstado(estado);
     }
@@ -140,7 +144,7 @@ public class ConsultaService {
         Consulta consulta = consultaRepository.findById(id)
             .orElseThrow(() -> new RuntimeException("Consulta no encontrada"));
         
-        log.info("Eliminando consulta con ticket: {}", consulta.getNumeroTicket());
+        log.info("Eliminando consulta con id: {}", consulta.getId());
         consultaRepository.deleteById(id);
     }
     

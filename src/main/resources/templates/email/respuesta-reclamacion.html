@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Respuesta a tu reclamación</title>
+</head>
+<body style="font-family: Arial, sans-serif; background:#f9fafb; padding:24px;">
+    <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px; margin:0 auto; background:#ffffff; border:1px solid #e5e7eb; border-radius:12px; overflow:hidden;">
+        <tr>
+            <td style="background:#312e81; color:#ffffff; padding:16px 24px; font-size:18px; font-weight:bold;">
+                Policlínico Autovías Seguras
+            </td>
+        </tr>
+        <tr>
+            <td style="padding:24px; color:#111827;">
+                <p style="margin:0 0 12px;">Hola <strong th:text="${nombre}">Nombre</strong> <strong th:text="${apellido}">Apellido</strong>,</p>
+                <p style="margin:0 0 12px;">Hemos respondido tu reclamación.</p>
+                <p style="margin:0 0 12px;"><strong>Ticket:</strong> <span th:text="${numeroTicket}">REC-123</span></p>
+                <p style="margin:0 0 12px;"><strong>Estado:</strong> <span th:text="${estado}">PENDIENTE</span></p>
+                <p style="margin:0 0 12px;"><strong>Respuesta:</strong></p>
+                <div style="padding:12px; background:#f3f4f6; border-radius:8px; color:#111827;" th:text="${respuesta}">Texto de respuesta</div>
+                <p style="margin:12px 0 0; color:#6b7280; font-size:12px;">Fecha de respuesta: <span th:text="${fechaRespuesta}">01/01/2026 10:00</span></p>
+            </td>
+        </tr>
+        <tr>
+            <td style="padding:16px 24px; background:#f9fafb; color:#6b7280; font-size:12px;">
+                Si tienes alguna consulta adicional, responde a este correo.
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -20,9 +20,9 @@ public class LoginController {
     
     @GetMapping("/admin/login")
     public String mostrarLogin(HttpSession session) {
-        // Si ya está logueado, redirigir al panel
+        // Si ya está logueado, redirigir al dashboard
         if (session.getAttribute("usuarioAutenticado") != null) {
-            return "redirect:/admin/consultas";
+            return "redirect:/admin";
         }
         return "admin/login";
     }
@@ -38,7 +38,7 @@ public class LoginController {
         if (email.equals(emailAutorizado) && password.equals(passwordAdmin)) {
             session.setAttribute("usuarioAutenticado", email);
             session.setAttribute("nombreUsuario", "Administrador");
-            return "redirect:/admin/consultas";
+            return "redirect:/admin";
         }
         
         redirectAttributes.addFlashAttribute("error", "Credenciales incorrectas");
