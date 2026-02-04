@@ -147,7 +147,7 @@ body {
     /* Para centrarlo si es necesario */
 
     /* ESTADO NORMAL: MOTO AZUL */
-    background-image: url('https://res.cloudinary.com/dtozni6ik/image/upload/v1769788854/002-bicitaxi-1_ul2toz.png');
+    background-image: url('https://res.cloudinary.com/dtozni6ik/image/upload/f_auto,q_auto/v1769788854/002-bicitaxi-1_ul2toz.png');
 
     background-size: contain;
     /* Que la imagen entre completa sin cortarse */
@@ -162,7 +162,7 @@ body {
 .card:hover .icono-moto-biic {
 
     /* CAMBIO A: MOTO VERDE */
-    background-image: url('https://res.cloudinary.com/dtozni6ik/image/upload/v1769788854/003-bicitaxi-2_ijeg45.png');
+    background-image: url('https://res.cloudinary.com/dtozni6ik/image/upload/f_auto,q_auto/v1769788854/003-bicitaxi-2_ijeg45.png');
 
     transform: scale(1.1);
     /* Efecto de "zoom" ligero */
@@ -173,7 +173,7 @@ body {
     padding: 60px 0 20px;
     background: 
         linear-gradient(to bottom, rgba(224, 247, 250, 0.92), rgba(209, 196, 233, 0.92)),
-        url('https://res.cloudinary.com/dtozni6ik/image/upload/v1770052294/imagen_2026-02-02_121134302_jufbvu.png');
+        url('https://res.cloudinary.com/dtozni6ik/image/upload/f_auto,q_auto/v1770052294/imagen_2026-02-02_121134302_jufbvu.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -380,7 +380,7 @@ body {
     text-align: center;
     /* Fondo con imagen de carretera/conducción */
     background: linear-gradient(135deg, rgba(248, 249, 250, 0.96) 0%, rgba(255, 255, 255, 0.74) 100%),
-                url('https://res.cloudinary.com/dtozni6ik/image/upload/v1770040588/imagen_2026-02-02_085628525_plhjbg.png');
+                url('https://res.cloudinary.com/dtozni6ik/image/upload/f_auto,q_auto/v1770040588/imagen_2026-02-02_085628525_plhjbg.png');
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;

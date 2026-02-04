@@ -239,7 +239,7 @@ const servicesData = [
         desc: "Salud ocupacional para empresas.",
         fullDesc: "Realizamos evaluaciones médicas ocupacionales (EMO) cumpliendo todas las normativas de ley vigentes.",
         icon: "stethoscope",
-        image: "https://res.cloudinary.com/dtozni6ik/image/upload/v1767590080/a656839e-4c63-4fa8-8040-8f94551e1a9c.png",
+        image: "https://res.cloudinary.com/dtozni6ik/image/upload/f_auto,q_auto/v1767590080/a656839e-4c63-4fa8-8040-8f94551e1a9c.png",
         link: "/servicios/examenMedicoOcupacional"
     },
     {
@@ -248,7 +248,7 @@ const servicesData = [
         desc: "Brevetes A1, A2, A3.",
         fullDesc: "Obtén tu certificado médico para brevete en tiempo récord. Validado directamente en el sistema del MTC.",
         icon: "car",
-        image: "https://res.cloudinary.com/dtozni6ik/image/upload/v1770217808/imagen_2026-02-04_101005479_ptkzeq.png",
+        image: "https://res.cloudinary.com/dtozni6ik/image/upload/f_auto,q_auto/v1770217808/imagen_2026-02-04_101005479_ptkzeq.png",
         link: "/servicios/examenMedicoBrevete"
     },
     {
@@ -257,7 +257,7 @@ const servicesData = [
         desc: "Carne Sucamec - Licencia de arma de fuego.",
         fullDesc: "Evaluación integral de salud mental y física para personal de seguridad y uso civil de armas.",
         icon: "shield-alt",
-        image: "https://res.cloudinary.com/dtozni6ik/image/upload/v1770040501/imagen_2026-02-02_085501377_kitinb.png",
+        image: "https://res.cloudinary.com/dtozni6ik/image/upload/f_auto,q_auto/v1770040501/imagen_2026-02-02_085501377_kitinb.png",
         link: "/servicios/examenSucamec"
     },
     {
@@ -266,7 +266,7 @@ const servicesData = [
         desc: "Recategorización profesional.",
         fullDesc: "Cursos teóricos y prácticos con instructores calificados para mejorar tu categoría de licencia.",
         icon: "graduation-cap",
-        image: "https://res.cloudinary.com/dtozni6ik/image/upload/v1767590149/82645900-9f7f-4ba5-b4f2-dcb7cd583bef.png",
+        image: "https://res.cloudinary.com/dtozni6ik/image/upload/f_auto,q_auto/v1767590149/82645900-9f7f-4ba5-b4f2-dcb7cd583bef.png",
         link: "/servicios/escuelaConductores"
     }
 ];

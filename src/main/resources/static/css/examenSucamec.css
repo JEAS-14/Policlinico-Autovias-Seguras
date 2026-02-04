@@ -44,7 +44,7 @@ body {
     margin-top: 100px;
     position: relative;
     background: linear-gradient(rgba(200, 230, 255, 0.85), rgba(230, 230, 255, 0.9)),
-        url('https://res.cloudinary.com/dtozni6ik/image/upload/v1769734704/Gemini_Generated_Image_m07niim07niim07n_cgssap.png');
+        url('https://res.cloudinary.com/dtozni6ik/image/upload/f_auto,q_auto/v1769734704/Gemini_Generated_Image_m07niim07niim07n_cgssap.png');
     background-size: cover;
     background-position: center;
     padding: 30px 0 80px;
@@ -199,7 +199,7 @@ body {
     position: relative;
     padding: 60px 0;
     background: linear-gradient(135deg, rgba(248, 249, 252, 0.95) 0%, rgba(240, 235, 255, 0.93) 100%),
-                url('https://res.cloudinary.com/dtozni6ik/image/upload/v1770040501/imagen_2026-02-02_085501377_kitinb.png');
+                url('https://res.cloudinary.com/dtozni6ik/image/upload/f_auto,q_auto/v1770040501/imagen_2026-02-02_085501377_kitinb.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -257,7 +257,7 @@ body {
     position: relative;
     padding: 80px 0;
     background: linear-gradient(135deg, rgba(224, 247, 250, 0.96) 0%, rgba(209, 196, 233, 0.94) 100%),
-                url('https://res.cloudinary.com/dtozni6ik/image/upload/v1770040501/imagen_2026-02-02_085501377_kitinb.png');
+                url('https://res.cloudinary.com/dtozni6ik/image/upload/f_auto,q_auto/v1770040501/imagen_2026-02-02_085501377_kitinb.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;

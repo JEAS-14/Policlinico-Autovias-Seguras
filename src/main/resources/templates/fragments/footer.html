@@ -13,7 +13,7 @@
             <div class="footer-column footer-brand">
                 <div class="footer-logo">
                     <a th:href="@{/}">
-                        <img src="https://res.cloudinary.com/dtozni6ik/image/upload/v1767826814/imagen_2025-12-16_004351899-Photoroom-removebg-preview_kgmnvi.png"
+                        <img src="https://res.cloudinary.com/dtozni6ik/image/upload/f_auto,q_auto/v1767826814/imagen_2025-12-16_004351899-Photoroom-removebg-preview_kgmnvi.png"
                             alt="Autovías Seguras">
                     </a>
                 </div>
@@ -104,6 +104,16 @@
             <div></div>
         </div>
     </footer>
+
+    <th:block th:if="${@environment.getProperty('analytics.ga4.id')}">
+        <script async th:src="@{'https://www.googletagmanager.com/gtag/js?id=' + ${@environment.getProperty('analytics.ga4.id')}}"></script>
+        <script th:inline="javascript">
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', /*[[${@environment.getProperty('analytics.ga4.id')}]]*/ 'G-XXXXXXXXXX');
+        </script>
+    </th:block>
 
     <script th:src="@{/js/scroll-animations.js}"></script>
 </body>
