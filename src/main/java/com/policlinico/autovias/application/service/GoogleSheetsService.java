@@ -19,6 +19,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -57,8 +59,9 @@ public class GoogleSheetsService {
     public void guardarConsulta(String nombre, String apellido, String email, String telefono,
                                  String tipoConsulta, String mensaje, String numeroTicket) {
         try {
+            LocalDateTime ahora = LocalDateTime.now(ZoneId.of("America/Lima"));
             List<Object> fila = new ArrayList<>(Arrays.asList(
-                    LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
+                    ahora.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
                     nombre,
                     apellido,
                     email,
@@ -86,8 +89,9 @@ public class GoogleSheetsService {
             logger.info("Intentando guardar reclamación en Google Sheets: {}", numeroTicket);
             logger.info("Tipo recibido: {}", tipo);
             
+            LocalDateTime ahora = LocalDateTime.now(ZoneId.of("America/Lima"));
             List<Object> fila = new ArrayList<>(Arrays.asList(
-                    LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
+                    ahora.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
                     nombre,
                     apellido,
                     dni,
@@ -278,7 +282,8 @@ public class GoogleSheetsService {
                 throw new RuntimeException("No se encontró el ticket: " + ticket);
             }
 
-            String fechaRespuesta = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+            LocalDateTime ahoraRespuesta = LocalDateTime.now(ZoneId.of("America/Lima"));
+            String fechaRespuesta = ahoraRespuesta.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
             List<Object> updateValues = Arrays.asList(
                     estado,
                     respuesta != null ? respuesta : "",
