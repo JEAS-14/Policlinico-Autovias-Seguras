@@ -13,7 +13,7 @@
 </head>
 
 <body class="pt-[85px]">
-    <div th:replace="~{fragments/navbar ::  navbar}"></div>
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
 
     <header class="blog-header">
         <div class="blob blob-1"></div>
@@ -35,39 +35,29 @@
 
     <main class="container">
 
-        <a href="#" class="featured-post article-trigger animate-on-scroll">
+        <!-- Artículo Destacado (dinámico desde Google Sheets) -->
+        <a href="#" class="featured-post article-trigger animate-on-scroll" th:if="${destacado != null}">
             <div class="featured-image">
-                <img src="https://res.cloudinary.com/dtozni6ik/image/upload/v1769718980/000149725M_x7y9oy.jpg"
-                    alt="Restricción Motos MTC" class="source-img">
+                <img th:src="${destacado.imagen}" 
+                     th:alt="${destacado.titulo}" 
+                     class="source-img"
+                     onerror="this.src='https://via.placeholder.com/800x400?text=Sin+Imagen'">
             </div>
             <div class="featured-content">
                 <div class="meta">
-                    <span class="badge badge-primary source-badge">Actualidad</span>
-                    <span class="date source-date"><i class="far fa-calendar"></i> 20 Ene, 2026</span>
+                    <span class="badge badge-primary source-badge" th:text="${destacado.categoria}">Actualidad</span>
+                    <span class="date source-date">
+                        <i class="far fa-calendar"></i> 
+                        <span th:text="${destacado.fecha}">20 Ene, 2026</span>
+                    </span>
                 </div>
-                <h2 class="source-title">MTC oficializa prohibición de dos personas en moto en zonas de emergencia</h2>
-                <p class="source-summary">Nueva normativa establece multas de hasta S/ 660 y retención del vehículo para
-                    quienes circulen con acompañante en distritos declarados en emergencia.</p>
+                <h2 class="source-title" th:text="${destacado.titulo}">Título del artículo destacado</h2>
+                <p class="source-summary" th:text="${destacado.resumen}">Resumen del artículo destacado.</p>
 
                 <div class="article-full-content hidden">
-                    <p>El Gobierno ha ratificado, mediante el <strong>Decreto Supremo N° 002-2026-MTC</strong>, la
-                        restricción del traslado de acompañantes en motocicletas lineales en zonas bajo estado de
-                        emergencia como Lima y Callao.</p>
-                    <br>
-                    <h4>Detalles Técnicos de la Norma:</h4>
-                    <ul>
-                        <li><strong>Infracción G58:</strong> Circular con acompañante en zonas restringidas conlleva una
-                            multa de S/ 660 (12% UIT).</li>
-                        <li><strong>Puntos:</strong> Se restarán 50 puntos del historial del conductor por cada
-                            infracción cometida.</li>
-                        <li><strong>Retención:</strong> La Policía Nacional está facultada para internar el vehículo en
-                            el depósito municipal de inmediato.</li>
-                        <li><strong>Excepciones:</strong> Solo personal de seguridad y emergencias debidamente
-                            identificados están exentos.</li>
-                    </ul>
-                    <br>
-                    <p>En <strong>Autovías Seguras</strong> te recomendamos portar siempre tus documentos originales. La
-                        fiscalización será rigurosa en puntos estratégicos de la ciudad.</p>
+                    <div th:utext="${destacado.contenido}">
+                        <p>Contenido completo del artículo.</p>
+                    </div>
                 </div>
 
                 <div class="featured-btn-icon">
@@ -76,38 +66,41 @@
                 </div>
             </div>
         </a>
+        
+        <!-- Mensaje si no hay artículo destacado -->
+        <div th:if="${destacado == null}" class="alert alert-info animate-on-scroll" style="text-align: center; padding: 2rem; background: #e0f2fe; border-radius: 12px; margin-bottom: 2rem;">
+            <i class="fas fa-info-circle" style="font-size: 2rem; margin-bottom: 1rem; color: #0284c7;"></i>
+            <p style="margin: 0; color: #0c4a6e;">No hay artículo destacado disponible en este momento.</p>
+        </div>
 
         <section class="blog-grid">
-
-            <a href="#" class="card article-trigger animate-on-scroll delay-1">
+            <!-- Artículos dinámicos desde Google Sheets -->
+            <a href="#" 
+               th:each="articulo, iterStat : ${articulos}" 
+               class="card article-trigger animate-on-scroll"
+               th:classappend="'delay-' + ${(iterStat.index % 4) + 1}">
                 <div class="card-img-wrapper">
-                    <img src="https://res.cloudinary.com/dtozni6ik/image/upload/v1769719683/1334139-whatsapp-image-2026-01-15-at-7-58-01-pm_dpzims.jpg"
-                        alt="Régimen Temporal" class="card-img source-img">
+                    <img th:src="${articulo.imagen}" 
+                         th:alt="${articulo.titulo}" 
+                         class="card-img source-img"
+                         onerror="this.src='https://via.placeholder.com/400x250?text=Sin+Imagen'">
                 </div>
                 <div class="card-body">
                     <div class="meta">
-                        <object><span class="badge badge-primary source-badge">Actualidad</span></object>
-                        <span class="date source-date">16 Ene, 2026</span>
+                        <object>
+                            <span class="badge source-badge"
+                                  th:classappend="${articulo.categoria == 'Salud' ? 'badge-teal' : (articulo.categoria == 'MTC' ? 'badge-accent' : 'badge-primary')}"
+                                  th:text="${articulo.categoria}">Actualidad</span>
+                        </object>
+                        <span class="date source-date" th:text="${articulo.fecha}">16 Ene, 2026</span>
                     </div>
-                    <h3 class="source-title">Nuevo régimen temporal para licencias profesionales</h3>
-                    <p class="source-summary">El MTC busca facilitar la recategorización de conductores mediante
-                        programas de entrenamiento específicos.</p>
+                    <h3 class="source-title" th:text="${articulo.titulo}">Título del artículo</h3>
+                    <p class="source-summary" th:text="${articulo.resumen}">Resumen del artículo.</p>
 
                     <div class="article-full-content hidden">
-                        <p>El <strong>Decreto Supremo N° 003-2026-MTC</strong> establece un marco legal de dos años para
-                            cerrar la brecha de conductores profesionales de carga y pasajeros.</p>
-                        <br>
-                        <h4>¿Qué beneficios ofrece?</h4>
-                        <p>Se ha simplificado el acceso a las categorías AII y AIII para conductores con récord
-                            impecable. Las horas de instrucción teórica se han modernizado incluyendo módulos de
-                            primeros auxilios y psicología vial.</p>
-                        <br>
-                        <h4>Pasos para acogerte:</h4>
-                        <ul>
-                            <li>Verificar que no posees multas "Muy Graves" sin pagar.</li>
-                            <li>Aprobar el examen psicosomático en <strong>Autovías Seguras</strong>.</li>
-                            <li>Inscribirte en el Programa de Formación de Conductores autorizado por el MTC.</li>
-                        </ul>
+                        <div th:utext="${articulo.contenido}">
+                            <p>Contenido completo del artículo.</p>
+                        </div>
                     </div>
 
                     <div class="card-footer">
@@ -115,125 +108,19 @@
                     </div>
                 </div>
             </a>
-
-            <a href="#" class="card article-trigger animate-on-scroll delay-2">
-                <div class="card-img-wrapper">
-                    <img src="https://res.cloudinary.com/dtozni6ik/image/upload/v1769720251/Licencia-de-conducir-virtual-requisitos_ztudq4.jpg"
-                        alt="Brevete Electrónico" class="card-img source-img">
-                </div>
-                <div class="card-body">
-                    <div class="meta">
-                        <object><span class="badge badge-primary source-badge">Actualidad</span></object>
-                        <span class="date source-date">12 Ene, 2026</span>
-                    </div>
-                    <h3 class="source-title">Brevete Electrónico 2026: Todo lo que debes saber</h3>
-                    <p class="source-summary">Conoce las ventajas de la licencia digital y cómo evitar estafas en el
-                        trámite online.</p>
-
-                    <div class="article-full-content hidden">
-                        <p>La licencia electrónica tiene la misma validez que la física, pero con mayor seguridad y
-                            menor costo (S/ 6.70).</p>
-                        <br>
-                        <h4>Seguridad y Fiscalización:</h4>
-                        <ul>
-                            <li><strong>Código QR:</strong> Los inspectores de la ATU y PNP escanean el código para ver
-                                tu historial en tiempo real.</li>
-                            <li><strong>Descarga:</strong> Puedes llevarla en la app "MTC Digital" sin necesidad de
-                                conexión constante a datos.</li>
-                            <li><strong>Duplicados:</strong> En caso de robo de celular, puedes descargarla nuevamente
-                                sin pagar tasas adicionales.</li>
-                        </ul>
-                        <br>
-                        <p>Recuerda: El examen médico es el único paso que <strong>obligatoriamente</strong> es
-                            presencial. Visítanos para subir tus resultados al sistema nacional.</p>
-                    </div>
-
-                    <div class="card-footer">
-                        <div class="card-icon"><i class="fas fa-arrow-right"></i></div>
-                    </div>
-                </div>
-            </a>
-
-            <a href="#" class="card article-trigger animate-on-scroll delay-3">
-                <div class="card-img-wrapper">
-                    <img src="https://res.cloudinary.com/dtozni6ik/image/upload/v1769720248/invierno_aoxkh6.jpg"
-                        alt="Salud Vial" class="card-img source-img">
-                </div>
-                <div class="card-body">
-                    <div class="meta">
-                        <object><span class="badge badge-teal source-badge">Salud</span></object>
-                        <span class="date source-date">08 Ene, 2026</span>
-                    </div>
-                    <h3 class="source-title">Impacto de la salud visual en la seguridad vial</h3>
-                    <p class="source-summary">¿Sabías que el 80% de la información al conducir entra por los ojos? La
-                        importancia de un chequeo real.</p>
-
-                    <div class="article-full-content hidden">
-                        <p>Muchos conductores ignoran problemas de visión nocturna o fatiga visual, lo que incrementa el
-                            riesgo de accidentes en un 30% durante la noche.</p>
-                        <br>
-                        <h4>Qué evaluamos en Autovías Seguras:</h4>
-                        <ul>
-                            <li><strong>Agudeza Visual:</strong> Capacidad para identificar señales a distancia.</li>
-                            <li><strong>Test de Ishihara:</strong> Detección de daltonismo para interpretar semáforos
-                                correctamente.</li>
-                            <li><strong>Estereopsis:</strong> Percepción de profundidad (distancia real entre
-                                vehículos).</li>
-                        </ul>
-                        <br>
-                        <p>Un examen médico honesto no es solo un trámite, es tu seguro de vida al volante. Si usas
-                            lentes, recuerda traer tu medida actualizada el día de tu cita.</p>
-                    </div>
-
-                    <div class="card-footer">
-                        <div class="card-icon"><i class="fas fa-arrow-right"></i></div>
-                    </div>
-                </div>
-            </a>
-
-            <a href="#" class="card article-trigger animate-on-scroll delay-4">
-                <div class="card-img-wrapper">
-                    <img src="https://res.cloudinary.com/dtozni6ik/image/upload/v1769720246/MTC_ry3mv7.jpg"
-                        alt="Examen Manejo" class="card-img source-img">
-                </div>
-                <div class="card-body">
-                    <div class="meta">
-                        <object><span class="badge badge-gray source-badge">Seguridad</span></object>
-                        <span class="date source-date">05 Ene, 2026</span>
-                    </div>
-                    <h3 class="source-title">5 Errores críticos en el examen de manejo</h3>
-                    <p class="source-summary">Evita las faltas que descalifican automáticamente a los postulantes en el
-                        circuito de evaluación.</p>
-
-                    <div class="article-full-content hidden">
-                        <p>Aprobar el examen práctico requiere técnica y, sobre todo, control de nervios. Aquí te
-                            detallamos las faltas eliminatorias:</p>
-                        <br>
-                        <ol>
-                            <li><strong>No usar el cinturón:</strong> Es una falta muy grave que termina el examen antes
-                                de empezar.</li>
-                            <li><strong>Pisar las líneas amarillas:</strong> Indica falta de control sobre las
-                                dimensiones del vehículo.</li>
-                            <li><strong>No usar direccionales:</strong> Debes señalizar con 20 metros de anticipación en
-                                cada giro.</li>
-                            <li><strong>Ignorar la señal de Pare:</strong> Debes detenerte totalmente por al menos 3
-                                segundos.</li>
-                            <li><strong>No respetar al peatón:</strong> Prioridad absoluta en los cruces señalizados.
-                            </li>
-                        </ol>
-                        <br>
-                        <p>En nuestra <strong>Escuela de Conductores</strong>, realizamos simulacros idénticos al examen
-                            real para que vayas con total confianza.</p>
-                    </div>
-
-                    <div class="card-footer">
-                        <div class="card-icon"><i class="fas fa-arrow-right"></i></div>
-                    </div>
-                </div>
-            </a>
+            
+            <!-- Mensaje si no hay artículos -->
+            <div th:if="${articulos == null or articulos.isEmpty()}" 
+                 class="col-span-full" 
+                 style="text-align: center; padding: 3rem; background: #f9fafb; border-radius: 12px; grid-column: 1 / -1;">
+                <i class="fas fa-newspaper" style="font-size: 3rem; margin-bottom: 1rem; color: #9ca3af;"></i>
+                <p style="margin: 0; color: #6b7280; font-size: 1.1rem;">No hay artículos publicados en este momento.</p>
+                <p style="margin-top: 0.5rem; color: #9ca3af; font-size: 0.9rem;">Vuelve pronto para ver nuevas noticias y consejos.</p>
+            </div>
 
         </section>
     </main>
+    
     <div id="news-modal" class="modal-overlay">
         <div class="modal-content">
             <button class="close-modal">&times;</button>

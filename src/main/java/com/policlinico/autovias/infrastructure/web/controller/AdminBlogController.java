@@ -398,4 +398,92 @@ public class AdminBlogController {
             return "redirect:/admin/blog?error";
         }
     }
+    
+    /**
+     * ENDPOINT TEMPORAL: Migra las 5 noticias antiguas a Google Sheets
+     * Ejecutar una sola vez: http://localhost:8080/admin/blog/migrar-antiguas
+     */
+    @GetMapping("/migrar-antiguas")
+    public String migrarNoticiasAntiguas(HttpSession session) {
+        try {
+            log.info("Iniciando migración de noticias antiguas...");
+            
+            // Artículo 1 - Destacado
+            googleSheetsService.guardarArticuloBlog(
+                "1",
+                "MTC oficializa prohibición de dos personas en moto en zonas de emergencia",
+                "Nueva normativa establece multas de hasta S/ 660 y retención del vehículo para quienes circulen con acompañante en distritos declarados en emergencia.",
+                "<p>El Gobierno ha ratificado, mediante el <strong>Decreto Supremo N° 002-2026-MTC</strong>, la restricción del traslado de acompañantes en motocicletas lineales en zonas bajo estado de emergencia como Lima y Callao.</p><br><h4>Detalles Técnicos de la Norma:</h4><ul><li><strong>Infracción G58:</strong> Circular con acompañante en zonas restringidas conlleva una multa de S/ 660 (12% UIT).</li><li><strong>Puntos:</strong> Se restarán 50 puntos del historial del conductor por cada infracción cometida.</li><li><strong>Retención:</strong> La Policía Nacional está facultada para internar el vehículo en el depósito municipal de inmediato.</li><li><strong>Excepciones:</strong> Solo personal de seguridad y emergencias debidamente identificados están exentos.</li></ul><br><p>En <strong>Autovías Seguras</strong> te recomendamos portar siempre tus documentos originales. La fiscalización será rigurosa en puntos estratégicos de la ciudad.</p>",
+                "20/01/2026",
+                "Actualidad",
+                "https://res.cloudinary.com/dtozni6ik/image/upload/v1769718980/000149725M_x7y9oy.jpg",
+                "SI",
+                "PUBLICADO",
+                "Admin"
+            );
+            
+            // Artículo 2
+            googleSheetsService.guardarArticuloBlog(
+                "2",
+                "Nuevo régimen temporal para licencias profesionales",
+                "El MTC busca facilitar la recategorización de conductores mediante programas de entrenamiento específicos.",
+                "<p>El <strong>Decreto Supremo N° 003-2026-MTC</strong> establece un marco legal de dos años para cerrar la brecha de conductores profesionales de carga y pasajeros.</p><br><h4>¿Qué beneficios ofrece?</h4><p>Se ha simplificado el acceso a las categorías AII y AIII para conductores con récord impecable. Las horas de instrucción teórica se han modernizado incluyendo módulos de primeros auxilios y psicología vial.</p><br><h4>Pasos para acogerte:</h4><ul><li>Verificar que no posees multas \"Muy Graves\" sin pagar.</li><li>Aprobar el examen psicosomático en <strong>Autovías Seguras</strong>.</li><li>Inscribirte en el Programa de Formación de Conductores autorizado por el MTC.</li></ul>",
+                "16/01/2026",
+                "Actualidad",
+                "https://res.cloudinary.com/dtozni6ik/image/upload/v1769719683/1334139-whatsapp-image-2026-01-15-at-7-58-01-pm_dpzims.jpg",
+                "NO",
+                "PUBLICADO",
+                "Admin"
+            );
+            
+            // Artículo 3
+            googleSheetsService.guardarArticuloBlog(
+                "3",
+                "Brevete Electrónico 2026: Todo lo que debes saber",
+                "Conoce las ventajas de la licencia digital y cómo evitar estafas en el trámite online.",
+                "<p>La licencia electrónica tiene la misma validez que la física, pero con mayor seguridad y menor costo (S/ 6.70).</p><br><h4>Seguridad y Fiscalización:</h4><ul><li><strong>Código QR:</strong> Los inspectores de la ATU y PNP escanean el código para ver tu historial en tiempo real.</li><li><strong>Descarga:</strong> Puedes llevarla en la app \"MTC Digital\" sin necesidad de conexión constante a datos.</li><li><strong>Duplicados:</strong> En caso de robo de celular, puedes descargarla nuevamente sin pagar tasas adicionales.</li></ul><br><p>Recuerda: El examen médico es el único paso que <strong>obligatoriamente</strong> es presencial. Visítanos para subir tus resultados al sistema nacional.</p>",
+                "12/01/2026",
+                "Actualidad",
+                "https://res.cloudinary.com/dtozni6ik/image/upload/v1769720251/Licencia-de-conducir-virtual-requisitos_ztudq4.jpg",
+                "NO",
+                "PUBLICADO",
+                "Admin"
+            );
+            
+            // Artículo 4
+            googleSheetsService.guardarArticuloBlog(
+                "4",
+                "Impacto de la salud visual en la seguridad vial",
+                "¿Sabías que el 80% de la información al conducir entra por los ojos? La importancia de un chequeo real.",
+                "<p>Muchos conductores ignoran problemas de visión nocturna o fatiga visual, lo que incrementa el riesgo de accidentes en un 30% durante la noche.</p><br><h4>Qué evaluamos en Autovías Seguras:</h4><ul><li><strong>Agudeza Visual:</strong> Capacidad para identificar señales a distancia.</li><li><strong>Test de Ishihara:</strong> Detección de daltonismo para interpretar semáforos correctamente.</li><li><strong>Estereopsis:</strong> Percepción de profundidad (distancia real entre vehículos).</li></ul><br><p>Un examen médico honesto no es solo un trámite, es tu seguro de vida al volante. Si usas lentes, recuerda traer tu medida actualizada el día de tu cita.</p>",
+                "08/01/2026",
+                "Salud",
+                "https://res.cloudinary.com/dtozni6ik/image/upload/v1769720248/invierno_aoxkh6.jpg",
+                "NO",
+                "PUBLICADO",
+                "Admin"
+            );
+            
+            // Artículo 5
+            googleSheetsService.guardarArticuloBlog(
+                "5",
+                "5 Errores críticos en el examen de manejo",
+                "Evita las faltas que descalifican automáticamente a los postulantes en el circuito de evaluación.",
+                "<p>Aprobar el examen práctico requiere técnica y, sobre todo, control de nervios. Aquí te detallamos las faltas eliminatorias:</p><br><ol><li><strong>No usar el cinturón:</strong> Es una falta muy grave que termina el examen antes de empezar.</li><li><strong>Pisar las líneas amarillas:</strong> Indica falta de control sobre las dimensiones del vehículo.</li><li><strong>No usar direccionales:</strong> Debes señalizar con 20 metros de anticipación en cada giro.</li><li><strong>Ignorar la señal de Pare:</strong> Debes detenerte totalmente por al menos 3 segundos.</li><li><strong>No respetar al peatón:</strong> Prioridad absoluta en los cruces señalizados.</li></ol><br><p>En nuestra <strong>Escuela de Conductores</strong>, realizamos simulacros idénticos al examen real para que vayas con total confianza.</p>",
+                "05/01/2026",
+                "MTC",
+                "https://res.cloudinary.com/dtozni6ik/image/upload/v1769720246/MTC_ry3mv7.jpg",
+                "NO",
+                "PUBLICADO",
+                "Admin"
+            );
+            
+            log.info("Migración completada: 5 artículos guardados");
+            return "redirect:/admin/blog?ok";
+            
+        } catch (Exception e) {
+            log.error("Error en migración de noticias antiguas", e);
+            return "redirect:/admin/blog?error";
+        }
+    }
 }
