@@ -30,6 +30,7 @@ public class ConsultaService {
         // Convertir DTO a Entity
         Consulta consulta = Consulta.fromDTO(consultaDTO);
         consulta.setNumeroTicket(generarNumeroTicket());
+        consulta.setFechaCreacion(LocalDateTime.now()); // Asegurar que se asigne la fecha
         
         // Guardar en base de datos
         consulta = consultaRepository.save(consulta);

@@ -2,6 +2,7 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Confirmación - Policlínico Autovías Seguras</title>
     <link rel="stylesheet" th:href="@{/css/fragments/navbar.css}">
     <link rel="stylesheet" th:href="@{/css/fragments/footer.css}">
@@ -10,13 +11,57 @@
 <body>
     <div th:replace="~{fragments/navbar :: navbar}"></div>
 
-    <div class="confirmacion-container">
-        <div class="success-icon">✓</div>
-        <h1 th:text="${mensaje}"></h1>
-        <p>Revisaremos tu consulta y nos pondremos en contacto contigo pronto.</p>
-        <p>También hemos enviado un email de confirmación a tu correo electrónico.</p>
-        <a th:href="@{/}" class="btn-volver">Volver al Inicio</a>
-    </div>
+    <main class="confirmacion-wrapper">
+        <div class="confirmacion-container">
+            <!-- Icono animado -->
+            <div class="success-icon-wrapper">
+                <div class="success-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Contenido principal -->
+            <div class="confirmacion-content">
+                <h1 th:text="${mensaje}" class="confirmacion-title"></h1>
+                
+                <div class="confirmacion-messages">
+                    <div class="message-item">
+                        <svg class="message-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                        <p>Revisaremos tu consulta y nos pondremos en contacto contigo pronto.</p>
+                    </div>
+                    <div class="message-item">
+                        <svg class="message-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                        </svg>
+                        <p>También hemos enviado un email de confirmación a tu correo electrónico.</p>
+                    </div>
+                </div>
+
+                <!-- Número de seguimiento -->
+                <div class="ticket-info" th:if="${numeroTicket}">
+                    <p class="ticket-label">Número de Ticket:</p>
+                    <p class="ticket-number" th:text="${numeroTicket}"></p>
+                </div>
+            </div>
+
+            <!-- Botones de acción -->
+            <div class="confirmacion-actions">
+                <a th:href="@{/}" class="btn btn-primary">Volver al Inicio</a>
+                <a href="javascript:void(0)" class="btn btn-secondary" onclick="window.print()">Imprimir Confirmación</a>
+            </div>
+        </div>
+
+        <!-- Decoración -->
+        <div class="decorative-elements">
+            <div class="circle circle-1"></div>
+            <div class="circle circle-2"></div>
+        </div>
+    </main>
 
     <div th:replace="~{fragments/footer :: footer}"></div>
 </body>

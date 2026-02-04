@@ -2,8 +2,8 @@
    HOME PAGE - ESTILOS GENERALES
    =========================================== */
 :root {
-    --purple-brand: #421D9D; /* Morado exacto */
-    --green-brand: #3bbca8; /* Verde menta */
+    --purple-brand: #2E1A5F; /* Morado principal */
+    --green-brand: #3BBCA8; /* Verde menta */
     --green-whatsapp: #25d366;
     --text-dark: #2E1A5F;
     --font-title: 'Poltawski Nowy', serif;
@@ -22,69 +22,482 @@ body {
 }
 
 /* ===========================================
-   HERO SECTION
+   HERO SECTION MODERNO (PANEL IZQUIERDO + DERECHO)
    =========================================== */
-/* 1. La Sección Madre (Agregamos fondo blanco) */
-.hero-section {
-    position: relative;
-    padding: 60px 20px 80px;
-    min-height: 85vh; /* Ojo: 10vh es muy poquito, mejor usa 85vh o 90vh */
+.hero-section-modern {
+    display: flex;
+    height: calc(100vh - 100px); /* Altura completa menos navbar */
+    background: var(--purple-brand);
+    overflow: hidden;
+}
+
+/* PANEL IZQUIERDO */
+.hero-left-panel {
+    width: 100%;
+    padding: 30px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: var(--purple-brand);
+    z-index: 20;
+    overflow-y: auto;
+}
+
+@media (min-width: 1200px) {
+    .hero-left-panel {
+        width: 38%;
+        padding: 60px 80px;
+    }
+}
+
+/* Logo Header */
+.hero-logo-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.logo-circle {
+    width: 50px;
+    height: 50px;
+    background: var(--green-brand);
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
-    
-    /* IMPORTANTE: Fondo blanco para que la imagen transparente se vea bien */
-    background-color: #ffffff; 
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    box-shadow: 0 8px 20px rgba(59, 188, 168, 0.3);
 }
 
-/* 2. El Contenedor de la foto */
-.hero-bg-fix {
+.logo-text {
+    color: white;
+}
+
+.logo-name {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin: 0;
+    line-height: 1;
+}
+
+.logo-subtitle {
+    font-size: 0.7rem;
+    color: #cbd5e1;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Central Content */
+.hero-central-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    flex-grow: 0;
+    width: 100%;
+}
+
+.hero-heading-section {
+    margin-top: 0;
+}
+
+.hero-main-title {
+    font-size: 3.2rem;
+    font-weight: 900;
+    color: white;
+    margin: 0 0 20px 0;
+    line-height: 1.2;
+    animation: titleFloat 3s ease-in-out infinite;
+}
+
+@media (min-width: 768px) {
+    .hero-main-title {
+        font-size: 3.4rem;
+    }
+}
+
+.text-highlight {
+    color: var(--green-brand);
+}
+
+.hero-quote {
+    font-style: italic;
+    color: #e2e8f0;
+    font-size: 1.1rem;
+    border-left: 3px solid var(--green-brand);
+    padding-left: 20px;
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* Tabs Container */
+.services-tabs-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 100%;
+}
+
+.service-tab {
+    padding: 14px 16px;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    outline: none;
+    text-decoration: none;
+    color: inherit;
+}
+
+.service-tab:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.service-tab:focus {
+    outline: none;
+}
+
+.service-tab.active {
+    background: white;
+    border-color: white;
+    transform: translateX(8px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.service-tab-icon {
+    padding: 8px;
+    border-radius: 10px;
+    background: transparent;
+    color: #cbd5e1;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.service-tab.active .service-tab-icon {
+    background: var(--green-brand);
+    color: white;
+}
+
+.service-tab-content {
+    flex: 1;
+}
+
+.service-tab-title {
+    font-size: 0.95rem;
+    font-weight: bold;
+    margin: 0;
+    color: #cbd5e1;
+    transition: color 0.3s ease;
+}
+
+.service-tab.active .service-tab-title {
+    color: var(--purple-brand);
+}
+
+.service-tab-desc {
+    font-size: 0.75rem;
+    color: #64748b;
+    margin: 4px 0 0 0;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.service-tab.active .service-tab-desc {
+    opacity: 1;
+    max-height: 50px;
+}
+
+.arrow-pulse {
+    color: var(--purple-brand);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Action Buttons */
+.hero-action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 10px;
+}
+
+@media (min-width: 768px) {
+    .hero-action-buttons {
+        flex-direction: row;
+    }
+}
+
+.btn-quote,
+.btn-whatsapp {
+    padding: 18px 32px;
+    border-radius: 12px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex: 1;
+    font-size: 1rem;
+}
+
+.btn-quote {
+    background: var(--green-brand);
+    color: white;
+}
+
+.btn-quote:hover {
+    background: #31a89a;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(59, 188, 168, 0.4);
+}
+
+.btn-whatsapp {
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+.btn-whatsapp:hover {
+    background: white;
+    color: var(--purple-brand);
+    border-color: white;
+}
+
+/* PANEL DERECHO */
+.hero-right-panel {
+    display: none;
+    width: 70%;
+    position: relative;
+    overflow: hidden;
+    background: black;
+    
+}
+
+@media (min-width: 1200px) {
+    .hero-right-panel {
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+    }
+}
+
+.hero-images-container {
     position: absolute;
     inset: 0;
-    z-index: 0; /* Lo dejamos al fondo */
 }
 
-/* 3. La FOTO MISMA (Aquí aplicamos el 20%) */
-.hero-image {
+.hero-image-card {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.7s ease-in-out;
+    z-index: 0;
+}
+
+.hero-image-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, #2E1A5F 0%, rgba(46, 26, 95, 0.4) 8%, transparent 100%);
+    z-index: 12;
+    pointer-events: none;
+}
+
+.hero-image-card.active {
+    opacity: 1;
+    z-index: 10;
+}
+
+.hero-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    
-    /* AQUÍ ESTÁ LA MAGIA */
-    opacity: 0.6; /* 20% de visibilidad (muy suave) */
-    
-    /* Si quisieras que se vea un poco más, sube a 0.3 o 0.4 */
+    opacity: 0.9;
 }
 
-.bg-overlay {
+.hero-image-gradient {
+    display: none;
+}
+
+.hero-description-floating {
     position: absolute;
-    inset: 0;
-    z-index: 1;
-
-    /* 1. ÁNGULO INCLINADO: Usamos '105deg' en lugar de '90deg' para inclinar la línea.
-       
-       2. TRANSPARENCIA (Opacidad):
-          - Verde: Bajamos de 0.95 a 0.5 (50% transparente) para ver la foto.
-          - Blanco central: Bajamos de 1.0 a 0.8 (80% opaco) para que el texto se lea bien pero deje pasar algo de luz.
-    */
-    background: linear-gradient(105deg, 
-        rgba(59, 188, 168, 0.5) 0%,   /* Esquina sup. izquierda (Verde transparente) */
-        rgba(255, 255, 255, 0.8) 50%, /* Centro diagonal (Blanco semi-transparente) */
-        rgba(59, 188, 168, 0.5) 100%); /* Esquina inf. derecha (Verde transparente) */
+    top: 60px;
+    right: 60px;
+    max-width: 500px;
+    text-align: right;
 }
-.hero-content {
-    position: relative;
-    z-index: 10;
-    max-width: 1200px;
-    width: 100%;
+
+.hero-description-floating h3 {
+    font-size: 2.4rem;
+    font-weight: 900;
+    color: white;
+    margin: 0 0 18px 0;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.hero-description-floating p {
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 500;
+    font-size: 1.05rem;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(12px);
+    padding: 24px;
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+    margin: 0;
+    line-height: 1.7;
+}
+
+/* Stats Bar Floating */
+.stats-bar-floating {
+    position: absolute;
+    bottom: 50px;
+    right: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 50px;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 25px 60px;
+    border-radius: 25px;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4);
+    z-index: 30;
+    min-width: 600px;
+}
+
+.stat-float-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 0;
+    flex: 1;
     text-align: center;
+}
+
+.stat-icon {
+    color: var(--green-brand);
+    padding: 8px;
+    background: rgba(59, 188, 168, 0.2);
+    border-radius: 8px;
+    border: 1px solid rgba(59, 188, 168, 0.3);
+    backdrop-filter: blur(8px);
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.stat-float-content {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    width: 100%;
+}
+
+.stat-float-number {
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: white;
+    line-height: 1;
+    text-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+}
+
+.stat-float-label {
+    font-size: 1.4rem;
+    color: #e8f4f1;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+.stat-float-divider {
+    width: 1px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Animaciones para Stats Bar */
+.stats-bar-floating {
+    animation: slideUpStats 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s both;
+    opacity: 0;
+}
+
+.stats-bar-floating.animate {
+    opacity: 1;
+}
+
+.stat-float-number {
+    animation: scaleInNumber 0.6s ease-out 0.4s both;
+}
+
+@keyframes slideUpStats {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleInNumber {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Responsive Mobile */
+@media (max-width: 1199px) {
+    .hero-section-modern {
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
+    }
+    
+    .hero-left-panel {
+        width: 100%;
+        padding: 40px 25px;
+        min-height: 100vh;
+    }
+    
+    .hero-main-title {
+        font-size: 2rem;
+    }
 }
 
 /* Título */
 .hero-title {
     font-family: var(--font-title);
-    color: #421D9D;
+    color: #2E1A5F;
     font-size: 3.4rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -250,10 +663,18 @@ body {
     animation: fadeInUp 0.8s forwards;
 }
 
+.fade-in-up:first-of-type {
+    animation-delay: 0.2s;
+}
+
+.fade-in-up:last-of-type {
+    animation-delay: 0.4s;
+}
+
 .animate-down {
     opacity: 0;
     transform: translateY(-30px);
-    animation: fadeInDown 0.8s forwards;
+    animation: fadeInDown 0.8s forwards 0.1s;
 }
 
 /* Animación sutil para el título del hero */
@@ -368,6 +789,68 @@ body {
         text-align: center;
         justify-content: center;
         padding: 14px 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section-modern {
+        flex-direction: column;
+        height: auto;
+        min-height: auto;
+    }
+    
+    .hero-left-panel {
+        width: 100%;
+        padding: 30px 15px;
+        min-height: auto;
+    }
+    
+    .hero-right-panel {
+        width: 100%;
+        margin-left: 0;
+        min-height: 300px;
+    }
+    
+    .hero-main-title {
+        font-size: 1.6rem;
+        margin-bottom: 15px;
+    }
+    
+    .hero-quote {
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+    }
+    
+    .hero-action-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .services-tabs-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .service-tab {
+        padding: 10px 12px;
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .stats-bar-floating {
+        padding: 15px 20px;
+        gap: 20px;
+        min-width: auto;
+        width: 100%;
+        flex-direction: column;
+    }
+    
+    .stat-float-number {
+        font-size: 2rem;
+    }
+    
+    .stat-float-label {
+        font-size: 1rem;
     }
 }
 

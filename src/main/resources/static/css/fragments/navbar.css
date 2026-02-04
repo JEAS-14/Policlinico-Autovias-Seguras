@@ -517,7 +517,7 @@ html {
         position: relative;
     }
     
-    /* Flecha indicadora de dropdown en móvil */
+    /* Flecha indicadora de dropdown en móvil - SOLO UNA */
     .nav-menu li.has-dropdown > a::after {
         content: '\f078';
         font-family: 'Font Awesome 6 Free';
@@ -526,6 +526,14 @@ html {
         margin-left: 10px;
         transition: transform 0.3s;
         display: inline-block !important;
+        border: none !important;
+    }
+    
+    /* Eliminar la flecha de escritorio en móvil */
+    @media (max-width: 768px) {
+        .nav-menu li.has-dropdown > a::after {
+            border: none !important;
+        }
     }
     
     .nav-menu li.has-dropdown.open > a::after {

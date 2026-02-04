@@ -35,6 +35,13 @@
 
     <main class="container">
 
+        <!-- Botón "Volver al blog completo" -->
+        <div id="back-to-blog-container" style="display: none; margin-bottom: 30px;">
+            <button id="back-to-blog-btn" class="back-to-blog-btn">
+                <i class="fas fa-arrow-left"></i> Volver al blog completo
+            </button>
+        </div>
+
         <!-- Artículo Destacado (dinámico desde Google Sheets) -->
         <a href="#" class="featured-post article-trigger animate-on-scroll" th:if="${destacado != null}">
             <div class="featured-image">
@@ -150,6 +157,11 @@
     </a>
 
     <div th:replace="~{fragments/footer :: footer}"></div>
+
+    <script th:src="@{/js/nuestroBlog.js}"></script>
+</body>
+
+</html>
 
     <script th:src="@{/js/fragments/navbar.js}"></script>
     <script th:src="@{/js/nuestroBlog.js}"></script>

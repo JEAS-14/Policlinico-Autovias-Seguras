@@ -5,9 +5,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Service
 @RequiredArgsConstructor
@@ -15,11 +18,26 @@ import java.util.stream.Collectors;
 public class BlogService {
 
     private final GoogleSheetsService googleSheetsService;
+    
+    // Caché simple en memoria
+    private List<ArticuloBlogDTO> cachedArticulos = null;
+    private LocalDateTime ultimaActualizacion = null;
+    private static final long CACHE_DURACION_MINUTOS = 5;
 
     /**
      * Obtiene todos los artículos publicados ordenados por ID descendente (más recientes primero)
      */
     public List<ArticuloBlogDTO> obtenerArticulosPublicados() {
+        // Verificar si el caché es válido
+        if (cachedArticulos != null && ultimaActualizacion != null) {
+            long minutosDesdeActualizacion = java.time.Duration.between(ultimaActualizacion, LocalDateTime.now()).toMinutes();
+            if (minutosDesdeActualizacion < CACHE_DURACION_MINUTOS) {
+                log.info("Usando artículos desde caché ({} minutos)", minutosDesdeActualizacion);
+                return new ArrayList<>(cachedArticulos);
+            }
+        }
+        
+        log.info("Actualizando caché de artículos...");
         try {
             List<List<Object>> data = googleSheetsService.leerArticulosBlog();
             
@@ -64,15 +82,36 @@ public class BlogService {
                 }
             }
             
-            // Ordenar por ID descendente (más recientes primero)
-            resultado.sort((a, b) -> b.getId().compareTo(a.getId()));
+            // Ordenar por fecha descendente (más recientes primero)
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            resultado.sort((a, b) -> {
+                try {
+                    LocalDate fechaA = LocalDate.parse(a.getFecha(), formatter);
+                    LocalDate fechaB = LocalDate.parse(b.getFecha(), formatter);
+                    return fechaB.compareTo(fechaA); // Descendente (más reciente primero)
+                } catch (Exception e) {
+                    log.warn("Error al parsear fechas, usando orden original");
+                    return 0;
+                }
+            });
             
             log.info("=== RESULTADO FINAL: {} artículos publicados de {} totales ===", 
                      resultado.size(), data.size() - 1);
+            
+            // Actualizar caché
+            cachedArticulos = new ArrayList<>(resultado);
+            ultimaActualizacion = LocalDateTime.now();
+            log.info("Caché actualizado. Válido por {} minutos", CACHE_DURACION_MINUTOS);
+            
             return resultado;
                     
         } catch (Exception e) {
             log.error("Error al obtener artículos publicados", e);
+            // Si hay error pero tenemos caché, devolver el caché aunque esté expirado
+            if (cachedArticulos != null) {
+                log.warn("Usando caché expirado por error en Google Sheets");
+                return new ArrayList<>(cachedArticulos);
+            }
             return new ArrayList<>();
         }
     }

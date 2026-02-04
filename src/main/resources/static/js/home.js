@@ -223,3 +223,121 @@ document.addEventListener("DOMContentLoaded", () => {
         track.innerHTML = cardsHtml + cardsHtml;
     }
 });
+
+// =========================================================
+// 5. HERO SECTION MODERNO - SERVICIOS DINÁMICOS
+// =========================================================
+const servicesData = [
+    {
+        id: 0,
+        title: "Examen Médico Ocupacional - Emo",
+        desc: "Salud ocupacional para empresas.",
+        fullDesc: "Realizamos evaluaciones médicas ocupacionales (EMO) cumpliendo todas las normativas de ley vigentes.",
+        icon: "stethoscope",
+        image: "https://res.cloudinary.com/dtozni6ik/image/upload/v1767590080/a656839e-4c63-4fa8-8040-8f94551e1a9c.png",
+        link: "/servicios/examenMedicoOcupacional"
+    },
+    {
+        id: 1,
+        title: "Examen Para Licencias De Conducir - Brevetes",
+        desc: "Brevetes A1, A2, A3.",
+        fullDesc: "Obtén tu certificado médico para brevete en tiempo récord. Validado directamente en el sistema del MTC.",
+        icon: "car",
+        image: "https://res.cloudinary.com/dtozni6ik/image/upload/v1767590163/a71d6550-5864-48f4-8867-fad058e362b8.png",
+        link: "/servicios/examenMedicoBrevete"
+    },
+    {
+        id: 2,
+        title: "Examen Médico-SUCAMEC Fisico y Mental-Psicosomático",
+        desc: "Porte de armas y seguridad.",
+        fullDesc: "Evaluación integral de salud mental y física para personal de seguridad y uso civil de armas.",
+        icon: "shield-alt",
+        image: "https://res.cloudinary.com/dtozni6ik/image/upload/v1767590173/8b6e3fdb-7ea7-48c5-9003-4067c7ff4083.png",
+        link: "/servicios/examenSucamec"
+    },
+    {
+        id: 3,
+        title: "Escuela de Conductores",
+        desc: "Recategorización profesional.",
+        fullDesc: "Cursos teóricos y prácticos con instructores calificados para mejorar tu categoría de licencia.",
+        icon: "graduation-cap",
+        image: "https://res.cloudinary.com/dtozni6ik/image/upload/v1767590149/82645900-9f7f-4ba5-b4f2-dcb7cd583bef.png",
+        link: "/servicios/escuelaConductores"
+    }
+];
+
+let activeServiceId = 0;
+
+function initHeroSection() {
+    renderServiceTabs();
+    updateActiveTab();
+    renderServiceImages();
+}
+
+function renderServiceTabs() {
+    const container = document.getElementById('servicesTabs');
+    if (!container) return;
+    
+    // Solo crear los tabs la primera vez
+    if (container.children.length === 0) {
+        container.innerHTML = servicesData.map((service) => `
+            <a href="${service.link}" class="service-tab" data-id="${service.id}">
+                <div class="service-tab-icon">
+                    <i class="fas fa-${service.icon}"></i>
+                </div>
+                <div class="service-tab-content">
+                    <h3 class="service-tab-title">${service.title}</h3>
+                    <p class="service-tab-desc">${service.desc}</p>
+                </div>
+                <i class="fas fa-arrow-right arrow-pulse"></i>
+            </a>
+        `).join('');
+        
+        // Agregar listeners UNA SOLA VEZ
+        document.querySelectorAll('.service-tab').forEach((tab) => {
+            tab.addEventListener('mouseenter', () => {
+                const newId = parseInt(tab.getAttribute('data-id'));
+                if (activeServiceId !== newId) {
+                    activeServiceId = newId;
+                    updateActiveTab();
+                    renderServiceImages();
+                }
+            });
+        });
+    } else {
+        // Solo actualizar la clase active
+        updateActiveTab();
+    }
+}
+
+function updateActiveTab() {
+    document.querySelectorAll('.service-tab').forEach((tab) => {
+        const tabId = parseInt(tab.getAttribute('data-id'));
+        if (tabId === activeServiceId) {
+            tab.classList.add('active');
+        } else {
+            tab.classList.remove('active');
+        }
+    });
+}
+
+function renderServiceImages() {
+    const container = document.getElementById('imagesContainer');
+    if (!container) return;
+    
+    container.innerHTML = servicesData.map((service) => `
+        <div class="hero-image-card ${activeServiceId === service.id ? 'active' : ''}">
+            <img src="${service.image}" alt="${service.title}" class="hero-img">
+            <div class="hero-description-floating">
+                <h3>${service.title}</h3>
+                <p>${service.fullDesc}</p>
+            </div>
+        </div>
+    `).join('');
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initHeroSection);
+} else {
+    initHeroSection();
+}

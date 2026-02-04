@@ -68,7 +68,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const currentUrl = window.location.pathname;
 
     navLinks.forEach(link => {
-        const href = link.getAttribute('href');
+        // Obtener solo el path de la URL del enlace (sin dominio)
+        let href = link.getAttribute('href');
+        
+        // Si es una URL completa, extraer solo el path
+        if (href && href.includes('://')) {
+            try {
+                href = new URL(href).pathname;
+            } catch (e) {
+                // Si falla, usar href tal cual
+            }
+        }
         
         // Limpiamos clases previas
         link.classList.remove('active-link');

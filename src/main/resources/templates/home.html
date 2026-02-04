@@ -20,90 +20,78 @@
 <body>
     <div th:replace="~{fragments/navbar :: navbar}"></div>
 
-    <section class="hero-section">
-        <div class="hero-bg-fix">
-            <img src="https://res.cloudinary.com/dtozni6ik/image/upload/v1767942183/816ba6d3-6913-43f1-98ef-a4f11cad7ac6.png"
-                alt="Fondo Médico" class="hero-image">
-            <div class="bg-overlay"></div>
+    <!-- HERO SECTION MODERNO (PANEL IZQUIERDO + PANEL DERECHO DINÁMICO) -->
+    <section class="hero-section-modern">
+
+        <!-- 1. PANEL IZQUIERDO: CONTENIDO Y NAVEGACIÓN -->
+        <div class="hero-left-panel">
+
+            <!-- Contenido Central -->
+            <div class="hero-central-content">
+                <div class="hero-heading-section animate-down">
+                    <h2 class="hero-main-title">
+
+                        CONFIANZA Y <br />
+                        <span class="text-highlight">RAPIDEZ EN UN SOLO LUGAR</span>
+                    </h2>
+                    <p class="hero-quote">
+                        "Tu tiempo es valioso, tu salud nuestra prioridad."
+                    </p>
+                </div>
+
+                <!-- LISTA INTERACTIVA DE SERVICIOS (TABS) -->
+                <div class="services-tabs-container fade-in-up" id="servicesTabs">
+                    <!-- Los tabs se generarán con JavaScript -->
+                </div>
+            </div>
+
+            <!-- BOTONES DE ACCIÓN (PIE DEL PANEL IZQUIERDO) -->
+            <div class="hero-action-buttons fade-in-up">
+                <a href="/consulta/cotizar" class="btn-quote">
+                    Cotiza Ahora <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="https://wa.me/51913889497" target="_blank" class="btn-whatsapp">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+            </div>
+
         </div>
 
-        <div class="hero-content">
-            <h1 class="hero-title animate-down">CONFIANZA Y RAPIDEZ EN UN SOLO LUGAR</h1>
-
-            <div class="services-cards">
-                <a href="/servicios/examenMedicoOcupacional" class="service-link fade-in-up"
-                    style="transition-delay: 0.1s;">
-                    <div class="service-card">
-                        <div class="card-image-box">
-                            <img src="https://res.cloudinary.com/dtozni6ik/image/upload/v1767590080/a656839e-4c63-4fa8-8040-8f94551e1a9c.png"
-                                alt="EMO">
-                        </div>
-                        <h3>Examen Médico<br>Ocupacional - Emo</h3>
-                    </div>
-                </a>
-
-                <a href="/servicios/examenMedicoBrevete" class="service-link fade-in-up"
-                    style="transition-delay: 0.2s;">
-                    <div class="service-card">
-                        <div class="card-image-box">
-                            <img src="https://res.cloudinary.com/dtozni6ik/image/upload/v1767590163/a71d6550-5864-48f4-8867-fad058e362b8.png"
-                                alt="Brevete">
-                        </div>
-                        <h3>Examen Para Licencias<br>De Conducir - Brevetes</h3>
-                    </div>
-                </a>
-
-                <a href="/servicios/examenSucamec" class="service-link fade-in-up" style="transition-delay: 0.3s;">
-                    <div class="service-card">
-                        <div class="card-image-box">
-                            <img src="https://res.cloudinary.com/dtozni6ik/image/upload/v1767590173/8b6e3fdb-7ea7-48c5-9003-4067c7ff4083.png"
-                                alt="SUCAMEC">
-                        </div>
-                        <h3>Examen Médico-SUCAMEC<br>Fisico y Mental-Psicosomático</h3>
-                    </div>
-                </a>
-
-                <a href="/servicios/escuelaConductores" class="service-link fade-in-up" style="transition-delay: 0.4s;">
-                    <div class="service-card">
-                        <div class="card-image-box">
-                            <img src="https://res.cloudinary.com/dtozni6ik/image/upload/v1767590149/82645900-9f7f-4ba5-b4f2-dcb7cd583bef.png"
-                                alt="Escuela">
-                        </div>
-                        <h3>Escuela De<br>Conductores</h3>
-                    </div>
-                </a>
+        <!-- 2. PANEL DERECHO: VISUALIZACIÓN DINÁMICA -->
+        <div class="hero-right-panel">
+            <!-- Imágenes dinámicas -->
+            <div class="hero-images-container" id="imagesContainer">
+                <!-- Las imágenes se generarán con JavaScript -->
             </div>
 
-            <div class="hero-buttons fade-in-up" style="transition-delay: 0.5s;">
-                <a href="/consulta/cotizar" class="btn-hero btn-purple">¡COTIZA AHORA!</a>
-                <a href="https://wa.me/51913889497" target="_blank" class="btn-hero btn-green">
-                    <i class="fab fa-whatsapp"></i> WHATSAPP
-                </a>
-            </div>
+            <!-- GRADIENTE DE DIFUMINACIÓN (Fijo encima de las imágenes) -->
+            <div class="hero-image-gradient"></div>
 
-            <div class="stats-container fade-in-up" style="transition-delay: 0.6s;">
-
-                <div class="stat-item">
-                    <div class="stat-number" data-target="10" data-plus="true">0</div>
-                    <div class="stat-label">Años de experiencia en el sector</div>
+            <!-- BARRA DE ESTADÍSTICAS (Flotando abajo a la derecha) -->
+            <div class="stats-bar-floating">
+                <div class="stat-float-item">
+                    <div class="stat-float-content">
+                        <span class="stat-float-number">+10</span>
+                        <span class="stat-float-label">Años de experiencia en el sector</span>
+                    </div>
                 </div>
-
-                <div class="stat-divider"></div>
-
-                <div class="stat-item">
-                    <div class="stat-number" data-target="1500" data-plus="true">0</div>
-                    <div class="stat-label">Empresas afiliadas</div>
+                <div class="stat-float-divider"></div>
+                <div class="stat-float-item">
+                    <div class="stat-float-content">
+                        <span class="stat-float-number">+1500</span>
+                        <span class="stat-float-label">Empresas afiliadas</span>
+                    </div>
                 </div>
-
-                <div class="stat-divider"></div>
-
-                <div class="stat-item">
-                    <div class="stat-number" data-target="15" data-plus="true">0</div>
-                    <div class="stat-label">Mil pacientes satisfechos</div>
+                <div class="stat-float-divider"></div>
+                <div class="stat-float-item">
+                    <div class="stat-float-content">
+                        <span class="stat-float-number">+15</span>
+                        <span class="stat-float-label">Mil pacientes satisfechos</span>
+                    </div>
                 </div>
-
             </div>
         </div>
+
     </section>
 
     <!-- ¿POR QUÉ ELEGIRNOS? -->

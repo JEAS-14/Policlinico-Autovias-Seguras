@@ -22,6 +22,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 2. FILTRADO ---
     const badges = document.querySelectorAll('.badge');
     const cards = document.querySelectorAll('.card');
+    const backToBlognContainer = document.getElementById('back-to-blog-container');
+    const backToBlognBtn = document.getElementById('back-to-blog-btn');
+    let activeFilter = null;
 
     badges.forEach(badge => {
         badge.style.cursor = 'pointer';
@@ -32,7 +35,17 @@ document.addEventListener('DOMContentLoaded', () => {
             if(badge.classList.contains('badge-overlay')) return;
 
             const category = e.target.textContent.trim();
-            badges.forEach(b => b.style.opacity = '0.5');
+            activeFilter = category;
+            
+            // Mostrar botón de volver
+            backToBlognContainer.style.display = 'block';
+
+            // Cambiar opacidad de badges (solo del blog grid, no del modal)
+            document.querySelectorAll('.card .badge, .featured-post .badge').forEach(b => {
+                if(!b.classList.contains('badge-overlay')) {
+                    b.style.opacity = '0.5';
+                }
+            });
             e.target.style.opacity = '1';
 
             cards.forEach(card => {
@@ -47,6 +60,28 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     });
+
+    // Botón volver al blog completo
+    if(backToBlognBtn) {
+        backToBlognBtn.addEventListener('click', () => {
+            activeFilter = null;
+            backToBlognContainer.style.display = 'none';
+            
+            // Mostrar todas las tarjetas
+            cards.forEach(card => {
+                card.style.display = 'flex';
+                card.classList.remove('visible');
+                setTimeout(() => card.classList.add('visible'), 100);
+            });
+            
+            // Restaurar opacidad de badges
+            badges.forEach(b => {
+                if(!b.classList.contains('badge-overlay')) {
+                    b.style.opacity = '1';
+                }
+            });
+        });
+    }
 
     // ===============================================
     // 3. LÓGICA DEL MODAL (TARJETA FLOTANTE)

@@ -9,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -32,6 +34,7 @@ public class ReclamacionService {
         reclamacion.setTipo(reclamacionDTO.getTipo());
         reclamacion.setDetalle(reclamacionDTO.getDetalle());
         reclamacion.setPedido(reclamacionDTO.getPedido());
+        reclamacion.setFechaCreacion(LocalDateTime.now()); // Asegurar que se asigne la fecha
         
         // Guardar en base de datos
         reclamacion = reclamacionRepository.save(reclamacion);

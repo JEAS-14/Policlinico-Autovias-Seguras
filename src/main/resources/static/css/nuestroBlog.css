@@ -568,6 +568,10 @@ body {
     background-color: #60a5fa;
 }
 
+.badge-accent {
+    background-color: #f97316;
+}
+
 .date {
     color: #999;
     font-size: 0.85rem;
@@ -855,8 +859,30 @@ body {
     .modal-content h2 {
         font-size: 1.5rem;
     }
+}
 
-    .modal-body-content {
+/* --- BOTÓN VOLVER AL BLOG COMPLETO --- */
+.back-to-blog-btn {
+    background: linear-gradient(135deg, var(--secondary-color), #3ba89f);
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(59, 188, 168, 0.3);
+}
+
+.back-to-blog-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(59, 188, 168, 0.5);
+    background: linear-gradient(135deg, #35b8a8, #2da899);
+}    .modal-body-content {
         padding: 25px;
     }
 }
