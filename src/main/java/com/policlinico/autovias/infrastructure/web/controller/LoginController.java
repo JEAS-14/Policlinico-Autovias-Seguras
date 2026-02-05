@@ -1,4 +1,5 @@
 package com.policlinico.autovias.infrastructure.web.controller;
+
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,40 +12,40 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @RequiredArgsConstructor
 public class LoginController {
-    
+
     @Value("${app.mail.destinatario}")
     private String emailAutorizado;
-    
-    @Value("${app.admin.password:admin123}")
+
+    // Sin respaldo. La contraseña viene de secrets.properties (Local) o Railway
+    // (Nube)
+    @Value("${app.admin.password}")
     private String passwordAdmin;
-    
+
     @GetMapping("/admin/login")
     public String mostrarLogin(HttpSession session) {
-        // Si ya está logueado, redirigir al dashboard
         if (session.getAttribute("usuarioAutenticado") != null) {
             return "redirect:/admin";
         }
         return "admin/login";
     }
-    
+
     @PostMapping("/admin/login")
     public String procesarLogin(
             @RequestParam String email,
             @RequestParam String password,
             HttpSession session,
             RedirectAttributes redirectAttributes) {
-        
-        // Validar credenciales
+
         if (email.equals(emailAutorizado) && password.equals(passwordAdmin)) {
             session.setAttribute("usuarioAutenticado", email);
             session.setAttribute("nombreUsuario", "Administrador");
             return "redirect:/admin";
         }
-        
+
         redirectAttributes.addFlashAttribute("error", "Credenciales incorrectas");
         return "redirect:/admin/login";
     }
-    
+
     @GetMapping("/admin/logout")
     public String logout(HttpSession session, RedirectAttributes redirectAttributes) {
         session.invalidate();
