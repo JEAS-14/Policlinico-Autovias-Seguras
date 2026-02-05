@@ -97,6 +97,16 @@
     flex-wrap: wrap;
 }
 
+@media (max-width: 1366px) {
+    .reclamaciones-header {
+        padding: 1.25rem;
+    }
+
+    .reclamaciones-toolbar {
+        gap: 0.75rem;
+    }
+}
+
 .reclamaciones-search-box {
     flex: 1;
     max-width: 24rem;

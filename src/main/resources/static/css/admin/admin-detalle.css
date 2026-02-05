@@ -94,6 +94,16 @@ body {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
+@media (max-width: 1366px) {
+    .info-section {
+        padding: 1.5rem;
+    }
+
+    .action-card {
+        padding: 1.25rem;
+    }
+}
+
 .action-card h6 {
     color: var(--admin-purple);
     font-weight: 700;

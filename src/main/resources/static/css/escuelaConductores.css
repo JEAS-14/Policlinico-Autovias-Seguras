@@ -28,6 +28,10 @@ body {
     padding: 0 20px;
 }
 
+@media (max-width: 1366px) {
+    .container { max-width: 1080px; }
+}
+
 a { text-decoration: none; }
 /* =========================================
    3. HERO SECTION (Fondo Moderno y Animado)

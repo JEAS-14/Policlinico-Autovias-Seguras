@@ -140,6 +140,13 @@
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 }
 
+@media (max-width: 1366px) {
+    .contact-card {
+        max-width: 42rem;
+        padding: 2rem;
+    }
+}
+
 .search-error-text {
     color: #ef4444;
     font-weight: 700;

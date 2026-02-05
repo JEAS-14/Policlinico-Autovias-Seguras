@@ -52,6 +52,14 @@
     /* 1.5s de duración con un efecto de "frenado" suave al final */
 }
 
+@media (max-width: 1366px) {
+    .hero-description {
+        font-size: 3rem;
+        max-width: 1200px;
+        margin: 30px auto;
+    }
+}
+
 /* Ajuste para celular */
 @media (max-width: 768px) {
     .hero-description {

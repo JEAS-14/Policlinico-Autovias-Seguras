@@ -74,6 +74,20 @@
     overflow-x: auto;
 }
 
+@media (max-width: 1366px) {
+    .blog-header {
+        padding: 1.5rem;
+    }
+
+    .blog-stats {
+        gap: 1rem;
+    }
+
+    .blog-table-container {
+        padding: 1.25rem;
+    }
+}
+
 .blog-table {
     width: 100%;
     border-collapse: collapse;

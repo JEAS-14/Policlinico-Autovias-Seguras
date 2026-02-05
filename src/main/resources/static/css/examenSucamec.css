@@ -31,6 +31,10 @@ body {
     padding: 0 20px;
 }
 
+@media (max-width: 1366px) {
+    .container { max-width: 1000px; }
+}
+
 .padding-top {
     padding-top: 50px;
 }

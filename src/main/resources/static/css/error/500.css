@@ -50,6 +50,20 @@ body {
     text-align: left;
 }
 
+@media (max-width: 1366px) {
+    .error-content {
+        max-width: 520px;
+    }
+
+    .error-code {
+        font-size: 7rem;
+    }
+
+    .error-suggestions {
+        padding: 24px;
+    }
+}
+
 .error-suggestions h3 {
     color: #2E1A5F;
     font-size: 1.3rem;

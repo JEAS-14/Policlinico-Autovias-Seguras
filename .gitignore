@@ -37,3 +37,4 @@ data/
 
 ### Local credentials ###
 src/main/resources/credentials/
+src/main/resources/secrets.properties

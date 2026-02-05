@@ -53,6 +53,25 @@
     min-height: 650px;
 }
 
+@media (max-width: 1366px) {
+    .page-title {
+        max-width: 980px;
+        font-size: 2rem;
+    }
+
+    .contact-wrapper {
+        max-width: 980px;
+    }
+
+    .info-content {
+        padding: 30px 24px;
+    }
+
+    .contact-form {
+        padding: 40px;
+    }
+}
+
 /* --- COLUMNA IZQUIERDA (INFO CON DEGRADADO MORADO) --- */
 .contact-info {
     flex: 1.2;

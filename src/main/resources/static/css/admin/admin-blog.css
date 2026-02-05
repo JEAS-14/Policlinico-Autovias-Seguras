@@ -56,6 +56,20 @@
     margin-bottom: 30px;
 }
 
+@media (max-width: 1366px) {
+    .stats-grid {
+        gap: 0.75rem;
+    }
+
+    .stat-card {
+        padding: 1rem;
+    }
+
+    .instructions {
+        padding: 24px;
+    }
+}
+
 .instructions h2 {
     color: #2E1A5F;
     margin-bottom: 15px;

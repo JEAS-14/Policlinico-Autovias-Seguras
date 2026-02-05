@@ -31,6 +31,13 @@ body {
     text-align: center;
 }
 
+@media (max-width: 1366px) {
+    .results-card {
+        max-width: 460px;
+        padding: 32px;
+    }
+}
+
 .card-header { margin-bottom: 30px; }
 
 .icon-container {

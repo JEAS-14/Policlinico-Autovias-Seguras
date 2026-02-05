@@ -18,6 +18,16 @@ body {
     padding: 0 20px;
 }
 
+@media (max-width: 1366px) {
+    .libro-container {
+        max-width: 720px;
+    }
+
+    .reclamo-form {
+        padding: 32px;
+    }
+}
+
 /* --- HEADER --- */
 .libro-header {
     text-align: center;

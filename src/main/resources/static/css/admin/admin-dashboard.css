@@ -59,6 +59,20 @@ body {
     padding: 0 20px;
 }
 
+@media (max-width: 1366px) {
+    .dashboard-container {
+        max-width: 1200px;
+    }
+
+    .admin-header {
+        padding: 16px 24px;
+    }
+
+    .service-card {
+        padding: 24px;
+    }
+}
+
 /* Grid de Cards de Servicios */
 .services-grid {
     display: grid;

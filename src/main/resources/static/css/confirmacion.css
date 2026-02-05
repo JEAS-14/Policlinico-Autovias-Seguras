@@ -86,6 +86,18 @@
     animation: slideInDown 0.6s ease-out;
 }
 
+@media (max-width: 1366px) {
+    .confirmacion-container {
+        max-width: 560px;
+        padding: 50px 32px;
+    }
+
+    .success-icon {
+        width: 90px;
+        height: 90px;
+    }
+}
+
 /* Icono de éxito */
 .success-icon-wrapper {
     margin-bottom: 30px;

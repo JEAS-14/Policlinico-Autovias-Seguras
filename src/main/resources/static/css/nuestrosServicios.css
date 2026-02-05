@@ -58,6 +58,16 @@
     opacity: 0.85;
 }
 
+@media (max-width: 1366px) {
+    .hero-title-anim::after {
+        width: 120px;
+    }
+
+    .blur-circle {
+        transform: scale(0.85);
+    }
+}
+
 @keyframes titleFloat {
     0%, 100% { 
         transform: translateY(0) scale(1);

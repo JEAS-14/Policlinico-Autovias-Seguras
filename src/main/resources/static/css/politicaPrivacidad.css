@@ -20,6 +20,10 @@ body {
     padding: 0 20px;
 }
 
+@media (max-width: 1366px) {
+    .container { max-width: 920px; }
+}
+
 /* --- CABECERA --- */
 .privacy-header {
     background: linear-gradient(135deg, #1a1a2e 0%, var(--primary-purple) 100%);

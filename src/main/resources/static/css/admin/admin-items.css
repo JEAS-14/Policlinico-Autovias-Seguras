@@ -93,6 +93,16 @@
     flex-wrap: wrap;
 }
 
+@media (max-width: 1366px) {
+    .items-header {
+        padding: 1.25rem;
+    }
+
+    .items-toolbar {
+        gap: 0.75rem;
+    }
+}
+
 .items-search-box {
     flex: 1;
     max-width: 24rem;
