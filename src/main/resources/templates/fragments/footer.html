@@ -105,13 +105,14 @@
         </div>
     </footer>
 
-    <th:block th:if="${@environment.getProperty('analytics.ga4.id')}">
-        <script async th:src="@{'https://www.googletagmanager.com/gtag/js?id=' + ${@environment.getProperty('analytics.ga4.id')}}"></script>
+    <!-- Google Analytics 4 -->
+    <th:block th:if="${analyticsId != null and !#strings.isEmpty(analyticsId)}">
+        <script async th:src="@{'https://www.googletagmanager.com/gtag/js?id=' + ${analyticsId}}"></script>
         <script th:inline="javascript">
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', /*[[${@environment.getProperty('analytics.ga4.id')}]]*/ 'G-XXXXXXXXXX');
+            gtag('config', [[${analyticsId}]]);
         </script>
     </th:block>
 
