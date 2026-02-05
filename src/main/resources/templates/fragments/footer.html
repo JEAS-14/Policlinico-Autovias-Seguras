@@ -77,13 +77,13 @@
 
         <div class="footer-bottom">
             <div class="social-media">
-                <a href="https://www.facebook.com/share/1UgwCAC2FN/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer"
-                    class="social-icon facebook">
+                <a href="https://www.facebook.com/share/1UgwCAC2FN/?mibextid=wwXIfr" target="_blank"
+                    rel="noopener noreferrer" class="social-icon facebook">
                     <i class="fab fa-facebook-f"></i>
                 </a>
 
-                <a href="https://www.instagram.com/policlinicoautoviasseguras_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank"
-                    rel="noopener noreferrer" class="social-icon instagram">
+                <a href="https://www.instagram.com/policlinicoautoviasseguras_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                    target="_blank" rel="noopener noreferrer" class="social-icon instagram">
                     <i class="fab fa-instagram"></i>
                 </a>
 
@@ -105,16 +105,14 @@
         </div>
     </footer>
 
-    <!-- Google Analytics 4 -->
-    <th:block th:if="${analyticsId != null and !#strings.isEmpty(analyticsId)}">
-        <script async th:src="@{'https://www.googletagmanager.com/gtag/js?id=' + ${analyticsId}}"></script>
-        <script th:inline="javascript">
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', [[${analyticsId}]]);
-        </script>
-    </th:block>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0TSZJ56982"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-0TSZJ56982');
+    </script>
 
     <script th:src="@{/js/scroll-animations.js}"></script>
 </body>
