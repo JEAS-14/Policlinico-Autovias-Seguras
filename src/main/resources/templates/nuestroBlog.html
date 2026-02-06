@@ -4,6 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Insertar canonical y GA4 desde fragmento -->
+    <th:block th:insert="~{fragments/head-analytics :: head}"></th:block>
+    
     <title>Policlínico Autovías Seguras | Nuestro Blog</title>
     <link rel="stylesheet" th:href="@{/css/fragments/navbar.css}">
     <link rel="stylesheet" th:href="@{/css/fragments/footer.css}">
