@@ -4,4 +4,4 @@ Disallow: /admin/
 Disallow: /consulta/
 Disallow: /api/
 
-Sitemap: https://policlinico-autovias-seguras.up.railway.app/sitemap.xml
+Sitemap: https://www.autoviasseguras.com/sitemap.xml
