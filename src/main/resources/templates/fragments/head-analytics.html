@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<!-- Fragmento: head-analytics :: head -->
-<html xmlns:th="http://www.thymeleaf.org">
-
-<head th:fragment="head">
-    <!-- Canonical dinámico: usa ${pageCanonical} si está definido, si no construye desde app.site.url + requestURI -->
-    <link rel="canonical" th:href="${pageCanonical != null} ? ${pageCanonical} : |${@environment.getProperty('app.site.url')}${#httpServletRequest.requestURI}|" />
+<th:block th:fragment="head">
+    <link rel="canonical" 
+          th:href="${pageCanonical != null} ? ${pageCanonical} : (${@environment.getProperty('app.site.url')} + @{''})" />
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-0TSZJ56982"></script>
     <script>
@@ -12,8 +8,7 @@
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
 
+        // ID puesto directamente para evitar errores de Analystic
         gtag('config', 'G-0TSZJ56982');
     </script>
-</head>
-
-</html>
+</th:block>

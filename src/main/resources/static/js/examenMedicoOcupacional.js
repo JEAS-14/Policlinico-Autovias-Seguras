@@ -57,7 +57,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 entry.target.classList.add('visible-state');
 
                 // Si el elemento visible es la caja de estadísticas, iniciamos los números
-                if (entry.target.classList.contains('stats-box')) {
+                // Si el elemento contiene contadores, iniciamos los números
+                if (entry.target.querySelector && entry.target.querySelector('.stat-number')) {
+                    console.log('examenMedicoOcupacional.js: detected stat-number in observed element, starting counters');
                     startCounters();
                 }
                 
@@ -68,8 +70,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }, observerOptions);
 
     // Buscamos todos los elementos que deben animarse
-    const elementsToAnimate = document.querySelectorAll('.fade-in, .slide-up, .stats-box, .js-scroll-item');
+    const elementsToAnimate = document.querySelectorAll('.fade-in, .slide-up, .fade-in-up, .stats-container, .stats-box, .js-scroll-item');
     elementsToAnimate.forEach(el => observer.observe(el));
+
+    // Fallback: si al cargar hay contadores ya visibles (por ejemplo en pantallas grandes), iniciarlos
+    setTimeout(() => {
+        try {
+            if (!countersStarted) {
+                const anyCounter = document.querySelector('.stat-number');
+                if (anyCounter) {
+                    const rect = anyCounter.getBoundingClientRect();
+                    if (rect.top >= 0 && rect.top < window.innerHeight) {
+                        console.log('examenMedicoOcupacional.js: fallback - stat-number visible on load, starting counters');
+                        startCounters();
+                    }
+                }
+            }
+        } catch (e) {
+            console.error('examenMedicoOcupacional.js fallback error', e);
+        }
+    }, 300);
 
     // --- C. PASOS EN MÓVIL (Mostrar tooltip al tocar) ---
     const stepsContainer = document.querySelector('.steps-container');
@@ -99,17 +119,21 @@ document.addEventListener('DOMContentLoaded', () => {
         const speed = 200; // Velocidad de la animación
 
         counters.forEach(counter => {
+            const wantsPlus = counter.getAttribute('data-plus') === 'true';
+            console.log('examenMedicoOcupacional.js: starting counter for target=', counter.getAttribute('data-target'));
             const updateCount = () => {
                 const target = +counter.getAttribute('data-target');
-                const count = +counter.innerText.replace('+', ''); // Limpia símbolos
-                
-                const inc = target / speed;
+                const currentText = (counter.innerText || '').replace(/[^0-9]/g, '');
+                const count = currentText ? +currentText : 0;
+
+                const inc = Math.max(1, Math.floor(target / speed));
 
                 if (count < target) {
-                    counter.innerText = Math.ceil(count + inc);
+                    const next = Math.min(target, count + inc);
+                    counter.innerText = next;
                     setTimeout(updateCount, 20);
                 } else {
-                    counter.innerText = "+" + target; // Finaliza con el "+"
+                    counter.innerText = wantsPlus ? ('+' + target) : String(target);
                 }
             };
             updateCount();

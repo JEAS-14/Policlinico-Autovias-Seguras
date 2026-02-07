@@ -90,6 +90,34 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // =========================================================
+    // HERO VISIBILITY OBSERVER - asegurar que ambos paneles salten
+    // =========================================================
+    try {
+        const hero = document.querySelector('.hero-section-modern');
+        if (hero) {
+            const heroObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        console.log('home.js: hero is visible -> adding hero-visible');
+                        const left = hero.querySelector('.hero-left-panel');
+                        const right = hero.querySelector('.hero-right-panel');
+                        if (left) left.classList.add('hero-visible');
+                        if (right) right.classList.add('hero-visible');
+                        // trigger image render/update in case it's delayed
+                        try { renderServiceImages(); } catch(e) { /* noop */ }
+                        heroObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.05 });
+            heroObserver.observe(hero);
+        } else {
+            console.log('home.js: hero element not found');
+        }
+    } catch (err) {
+        console.error('home.js hero observer error', err);
+    }
+
+    // =========================================================
     // 4. MAPA INTERACTIVO / CROQUIS (NUEVO CÓDIGO AGREGADO)
     // =========================================================
     const triggers = document.querySelectorAll('.route-trigger');
@@ -265,7 +293,7 @@ const servicesData = [
         title: "Escuela de Conductores",
         desc: "Recategorización profesional.",
         fullDesc: "Cursos teóricos y prácticos con instructores calificados para mejorar tu categoría de licencia.",
-        icon: "graduation-cap",
+        icon: "car",
         image: "https://res.cloudinary.com/dtozni6ik/image/upload/f_auto,q_auto/v1767590149/82645900-9f7f-4ba5-b4f2-dcb7cd583bef.png",
         link: "/servicios/escuelaConductores"
     }
