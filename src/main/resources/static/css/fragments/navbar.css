@@ -625,3 +625,31 @@ html {
     from { opacity: 0; transform: translateY(-5px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+/* VISIBILIDAD BOTONES NAVBAR EN LAPTOPS ANCHOS (994px - 1600px) */
+@media (min-width: 994px) and (max-width: 1600px) {
+    .nav-container {
+        max-width: 98vw;
+        padding: 0 12px;
+    }
+    .nav-menu {
+        gap: 16px;
+    }
+    .nav-buttons {
+        padding-left: 12px;
+        gap: 10px;
+    }
+    .btn-nav-cotiza, .btn-nav-resultados {
+        padding: 8px 16px;
+        font-size: 0.85rem;
+        min-width: 90px;
+    }
+    .logo {
+        margin-left: 10px;
+        margin-right: 18px;
+    }
+    .logo img {
+        height: 60px;
+        max-width: 120px;
+    }
+}
