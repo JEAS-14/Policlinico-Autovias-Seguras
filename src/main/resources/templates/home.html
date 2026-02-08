@@ -6,27 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Insertar canonical y GA4 desde fragmento -->
-    <th:block th:insert="~{fragments/head-analytics :: head}"></th:block>
+    <th:block th:with="pageTitle='Policlínico Autovías Seguras | Exámenes Médicos Ocupacionales, Brevete y SUCAMEC en Lima',
+                       pageDescription='Policlínico líder en exámenes médicos ocupacionales (EMO), licencias de conducir brevete A1 A2 A3, SUCAMEC y escuela de conductores en San Juan de Lurigancho, Lima. Resultados en 24 horas.',
+                       pageCanonical='https://www.autoviasseguras.com/',
+                       pageImage='https://res.cloudinary.com/dtozni6ik/image/upload/f_auto,q_auto/v1767591606/Gemini_Generated_Image_f1ydyzf1ydyzf1yd_2_si4mvj.png'">
+        <th:block th:insert="~{fragments/seo-meta :: seo}"></th:block>
+        <th:block th:insert="~{fragments/head-analytics :: head}"></th:block>
+    </th:block>
     
     <title>Policlínico Autovías Seguras | Exámenes Médicos Ocupacionales, Brevete y SUCAMEC en Lima</title>
-    <meta name="description" content="Policlínico líder en exámenes médicos ocupacionales (EMO), licencias de conducir brevete A1 A2 A3, SUCAMEC y escuela de conductores en San Juan de Lurigancho, Lima. Resultados en 24 horas.">
     <meta name="keywords" content="examen médico ocupacional, EMO Lima, brevete, licencia de conducir, SUCAMEC, escuela de conductores, examen médico Lima, certificado médico MTC, San Juan de Lurigancho, Autovías Seguras">
-    <meta name="author" content="Policlínico Autovías Seguras">
-    <meta name="robots" content="index, follow">
-    
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.autoviasseguras.com/">
-    <meta property="og:title" content="Policlínico Autovías Seguras | Exámenes Médicos Ocupacionales y Brevete en Lima">
-    <meta property="og:description" content="Exámenes médicos ocupacionales, brevete, SUCAMEC y escuela de conductores. Resultados en 24 horas. Atención en San Juan de Lurigancho, Lima.">
-    <meta property="og:image" content="https://res.cloudinary.com/dtozni6ik/image/upload/f_auto,q_auto/v1767591606/Gemini_Generated_Image_f1ydyzf1ydyzf1yd_2_si4mvj.png">
-    <meta property="og:locale" content="es_PE">
-    <meta property="og:site_name" content="Policlínico Autovías Seguras">
-    
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://www.autoviasseguras.com/">
-    <meta name="twitter:title" content="Policlínico Autovías Seguras | Exámenes Médicos en Lima">
-    <meta name="twitter:description" content="Exámenes médicos ocupacionales, brevete, SUCAMEC. Resultados en 24 horas en Lima.">
-    <meta name="twitter:image" content="https://res.cloudinary.com/dtozni6ik/image/upload/f_auto,q_auto/v1767591606/Gemini_Generated_Image_f1ydyzf1ydyzf1yd_2_si4mvj.png">
     
     <meta name="geo.region" content="PE-LIM">
     <meta name="geo.placename" content="San Juan de Lurigancho, Lima">

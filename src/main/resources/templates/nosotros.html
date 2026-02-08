@@ -6,7 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Insertar canonical y GA4 desde fragmento -->
-    <th:block th:insert="~{fragments/head-analytics :: head}"></th:block>
+    <th:block th:with="pageTitle='Nosotros | Policlínico Autovías Seguras',
+                       pageDescription='Conoce nuestra historia, equipo y compromiso con la salud ocupacional y evaluaciones médicas para conductores en Lima.',
+                       pageCanonical='https://www.autoviasseguras.com/nosotros',
+                       pageImage='https://res.cloudinary.com/dtozni6ik/image/upload/f_auto,q_auto/v1767591606/Gemini_Generated_Image_f1ydyzf1ydyzf1yd_2_si4mvj.png'">
+        <th:block th:insert="~{fragments/seo-meta :: seo}"></th:block>
+        <th:block th:insert="~{fragments/head-analytics :: head}"></th:block>
+    </th:block>
     
     <title>Policlínico Autovías Seguras | Nosotros</title>
     <script src="https://cdn.tailwindcss.com"></script>

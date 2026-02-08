@@ -1,0 +1,42 @@
+<th:block th:fragment="seo">
+    <meta name="description"
+          th:content="${pageDescription != null} ? ${pageDescription} : 'Servicios medicos ocupacionales, brevete y SUCAMEC en Lima.'" />
+    <meta name="robots" th:content="${pageRobots != null} ? ${pageRobots} : 'index, follow'" />
+    <meta name="author" content="Policlinico Autovias Seguras" />
+    <meta name="theme-color" content="#3BBCA8" />
+
+    <meta property="og:type" th:content="${pageType != null} ? ${pageType} : 'website'" />
+    <meta property="og:url"
+          th:content="${pageCanonical != null} ? ${pageCanonical} : (${@environment.getProperty('app.site.url')} + @{''})" />
+    <meta property="og:title"
+          th:content="${pageTitle != null} ? ${pageTitle} : 'Policlinico Autovias Seguras'" />
+    <meta property="og:description"
+          th:content="${pageDescription != null} ? ${pageDescription} : 'Servicios medicos ocupacionales, brevete y SUCAMEC en Lima.'" />
+    <meta property="og:image"
+          th:content="${pageImage != null} ? ${pageImage} : 'https://res.cloudinary.com/dtozni6ik/image/upload/f_auto,q_auto/v1767591606/Gemini_Generated_Image_f1ydyzf1ydyzf1yd_2_si4mvj.png'" />
+    <meta property="og:locale" content="es_PE" />
+    <meta property="og:site_name" content="Policlinico Autovias Seguras" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url"
+          th:content="${pageCanonical != null} ? ${pageCanonical} : (${@environment.getProperty('app.site.url')} + @{''})" />
+    <meta name="twitter:title"
+          th:content="${pageTitle != null} ? ${pageTitle} : 'Policlinico Autovias Seguras'" />
+    <meta name="twitter:description"
+          th:content="${pageDescription != null} ? ${pageDescription} : 'Servicios medicos ocupacionales, brevete y SUCAMEC en Lima.'" />
+    <meta name="twitter:image"
+          th:content="${pageImage != null} ? ${pageImage} : 'https://res.cloudinary.com/dtozni6ik/image/upload/f_auto,q_auto/v1767591606/Gemini_Generated_Image_f1ydyzf1ydyzf1yd_2_si4mvj.png'" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "MedicalOrganization",
+            "name": "Policlinico Autovias Seguras",
+            "url": "https://www.autoviasseguras.com",
+            "logo": "https://res.cloudinary.com/dtozni6ik/image/upload/f_auto,q_auto/v1767591606/Gemini_Generated_Image_f1ydyzf1ydyzf1yd_2_si4mvj.png"
+        }
+    </script>
+</th:block>
