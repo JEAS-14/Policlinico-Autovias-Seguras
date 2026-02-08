@@ -12,7 +12,7 @@
                     <i class="fas fa-file-alt"></i> Detalle de Consulta
                 </h2>
                 <p style="font-size: 0.875rem; color: #6b7280; margin-top: 0.25rem;">
-                    Ticket: <code style="background: #f3f4f6; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-family: monospace;" th:text="${consulta.numeroTicket}">CON-123</code>
+                    Ticket: <code style="background: #f3f4f6; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-family: monospace;" th:text="${ticket}">CON-123</code>
                 </p>
             </div>
             <a href="/admin/consultas" style="display: inline-flex; align-items: center; gap: 0.5rem; background: #6b7280; color: white; padding: 0.75rem 1.5rem; border-radius: 0.5rem; font-weight: 500; text-decoration: none; transition: background 0.2s;">
@@ -39,10 +39,10 @@
                             <i class="fas fa-user-circle"></i> Información del Cliente
                         </h3>
                         <span class="consultas-badge"
-                              th:classappend="${consulta.estado.name() == 'PENDIENTE' ? 'consultas-badge-pendiente' : 
-                                                consulta.estado.name() == 'EN_PROCESO' ? 'consultas-badge-proceso' :
-                                                consulta.estado.name() == 'CITA_PROGRAMADA' ? 'consultas-badge-cita' : 'consultas-badge-respondida'}"
-                              th:text="${consulta.estado.descripcion}">
+                              th:classappend="${estadoActual == 'PENDIENTE' ? 'consultas-badge-pendiente' : 
+                                                estadoActual == 'EN_PROCESO' ? 'consultas-badge-proceso' :
+                                                estadoActual == 'CITA_PROGRAMADA' ? 'consultas-badge-cita' : 'consultas-badge-respondida'}"
+                              th:text="${estadoActual}">
                             Pendiente
                         </span>
                     </div>
@@ -50,20 +50,20 @@
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
                         <div>
                             <div style="font-size: 0.75rem; font-weight: 500; color: #6b7280; text-transform: uppercase; margin-bottom: 0.25rem;">Nombre Completo</div>
-                            <div style="font-size: 0.875rem; color: #111827; font-weight: 500;" th:text="${consulta.nombre} + ' ' + ${consulta.apellido}">Juan Pérez</div>
+                            <div style="font-size: 0.875rem; color: #111827; font-weight: 500;" th:text="${consulta.get(1)} + ' ' + ${consulta.get(2)}">Juan Pérez</div>
                         </div>
                         <div>
                             <div style="font-size: 0.75rem; font-weight: 500; color: #6b7280; text-transform: uppercase; margin-bottom: 0.25rem;">Tipo de Consulta</div>
-                            <div style="font-size: 0.875rem; color: #111827; font-weight: 500;" th:text="${consulta.tipoConsulta}">Examen Médico</div>
+                            <div style="font-size: 0.875rem; color: #111827; font-weight: 500;" th:text="${consulta.get(5)}">Examen Médico</div>
                         </div>
                         <div>
                             <div style="font-size: 0.75rem; font-weight: 500; color: #6b7280; text-transform: uppercase; margin-bottom: 0.25rem;">
                                 <i class="fas fa-envelope"></i> Email
                             </div>
                             <div style="font-size: 0.875rem;">
-                                <a th:href="'mailto:' + ${consulta.email}" 
+                                <a th:href="'mailto:' + ${consulta.get(3)}" 
                                    style="color: #4f46e5; text-decoration: none;"
-                                   th:text="${consulta.email}">email@example.com</a>
+                                   th:text="${consulta.get(3)}">email@example.com</a>
                             </div>
                         </div>
                         <div>
@@ -71,20 +71,16 @@
                                 <i class="fas fa-phone"></i> Teléfono
                             </div>
                             <div style="font-size: 0.875rem;">
-                                <a th:href="'tel:' + ${consulta.telefono}" 
+                                <a th:href="'tel:' + ${consulta.get(4)}" 
                                    style="color: #4f46e5; text-decoration: none;"
-                                   th:text="${consulta.telefono}">999999999</a>
+                                   th:text="${consulta.get(4)}">999999999</a>
                             </div>
-                        </div>
-                        <div th:if="${consulta.empresa}">
-                            <div style="font-size: 0.75rem; font-weight: 500; color: #6b7280; text-transform: uppercase; margin-bottom: 0.25rem;">Empresa</div>
-                            <div style="font-size: 0.875rem; color: #111827;" th:text="${consulta.empresa}">Empresa XYZ</div>
                         </div>
                         <div>
                             <div style="font-size: 0.75rem; font-weight: 500; color: #6b7280; text-transform: uppercase; margin-bottom: 0.25rem;">
                                 <i class="far fa-calendar"></i> Fecha de Consulta
                             </div>
-                            <div style="font-size: 0.875rem; color: #111827;" th:text="${#temporals.format(consulta.fechaCreacion, 'dd/MM/yyyy HH:mm')}">02/02/2026 23:47</div>
+                            <div style="font-size: 0.875rem; color: #111827;" th:text="${consulta.get(0)}">02/02/2026 23:47</div>
                         </div>
                     </div>
                 </div>
@@ -94,13 +90,13 @@
                     <h3 style="font-size: 1rem; font-weight: 600; color: #312e81; margin-bottom: 1rem;">
                         <i class="fas fa-comment-dots"></i> Mensaje del Cliente
                     </h3>
-                    <div style="background: #f9fafb; padding: 1rem; border-radius: 0.5rem; border-left: 3px solid #4f46e5; line-height: 1.6; color: #374151;" th:text="${consulta.mensaje}">
+                    <div style="background: #f9fafb; padding: 1rem; border-radius: 0.5rem; border-left: 3px solid #4f46e5; line-height: 1.6; color: #374151;" th:text="${consulta.get(6)}">
                         Mensaje de la consulta aquí...
                     </div>
                 </div>
 
                 <!-- Respuesta (si existe) -->
-                <div th:if="${consulta.respuesta}" style="background: white; padding: 1.5rem; border-radius: 0.75rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1); border: 1px solid #e5e7eb;">
+                <div th:if="${respuestaActual != null and respuestaActual != ''}" style="background: white; padding: 1.5rem; border-radius: 0.75rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1); border: 1px solid #e5e7eb;">
                     <h3 style="font-size: 1rem; font-weight: 600; color: #312e81; margin-bottom: 1rem;">
                         <i class="fas fa-reply"></i> Respuesta Enviada
                     </h3>
@@ -108,22 +104,16 @@
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
                         <div>
                             <div style="font-size: 0.75rem; font-weight: 500; color: #6b7280; text-transform: uppercase; margin-bottom: 0.25rem;">Respondido por</div>
-                            <div style="font-size: 0.875rem; color: #111827;" th:text="${consulta.respondidoPor}">Admin</div>
+                            <div style="font-size: 0.875rem; color: #111827;" th:text="${consulta.get(10)}">Admin</div>
                         </div>
                         <div>
                             <div style="font-size: 0.75rem; font-weight: 500; color: #6b7280; text-transform: uppercase; margin-bottom: 0.25rem;">Fecha de Respuesta</div>
-                            <div style="font-size: 0.875rem; color: #111827;" th:text="${#temporals.format(consulta.fechaRespuesta, 'dd/MM/yyyy HH:mm')}">03/02/2026 10:00</div>
+                            <div style="font-size: 0.875rem; color: #111827;" th:text="${consulta.get(11)}">03/02/2026 10:00</div>
                         </div>
                     </div>
 
-                    <div style="background: #d1fae5; padding: 1rem; border-radius: 0.5rem; border-left: 3px solid #10b981; line-height: 1.6; color: #065f46;" th:text="${consulta.respuesta}">
+                    <div style="background: #d1fae5; padding: 1rem; border-radius: 0.5rem; border-left: 3px solid #10b981; line-height: 1.6; color: #065f46;" th:text="${respuestaActual}">
                         Respuesta enviada al cliente...
-                    </div>
-
-                    <div th:if="${consulta.fechaCitaProgramada}" style="margin-top: 1rem; padding: 0.75rem; background: #e9d5ff; border-radius: 0.5rem; display: flex; align-items: center; gap: 0.5rem; color: #6b21a8;">
-                        <i class="fas fa-calendar-check"></i>
-                        <strong>Cita Programada:</strong>
-                        <span th:text="${#temporals.format(consulta.fechaCitaProgramada, 'dd/MM/yyyy HH:mm')}">05/02/2026 15:00</span>
                     </div>
                 </div>
             </div>
@@ -135,13 +125,14 @@
                     <h3 style="font-size: 1rem; font-weight: 600; color: #312e81; margin-bottom: 1rem;">
                         <i class="fas fa-tasks"></i> Cambiar Estado
                     </h3>
-                    <form method="post" th:action="@{/admin/consultas/{id}/cambiar-estado(id=${consulta.id})}">
-                        <select name="nuevoEstado" style="width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 0.5rem; margin-bottom: 1rem; font-size: 0.875rem;">
-                            <option th:each="e : ${estados}" 
-                                    th:value="${e}" 
-                                    th:text="${e.descripcion}"
-                                    th:selected="${e == consulta.estado}">
-                            </option>
+                    <form method="post" th:action="@{/admin/consultas/responder}">
+                        <input type="hidden" name="ticket" th:value="${ticket}">
+                        <input type="hidden" name="respuesta" value="">
+                        <select name="estado" style="width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 0.5rem; margin-bottom: 1rem; font-size: 0.875rem;">
+                            <option value="PENDIENTE" th:selected="${estadoActual != null and estadoActual == 'PENDIENTE'}">Pendiente</option>
+                            <option value="EN_PROCESO" th:selected="${estadoActual != null and estadoActual == 'EN_PROCESO'}">En Proceso</option>
+                            <option value="RESPONDIDA" th:selected="${estadoActual != null and estadoActual == 'RESPONDIDA'}">Respondida</option>
+                            <option value="CITA_PROGRAMADA" th:selected="${estadoActual != null and estadoActual == 'CITA_PROGRAMADA'}">Cita Programada</option>
                         </select>
                         <button type="submit" style="width: 100%; background: #4f46e5; color: white; padding: 0.75rem; border: none; border-radius: 0.5rem; font-weight: 600; cursor: pointer; transition: background 0.2s;">
                             <i class="fas fa-sync-alt"></i> Actualizar Estado
@@ -150,31 +141,29 @@
                 </div>
 
                 <!-- Responder Consulta -->
-                <div th:if="${consulta.respuesta == null}" style="background: white; padding: 1.5rem; border-radius: 0.75rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1); border: 1px solid #e5e7eb;">
+                <div th:if="${respuestaActual == null or respuestaActual == ''}" style="background: white; padding: 1.5rem; border-radius: 0.75rem; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1); border: 1px solid #e5e7eb;">
                     <h3 style="font-size: 1rem; font-weight: 600; color: #312e81; margin-bottom: 1rem;">
                         <i class="fas fa-reply"></i> Responder al Cliente
                     </h3>
-                    <form method="post" th:action="@{/admin/consultas/{id}/responder(id=${consulta.id})}" th:object="${respuestaDTO}">
+                    <form method="post" th:action="@{/admin/consultas/responder}">
+                        <input type="hidden" name="ticket" th:value="${ticket}">
                         <div style="margin-bottom: 1rem;">
                             <label style="display: block; font-size: 0.875rem; font-weight: 500; color: #374151; margin-bottom: 0.5rem;">Respuesta</label>
-                            <textarea th:field="*{respuesta}" 
+                            <textarea name="respuesta" 
                                       rows="6" 
                                       required
                                       style="width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 0.5rem; font-size: 0.875rem; resize: vertical;"
                                       placeholder="Escribe tu respuesta aquí..."></textarea>
                         </div>
 
-                        <div style="margin-bottom: 1rem; padding: 1rem; background: #f9fafb; border-radius: 0.5rem;">
-                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
-                                <input type="checkbox" th:field="*{programarCita}" style="width: 1rem; height: 1rem; cursor: pointer;">
-                                <span style="font-size: 0.875rem; font-weight: 500; color: #374151;">Programar Cita</span>
-                            </label>
-                            <div id="citaFields" style="margin-top: 1rem; display: none;">
-                                <label style="display: block; font-size: 0.875rem; font-weight: 500; color: #374151; margin-bottom: 0.5rem;">Fecha y Hora de la Cita</label>
-                                <input type="datetime-local" 
-                                       th:field="*{fechaCita}"
-                                       style="width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 0.5rem; font-size: 0.875rem;">
-                            </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; font-size: 0.875rem; font-weight: 500; color: #374151; margin-bottom: 0.5rem;">Estado</label>
+                            <select name="estado" style="width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 0.5rem; font-size: 0.875rem;">
+                                <option value="RESPONDIDA">Marcar como Respondida</option>
+                                <option value="EN_PROCESO">En Proceso</option>
+                                <option value="PENDIENTE">Pendiente</option>
+                                <option value="CITA_PROGRAMADA">Cita Programada</option>
+                            </select>
                         </div>
 
                         <button type="submit" style="width: 100%; background: #10b981; color: white; padding: 0.75rem; border: none; border-radius: 0.5rem; font-weight: 600; cursor: pointer; transition: background 0.2s;">
@@ -188,27 +177,12 @@
                     <h3 style="font-size: 1rem; font-weight: 600; color: #991b1b; margin-bottom: 1rem;">
                         <i class="fas fa-trash"></i> Eliminar Consulta
                     </h3>
-                    <p style="font-size: 0.875rem; color: #6b7280; margin-bottom: 1rem;">Esta acción no se puede deshacer.</p>
-                    <form method="post" th:action="@{/admin/consultas/{id}/eliminar(id=${consulta.id})}" onsubmit="return confirm('¿Estás seguro de eliminar esta consulta?');">
-                        <button type="submit" style="width: 100%; background: #dc2626; color: white; padding: 0.75rem; border: none; border-radius: 0.5rem; font-weight: 600; cursor: pointer; transition: background 0.2s;">
-                            <i class="fas fa-trash"></i> Eliminar Consulta
-                        </button>
-                    </form>
-                </div>
+                    <p style="font-size: 0.875rem; color: #6b7280; margin-bottom: 1rem;">Nota: Los datos se pueden restaurar desde Google Sheets.</p>
+                    <button disabled style="width: 100%; background: #d1d5db; color: #6b7280; padding: 0.75rem; border: none; border-radius: 0.5rem; font-weight: 600; cursor: not-allowed;">
+                        <i class="fas fa-trash"></i> No disponible en Google Sheets
+                    </button>
             </div>
         </div>
     </div>
-
-    <script>
-        // Mostrar/ocultar campos de cita
-        const checkboxCita = document.querySelector('input[name="programarCita"]');
-        const citaFields = document.getElementById('citaFields');
-        
-        if (checkboxCita) {
-            checkboxCita.addEventListener('change', function() {
-                citaFields.style.display = this.checked ? 'block' : 'none';
-            });
-        }
-    </script>
 </body>
 </html>

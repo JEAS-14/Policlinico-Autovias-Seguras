@@ -1,137 +1,149 @@
 package com.policlinico.autovias.infrastructure.web.controller;
 
-import com.policlinico.autovias.application.dto.RespuestaDTO;
-import com.policlinico.autovias.application.service.ConsultaService;
-import com.policlinico.autovias.domain.entity.Consulta;
-import com.policlinico.autovias.domain.enums.EstadoConsulta;
-
+import com.policlinico.autovias.application.service.EmailService;
+import com.policlinico.autovias.application.service.GoogleSheetsService;
 import jakarta.servlet.http.HttpSession;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin/consultas")
 @RequiredArgsConstructor
+@Slf4j
 public class AdminConsultasController {
     
-    private final ConsultaService consultaService;
+    private final GoogleSheetsService googleSheetsService;
+    private final EmailService emailService;
     
     @GetMapping
     public String listarConsultas(
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(required = false) EstadoConsulta estado,
-            @RequestParam(required = false) String busqueda,
             HttpSession session,
             Model model) {
         
-        // Añadir nombre de usuario al modelo
+        // Obtener nombre de usuario
         model.addAttribute("nombreUsuario", session.getAttribute("nombreUsuario"));
         
-        PageRequest pageRequest = PageRequest.of(page, 10, 
-            Sort.by("fechaCreacion").descending());
-        
-        Page<Consulta> consultas;
-        
-        if (busqueda != null && !busqueda.trim().isEmpty()) {
-            consultas = consultaService.buscarConsultas(busqueda, pageRequest);
-        } else if (estado != null) {
-            consultas = consultaService.obtenerConsultasPorEstado(estado, pageRequest);
-        } else {
-            consultas = consultaService.obtenerTodas(pageRequest);
+        try {
+            // Leer todas las consultas desde Google Sheets
+            List<List<Object>> consultas = googleSheetsService.leerConsultas();
+            
+            // Calcular paginación manual
+            int pageSize = 20;
+            int totalConsultas = consultas.size() > 0 ? consultas.size() - 1 : 0; // Menos header
+            int totalPages = (int) Math.ceil((double) totalConsultas / pageSize);
+
+            // Contadores por estado
+            int pendientes = 0;
+            int enProceso = 0;
+            int respondidas = 0;
+            int citasProgramadas = 0;
+            for (int i = 1; i < consultas.size(); i++) {
+                List<Object> fila = consultas.get(i);
+                String estado = (fila.size() > 7 && fila.get(7) != null) ? String.valueOf(fila.get(7)).trim().toUpperCase() : "PENDIENTE";
+                switch (estado) {
+                    case "PENDIENTE" -> pendientes++;
+                    case "EN_PROCESO" -> enProceso++;
+                    case "RESPONDIDA" -> respondidas++;
+                    case "CITA_PROGRAMADA" -> citasProgramadas++;
+                    default -> pendientes++;
+                }
+            }
+            
+            // Obtener página actual
+            int start = page * pageSize + 1; // +1 para saltar el header
+            int end = Math.min(start + pageSize, consultas.size());
+            
+            List<List<Object>> paginaActual = consultas.size() > start ? 
+                    consultas.subList(start, end) : List.of();
+            
+            model.addAttribute("consultas", consultas);
+            model.addAttribute("totalConsultas", totalConsultas);
+            model.addAttribute("currentPage", page);
+            model.addAttribute("totalPages", totalPages);
+            model.addAttribute("pendientes", pendientes);
+            model.addAttribute("enProceso", enProceso);
+            model.addAttribute("respondidas", respondidas);
+            model.addAttribute("citasProgramadas", citasProgramadas);
+            
+        } catch (Exception e) {
+            log.error("Error al obtener consultas", e);
+            model.addAttribute("error", "No se pudieron cargar las consultas: " + e.getMessage());
+            model.addAttribute("consultas", List.of());
         }
-        
-        model.addAttribute("consultas", consultas);
-        model.addAttribute("estadoActual", estado);
-        model.addAttribute("busqueda", busqueda);
-        model.addAttribute("estados", EstadoConsulta.values());
-        
-        // Contador de consultas por estado
-        model.addAttribute("pendientes", consultaService.contarPorEstado(EstadoConsulta.PENDIENTE));
-        model.addAttribute("enProceso", consultaService.contarPorEstado(EstadoConsulta.EN_PROCESO));
-        model.addAttribute("respondidas", consultaService.contarPorEstado(EstadoConsulta.RESPONDIDA));
-        model.addAttribute("citasProgramadas", consultaService.contarPorEstado(EstadoConsulta.CITA_PROGRAMADA));
         
         return "admin/consultas/listado";
     }
-    
-    @GetMapping("/{id}")
-    public String verDetalle(@PathVariable Long id, HttpSession session, Model model) {
-        model.addAttribute("nombreUsuario", session.getAttribute("nombreUsuario"));
-        Consulta consulta = consultaService.obtenerPorId(id);
-        model.addAttribute("consulta", consulta);
-        model.addAttribute("respuestaDTO", new RespuestaDTO());
-        model.addAttribute("estados", EstadoConsulta.values());
-        return "admin/consultas/detalle";
-    }
-    
-    @PostMapping("/{id}/responder")
-    public String responderConsulta(
-            @PathVariable Long id,
-            @Valid @ModelAttribute RespuestaDTO respuestaDTO,
-            BindingResult result,
+
+    @GetMapping("/detalle")
+    public String verDetalleConsulta(
+            @RequestParam String ticket,
             HttpSession session,
-            RedirectAttributes redirectAttributes) {
-        
-        if (result.hasErrors()) {
-            redirectAttributes.addFlashAttribute("error", 
-                "Error en la validación de la respuesta");
-            return "redirect:/admin/consultas/" + id;
-        }
-        
+            Model model) {
+
+        model.addAttribute("nombreUsuario", session.getAttribute("nombreUsuario"));
+
         try {
-            String usuario = (String) session.getAttribute("nombreUsuario");
-            consultaService.responderConsulta(id, respuestaDTO, usuario);
-            
-            redirectAttributes.addFlashAttribute("success", 
-                "Respuesta enviada exitosamente al cliente");
+            List<Object> consulta = googleSheetsService.buscarConsultaPorTicket(ticket);
+
+            if (consulta == null) {
+                model.addAttribute("error", "No se encontró la consulta con ticket: " + ticket);
+                return "admin/consultas/listado";
+            }
+
+            String estadoActual = consulta.size() > 7 ? String.valueOf(consulta.get(7)) : "PENDIENTE";
+            String respuestaActual = consulta.size() > 9 ? String.valueOf(consulta.get(9)) : "";
+
+            model.addAttribute("consulta", consulta);
+            model.addAttribute("estadoActual", estadoActual);
+            model.addAttribute("respuestaActual", respuestaActual);
+            model.addAttribute("ticket", ticket);
+
+            return "admin/consultas/detalle";
+
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("error", 
-                "Error al enviar la respuesta: " + e.getMessage());
+            log.error("Error al obtener detalle de consulta", e);
+            model.addAttribute("error", "No se pudo cargar el detalle: " + e.getMessage());
+            return "admin/consultas/listado";
         }
-        
-        return "redirect:/admin/consultas";
     }
-    
-    @PostMapping("/{id}/cambiar-estado")
-    public String cambiarEstado(
-            @PathVariable Long id,
-            @RequestParam EstadoConsulta nuevoEstado,
-            RedirectAttributes redirectAttributes) {
-        
+
+    @PostMapping("/responder")
+    public String responderConsulta(
+            @RequestParam String ticket,
+            @RequestParam String estado,
+            @RequestParam(required = false) String respuesta,
+            @RequestParam(name = "accion", defaultValue = "guardarYEnviar") String accion,
+            HttpSession session,
+            Model model) {
+
         try {
-            consultaService.cambiarEstado(id, nuevoEstado);
-            redirectAttributes.addFlashAttribute("success", 
-                "Estado actualizado correctamente");
+            String respondidoPor = String.valueOf(session.getAttribute("nombreUsuario"));
+            googleSheetsService.actualizarConsulta(ticket, estado, respuesta, respondidoPor);
+
+            if ("guardarYEnviar".equalsIgnoreCase(accion)) {
+                List<Object> consulta = googleSheetsService.buscarConsultaPorTicket(ticket);
+                if (consulta != null && consulta.size() > 4) {
+                    String email = String.valueOf(consulta.get(3));
+                    String nombre = consulta.size() > 1 ? String.valueOf(consulta.get(1)) : "";
+                    String apellido = consulta.size() > 2 ? String.valueOf(consulta.get(2)) : "";
+                    emailService.enviarRespuestaConsultaCliente(email, nombre, apellido, ticket, estado, respuesta);
+                }
+            }
+
+            return "redirect:/admin/consultas/detalle?ticket=" + ticket + "&ok";
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("error", 
-                "Error al cambiar el estado: " + e.getMessage());
+            log.error("Error al responder consulta", e);
+            model.addAttribute("error", "No se pudo guardar la respuesta: " + e.getMessage());
+            return "redirect:/admin/consultas/detalle?ticket=" + ticket + "&error";
         }
-        
-        return "redirect:/admin/consultas/" + id;
-    }
-    
-    @PostMapping("/{id}/eliminar")
-    public String eliminarConsulta(
-            @PathVariable Long id,
-            RedirectAttributes redirectAttributes) {
-        
-        try {
-            consultaService.eliminarConsulta(id);
-            redirectAttributes.addFlashAttribute("success", 
-                "Consulta eliminada exitosamente");
-        } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("error", 
-                "Error al eliminar la consulta: " + e.getMessage());
-        }
-        
-        return "redirect:/admin/consultas";
     }
 }

@@ -214,6 +214,34 @@ public class GoogleSheetsService {
     }
     
     /**
+     * Lee todas las consultas desde Google Sheets
+     */
+    public List<List<Object>> leerConsultas() {
+        try {
+            logger.info("Leyendo consultas desde Google Sheets: hoja {}", consultasSheet);
+            Sheets service = getSheetService();
+            
+            String range = consultasSheet + "!A:M"; // Columnas A-M (Fecha hasta Respondido Por)
+            ValueRange response = service.spreadsheets().values()
+                    .get(spreadsheetId, range)
+                    .execute();
+            
+            List<List<Object>> values = response.getValues();
+            if (values == null || values.isEmpty()) {
+                logger.warn("No se encontraron consultas en la hoja {}", consultasSheet);
+                return new ArrayList<>();
+            }
+            
+            logger.info("Se encontraron {} consultas en Google Sheets", values.size() - 1); // -1 por el header
+            return values;
+            
+        } catch (Exception e) {
+            logger.error("Error al leer consultas desde Google Sheets", e);
+            throw new RuntimeException("Error al leer consultas: " + e.getMessage(), e);
+        }
+    }
+
+    /**
      * Lee todas las reclamaciones desde Google Sheets
      */
     public List<List<Object>> leerReclamaciones() {
@@ -241,6 +269,67 @@ public class GoogleSheetsService {
         }
     }
 
+    public List<Object> buscarConsultaPorTicket(String ticket) {
+        List<List<Object>> values = leerConsultas();
+        if (values == null || values.size() <= 1) {
+            return null;
+        }
+
+        for (int i = 1; i < values.size(); i++) { // saltar header
+            List<Object> fila = values.get(i);
+            if (fila.size() > 8) {
+                String t = String.valueOf(fila.get(8)); // Ticket está en columna 8
+                if (t != null && t.trim().equalsIgnoreCase(ticket != null ? ticket.trim() : "")) {
+                    return fila;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    public void actualizarConsulta(String ticket, String estado, String respuesta, String respondidoPor) {
+        try {
+            Sheets service = getSheetService();
+            List<List<Object>> values = leerConsultas();
+
+            int rowIndex = -1;
+            for (int i = 1; i < values.size(); i++) { // saltar header
+                List<Object> fila = values.get(i);
+                if (fila.size() > 8 && ticket.equals(String.valueOf(fila.get(8)))) {
+                    rowIndex = i + 1; // 1-based para Sheets
+                    break;
+                }
+            }
+
+            if (rowIndex == -1) {
+                throw new RuntimeException("No se encontró el ticket: " + ticket);
+            }
+
+            String fechaRespuesta = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+            List<Object> updateValues = Arrays.asList(
+                    estado,
+                    respuesta != null ? respuesta : "",
+                    respondidoPor != null ? respondidoPor : "",
+                    fechaRespuesta
+            );
+
+            String updateRange = consultasSheet + "!I" + rowIndex + ":L" + rowIndex;
+            ValueRange body = new ValueRange().setValues(Arrays.asList(updateValues));
+
+            service.spreadsheets().values()
+                    .update(spreadsheetId, updateRange, body)
+                    .setValueInputOption("USER_ENTERED")
+                    .execute();
+
+            logger.info("Consulta {} actualizada: estado={}, respondidoPor={}", ticket, estado, respondidoPor);
+
+        } catch (Exception e) {
+            logger.error("Error al actualizar consulta en Google Sheets", e);
+            throw new RuntimeException("Error al actualizar consulta: " + e.getMessage(), e);
+        }
+    }
+
     public List<Object> buscarReclamacionPorTicket(String ticket) {
         List<List<Object>> values = leerReclamaciones();
         if (values == null || values.size() <= 1) {
@@ -250,9 +339,9 @@ public class GoogleSheetsService {
         for (int i = 1; i < values.size(); i++) { // saltar header
             List<Object> fila = values.get(i);
             if (fila.size() > 10) {
-                String t = String.valueOf(fila.get(10));
+                String t = String.valueOf(fila.get(10)); // Ticket está en columna 10
                 if (t != null && t.trim().equalsIgnoreCase(ticket != null ? ticket.trim() : "")) {
-                return fila;
+                    return fila;
                 }
             }
         }

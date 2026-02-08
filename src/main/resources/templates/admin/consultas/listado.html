@@ -55,11 +55,10 @@
                             <label class="consultas-filter-label">Filtrar por Estado</label>
                             <select name="estado" class="consultas-filter-select">
                                 <option value="">Todos los estados</option>
-                                <option th:each="e : ${estados}" 
-                                        th:value="${e}" 
-                                        th:text="${e.descripcion}"
-                                        th:selected="${e == estadoActual}">
-                                </option>
+                                <option value="PENDIENTE" th:selected="${estadoActual == 'PENDIENTE'}">Pendiente</option>
+                                <option value="EN_PROCESO" th:selected="${estadoActual == 'EN_PROCESO'}">En Proceso</option>
+                                <option value="RESPONDIDA" th:selected="${estadoActual == 'RESPONDIDA'}">Respondida</option>
+                                <option value="CITA_PROGRAMADA" th:selected="${estadoActual == 'CITA_PROGRAMADA'}">Cita Programada</option>
                             </select>
                         </div>
                         <button type="submit" class="consultas-btn consultas-btn-primary">
@@ -90,22 +89,22 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="consulta : ${consultas.content}">
+                        <tr th:each="consulta, i : ${consultas}" th:if="${i.index > 0}">
                             <td>
                                 <div class="consultas-ticket">
-                                    <span class="consultas-ticket" th:text="${consulta.numeroTicket}">CON-123</span>
+                                    <span class="consultas-ticket" th:text="${consulta.get(8)}">CON-123</span>
                                     <div class="consultas-fecha">
                                         <i class="far fa-calendar"></i>
-                                        <span th:text="${#temporals.format(consulta.fechaCreacion, 'dd/MM/yyyy HH:mm')}">02/02/2026 23:47</span>
+                                        <span th:text="${consulta.get(0)}">02/02/2026 23:47</span>
                                     </div>
                                 </div>
                             </td>
                             <td>
                                 <div class="consultas-cliente">
-                                    <span class="consultas-cliente-nombre" th:text="${consulta.nombre + ' ' + consulta.apellido}">Juan Pérez</span>
-                                    <div class="consultas-cliente-info" th:if="${consulta.telefono}">
+                                    <span class="consultas-cliente-nombre" th:text="${consulta.get(1)} + ' ' + ${consulta.get(2)}">Juan Pérez</span>
+                                    <div class="consultas-cliente-info" th:if="${consulta.size() > 4 and consulta.get(4) != null}">
                                         <i class="fas fa-phone"></i>
-                                        <span th:text="${consulta.telefono}">999999999</span>
+                                        <span th:text="${consulta.get(4)}">999999999</span>
                                     </div>
                                 </div>
                             </td>
@@ -113,25 +112,25 @@
                                 <div class="consultas-contacto">
                                     <div class="consultas-contacto-item">
                                         <i class="far fa-envelope"></i>
-                                        <a th:href="'mailto:' + ${consulta.email}" th:text="${consulta.email}">email@example.com</a>
+                                        <a th:href="'mailto:' + ${consulta.get(3)}" th:text="${consulta.get(3)}">email@example.com</a>
                                     </div>
                                 </div>
                             </td>
                             <td>
-                                <span th:text="${consulta.tipoConsulta}">Tipo de consulta</span>
+                                <span th:text="${consulta.get(5)}">Tipo de consulta</span>
                             </td>
                             <td>
                                 <span class="consultas-badge"
-                                      th:classappend="${consulta.estado.name() == 'PENDIENTE' ? 'consultas-badge-pendiente' : 
-                                                        consulta.estado.name() == 'EN_PROCESO' ? 'consultas-badge-proceso' :
-                                                        consulta.estado.name() == 'CITA_PROGRAMADA' ? 'consultas-badge-cita' : 'consultas-badge-respondida'}"
-                                      th:text="${consulta.estado.descripcion}">
+                                      th:classappend="${consulta.get(7) == 'PENDIENTE' ? 'consultas-badge-pendiente' : 
+                                                        consulta.get(7) == 'EN_PROCESO' ? 'consultas-badge-proceso' :
+                                                        consulta.get(7) == 'CITA_PROGRAMADA' ? 'consultas-badge-cita' : 'consultas-badge-respondida'}"
+                                      th:text="${consulta.get(7)}">
                                     Pendiente
                                 </span>
                             </td>
                             <td style="text-align: center;">
                                 <div class="consultas-actions" style="justify-content: center;">
-                                    <a th:href="@{/admin/consultas/{id}(id=${consulta.id})}" 
+                                    <a th:href="@{/admin/consultas/detalle(ticket=${consulta.get(8)})}" 
                                        class="consultas-btn consultas-btn-primary"
                                        style="padding: 0.5rem 1rem; font-size: 0.875rem;"
                                        title="Ver detalles y responder">
@@ -141,7 +140,7 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr th:if="${consultas.empty}">
+                        <tr th:if="${consultas.size() &lt;= 1}">
                             <td colspan="6" style="text-align: center; padding: 3rem; color: #9ca3af;">
                                 <i class="fas fa-inbox" style="font-size: 3rem; margin-bottom: 1rem; display: block;"></i>
                                 <p>No hay consultas para mostrar</p>
@@ -149,48 +148,6 @@
                         </tr>
                     </tbody>
                 </table>
-            </div>
-            
-            <!-- Pagination -->
-            <div class="consultas-pagination" th:if="${!consultas.empty}">
-                <div class="consultas-pagination-info">
-                    Mostrando 
-                    <span th:text="${consultas.number * consultas.size + 1}">1</span> 
-                    a 
-                    <span th:text="${(consultas.number + 1) * consultas.size > consultas.totalElements ? consultas.totalElements : (consultas.number + 1) * consultas.size}">10</span> 
-                    de 
-                    <span th:text="${consultas.totalElements}">50</span> 
-                    resultados
-                </div>
-                <div class="consultas-pagination-controls">
-                    <a th:if="${!consultas.first}"
-                       th:href="@{/admin/consultas(page=${consultas.number - 1}, estado=${estadoActual}, busqueda=${busqueda})}"
-                       class="consultas-pagination-btn">
-                        Anterior
-                    </a>
-                    <span th:if="${consultas.first}" class="consultas-pagination-btn disabled">
-                        Anterior
-                    </span>
-                    <th:block th:each="i : ${#numbers.sequence(0, consultas.totalPages - 1)}">
-                        <a th:if="${i < 3 || i > consultas.totalPages - 4 || (i >= consultas.number - 1 && i <= consultas.number + 1)}"
-                           th:href="@{/admin/consultas(page=${i}, estado=${estadoActual}, busqueda=${busqueda})}"
-                           class="consultas-pagination-btn"
-                           th:classappend="${i == consultas.number} ? 'active' : ''"
-                           th:text="${i + 1}">
-                            1
-                        </a>
-                        <span th:if="${(i == 3 && consultas.number > 4) || (i == consultas.totalPages - 4 && consultas.number < consultas.totalPages - 5)}"
-                              style="padding: 0 0.5rem; color: #9ca3af;">...</span>
-                    </th:block>
-                    <a th:if="${!consultas.last}"
-                       th:href="@{/admin/consultas(page=${consultas.number + 1}, estado=${estadoActual}, busqueda=${busqueda})}"
-                       class="consultas-pagination-btn">
-                        Siguiente
-                    </a>
-                    <span th:if="${consultas.last}" class="consultas-pagination-btn disabled">
-                        Siguiente
-                    </span>
-                </div>
             </div>
         </div>
     </div>
