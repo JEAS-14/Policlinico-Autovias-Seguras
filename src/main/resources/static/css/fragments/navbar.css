@@ -328,25 +328,28 @@ html {
    =========================================== */
 .nav-buttons {
     display: flex; 
-    gap: 15px; 
+    gap: 10px; 
     align-items: center;
     margin-left: auto; /* Empuja los botones a la derecha */
-    padding-left: 40px;
+    padding-left: 20px;
+    flex-shrink: 0;
 }
 .btn-nav-cotiza {
-    display: inline-block; padding: 10px 25px;
+    display: inline-block; padding: 10px 18px;
     border-radius: 8px; text-decoration: none;
-    font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.9rem;
+    font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.85rem;
     background-color: var(--nav-purple); color: white;
     border: 2px solid var(--nav-purple); transition: all 0.3s ease;
+    white-space: nowrap;
 }
 .btn-nav-cotiza:hover { background-color: transparent; color: var(--nav-purple); transform: translateY(-2px); }
 .btn-nav-resultados {
-    display: inline-block; padding: 10px 25px;
+    display: inline-block; padding: 10px 18px;
     border-radius: 8px; text-decoration: none;
-    font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.9rem;
+    font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.85rem;
     background-color: var(--nav-teal); color: white;
     border: 2px solid var(--nav-teal); transition: all 0.3s ease;
+    white-space: nowrap;
 }
 .btn-nav-resultados:hover { background-color: transparent; color: var(--nav-teal); transform: translateY(-2px); }
 
@@ -364,11 +367,10 @@ html {
     .nav-menu { gap: 20px; }
     .logo { margin-right: 20px; }
     .nav-contact-bubble { margin-right: 15px; padding: 8px 16px; }
-    .nav-buttons { padding-left: 20px; }
 }
 
 /* Tablet específico - Rango intermedio */
-@media (max-width: 1100px) and (min-width: 993px) {
+@media (max-width: 992px) and (min-width: 993px) {
     .nav-menu { 
         gap: 15px; 
     }
@@ -626,30 +628,81 @@ html {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* VISIBILIDAD BOTONES NAVBAR EN LAPTOPS ANCHOS (994px - 1600px) */
-@media (min-width: 994px) and (max-width: 1600px) {
+/* Laptop pequeña - 992px a 1199px */
+@media (min-width: 992px) and (max-width: 1199px) {
     .nav-container {
-        max-width: 98vw;
-        padding: 0 12px;
+        padding: 0 10px;
+        max-width: 100%;
     }
-    .nav-menu {
-        gap: 16px;
-    }
-    .nav-buttons {
-        padding-left: 12px;
-        gap: 10px;
-    }
-    .btn-nav-cotiza, .btn-nav-resultados {
-        padding: 8px 16px;
-        font-size: 0.85rem;
-        min-width: 90px;
-    }
+
     .logo {
         margin-left: 10px;
-        margin-right: 18px;
+        margin-right: 15px;
+    }
+
+    .logo img {
+        height: 65px;
+    }
+
+    .nav-menu {
+        gap: 12px;
+        flex: 1;
+    }
+
+    .nav-menu a {
+        font-size: 0.85rem;
+        padding-bottom: 3px;
+    }
+
+    .nav-contact-bubble {
+        margin-right: 8px;
+        padding: 6px 10px;
+    }
+
+    .bubble-number {
+        font-size: 0.9rem;
+    }
+
+    .bubble-label {
+        font-size: 0.45rem;
+    }
+
+    .nav-buttons {
+        gap: 4px;
+        padding-left: 8px;
+    }
+
+    .btn-nav-cotiza,
+    .btn-nav-resultados {
+        padding: 8px 12px;
+        font-size: 0.7rem;
+        min-width: auto;
+    }
+}
+
+/* VISIBILIDAD BOTONES NAVBAR EN LAPTOPS ANCHOS (1200px+) */
+@media (min-width: 1200px) {
+    .nav-container {
+        max-width: 100%;
+        padding: 0 30px;
+    }
+    .nav-menu {
+        gap: 40px;
+    }
+    .nav-buttons {
+        padding-left: 40px;
+        gap: 15px;
+    }
+    .btn-nav-cotiza, .btn-nav-resultados {
+        padding: 10px 25px;
+        font-size: 0.9rem;
+        min-width: auto;
+    }
+    .logo {
+        margin-left: 80px;
+        margin-right: 40px;
     }
     .logo img {
-        height: 60px;
-        max-width: 120px;
+        height: 85px;
     }
 }
