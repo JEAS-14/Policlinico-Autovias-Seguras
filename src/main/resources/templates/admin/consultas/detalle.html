@@ -177,11 +177,14 @@
                     <h3 style="font-size: 1rem; font-weight: 600; color: #991b1b; margin-bottom: 1rem;">
                         <i class="fas fa-trash"></i> Eliminar Consulta
                     </h3>
-                    <p style="font-size: 0.875rem; color: #6b7280; margin-bottom: 1rem;">Nota: Los datos se pueden restaurar desde Google Sheets.</p>
-                    <button disabled style="width: 100%; background: #d1d5db; color: #6b7280; padding: 0.75rem; border: none; border-radius: 0.5rem; font-weight: 600; cursor: not-allowed;">
-                        <i class="fas fa-trash"></i> No disponible en Google Sheets
-                    </button>
-            </div>
+                    <p style="font-size: 0.875rem; color: #6b7280; margin-bottom: 1rem;">Esta acción eliminará permanentemente el registro.</p>
+                    <form method="post" th:action="@{/admin/consultas/eliminar}" style="display: flex; flex-direction: column; gap: 1rem;" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta consulta? Esta acción no se puede deshacer.');">
+                        <input type="hidden" name="ticket" th:value="${ticket}">
+                        <button type="submit" style="width: 100%; background: #dc2626; color: white; padding: 0.75rem; border: none; border-radius: 0.5rem; font-weight: 600; cursor: pointer; transition: background 0.2s;">
+                            <i class="fas fa-trash"></i> Eliminar Consulta
+                        </button>
+                    </form>
+                </div>
         </div>
     </div>
 </body>

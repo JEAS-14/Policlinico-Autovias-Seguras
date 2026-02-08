@@ -89,7 +89,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="consulta, i : ${consultas}" th:if="${i.index > 0}">
+                        <tr th:each="consulta : ${consultas}">
                             <td>
                                 <div class="consultas-ticket">
                                     <span class="consultas-ticket" th:text="${consulta.get(8)}">CON-123</span>
@@ -140,7 +140,7 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr th:if="${consultas.size() &lt;= 1}">
+                        <tr th:if="${consultas.size() == 0}">
                             <td colspan="6" style="text-align: center; padding: 3rem; color: #9ca3af;">
                                 <i class="fas fa-inbox" style="font-size: 3rem; margin-bottom: 1rem; display: block;"></i>
                                 <p>No hay consultas para mostrar</p>

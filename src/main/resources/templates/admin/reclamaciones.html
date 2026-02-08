@@ -78,7 +78,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="reclamacion, iterStat : ${reclamaciones}" th:if="${iterStat.index > 0}">
+                        <tr th:each="reclamacion : ${reclamaciones}">
                             <td>
                                 <div class="reclamaciones-ticket">
                                     <span class="reclamaciones-ticket-id" th:text="${reclamacion.size() > 10 ? reclamacion[10] : ''}">REC-123</span>
@@ -152,7 +152,7 @@
                                 </span>
                             </td>
                         </tr>
-                        <tr th:if="${#lists.isEmpty(reclamaciones) or reclamaciones.size() == 1}">
+                        <tr th:if="${#lists.isEmpty(reclamaciones)}">
                             <td colspan="7" style="text-align: center; padding: 3rem; color: #9ca3af;">
                                 <i class="fas fa-book" style="font-size: 3rem; margin-bottom: 1rem; display: block;"></i>
                                 <p>No hay reclamaciones registradas</p>

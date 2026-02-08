@@ -1,8 +1,6 @@
 package com.policlinico.autovias.config;
 
-import com.policlinico.autovias.application.service.ConsultaService;
 import com.policlinico.autovias.application.service.GoogleSheetsService;
-import com.policlinico.autovias.domain.enums.EstadoConsulta;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -15,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 @RequiredArgsConstructor
 public class AdminInterceptor implements HandlerInterceptor {
     
-    private final ConsultaService consultaService;
     private final GoogleSheetsService googleSheetsService;
     
     @Override
@@ -36,7 +33,20 @@ public class AdminInterceptor implements HandlerInterceptor {
         // Agregar contadores de notificaciones al modelo si existe
         if (modelAndView != null && !modelAndView.getViewName().startsWith("redirect:")) {
             try {
-                long consultasPendientes = consultaService.contarPorEstado(EstadoConsulta.PENDIENTE);
+                long consultasPendientes = 0L;
+                var consultas = googleSheetsService.leerConsultas();
+                for (int i = 1; i < (consultas != null ? consultas.size() : 0); i++) {
+                    var fila = consultas.get(i);
+                    if (fila == null || fila.isEmpty() || fila.get(0) == null) {
+                        continue;
+                    }
+                    String estado = (fila.size() > 7 && fila.get(7) != null)
+                            ? String.valueOf(fila.get(7)).trim().toUpperCase()
+                            : "PENDIENTE";
+                    if ("PENDIENTE".equals(estado)) {
+                        consultasPendientes++;
+                    }
+                }
                 modelAndView.addObject("consultasPendientes", consultasPendientes);
                 
                 try {

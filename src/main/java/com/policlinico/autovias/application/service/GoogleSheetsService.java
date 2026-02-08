@@ -441,4 +441,56 @@ public class GoogleSheetsService {
             throw new RuntimeException("Error al guardar artículo: " + e.getMessage(), e);
         }
     }
+
+    // Eliminar consulta o reclamación limpiando su contenido
+    public void eliminarRegistro(String ticket, String sheetName, int ticketColumnIndex) {
+        try {
+            Sheets service = getSheetService();
+            
+            // Leer todas las filas
+            ValueRange response = service.spreadsheets().values()
+                    .get(spreadsheetId, sheetName + "!A:M")
+                    .execute();
+            List<List<Object>> values = response.getValues();
+
+            if (values == null || values.size() <= 1) {
+                throw new RuntimeException("No hay datos en la hoja");
+            }
+
+            // Buscar fila por ticket
+            int rowIndex = -1;
+            for (int i = 1; i < values.size(); i++) {
+                List<Object> fila = values.get(i);
+                if (fila.size() > ticketColumnIndex && ticket.equals(String.valueOf(fila.get(ticketColumnIndex)))) {
+                    rowIndex = i + 1; // 1-based para Sheets
+                    break;
+                }
+            }
+
+            if (rowIndex == -1) {
+                throw new RuntimeException("No se encontró el ticket: " + ticket);
+            }
+
+            // Limpiar la fila
+            String clearRange = sheetName + "!A" + rowIndex + ":M" + rowIndex;
+            service.spreadsheets().values()
+                    .clear(spreadsheetId, clearRange, new com.google.api.services.sheets.v4.model.ClearValuesRequest())
+                    .execute();
+
+            logger.info("Registro {} eliminado de {}", ticket, sheetName);
+
+        } catch (Exception e) {
+            logger.error("Error al eliminar registro de Google Sheets", e);
+            throw new RuntimeException("Error al eliminar registro: " + e.getMessage(), e);
+        }
+    }
+
+    // Métodos específicos para eliminar
+    public void eliminarConsulta(String ticket) {
+        eliminarRegistro(ticket, consultasSheet, 8); // columna I (índice 8) es ticket
+    }
+
+    public void eliminarReclamacion(String ticket) {
+        eliminarRegistro(ticket, reclamacionesSheet, 10); // columna K (índice 10) es ticket
+    }
 }

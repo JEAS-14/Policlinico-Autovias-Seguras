@@ -36,19 +36,21 @@ public class AdminReclamacionesController {
             // Leer todas las reclamaciones desde Google Sheets
             List<List<Object>> reclamaciones = googleSheetsService.leerReclamaciones();
             
-            // Calcular paginación manual
-            int pageSize = 20;
-            int totalReclamaciones = reclamaciones.size() > 0 ? reclamaciones.size() - 1 : 0; // Menos header
-            int totalPages = (int) Math.ceil((double) totalReclamaciones / pageSize);
-
-            // Contadores por estado
+            // Filtrar filas vacías y calcular contadores
+            List<List<Object>> reclamacionesFiltradas = new java.util.ArrayList<>();
             int pendientes = 0;
             int enRevision = 0;
             int resueltas = 0;
             int cerradas = 0;
             for (int i = 1; i < reclamaciones.size(); i++) {
                 List<Object> fila = reclamaciones.get(i);
-                String estado = (fila.size() > 11 && fila.get(11) != null) ? String.valueOf(fila.get(11)).trim().toUpperCase() : "PENDIENTE";
+                if (fila == null || fila.isEmpty() || fila.get(0) == null) {
+                    continue;
+                }
+                reclamacionesFiltradas.add(fila);
+                String estado = (fila.size() > 11 && fila.get(11) != null)
+                        ? String.valueOf(fila.get(11)).trim().toUpperCase()
+                        : "PENDIENTE";
                 switch (estado) {
                     case "PENDIENTE" -> pendientes++;
                     case "EN_REVISION" -> enRevision++;
@@ -57,15 +59,19 @@ public class AdminReclamacionesController {
                     default -> pendientes++;
                 }
             }
-            
-            // Obtener página actual
-            int start = page * pageSize + 1; // +1 para saltar el header
-            int end = Math.min(start + pageSize, reclamaciones.size());
-            
-            List<List<Object>> paginaActual = reclamaciones.size() > start ? 
-                    reclamaciones.subList(start, end) : List.of();
-            
-            model.addAttribute("reclamaciones", reclamaciones);
+
+            // Calcular paginación manual con filas filtradas
+            int pageSize = 20;
+            int totalReclamaciones = reclamacionesFiltradas.size();
+            int totalPages = (int) Math.ceil((double) totalReclamaciones / pageSize);
+
+            int start = page * pageSize;
+            int end = Math.min(start + pageSize, totalReclamaciones);
+            List<List<Object>> paginaActual = totalReclamaciones > start
+                    ? reclamacionesFiltradas.subList(start, end)
+                    : List.of();
+
+            model.addAttribute("reclamaciones", paginaActual);
             model.addAttribute("totalReclamaciones", totalReclamaciones);
             model.addAttribute("currentPage", page);
             model.addAttribute("totalPages", totalPages);
@@ -143,6 +149,22 @@ public class AdminReclamacionesController {
         } catch (Exception e) {
             log.error("Error al responder reclamación", e);
             model.addAttribute("error", "No se pudo guardar la respuesta: " + e.getMessage());
+            return "redirect:/admin/reclamaciones/detalle?ticket=" + ticket + "&error";
+        }
+    }
+
+    @PostMapping("/eliminar")
+    public String eliminarReclamacion(
+            @RequestParam String ticket,
+            HttpSession session,
+            Model model) {
+
+        try {
+            googleSheetsService.eliminarReclamacion(ticket);
+            return "redirect:/admin/reclamaciones?eliminada";
+        } catch (Exception e) {
+            log.error("Error al eliminar reclamación", e);
+            model.addAttribute("error", "No se pudo eliminar la reclamación: " + e.getMessage());
             return "redirect:/admin/reclamaciones/detalle?ticket=" + ticket + "&error";
         }
     }

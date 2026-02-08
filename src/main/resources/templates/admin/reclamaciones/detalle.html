@@ -86,6 +86,23 @@
                 </form>
             </div>
         </div>
+
+        <!-- Eliminar Reclamación -->
+        <div class="reclamaciones-table-container" style="margin-top: 1.5rem;">
+            <div class="reclamaciones-table-wrapper" style="padding: 1.5rem; border: 1px solid #fee2e2; background: #fef2f2;">
+                <h4 style="margin-bottom: 1rem; color: #991b1b;">
+                    <i class="fas fa-trash"></i> Eliminar Reclamación
+                </h4>
+                <p style="margin-bottom: 1rem; color: #6b7280;">Esta acción eliminará permanentemente el registro.</p>
+                <form th:action="@{/admin/reclamaciones/eliminar}" method="post" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta reclamación? Esta acción no se puede deshacer.');">
+                    <input type="hidden" name="ticket" th:value="${ticket}" />
+                    <button type="submit" class="reclamaciones-btn" style="background: #dc2626; color: white;">
+                        <i class="fas fa-trash"></i>
+                        Eliminar Reclamación
+                    </button>
+                </form>
+            </div>
+        </div>
     </div>
 </body>
 </html>
