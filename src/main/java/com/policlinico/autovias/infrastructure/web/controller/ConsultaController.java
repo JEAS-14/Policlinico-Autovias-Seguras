@@ -10,7 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.policlinico.autovias.application.dto.ConsultaDTO;
 import com.policlinico.autovias.application.service.ConsultaService;
+import com.policlinico.autovias.application.service.RateLimitService;
+import com.policlinico.autovias.domain.exception.RateLimitExceededException;
+import com.policlinico.autovias.infrastructure.util.IpUtil;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
@@ -20,6 +24,7 @@ import lombok.RequiredArgsConstructor;
 public class ConsultaController {
 
     private final ConsultaService consultaService;
+    private final RateLimitService rateLimitService;
 
     @GetMapping("/formulario")
     public String mostrarFormulario(Model model) {
@@ -37,11 +42,24 @@ public class ConsultaController {
     public String procesarConsulta(
             @Valid @ModelAttribute("consultaDTO") ConsultaDTO consultaDTO,
             BindingResult result,
-            Model model) {
+            Model model,
+            HttpServletRequest request) {
 
         if (result.hasErrors()) {
             return "formulario";
         }
+
+        // Obtener IP del cliente
+        String clientIp = IpUtil.getClientIp(request);
+
+        // Verificar rate limit
+        if (!rateLimitService.isRequestAllowed(clientIp, "CONSULTA")) {
+            int remaining = rateLimitService.getRemainingRequests(clientIp, "CONSULTA");
+            throw new RateLimitExceededException(remaining, 24);
+        }
+
+        // Registrar la solicitud
+        rateLimitService.recordRequest(clientIp, "CONSULTA");
 
         // Delegamos TODO al servicio: Crear ticket, Guardar en DB y Enviar Emails
         consultaService.crearConsulta(consultaDTO);
