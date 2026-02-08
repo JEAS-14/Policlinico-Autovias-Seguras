@@ -148,4 +148,19 @@
 		</resources>
 	</build>
 
+	<profiles>
+		<profile>
+			<id>ci-skip-tests</id>
+			<activation>
+				<property>
+					<name>env.CI</name>
+					<value>true</value>
+				</property>
+			</activation>
+			<properties>
+				<maven.test.skip>true</maven.test.skip>
+			</properties>
+		</profile>
+	</profiles>
+
 </project>
