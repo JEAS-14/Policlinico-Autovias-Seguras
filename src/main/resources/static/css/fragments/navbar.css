@@ -1,10 +1,11 @@
 /* ===========================================
-   NAVBAR COMPLETO (FINAL Y BLINDADO)
+   NAVBAR MAESTRO (FIX FINAL: DROPDOWN & ALINEACIÓN)
    =========================================== */
 :root {
     --nav-purple: #2E1A5F;
     --nav-teal: #3BBCA8;
     --nav-height: 100px;
+    --nav-height-mobile: 80px;
 }
 
 html {
@@ -12,697 +13,285 @@ html {
     font-family: 'Poppins', sans-serif;
 }
 
+/* ===========================================
+   ESTILOS BASE (Móvil y General)
+   =========================================== */
 .navbar {
-    position: fixed;
-    top: 0; left: 0; right: 0;
+    position: fixed; top: 0; left: 0; right: 0;
     background-color: #ffffff;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
     height: var(--nav-height);
     z-index: 1000;
-    display: flex;
-    justify-content: center;
+    display: flex; justify-content: center;
+    transition: height 0.3s ease;
 }
 
 .nav-container {
-    width: 100%;
-    max-width: 100%; /* Cambiar de 1400px a 100% para usar todo el ancho */
-    padding: 0 20px;  /* Reducir de 50px a 20px para pegarlo al borde */
-    display: flex;
-    justify-content: flex-start; /* Cambiar a flex-start para permitir margin-left del logo */
-    align-items: center;
+    width: 100%; max-width: 100%;
+    padding: 0 20px;
+    display: flex; justify-content: space-between; align-items: center;
     height: 100%;
 }
 
 /* --- LOGO --- */
 .logo {
-    display: flex; 
-    align-items: center;
-    text-decoration: none; 
-    margin-left: 80px; /* 80px desde la izquierda */
-    margin-right: 40px;
-    flex-shrink: 0; /* Evita que se comprima */
+    display: flex; align-items: center; text-decoration: none; 
+    margin: 0; flex-shrink: 0; z-index: 1003;
 }
 .logo img {
-    height: 85px; 
-    width: auto;
-    max-width: 200px; /* Limita el ancho máximo */
-    object-fit: contain;
-    transition: transform 0.3s;
+    height: 85px; width: auto; max-width: 200px;
+    object-fit: contain; transition: 0.3s;
 }
 .logo:hover img { transform: scale(1.05); }
-.logo:hover img { transform: scale(1.05); }
-/* --- ESTILO BURBUJA IZQUIERDA --- */
-.nav-contact-bubble {
-    position: relative;
-    display: flex;
-    align-items: center;
-    margin-right: 30px;
-    background: #f0fdfa;
-    padding: 10px 22px;
-    border-radius: 50px;
-    border: 1px solid var(--nav-teal);
-    transition: all 0.3s ease;
-    flex-shrink: 0;
-    cursor: pointer;
-}
 
+/* --- BURBUJA DE CONTACTO (SOLUCIÓN DEFORMIDAD) --- */
+.nav-contact-bubble {
+    position: relative; display: none; /* Se activa en Tablet/PC */
+    align-items: center; margin-right: 30px;
+    background: #f0fdfa; padding: 10px 22px;
+    border-radius: 50px; border: 1px solid var(--nav-teal);
+    transition: all 0.3s ease; flex-shrink: 0; cursor: pointer;
+    min-width: max-content; /* Evita que se aplaste */
+}
 .nav-contact-bubble:hover {
     border-color: var(--nav-purple);
     box-shadow: 0 4px 12px rgba(46, 26, 95, 0.15);
 }
 
-.bubble-content {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+.bubble-content { 
+    display: flex; align-items: center; gap: 10px; 
+    width: 100%; justify-content: center;
 }
 
-.bubble-dropdown {
-    position: absolute;
-    top: calc(100% + 8px);
-    left: 0;
-    right: 0;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-    overflow: hidden;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: all 0.3s ease;
-    z-index: 100;
-}
-
-.nav-contact-bubble.active .bubble-dropdown {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.dropdown-option {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 18px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.9rem;
-    transition: all 0.2s ease;
-    border-bottom: 1px solid #f0f0f0;
-}
-
-.dropdown-option:last-child {
-    border-bottom: none;
-}
-
-.call-option {
-    color: var(--nav-purple);
-}
-
-.call-option:hover {
-    background: #f5f3ff;
-    color: var(--nav-purple);
-}
-
-.whatsapp-option {
-    color: #25D366;
-}
-
-.whatsapp-option:hover {
-    background: #f0fdf4;
-    color: #1ea952;
-}
-
-.dropdown-option i {
-    font-size: 1.2rem;
-}
-
-/* --- ESTILO BURBUJA IZQUIERDA (CORREGIDO) --- */
+/* Icono Animado */
 .pulse-icon {
-    width: 38px;
-    height: 38px;
-    background: var(--nav-teal);
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
-    position: relative;
-    z-index: 1;
+    width: 38px; height: 38px;
+    background: var(--nav-teal); color: white;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; position: relative; z-index: 1; flex-shrink: 0;
     animation: pulse-wave 2s infinite ease-out;
 }
-
-/* El elemento que hace el efecto de onda */
 .pulse-icon::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: var(--nav-teal);
-    z-index: -1;
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%; border-radius: 50%;
+    background: var(--nav-teal); z-index: -1;
     animation: pulse-wave 2s infinite ease-out;
 }
-
-/* Keyframes con prefijos para máxima compatibilidad en servidores */
-@-webkit-keyframes pulse-wave {
-    0% { -webkit-transform: scale(1); opacity: 0.8; }
-    50% { -webkit-transform: scale(1.3); opacity: 0.4; }
-    100% { -webkit-transform: scale(1); opacity: 0.8; }
-}
-
 @keyframes pulse-wave {
     0% { transform: scale(1); opacity: 0.8; }
     50% { transform: scale(1.3); opacity: 0.4; }
     100% { transform: scale(1); opacity: 0.8; }
 }
 
-.bubble-link {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
+.bubble-text { 
+    display: flex; flex-direction: column; line-height: 1.1; 
+    white-space: nowrap; /* Evita saltos de línea raros */
 }
+.bubble-label { font-size: 0.7rem; color: var(--nav-purple); font-weight: 700; text-transform: uppercase; }
+.bubble-number { font-size: 1.6rem; color: var(--nav-purple); font-weight: 800; }
 
-.bubble-text {
-    display: flex;
-    flex-direction: column;
-    line-height: 1.1;
+/* Dropdown de la burbuja */
+.bubble-dropdown {
+    position: absolute; top: calc(100% + 8px); left: 0; right: 0;
+    background: white; border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    overflow: hidden; opacity: 0; visibility: hidden;
+    transform: translateY(-10px); transition: all 0.3s ease; z-index: 100;
 }
-
-.bubble-label {
-    font-size: 0.7rem;
-    color: var(--nav-purple);
-    font-weight: 700;
-    text-transform: uppercase;
+.nav-contact-bubble.active .bubble-dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+.dropdown-option {
+    display: flex; align-items: center; gap: 12px; padding: 12px 18px;
+    text-decoration: none; font-weight: 600; font-size: 0.9rem;
+    transition: all 0.2s ease; border-bottom: 1px solid #f0f0f0;
 }
+.call-option { color: var(--nav-purple); }
+.whatsapp-option { color: #25D366; }
 
-.bubble-number {
-    font-size: 1.6rem;
-    color: var(--nav-purple);
-    font-weight: 800;
-}
-
-/* Media queries para responsividad del número */
-@media (max-width: 1200px) {
-    .bubble-number {
-        font-size: 1.4rem;
-    }
-}
-
-@media (max-width: 992px) {
-    .bubble-number {
-        font-size: 1.2rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .bubble-number {
-        font-size: 1rem;
-    }
-}
-
-/* ===========================================
-   MENÚ PRINCIPAL (ESCRITORIO)
-   =========================================== */
+/* --- MENÚ PRINCIPAL --- */
 .nav-menu {
-    display: flex; 
-    list-style: none; 
-    gap: 30px;
-    margin: 0; 
-    padding: 0; 
-    flex: 1; 
-    justify-content: center; /* Centrado con flex */
+    display: flex; list-style: none; margin: 0; padding: 0;
 }
-
-/* Estilos de Enlaces */
 .nav-menu a {
-    font-family: 'Poppins', sans-serif;
-    text-decoration: none;
-    color: #333;
-    font-size: 1.1rem;
-    font-weight: 500;
-    position: relative;
-    transition: color 0.3s;
-    display: flex;
-    align-items: center;
-    padding-bottom: 5px;
+    font-family: 'Poppins', sans-serif; text-decoration: none; color: #333;
+    font-weight: 500; transition: 0.3s; display: flex; align-items: center;
 }
 
-/* LÍNEA DE SUBRAYADO (PC) */
-.nav-menu a::before {
-    content: ''; position: absolute; left: 0; bottom: 0;
-    width: 0; height: 3px; border-radius: 2px;
-    background-color: var(--nav-teal);
-    transition: width 0.3s ease, background-color 0.3s ease;
-}
-
-/* FLECHA (PC) */
-.nav-menu li.has-dropdown > a::after {
-    content: ''; display: inline-block;
-    width: 8px; height: 8px;
-    border-right: 2px solid #555; border-bottom: 2px solid #555;
-    transform: rotate(45deg);
-    margin-left: 8px; margin-bottom: 3px;
-    transition: transform 0.3s ease, border-color 0.3s ease;
-}
-
-/* HOVER (PC) */
-.nav-menu a:hover { color: var(--nav-teal); }
-.nav-menu a:hover::before { width: 100%; }
-.nav-menu li.has-dropdown:hover > a::after {
-    transform: rotate(-135deg); border-color: var(--nav-teal); margin-bottom: -2px;
-}
-
-/* ACTIVE (PC) */
-.nav-menu a.active-link { color: var(--nav-purple) !important; font-weight: 700; }
-.nav-menu a.active-link::before { width: 100%; background-color: var(--nav-purple) !important; }
-.nav-menu li.has-dropdown > a.active-link::after { border-color: var(--nav-purple) !important; }
-
-/* ===========================================
-   MENÚ DESPLEGABLE (DROPDOWN - ESCRITORIO)
-   =========================================== */
-.nav-menu li.has-dropdown {
-    position: relative;
-    height: 100%;
-    display: flex;
-    align-items: center;
-}
-
-.dropdown-menu {
-    position: absolute; /* Esto es lo que molesta en móvil, lo anularemos abajo */
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%) translateY(10px);
-    background-color: #ffffff;
-    min-width: 220px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    border-radius: 8px;
-    padding: 15px 0;
-    list-style: none;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    z-index: 1100;
-    border-top: 4px solid var(--nav-purple);
-}
-
-.nav-menu li.has-dropdown:hover .dropdown-menu {
-    opacity: 1; visibility: visible;
-    transform: translateX(-50%) translateY(0);
-}
-
-.dropdown-menu li a {
-    display: block; padding: 12px 20px;
-    color: #555; font-size: 0.95rem; white-space: nowrap;
-    border-bottom: 1px solid #f0f0f0;
-}
-.dropdown-menu li a::before, .dropdown-menu li a::after { display: none !important; }
-.dropdown-menu li a:hover { background-color: #f9f9f9; color: var(--nav-purple); padding-left: 25px; }
-
-/* ===========================================
-   BOTONES
-   =========================================== */
+/* --- BOTONES --- */
 .nav-buttons {
-    display: flex; 
-    gap: 10px; 
-    align-items: center;
-    margin-left: auto; /* Empuja los botones a la derecha */
-    padding-left: 20px;
-    flex-shrink: 0;
+    display: flex; gap: 10px; align-items: center; flex-shrink: 0;
 }
-.btn-nav-cotiza {
-    display: inline-block; padding: 10px 18px;
-    border-radius: 8px; text-decoration: none;
-    font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.85rem;
-    background-color: var(--nav-purple); color: white;
-    border: 2px solid var(--nav-purple); transition: all 0.3s ease;
-    white-space: nowrap;
+.btn-nav-cotiza, .btn-nav-resultados {
+    display: inline-block; padding: 10px 18px; border-radius: 8px;
+    text-decoration: none; font-family: 'Poppins', sans-serif; font-weight: 700;
+    font-size: 0.85rem; transition: all 0.3s ease; white-space: nowrap;
 }
-.btn-nav-cotiza:hover { background-color: transparent; color: var(--nav-purple); transform: translateY(-2px); }
-.btn-nav-resultados {
-    display: inline-block; padding: 10px 18px;
-    border-radius: 8px; text-decoration: none;
-    font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.85rem;
-    background-color: var(--nav-teal); color: white;
-    border: 2px solid var(--nav-teal); transition: all 0.3s ease;
-    white-space: nowrap;
+.btn-nav-cotiza { background: var(--nav-purple); color: white; border: 2px solid var(--nav-purple); }
+.btn-nav-resultados { background: var(--nav-teal); color: white; border: 2px solid var(--nav-teal); }
+
+/* Hamburguesa */
+.hamburger {
+    display: none; flex-direction: column; gap: 6px; 
+    background: none; border: none; cursor: pointer; padding: 5px;
 }
-.btn-nav-resultados:hover { background-color: transparent; color: var(--nav-teal); transform: translateY(-2px); }
+.hamburger span { width: 30px; height: 3px; background: var(--nav-purple); transition: 0.3s; border-radius: 2px; }
+
 
 /* ===========================================
-   RESPONSIVE (MÓVIL - CORRECCIÓN TOTAL)
+   MÓVIL (Menos de 992px)
+   >>> AQUÍ ARREGLAMOS EL CENTRADO Y EL DROPDOWN <<<
    =========================================== */
-.hamburger {
-    display: none; flex-direction: column;
-    background: transparent; border: none; cursor: pointer; gap: 6px;
-}
-.hamburger span { width: 30px; height: 3px; background-color: var(--nav-purple); transition: 0.3s; }
-
-@media (max-width: 1200px) {
-    .nav-container { padding: 0 15px; }
-    .nav-menu { gap: 20px; }
-    .logo { margin-right: 20px; }
-    .nav-contact-bubble { margin-right: 15px; padding: 8px 16px; }
-}
-
-/* Tablet específico - Rango intermedio */
-@media (max-width: 992px) and (min-width: 993px) {
-    .nav-menu { 
-        gap: 15px; 
-    }
+@media (max-width: 991px) {
+    .navbar { height: 80px; }
+    .hamburger { display: flex; position: absolute; right: 20px; z-index: 1002; }
     
-    .nav-menu a {
-        font-size: 1rem;
-    }
+    .nav-container { padding: 0 15px; justify-content: space-between; }
+    .logo { margin: 0 auto 0 10px; order: 0; } /* Logo a la izquierda */
+    .logo img { height: 50px; }
     
-    .logo img {
-        height: 70px;
-    }
-    
-    .nav-contact-bubble {
-        padding: 8px 14px;
-    }
-    
-    .bubble-number {
-        font-size: 1.3rem;
-    }
-    
-    .btn-nav-cotiza, .btn-nav-resultados {
-        padding: 10px 20px;
-        font-size: 0.85rem;
-    }
-}
-
-@media (max-width: 992px) {
-    .navbar { 
-        height: 80px;
-        --nav-height: 80px;
-    }
-    .hamburger { 
-        display: flex;
-        position: absolute;
-        right: 20px;
-        z-index: 1002;
-    }
-    
-    .nav-container {
-        padding: 0 15px;
-        justify-content: space-between;
-    }
-    
-    /* Adaptar la burbuja de contacto en móvil */
-    .nav-contact-bubble {
-        margin-right: 0;
-        padding: 8px 12px;
-        order: -1;
-    }
-    
-    /* El dropdown debe aparecer mejor en móvil */
-    .bubble-dropdown {
-        left: 0;
-        right: auto;
-        min-width: 200px;
-        top: calc(100% + 5px);
-    }
-    
-    .dropdown-option {
-        font-size: 0.85rem;
-        padding: 10px 14px;
-    }
-    
-    .dropdown-option i {
-        font-size: 1rem;
-    }
-    
-    .pulse-icon {
-        width: 36px;
-        height: 36px;
-        font-size: 0.9rem;
-    }
-    
-    .bubble-text {
-        display: none; /* Ocultar texto en móvil, solo mostrar icono */
-    }
-    
-    /* Logo responsive */
-    .logo {
-        margin-left: 10px;
-        margin-right: auto;
-        order: 0;
-    }
-    
-    .logo img { 
-        height: 55px;
-        max-width: 140px;
-        margin-left: 0;
-        object-fit: contain;
-    }
-
-    /* CONTENEDOR MENÚ MÓVIL */
+    /* MENÚ DESLIZANTE */
     .nav-menu {
-        position: fixed;
-        top: 80px;
-        right: -100%;
-        width: 100%;
-        height: calc(100vh - 80px);
-        background: white;
-        flex-direction: column;
-        align-items: stretch;
+        position: fixed; top: 80px; right: -100%; width: 100%;
+        height: calc(100vh - 80px); background: white;
+        flex-direction: column; 
+        /* CENTRADO TOTAL */
+        align-items: center; 
         justify-content: flex-start;
-        padding: 20px 0;
+        padding: 20px 0; overflow-y: auto; z-index: 1001;
         transition: right 0.4s ease;
-        overflow-y: auto;
-        gap: 0;
-        z-index: 1001;
     }
-    .nav-menu.active { 
-        right: 0;
-        box-shadow: -5px 0 20px rgba(0,0,0,0.1);
-    }
+    .nav-menu.active { right: 0; box-shadow: -5px 0 20px rgba(0,0,0,0.1); }
+
+    /* Items del menú centrados */
+    .nav-menu > li { width: 100%; text-align: center; display: flex; flex-direction: column; align-items: center; }
     
-    /* Items del menú móvil */
-    .nav-menu > li {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    /* Enlaces principales del menú */
-    .nav-menu > li > a { 
-        font-size: 1.2rem;
-        padding: 15px 20px;
-        width: 100%;
-        text-align: center;
-        justify-content: center;
-        border-bottom: 1px solid #f0f0f0;
-    }
-    
-    .nav-menu > li > a::before,
-    .nav-menu > li > a::after {
-        display: none !important;
+    .nav-menu > li > a {
+        padding: 15px 20px; width: 100%; border-bottom: 1px solid #f0f0f0;
+        font-size: 1.1rem; justify-content: center; /* Centra el texto */
     }
 
-    /* --- CORRECCIÓN DROPDOWN MÓVIL --- */
-    .nav-menu li.has-dropdown {
-        flex-direction: column;
-        height: auto;
-        width: 100%;
-        display: flex;
-        align-items: stretch;
-    }
+    /* DROPDOWN MÓVIL (ACORDEÓN) */
+    .nav-menu li.has-dropdown { display: flex; flex-direction: column; }
     
-    .nav-menu li.has-dropdown > a {
-        position: relative;
-    }
-    
-    /* Flecha indicadora de dropdown en móvil - SOLO UNA */
     .nav-menu li.has-dropdown > a::after {
-        content: '\f078';
-        font-family: 'Font Awesome 6 Free';
-        font-weight: 900;
-        font-size: 0.8rem;
-        margin-left: 10px;
-        transition: transform 0.3s;
-        display: inline-block !important;
-        border: none !important;
+        content: '\f078'; font-family: 'Font Awesome 6 Free'; font-weight: 900;
+        margin-left: 10px; font-size: 0.8rem; transition: 0.3s;
     }
-    
-    /* Eliminar la flecha de escritorio en móvil */
-    @media (max-width: 768px) {
-        .nav-menu li.has-dropdown > a::after {
-            border: none !important;
-        }
-    }
-    
-    .nav-menu li.has-dropdown.open > a::after {
-        transform: rotate(180deg);
-    }
+    .nav-menu li.has-dropdown.open > a::after { transform: rotate(180deg); }
 
+    /* El submenú */
     .dropdown-menu {
-        position: static !important;
-        transform: none !important;
-        box-shadow: none !important;
-        opacity: 1 !important;
-        visibility: visible !important;
-        
-        display: none;
-        max-height: 0;
-        width: 100% !important;
-        min-width: 0 !important;
-        
-        background-color: #f8f8f8;
-        border-top: none;
-        border-radius: 0;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease, padding 0.3s ease;
+        display: none; /* Oculto por defecto */
+        width: 100%; background: #f8f8f8; 
+        padding: 0; list-style: none;
     }
-
+    
+    /* ¡ESTA ES LA CLAVE PARA QUE ABRA EN MÓVIL! */
     .nav-menu li.has-dropdown.open .dropdown-menu {
-        display: block;
-        max-height: 500px;
-        padding: 10px 0;
+        display: block; /* Se muestra al tener la clase .open */
     }
 
-    /* Enlaces del Dropdown */
-    .dropdown-menu li {
-        width: 100%;
-    }
-    
     .dropdown-menu li a {
-        display: block;
-        text-align: center;
-        padding: 12px 20px;
-        width: 100%;
-        font-size: 1rem;
-        color: #666;
-        border-bottom: 1px solid #e0e0e0;
-    }
-    
-    .dropdown-menu li:last-child a {
-        border-bottom: none;
+        padding: 12px 0; font-size: 0.95rem; color: #555;
+        border-bottom: 1px solid #e5e5e5;
+        justify-content: center; /* Centra los items del submenú */
     }
 
-    .dropdown-menu li a:hover {
-        background-color: #eaeaea;
-        color: var(--nav-purple);
-        padding-left: 20px !important;
-    }
-
-    /* BOTONES */
+    /* Botones Móvil */
     .nav-buttons {
-        position: fixed;
-        bottom: 0;
-        right: -100%;
-        width: 100%;
-        background: linear-gradient(to top, #ffffff, #f9f9f9);
-        padding: 20px;
-        flex-direction: column;
-        gap: 12px;
-        transition: right 0.4s ease;
-        z-index: 1001;
-        box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
+        position: fixed; bottom: 0; right: -100%; width: 100%;
+        background: white; padding: 20px; flex-direction: column;
+        transition: right 0.4s ease; z-index: 1002; box-shadow: 0 -5px 15px rgba(0,0,0,0.05);
     }
     .nav-buttons.active { right: 0; }
-    .btn-nav-cotiza, .btn-nav-resultados { 
-        width: 100%;
-        text-align: center;
-        padding: 14px 25px;
-        font-size: 1rem;
-    }
+    .btn-nav-cotiza, .btn-nav-resultados { width: 100%; text-align: center; }
 
-    /* ANIMACIÓN HAMBURGUESA */
+    /* Animación X Hamburguesa */
     .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(7px, 7px); }
     .hamburger.active span:nth-child(2) { opacity: 0; }
     .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-5px); }
-    to { opacity: 1; transform: translateY(0); }
+
+/* ===========================================
+   TABLET (992px - 1199px)
+   =========================================== */
+@media (min-width: 992px) {
+    /* Recuperamos estilos de escritorio */
+    .nav-contact-bubble { display: flex; } /* Aparece la burbuja */
+    
+    .nav-menu { flex: 1; justify-content: center; gap: 15px; }
+    .nav-menu a { font-size: 0.9rem; padding: 5px 0; position: relative; }
+    
+    /* Subrayado Hover */
+    .nav-menu a::before {
+        content: ''; position: absolute; left: 0; bottom: 0;
+        width: 0; height: 3px; border-radius: 2px;
+        background-color: var(--nav-teal); transition: width 0.3s ease;
+    }
+    .nav-menu a:hover { color: var(--nav-teal); }
+    .nav-menu a:hover::before { width: 100%; }
+
+    /* Dropdown Desktop (Hover) */
+    .dropdown-menu {
+        position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(10px);
+        width: 220px; background: white; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        border-radius: 8px; border-top: 4px solid var(--nav-purple);
+        padding: 10px 0; list-style: none; opacity: 0; visibility: hidden; transition: 0.3s;
+    }
+    .nav-menu li.has-dropdown { position: relative; height: 100%; }
+    .nav-menu li.has-dropdown:hover .dropdown-menu { 
+        opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); 
+    }
+    
+    .dropdown-menu li a { 
+        display: block; padding: 10px 20px; color: #555; border-bottom: 1px solid #f0f0f0;
+        justify-content: flex-start; /* Izquierda en submenú PC */
+    }
+    .dropdown-menu li a:hover { background: #f9f9f9; color: var(--nav-purple); padding-left: 25px; }
+    
+    /* Flechita PC */
+    .nav-menu li.has-dropdown > a::after {
+        content: ''; display: inline-block; width: 8px; height: 8px;
+        border-right: 2px solid #555; border-bottom: 2px solid #555;
+        transform: rotate(45deg); margin-left: 8px; margin-bottom: 3px; transition: 0.3s;
+    }
+    .nav-menu li.has-dropdown:hover > a::after { transform: rotate(-135deg); border-color: var(--nav-teal); }
+
+    /* Burbuja y Botones */
+    .nav-contact-bubble { margin-right: 15px; padding: 6px 12px; }
+    .nav-buttons { margin-left: auto; padding-left: 0; }
 }
 
-/* Laptop pequeña - 992px a 1199px */
-@media (min-width: 992px) and (max-width: 1199px) {
-    .nav-container {
-        padding: 0 10px;
-        max-width: 100%;
-    }
 
-    .logo {
-        margin-left: 10px;
-        margin-right: 15px;
-    }
-
-    .logo img {
-        height: 65px;
-    }
-
-    .nav-menu {
-        gap: 12px;
-        flex: 1;
-    }
-
-    .nav-menu a {
-        font-size: 0.85rem;
-        padding-bottom: 3px;
-    }
-
-    .nav-contact-bubble {
-        margin-right: 8px;
-        padding: 6px 10px;
-    }
-
-    .bubble-number {
-        font-size: 0.9rem;
-    }
-
-    .bubble-label {
-        font-size: 0.45rem;
-    }
-
-    .nav-buttons {
-        gap: 4px;
-        padding-left: 8px;
-    }
-
-    .btn-nav-cotiza,
-    .btn-nav-resultados {
-        padding: 8px 12px;
-        font-size: 0.7rem;
-        min-width: auto;
-    }
-}
-
-/* VISIBILIDAD BOTONES NAVBAR EN LAPTOPS ANCHOS (1200px+) */
+/* ===========================================
+   LAPTOP FIX (1200px - 1450px)
+   >>> AQUÍ ARREGLAMOS EL ESPACIO PARA QUE QUEPA TODO <<<
+   =========================================== */
 @media (min-width: 1200px) {
     .nav-container {
-        max-width: 100%;
-        padding: 0 30px;
+        /* Padding elástico */
+        padding: 0 clamp(20px, 3vw, 50px);
     }
-    .nav-menu {
-        gap: 40px;
-    }
-    .nav-buttons {
-        padding-left: 40px;
-        gap: 15px;
-    }
-    .btn-nav-cotiza, .btn-nav-resultados {
-        padding: 10px 25px;
-        font-size: 0.9rem;
-        min-width: auto;
-    }
+
+    /* Logo elástico */
     .logo {
-        margin-left: 80px;
-        margin-right: 40px;
+        margin-left: clamp(0px, 2vw, 40px); /* Sin margen fijo */
+        margin-right: clamp(20px, 3vw, 40px);
     }
-    .logo img {
-        height: 85px;
+    .logo img { height: clamp(65px, 5vw, 85px); }
+
+    /* Menú elástico */
+    .nav-menu { gap: clamp(15px, 2vw, 40px); }
+    .nav-menu a { font-size: clamp(0.95rem, 0.9rem + 0.2vw, 1.1rem); }
+    
+    /* Burbuja completa */
+    .nav-contact-bubble {
+        margin-right: clamp(15px, 2vw, 30px);
+        padding: 10px clamp(15px, 1.5vw, 22px);
     }
+    .bubble-number { font-size: clamp(1.3rem, 1.1rem + 0.4vw, 1.6rem); }
+
+    /* Botones */
+    .nav-buttons { padding-left: clamp(10px, 2vw, 40px); gap: 15px; }
+    .btn-nav-cotiza, .btn-nav-resultados { padding: 10px clamp(15px, 1.5vw, 25px); font-size: 0.95rem; }
 }

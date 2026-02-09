@@ -2,105 +2,94 @@ document.addEventListener('DOMContentLoaded', function() {
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.querySelector('.nav-menu');
     const navButtons = document.querySelector('.nav-buttons');
-    const navLinks = document.querySelectorAll('.nav-menu a'); // Todos los enlaces
-    const dropdownParents = document.querySelectorAll('.nav-menu .has-dropdown');
+    const navLinks = document.querySelectorAll('.nav-menu a');
     const contactBubble = document.getElementById('contactBubble');
-
-    // --- FUNCIÓN DROPDOWN DE CONTACTO ---
+    
+    // --- 1. BURBUJA DE CONTACTO ---
     if (contactBubble) {
         contactBubble.addEventListener('click', function(e) {
             e.stopPropagation();
             this.classList.toggle('active');
         });
-        
-        // Cerrar al hacer clic fuera
         document.addEventListener('click', function(e) {
-            if (contactBubble && !contactBubble.contains(e.target)) {
+            if (!contactBubble.contains(e.target)) {
                 contactBubble.classList.remove('active');
             }
         });
     }
 
-    // --- FUNCIÓN HAMBURGUESA ---
+    // --- 2. HAMBURGUESA ---
     function toggleMenu() {
-        hamburger.classList.toggle('active');
-        navMenu.classList.toggle('active');
-        navButtons.classList.toggle('active');
-        document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : 'auto';
+        if(hamburger) hamburger.classList.toggle('active');
+        if(navMenu) navMenu.classList.toggle('active');
+        if(navButtons) navButtons.classList.toggle('active');
+        
+        // Bloquear scroll
+        document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
     }
 
     if (hamburger) {
         hamburger.addEventListener('click', toggleMenu);
     }
 
-    // --- DROPDOWN EN MÓVIL (CLICK) ---
-    dropdownParents.forEach(dropdown => {
-        const menuLink = dropdown.querySelector('> a');
-        
-        menuLink.addEventListener('click', function(e) {
-            // Solo prevenir en móvil
-            if (window.innerWidth <= 992) {
-                e.preventDefault();
-                
-                // Cerrar otros dropdowns abiertos
-                dropdownParents.forEach(other => {
-                    if (other !== dropdown) {
-                        other.classList.remove('open');
-                    }
-                });
-                
-                // Toggle del actual
-                dropdown.classList.toggle('open');
-            }
-        });
-    });
+    // --- 3. DROPDOWN EN MÓVIL (Lógica corregida) ---
+    // Seleccionamos los LI que tienen dropdown
+    const dropdownItems = document.querySelectorAll('.nav-menu li.has-dropdown');
 
-    // Cerrar dropdowns al cambiar tamaño de pantalla
-    window.addEventListener('resize', function() {
-        if (window.innerWidth > 992) {
-            dropdownParents.forEach(dropdown => {
-                dropdown.classList.remove('open');
+    dropdownItems.forEach(item => {
+        const link = item.querySelector('a'); // El enlace "Nuestros Servicios"
+        
+        if (link) {
+            link.addEventListener('click', function(e) {
+                // Solo activamos esto en pantallas móviles (menos de 992px)
+                if (window.innerWidth < 992) {
+                    e.preventDefault(); // Evitamos que navegue
+                    e.stopPropagation(); // Evitamos conflictos
+                    
+                    // Cerramos otros dropdowns si hubiera más
+                    dropdownItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('open');
+                        }
+                    });
+
+                    // Abrimos/Cerramos el actual
+                    item.classList.toggle('open');
+                }
             });
         }
     });
 
-    // --- LÓGICA DE ACTIVE STATE (MEJORADA) ---
-    const currentUrl = window.location.pathname;
-
-    navLinks.forEach(link => {
-        // Obtener solo el path de la URL del enlace (sin dominio)
-        let href = link.getAttribute('href');
-        
-        // Si es una URL completa, extraer solo el path
-        if (href && href.includes('://')) {
-            try {
-                href = new URL(href).pathname;
-            } catch (e) {
-                // Si falla, usar href tal cual
-            }
+    // Resetear al cambiar tamaño de pantalla
+    window.addEventListener('resize', function() {
+        if (window.innerWidth >= 992) {
+            // Limpiar clases móviles
+            if(navMenu) navMenu.classList.remove('active');
+            if(hamburger) hamburger.classList.remove('active');
+            if(navButtons) navButtons.classList.remove('active');
+            document.body.style.overflow = '';
+            
+            // Cerrar todos los dropdowns abiertos
+            dropdownItems.forEach(item => item.classList.remove('open'));
         }
-        
-        // Limpiamos clases previas
+    });
+
+    // --- 4. ESTADO ACTIVO (Active Link) ---
+    const currentUrl = window.location.pathname;
+    navLinks.forEach(link => {
+        const href = link.getAttribute('href');
         link.classList.remove('active-link');
 
-        // 1. Coincidencia exacta (Para páginas normales)
-        if (href === currentUrl) {
+        // Si coincide la URL exacta o es una sub-ruta (excepto home)
+        if (href === currentUrl || (href !== '/' && currentUrl.startsWith(href))) {
             link.classList.add('active-link');
             
-            // TRUCO: Si el enlace activo está DENTRO de un dropdown...
-            // Hay que iluminar también al papá (Nuestros Servicios)
-            const parentDropdown = link.closest('.has-dropdown');
-            if (parentDropdown) {
-                // Buscamos el enlace principal de ese dropdown (el primer <a>)
-                const parentLink = parentDropdown.querySelector('a');
-                if (parentLink) parentLink.classList.add('active-link');
+            // Si es un sub-elemento, activar también al padre "Nuestros Servicios"
+            const parentLi = link.closest('.has-dropdown');
+            if (parentLi) {
+                const parentLink = parentLi.querySelector('a');
+                if(parentLink) parentLink.classList.add('active-link');
             }
-        }
-        // 2. Coincidencia de "Familia" (Para marcar el padre si estás en una subruta)
-        // Si la URL actual empieza con el href del enlace (ej: /nuestrosServicios/...)
-        // Y no es el home '/'
-        else if (href !== '/' && currentUrl.startsWith(href)) {
-             link.classList.add('active-link');
         }
     });
 });
