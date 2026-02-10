@@ -281,7 +281,7 @@ const servicesData = [
     },
     {
         id: 2,
-        title: "Examen Médico-SUCAMEC Fisico y Mental-Psicosomático",
+        title: "Examen Médico-SUCAMEC Físico y Mental-Psicosomático",
         desc: "Carne Sucamec - Licencia de arma de fuego.",
         fullDesc: "Evaluación integral de salud mental y física para personal de seguridad y uso civil de armas.",
         icon: "shield-alt",
